@@ -1,0 +1,9 @@
+" Config taken from
+" http://bling.github.io/blog/2013/06/02/unite-dot-vim-the-plugin-you-didnt-know-you-need/
+" call unite#custom#source('file_rec/async', 'ignore_pattern', '.*\.tags')
+" nnoremap <c-p> :Unite file_rec/async<cr>
+" nnoremap <space>/ :Unite grep:.<cr>
+" nnoremap <space>y :Unite history/yank<cr>
+" let g:Unite_source_history_yank_enable=1
+" nnoremap <space>s :Unite -quick-match buffer<cr>
+

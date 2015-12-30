@@ -1,0 +1,17 @@
+[core]
+  editor = vim
+	excludesfile = ~/.gitignore
+[credential]
+	helper = osxkeychain
+[push]
+  default = simple
+[mergetool]
+  keepBackup = true
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustExitCode = true
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f

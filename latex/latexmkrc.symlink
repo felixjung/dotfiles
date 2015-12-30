@@ -1,0 +1,13 @@
+# How to open the PDF viewer
+$pdf_previewer = 'osascript -e "set theFile to POSIX file \"%S\" as alias" -e "set thePath to POSIX path of theFile" -e "tell application \"Skim\"" -e "open theFile" -e "end tell"';
+# How should the PDF viewer be updated? (4 = by command)
+$pdf_update_method = 4;
+# Update command for PDF viewer
+$pdf_update_command = '/usr/bin/osascript -e "set theFile to POSIX file \"%S\" as alias" -e "set thePath to POSIX path of theFile" -e "tell application \"Skim\"" -e  "  set theDocs to get documents whose path is thePath" -e "  try" -e "    if (count of theDocs) > 0 then revert theDocs" -e "  end try" -e "  open theFile" -e "end tell"';
+$pdflatex = 'pdflatex -interaction=nonstopmode -synctex=1 --shell-escape %O %S';
+# User biber instead of bibtex
+$biber = 'biber --debug %O %S';
+# Extra file extensions to clean when latexmk -c or latexmk -C is used
+$clean_ext = '%R.run.xml %R.synctex.gz';
+# Put output files in a sub-folder
+$out_dir = 'build'

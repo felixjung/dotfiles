@@ -1,0 +1,43 @@
+/*
+ * Your Stylesheet
+ *
+ * This stylesheet is loaded when Atom starts up and is reloaded automatically
+ * when it is changed.
+ *
+ * If you are unfamiliar with LESS, you can read more about it here:
+ * http://www.lesscss.org
+ */
+
+body {
+ -webkit-font-smoothing: auto;
+}
+
+atom-text-editor {
+  text-rendering: optimizeLegibility;
+}
+
+.tree-view-resizer, atom-text-editor {
+ ::-webkit-scrollbar {
+   width: 0.5em;
+   height: 0.5em;
+ }
+
+ ::-webkit-scrollbar-track {
+   background-color: #303030;
+ }
+
+ ::-webkit-scrollbar-thumb {
+   background-color: lighten(#303030, 15%);
+ }
+}
+
+atom-text-editor::shadow {
+ .vertical {
+   .multi-wrap-guide {
+     .multi-wrap-guide-line {
+       background-color: fadeout(#999999, 95%);
+       width: 5px;
+     }
+   }
+ }
+}

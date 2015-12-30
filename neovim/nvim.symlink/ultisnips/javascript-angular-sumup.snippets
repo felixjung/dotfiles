@@ -1,0 +1,76 @@
+extends javascript
+
+global !p
+import re
+
+def dependencies(inj, snip):
+	strings = inj.split(', ')
+	result = ''.join(["'%s', " % (string) for string in strings])
+	snip.rv = result.strip()[:-1]
+
+def toConstant(inj, snip):
+	result = re.sub('(.)([A-Z])', r'\1_\2', inj).upper()
+	snip.rv = result
+endglobal
+
+priority -60
+
+snippet us "use strict;" b
+'use strict';
+endsnippet
+
+snippet asercon "angular service or controller" bm
+const ${1:TYPE}_NAME = '${2:name}';
+
+$2.$inject = [`!p dependencies(t[3], snip)`];
+
+function $2(${3:dependencies}) {
+	$0
+}
+
+${4:module}.`!p snip.rv = t[1].lower()`($1_NAME, $2);
+
+export default {
+	name: $1_NAME,
+	component: $2
+};
+endsnippet
+
+snippet acom "angular component" bm
+const DIRECTIVE_NAME = '${1:name}';
+
+$1.$inject = [`!p dependencies(t[2], snip)`];
+
+function $1(${2:dependencies}) {
+	return {
+		${3:restrict: '${4:EA}',}
+	  ${5:templateUrl: '${6:/path/to/template}',}
+	  ${7:template: \`
+		  ${8:template-markup}
+	  \`,}
+		scope: {},
+		bindToController: {
+			${9:bindings}
+		}
+		controller: ${10:'ControllerName'},
+		controllerAs: '$1',
+	}
+}
+endsnippet
+
+snippet areg "register with angular" bm
+${1:module}.${2:type}(`!p snip.rv = t[2].upper()`_NAME, ${3:constructor});
+endsnippet
+
+snippet aexp "export the component" bm
+export default {
+  name: ${1:name},
+	component: ${2:component}
+}
+endsnippet
+
+snippet aconi "angular controller injection container" m
+[`!p dependencies(t[1], snip)`, (${1:dependencies}) => {
+	$0
+}]
+endsnippet

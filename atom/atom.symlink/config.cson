@@ -1,0 +1,206 @@
+"*":
+  "exception-reporting":
+    userId: "7652af63-0a80-ab67-85f4-9d3eebd7294e"
+  welcome:
+    showOnStartup: false
+  metrics:
+    userId: "62e806a948537de01b816d7735025a087eddc82a"
+  editor:
+    useHardwareAcceleration: true
+    invisibles: {}
+    showInvisibles: true
+    tabType: "soft"
+    fontSize: 12
+    fontFamily: "Droid Sans Mono for Powerline"
+    autoIndentOnPaste: false
+  core:
+    audioBeep: false
+    projectHome: "/Users/Felix/Development"
+    disabledPackages: [
+      "feedback"
+      "symbols-view"
+      "save-session"
+      "file-type-icons"
+      "autocomplete-bibtex"
+      "wrap-guide"
+      "atom-ctags"
+    ]
+    ignoredNames: [
+      ".git"
+      ".DS_Store"
+      ".sass_cache"
+    ]
+  sassbeautify:
+    path: '''
+      /usr/local/bin:/usr/local/sbin:/usr/local/git/bin:/usr/texbin:/Users/Felix/.rvm/gems/ruby-2.1.0/bin:/Users/Felix/.rvm/gems/ruby-2.1.0@global/bin:/Users/Felix/.rvm/rubies/ruby-2.1.0/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/Felix/.rvm/bin:/Users/Felix/.rvm/bin
+      
+    '''
+    indent: 2
+  "auto-update-packages":
+    intervalMinutes: 60
+  "git-diff": {}
+  linter:
+    showInfoMessages: true
+    clearOnChange: true
+    subtleLinterErrors: [
+      "jshint"
+      "shellcheck"
+    ]
+    lintOnFly: false
+    showErrorTabLine: true
+    showErrorPanel: false
+  "tree-view":
+    hideIgnoredNames: true
+  "autocomplete-plus":
+    includeCompletionsFromAllBuffers: true
+    autoActivationDelay: 200
+    fileBlacklist: [
+      "*.md"
+      "*.json"
+    ]
+  "autocomplete-emojis":
+    fileWhitelist: "*.md, *.swift, *.jl"
+  "file-icons":
+    tabPaneIcon: false
+    onChanges: true
+  "linter-scss-lint":
+    executablePath: "/usr/local/bin/scss-lint"
+  "linter-csslint":
+    csslintExecutablePath: "/usr/local/bin/csslint"
+  "vim-mode":
+    useClipboardAsDefaultRegister: true
+  "vim-surround":
+    surroundKey: "S"
+  "atom-ctags":
+    autoBuildTagsWhenActive: true
+    cmdArgs: "--exclude=node_modules --exclude=bower_components"
+  "autocomplete-bibtex": {}
+  "autocomplete-clang":
+    preCompiledHeaders: {}
+    std: {}
+  "atom-alignment": {}
+  "linter-jshint":
+    jshintExecutablePath: "/usr/local/bin/jshint"
+  "repl-term":
+    focusTerminal: true
+  "filetype-color":
+    enabled: "false"
+  "atom-color-highlight": {}
+  pigments: {}
+  tabs: {}
+  "tool-bar":
+    position: "Left"
+  "flex-tool-bar": {}
+  "one-dark-ui":
+    layoutMode: "Compact"
+    fontSize: 10
+  "one-light-ui":
+    layoutMode: "Compact"
+    fontSize: 10
+  "linter-tidy":
+    tidyExecutablePath: "/usr/local/bin/tidy5"
+  "linter-jscs":
+    executablePath: "/usr/local/bin/jscs"
+    esnext: true
+  minimap: {}
+  "merge-conflicts":
+    gitPath: "/usr/local/bin/git"
+  "jscs-fixer":
+    defaultPreset: "airbnb"
+  "clipboard-plus": {}
+  docblockr: {}
+  "markdown-writer":
+    fileExtension: ".md"
+  "color-picker":
+    preferredFormat: "HEX"
+  "atom-material-ui":
+    compactTreeView: true
+    depth: true
+    panelContrast: true
+    rippleAccentColor: true
+    slimScrollbar: true
+    themeSyle: "Lighter"
+  "markdown-preview-plus":
+    enableLatexRenderingByDefault: true
+    useGitHubStyle: true
+  "multi-wrap-guide": {}
+  "atom-beautify":
+    _analyticsUserId: "016e9f8c-043c-4df4-b21b-8532dd9d8856"
+".js.regexp.replacement.source":
+  editor:
+    preferredLineLength: 120
+".gfm.source .code":
+  softWrap: false
+".css.scss.source":
+  "multi-wrap-guide":
+    columns: [
+      120
+    ]
+  "go-plus":
+    goPath: "~/Development/Go"
+    goInstallation: "/usr/local/opt/go/libexec/bin"
+".python.text.traceback":
+  editor:
+    tabLength: 4
+".python.regexp.source":
+  editor:
+    preferredLineLength: 80
+".console.python.text":
+  editor:
+    tabLength: 4
+".basic.html.text":
+  editor:
+    showInvisibles: true
+".css.less.source":
+  "multi-wrap-guide":
+    columns: [
+      90
+    ]
+  editor:
+    preferredLineLength: 90
+".js.regexp.source":
+  editor:
+    preferredLineLength: 120
+".js.source":
+  editor:
+    preferredLineLength: 80
+    softWrapAtPreferredLineLength: true
+  "multi-wrap-guide":
+    columns: [
+      80
+    ]
+  "wrap-guide":
+    enabled: false
+".python.source":
+  editor:
+    preferredLineLength: 80
+    tabLength: 4
+    showInvisibles: true
+".bibtex.text":
+  editor:
+    preferredLineLength: 100
+".haml.text":
+  "wrap-guide":
+    enabled: false
+".git-commit.text":
+  editor:
+    preferredLineLength: 72
+  "multi-wrap-guide":
+    columns: [
+      72
+    ]
+".gfm.source":
+  editor:
+    softWrap: true
+  "wrap-guide":
+    enabled: false
+".html.source":
+  editor:
+    softWrap: false
+    showIndentGuide: false
+".julia.source":
+  editor:
+    preferredLineLength: 100
+    softWrap: false
+    tabLength: 2
+    scrollPastEnd: true

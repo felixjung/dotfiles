@@ -1,0 +1,2 @@
+let NERDSpaceDelims=1
+

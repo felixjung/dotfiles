@@ -1,0 +1,12 @@
+let vimrplugin_applescript=0 " Disable R.app
+vmap <Space> <Plug>RDSendSelection
+nmap <Space> <Plug>RDSendLine
+let vimrplugin_rcomment_string="# "
+let r_indent_ess_comments=0
+let r_indent_comment_column=40
+let r_indent_align_args=0
+let vimrplugin_vsplit=1
+let vimrplugin_rconsole_width=100
+let vimrplugin_Rout_more_colors=1
+au FileType r noremap <leader>r :Tab/<-<cr>
+
