@@ -1,7 +1,7 @@
 # About
 My personal dotfiles. A lot of things were adopted from people like
 [@holman](https://github.com/holman/dotfiles),
-[@mathiasbynens](https://github.com/mathiasbynens/dotfiles), and other people
+[@mathiasbynens](https://github.com/mathiasbynens/dotfiles), and others
 listed on [dotfiles.github.io](https://dotfiles.github.io).
 
 
