@@ -172,7 +172,6 @@ setup_homebrew () {
     [[ ! $(xcode-select -p; echo $?) ]] && xcode-select --install
 
     # Install Homebrew
-    echo "Foobar"
     if ! type "brew" > /dev/null; then
       info 'Installing Homebrew.\n'
       ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -219,8 +218,14 @@ find_run_installer () {
   set -e
 
   cd ${HOME}/.dotfiles
+  installers=($(find . -name $1))
 
-  find . -name $1 | while read installer ; do sh -c "${installer}" ; done
+  for installer in "${installers[@]}"; do
+    installer_name=$(basename "$(dirname $installer)")
+    if yes_no_prompt "Install $installer_name?"; then
+      sh -c "${installer}"
+    fi
+  done
 }
 
 # Ask for the administrator password upfront
