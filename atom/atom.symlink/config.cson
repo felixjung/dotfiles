@@ -11,7 +11,7 @@
     showInvisibles: true
     tabType: "soft"
     fontSize: 12
-    fontFamily: "Droid Sans Mono for Powerline"
+    fontFamily: "Hack"
     autoIndentOnPaste: false
   core:
     audioBeep: false
@@ -131,6 +131,28 @@
     preferredLineLength: 120
 ".gfm.source .code":
   softWrap: false
+".js.regexp.source":
+  editor:
+    preferredLineLength: 120
+".css.less.source":
+  "multi-wrap-guide":
+    columns: [
+      90
+    ]
+  editor:
+    preferredLineLength: 90
+".basic.html.text":
+  editor:
+    showInvisibles: true
+".console.python.text":
+  editor:
+    tabLength: 4
+".python.regexp.source":
+  editor:
+    preferredLineLength: 80
+".python.text.traceback":
+  editor:
+    tabLength: 4
 ".css.scss.source":
   "multi-wrap-guide":
     columns: [
@@ -139,28 +161,39 @@
   "go-plus":
     goPath: "~/Development/Go"
     goInstallation: "/usr/local/opt/go/libexec/bin"
-".python.text.traceback":
+".julia.source":
   editor:
-    tabLength: 4
-".python.regexp.source":
+    preferredLineLength: 100
+    softWrap: false
+    tabLength: 2
+    scrollPastEnd: true
+".html.source":
   editor:
-    preferredLineLength: 80
-".console.python.text":
+    softWrap: false
+    showIndentGuide: false
+".gfm.source":
   editor:
-    tabLength: 4
-".basic.html.text":
+    softWrap: true
+  "wrap-guide":
+    enabled: false
+".git-commit.text":
   editor:
-    showInvisibles: true
-".css.less.source":
+    preferredLineLength: 72
   "multi-wrap-guide":
     columns: [
-      90
+      72
     ]
+".haml.text":
+  "wrap-guide":
+    enabled: false
+".bibtex.text":
   editor:
-    preferredLineLength: 90
-".js.regexp.source":
+    preferredLineLength: 100
+".python.source":
   editor:
-    preferredLineLength: 120
+    preferredLineLength: 80
+    tabLength: 4
+    showInvisibles: true
 ".js.source":
   editor:
     preferredLineLength: 80
@@ -171,36 +204,3 @@
     ]
   "wrap-guide":
     enabled: false
-".python.source":
-  editor:
-    preferredLineLength: 80
-    tabLength: 4
-    showInvisibles: true
-".bibtex.text":
-  editor:
-    preferredLineLength: 100
-".haml.text":
-  "wrap-guide":
-    enabled: false
-".git-commit.text":
-  editor:
-    preferredLineLength: 72
-  "multi-wrap-guide":
-    columns: [
-      72
-    ]
-".gfm.source":
-  editor:
-    softWrap: true
-  "wrap-guide":
-    enabled: false
-".html.source":
-  editor:
-    softWrap: false
-    showIndentGuide: false
-".julia.source":
-  editor:
-    preferredLineLength: 100
-    softWrap: false
-    tabLength: 2
-    scrollPastEnd: true
