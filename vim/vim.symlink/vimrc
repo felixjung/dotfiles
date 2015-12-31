@@ -1,4 +1,4 @@
-" Use Neovim defaults for Vim {
+" Set Vim and Neovim specific options {
   if !has('nvim')
     set nocompatible                              " Use Vim settings rather than Vi's
     set backspace=indent,eol,start                " Specify <BS> behavior
@@ -7,21 +7,19 @@
     set ttyfast                                   " We have a fast terminal connection
     set wildmenu                                  " Enhance command-line completion
     set wildmode=list:longest,full                " Completion behavior for wildchar
+    set clipboard+=unnamed                        " Use unnamed clipboard
+  elseif
+    set clipboard+=unnamedplus                    " Neovim works with standard pbcopy/pbpaste on OS X
     " Turn spell checking on. Spell checking has to be triggered manually
     " in neovim (https://github.com/neovim/neovim/issues/1551).
     set spell
   endif
 " }
 
-" Special settings for neovim {
-  if has('nvim')
-    nmap <BS> <C-W>h
-  endif
-" }
-
 " Basic settings {
   set mouse=a                                     " Automatically enable mouse usage
   set mousehide                                   " Hide the mouse cursor while typing
+  set shortmess+=I                                " Disable welcome message
   set shiftround                                  " Round to multiples of shift
   set noshowmode                                  " Do not show the mode in the command bar
   set noshowcmd                                   " Hide the last command
@@ -33,7 +31,7 @@
   set spelllang=en_us                             " Spelling in US English
   set history=1000                                " Store a ton of history (default is 20)
   set hidden                                      " Allow buffer switching without saving
-  set shortmess=filmnrxoOtTI                      " Abbrev. of messages (avoids 'hit enter')
+  set shortmess+=filmnrxoOtT                      " Abbrev. of messages (avoids 'hit enter')
   set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
   set concealcursor=nc                            " Don't conceal while editing
   set autoread                                    " Reload files changed outside vim"
@@ -44,8 +42,6 @@
   let maplocalleader='_'                          " Change local leader
 
   syntax on                                       " Syntax highlighting
-
-  set clipboard+=unnamed                          " Use unnamed clipboard
 " }
 
 " Swap files or backups {
@@ -56,8 +52,8 @@
 
 " Persistent Undo {
   if has('persistent_undo')
-    silent !mkdir ~/.nvim/undo > /dev/null 2>&1
-    set undodir=~/.nvim/undo
+    silent !mkdir ~/.vim/undo > /dev/null 2>&1
+    set undodir=~/.vim/undo
     set undofile
   endif
 " }
@@ -98,13 +94,13 @@
 " }
 
 " Install plugins using vim-plug {
-"  if filereadable(expand("~/.nvim/plugs.vim"))
-    source ~/.nvim/plugs.vim
-"  endif
+  if filereadable(expand("~/.vim/plugs.vim"))
+    source ~/.vim/plugs.vim
+  endif
 " }
 
 " Source remaining config scripts {
-  let configdir = '~/.nvim/config'
+  let configdir = '~/.vim/config'
 
   for fpath in split(globpath(configdir, '*.vim'), '\n')
     exe 'source' fpath

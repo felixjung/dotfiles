@@ -15,11 +15,10 @@ atom/atom.symlink/packages/*
 atom/atom.symlink/.apm/*
 git/github_token.zsh
 homebrew/github_token.zsh
-neovim/nvim.symlink/shada/*
-neovim/nvim.symlink/autoload/*
-neovim/nvim.symlink/plugs/*
-neovim/nvim.symlink/undo/*
-neovim/nvim.symlink/tags
+vim/vim.symlink/autoload/*
+vim/vim.symlink/plugs/*
+vim/vim.symlink/undo/*
+vim/vim.symlink/tags
 zsh/zsh.symlink/.zhistory
 zsh/zsh.symlink/.zcompdump
 zsh/zsh.symlink/.zcompdump.zwc

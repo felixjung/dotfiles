@@ -1,16 +1,19 @@
+if &compatible
+  set nocompatible                              " Use Vim settings rather than Vi's
+endif
+
 " Language groups to install. Options are:
 " ['academic', 'javascript', 'html', 'css', 'php', 'python', 'ruby', 'go']
-
 let g:languages = ['javascript', 'html', 'css', 'ruby', 'go']
 
 " Install vim-plug automatically, if not present.
-if empty(glob('~/.nvim/autoload/plug.vim'))
+if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
 
 " Set plugs
-call plug#begin('~/.nvim/plugs')
+call plug#begin('~/.vim/plugs')
 " Basic editor features {
   Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
   Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
