@@ -31,3 +31,8 @@
 # Vim-mode bindings for clipboard plus
 '.platform-darwin atom-text-editor.vim-mode:not(.insert-mode)':
   'ctrl-p': 'clipboard-plus:toggle'
+
+# Toggle find panes
+'.platform-darwin':
+  'cmd-F': 'project-find:toggle'
+  'cmd-f': 'find-and-replace:toggle'
