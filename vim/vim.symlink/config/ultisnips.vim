@@ -1,5 +1,4 @@
-" TODO: change location of snippets dir
-let g:UltiSnipsSnippetsDir="~/.nvim/ultisnips"
+let g:UltiSnipsSnippetsDir="~/.vim/ultisnips"
 
 " Remap Ultisnips for compatibility for YCM
 let g:UltiSnipsExpandTrigger='<C-j>'
