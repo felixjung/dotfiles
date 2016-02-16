@@ -25,7 +25,7 @@ call plug#begin('~/.vim/plugs')
   Plug 'terryma/vim-multiple-cursors'
   Plug 'danro/rename.vim'
   Plug 'vim-scripts/Auto-Pairs'
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install --no-update-rc --bin' }
   Plug 'rking/ag.vim'
   Plug 'junegunn/goyo.vim'
   Plug 'junegunn/vim-easy-align'
