@@ -54,7 +54,7 @@
   docblockr: {}
   editor:
     autoIndentOnPaste: false
-    fontFamily: "Hack"
+    fontFamily: "Menlo"
     fontSize: 12
     invisibles: {}
     showInvisibles: true
@@ -74,7 +74,6 @@
   linter:
     clearOnChange: true
     lintOnFly: false
-    showErrorPanel: false
     showErrorTabLine: true
     showInfoMessages: true
     subtleLinterErrors: [
@@ -86,6 +85,7 @@
   "linter-jscs":
     esnext: true
     executablePath: "/usr/local/bin/jscs"
+    onlyConfig: true
   "linter-jshint":
     jshintExecutablePath: "/usr/local/bin/jshint"
   "linter-scss-lint":
@@ -131,6 +131,13 @@
     surroundKey: "S"
   welcome:
     showOnStartup: false
+".angular.html.text":
+  editor:
+    preferredLineLength: 80
+  "multi-wrap-guide":
+    columns: [
+      80
+    ]
 ".basic.html.text":
   editor:
     showInvisibles: true
