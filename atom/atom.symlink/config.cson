@@ -13,6 +13,10 @@
     rippleAccentColor: true
     slimScrollbar: true
     themeSyle: "Lighter"
+  "atom-ternjs":
+    lint: false
+    useSnippets: true
+    useSnippetsAndFunction: true
   "auto-update-packages":
     intervalMinutes: 60
   "autocomplete-bibtex": {}
@@ -41,6 +45,9 @@
       "autocomplete-bibtex"
       "wrap-guide"
       "atom-ctags"
+      "tidy-markdown"
+      "markdown-scroll-sync"
+      "markdown-writer"
     ]
     ignoredNames: [
       ".git"
@@ -92,11 +99,14 @@
     executablePath: "/usr/local/bin/scss-lint"
   "linter-tidy":
     tidyExecutablePath: "/usr/local/bin/tidy5"
+  "markdown-preview": {}
   "markdown-preview-plus":
     enableLatexRenderingByDefault: true
     useGitHubStyle: true
   "markdown-writer":
     fileExtension: ".md"
+    siteEngine: "jekyll"
+    siteLocalDir: "~/development/felixjung.io"
   "merge-conflicts":
     gitPath: "/usr/local/bin/git"
   metrics:

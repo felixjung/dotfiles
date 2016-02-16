@@ -1,2 +1,2 @@
 # Add npm's binaries to $PATH
-# export PATH="$HOME/.node/bin:$PATH"
+export NODE_PATH="/usr/local/lib/node_modules/"
