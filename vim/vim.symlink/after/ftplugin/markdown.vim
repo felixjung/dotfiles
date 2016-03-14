@@ -6,4 +6,11 @@ setlocal textwidth=80
 setlocal spell
 setlocal nonumber
 setlocal colorcolumn=0
-setlocal conceallevel=2
+setlocal conceallevel=0
+
+call pencil#init()
+
+" Load custom ultisnips, if plugin is installed
+if exists(':UltiSnipsAddFiletypes')
+  :UltiSnipsAddFiletypes markdown
+endif
