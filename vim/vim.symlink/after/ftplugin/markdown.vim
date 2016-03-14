@@ -13,4 +13,5 @@ call pencil#init()
 " Load custom ultisnips, if plugin is installed
 if exists(':UltiSnipsAddFiletypes')
   :UltiSnipsAddFiletypes markdown
+  :UltiSnipsAddFiletypes markdown-github
 endif
