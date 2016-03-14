@@ -13,7 +13,7 @@ def toConstant(inj, snip):
 	snip.rv = result
 endglobal
 
-priority -60
+priority 10
 
 snippet us "use strict;" b
 'use strict';
@@ -37,23 +37,21 @@ export default {
 endsnippet
 
 snippet acom "angular component" bm
-const DIRECTIVE_NAME = '${1:name}';
+const COMPONENT_NAME = '${1:name}';
 
 $1.$inject = [`!p dependencies(t[2], snip)`];
 
 function $1(${2:dependencies}) {
 	return {
-		${3:restrict: '${4:EA}',}
 		${5:templateUrl: '${6:/path/to/template}',}
 		${7:template: \`
 		  ${8:template-markup}
 	  \`,}
-		scope: {},
-		bindToController: {
+		bindings: {
 			${9:bindings}
 		}
 		controller: ${10:'ControllerName'},
-		controllerAs: '$1',
+		controllerAs: '$1'
 	}
 }
 endsnippet
@@ -70,7 +68,7 @@ export default {
 endsnippet
 
 snippet aconi "angular controller injection container" m
-[`!p dependencies(t[1], snip)`, (${1:dependencies}) => {
+[\`!p dependencies(t[1], snip)\`, (${1:dependencies}) => {
 	$0
 }]
 endsnippet
