@@ -81,7 +81,9 @@
   linter:
     clearOnChange: true
     lintOnFly: false
-    showErrorTabLine: true
+    showErrorPanel: false
+    showErrorTabFile: false
+    showErrorTabProject: false
     showInfoMessages: true
     subtleLinterErrors: [
       "jshint"
