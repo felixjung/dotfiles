@@ -4,7 +4,7 @@ endif
 
 " Language groups to install. Options are:
 " ['academic', 'javascript', 'html', 'css', 'php', 'python', 'ruby', 'go']
-let g:languages = ['javascript', 'html', 'css', 'ruby', 'go']
+let g:languages = ['javascript', 'html', 'css', 'ruby', 'go', 'elm']
 
 " Install vim-plug automatically, if not present.
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -121,7 +121,12 @@ call plug#begin('~/.vim/plugs')
     Plug 'fatih/vim-go', { 'for': 'go' }
   endif
 
-  " Markdown
+  " Elm
+  if count(g:languages, 'elm')
+    Plug 'lambdatoast/elm.vim', { 'for': 'elm' }
+  endif
+
+  " Writing
   Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
   Plug 'reedes/vim-pencil'
   Plug 'LaTeX-Box-Team/LaTeX-Box', { 'for': ['tex', 'latex'] }
