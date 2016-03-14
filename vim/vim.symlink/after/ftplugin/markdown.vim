@@ -6,3 +6,4 @@ setlocal textwidth=80
 setlocal spell
 setlocal nonumber
 setlocal colorcolumn=0
+setlocal conceallevel=2
