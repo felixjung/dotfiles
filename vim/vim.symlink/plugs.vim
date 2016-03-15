@@ -127,7 +127,7 @@ call plug#begin('~/.vim/plugs')
 
   " Writing
   Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
-  Plug 'reedes/vim-pencil'
+  " Plug 'reedes/vim-pencil'
   Plug 'LaTeX-Box-Team/LaTeX-Box', { 'for': ['tex', 'latex'] }
 " }
 

@@ -14,7 +14,6 @@ let g:airline_theme='base16_ocean'
 " if !exists('g:airline_symbols')
   " let g:airline_symbols = {}
 " endif
-let g:airline_section_x = '%{PencilMode()}'
 " Use custom powerline symbols
 let g:airline_powerline_fonts = 0
 " let g:airline_symbols.linenr = '␊'
