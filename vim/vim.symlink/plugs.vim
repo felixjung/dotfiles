@@ -60,7 +60,6 @@ call plug#begin('~/.vim/plugs')
 " Themes {
   Plug 'chriskempson/base16-vim'
   Plug 'vim-airline/vim-airline-themes'
-  " Plug 'morhetz/gruvbox'
 " }
 
 " tmux integration {
