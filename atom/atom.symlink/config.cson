@@ -137,8 +137,7 @@
     position: "Left"
   "tree-view":
     hideIgnoredNames: true
-  "vim-mode":
-    useClipboardAsDefaultRegister: true
+  "vim-mode": {}
   "vim-surround":
     surroundKey: "S"
   welcome:
