@@ -1,5 +1,5 @@
 # Dotilfes
-DOTFILES="$HOME/.dotfiles"
+export DOTFILES="$HOME/.dotfiles"
 
 # Define all zsh files
 # Taken from Holman's dotfiles
