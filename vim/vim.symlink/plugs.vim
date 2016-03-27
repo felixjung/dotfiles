@@ -87,6 +87,7 @@ call plug#begin('~/.vim/plugs')
   " Javascript
   if count(g:languages, 'javascript')
     Plug 'elzr/vim-json'
+    Plug 'mustache/vim-mustache-handlebars'
     Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
     Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
     Plug 'digitaltoad/vim-jade', { 'for': ['html', 'javascript'] }
