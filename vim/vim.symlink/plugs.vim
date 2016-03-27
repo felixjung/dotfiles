@@ -67,31 +67,67 @@ call plug#begin('~/.vim/plugs')
 " }
 
 " Language support {
-  Plug 'sheerun/vim-polyglot' " Support for over 70 languages.
+  " Academic work
+  if count(g:languages, 'academic')
+    Plug 'vim-scripts/Vim-R-plugin', { 'for': 'r' }
+    Plug 'JuliaLang/julia-vim', { 'for': 'r' }
+  endif
+
+  " PHP
+  if count(g:languages, 'php')
+    Plug 'arnaud-lb/vim-php-namespace', { 'for': 'php' }
+  endif
 
   " Python
   if count(g:languages, 'python')
+    " See what else might be useful for developing python
     Plug 'klen/python-mode', { 'for': 'python' }
   endif
 
   " Javascript
   if count(g:languages, 'javascript')
+    Plug 'elzr/vim-json'
+    Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
+    Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
+    Plug 'digitaltoad/vim-jade', { 'for': ['html', 'javascript'] }
     Plug 'ternjs/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' }
   endif
 
   " HTML
   if count(g:languages, 'html')
+    Plug 'othree/html5.vim', { 'for': ['html', 'javascript'] }
     Plug 'amirh/HTML-AutoCloseTag', { 'for': 'html' }
     Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript'] }
   endif
 
+  " CSS/Less/Sass
+  if count(g:languages, 'css')
+    Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'sass'] }
+    Plug 'gorodinskiy/vim-coloresque', { 'for': ['css', 'sass'] }
+    Plug 'groenewege/vim-less', { 'for': 'less' }
+    Plug 'cakebaker/scss-syntax.vim', { 'for': 'sass' }
+  endif
+
+
   " Ruby
   if count(g:languages, 'ruby')
+    Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
     Plug 'tpope/vim-rails', { 'for': 'ruby' }
+  endif
+
+  " Golang
+  if count(g:languages, 'go')
+    Plug 'fatih/vim-go', { 'for': 'go' }
+  endif
+
+  " Elm
+  if count(g:languages, 'elm')
+    Plug 'lambdatoast/elm.vim', { 'for': 'elm' }
   endif
 
   " Writing
   Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+  " Plug 'reedes/vim-pencil'
   Plug 'LaTeX-Box-Team/LaTeX-Box', { 'for': ['tex', 'latex'] }
 " }
 
