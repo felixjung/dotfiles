@@ -12,3 +12,6 @@ if [[ -s "$FZF_HOME" ]]; then
     export MANPATH="$MANPATH:$FZF_HOME/man"
   fi
 fi
+
+# Filter with ag to respect gitignore
+export FZF_DEFAULT_COMMAND='ag -g ""'
