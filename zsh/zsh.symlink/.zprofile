@@ -8,7 +8,7 @@
 #
 # Terminal
 #
-export TERM='screen-256color'
+# export TERM='screen-256color'
 
 #
 # Browser
