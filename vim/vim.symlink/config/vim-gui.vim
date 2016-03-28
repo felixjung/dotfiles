@@ -1,6 +1,5 @@
 " Configure UI {
   " Theming
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1              " Make sure neovim uses 24-Bit colors
   set background=dark                            " Use dark variant of theme
   colorscheme base16-ocean                       " Set theme
 
@@ -17,13 +16,7 @@
 
   " Status line
   set laststatus=2                               " Always show the status line
-  " set statusline=
-  " set statusline+=[%02n]                       " Two digit buffer number with leading zero
-  " set statusline+=\ %<%F                       " Display file path
-  " set statusline+=%r
-  " set statusline+=%=
-  " set statusline+=[%l/%L:
-  " set statusline+=%c]
+
   " Search
   set incsearch                                  " Find as you type search
   set hlsearch                                   " Highlight search terms

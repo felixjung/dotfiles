@@ -1,35 +1,35 @@
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ],
-      \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
-      \ },
-      \ 'component_function': {
-      \   'fugitive': 'MyFugitive',
-      \   'filename': 'MyFilename',
-      \   'fileformat': 'MyFileformat',
-      \   'filetype': 'MyFiletype',
-      \   'fileencoding': 'MyFileencoding',
-      \   'mode': 'MyMode',
-      \ },
-      \ 'component_expand': {
-      \   'syntastic': 'SyntasticStatuslineFlag',
-      \ },
-      \ 'component_type': {
-      \   'syntastic': 'error',
-      \ },
-      \ 'subseparator': { 'left': '|', 'right': '|' }
-      \ }
+  \ 'colorscheme': 'wombat',
+  \ 'active': {
+  \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ],
+  \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+  \ },
+  \ 'component_function': {
+  \   'fugitive': 'LightLineFugitive',
+  \   'filename': 'LightLineFilename',
+  \   'fileformat': 'LightLineFileformat',
+  \   'filetype': 'LightLineFiletype',
+  \   'fileencoding': 'LightLineFileencoding',
+  \   'mode': 'LightLineMode'
+  \ },
+  \ 'component_expand': {
+  \   'syntastic': 'SyntasticStatuslineFlag',
+  \ },
+  \ 'component_type': {
+  \   'syntastic': 'error',
+  \ },
+  \ 'subseparator': { 'left': '|', 'right': '|' }
+\ }
 
-function! MyModified()
-  return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+function! LightLineModified()
+  return &ft =~ 'help' ? '' : &modified ? '±' : &modifiable ? '' : '-'
 endfunction
 
-function! MyReadonly()
-  return &ft !~? 'help' && &readonly ? 'RO' : ''
+function! LightLineReadonly()
+  return &ft !~? 'help' && &readonly ? '' : ''
 endfunction
 
-function! MyFilename()
+function! LightLineFilename()
   let fname = expand('%:t')
   return fname == 'ControlP' ? g:lightline.ctrlp_item :
         \ fname == '__Tagbar__' ? g:lightline.fname :
@@ -37,15 +37,15 @@ function! MyFilename()
         \ &ft == 'vimfiler' ? vimfiler#get_status_string() :
         \ &ft == 'unite' ? unite#get_status_string() :
         \ &ft == 'vimshell' ? vimshell#get_status_string() :
-        \ ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
+        \ ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
         \ ('' != fname ? fname : '[No Name]') .
-        \ ('' != MyModified() ? ' ' . MyModified() : '')
+        \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
 endfunction
 
-function! MyFugitive()
+function! LightLineFugitive()
   try
     if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
-      let mark = ''  " edit here for cool mark
+      let mark = ' '
       let _ = fugitive#head()
       return strlen(_) ? mark._ : ''
     endif
@@ -54,19 +54,19 @@ function! MyFugitive()
   return ''
 endfunction
 
-function! MyFileformat()
+function! LightLineFileformat()
   return winwidth(0) > 70 ? &fileformat : ''
 endfunction
 
-function! MyFiletype()
+function! LightLineFiletype()
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
 endfunction
 
-function! MyFileencoding()
+function! LightLineFileencoding()
   return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
 endfunction
 
-function! MyMode()
+function! LightLineMode()
   let fname = expand('%:t')
   return fname == '__Tagbar__' ? 'Tagbar' :
         \ fname == 'ControlP' ? 'CtrlP' :
@@ -90,11 +90,8 @@ augroup AutoSyntastic
   autocmd!
   autocmd BufWritePost *.c,*.cpp call s:syntastic()
 augroup END
+
 function! s:syntastic()
   SyntasticCheck
   call lightline#update()
 endfunction
-
-let g:unite_force_overwrite_statusline = 0
-let g:vimfiler_force_overwrite_statusline = 0
-let g:vimshell_force_overwrite_statusline = 0
