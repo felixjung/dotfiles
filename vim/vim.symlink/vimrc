@@ -8,11 +8,8 @@
     set wildmenu                                  " Enhance command-line completion
     set wildmode=list:longest,full                " Completion behavior for wildchar
     set clipboard+=unnamed                        " Use unnamed clipboard
-  elseif
+  else
     set clipboard+=unnamedplus                    " Neovim works with standard pbcopy/pbpaste on OS X
-    " Turn spell checking on. Spell checking has to be triggered manually
-    " in neovim (https://github.com/neovim/neovim/issues/1551).
-    set spell
   endif
 " }
 
