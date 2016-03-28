@@ -87,9 +87,9 @@ call plug#begin('~/.vim/plugs')
 
   " Javascript
   if count(g:languages, 'javascript')
-    Plug 'elzr/vim-json'
-    Plug 'mustache/vim-mustache-handlebars'
-    Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
+    Plug 'elzr/vim-json', { 'for': 'json' }
+    Plug 'mustache/vim-mustache-handlebars', { 'for': 'html.handlebars' }
+    Plug 'othree/yajs.vim', { 'for': 'javascript' }
     Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
     Plug 'digitaltoad/vim-jade', { 'for': ['html', 'javascript'] }
     Plug 'ternjs/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' }
@@ -126,6 +126,9 @@ call plug#begin('~/.vim/plugs')
   if count(g:languages, 'elm')
     Plug 'lambdatoast/elm.vim', { 'for': 'elm' }
   endif
+
+  " Tmux configuration files
+  Plug 'tmux-plugins/vim-tmux'
 
   " Writing
   Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
