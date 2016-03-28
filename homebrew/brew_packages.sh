@@ -66,8 +66,8 @@ PKG_MAIN=(
   'cairo'
   'fontconfig'
   'tidy-html5',
-  'the_silver_searcher'
-  'choppsv1/term24/tmux' )
+  'tmux',
+  'the_silver_searcher' )
 
 PKG_MAC=(
   'rename'

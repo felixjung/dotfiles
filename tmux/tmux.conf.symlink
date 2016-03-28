@@ -1,9 +1,4 @@
 # Enable UTF-8
-set -g utf8
-set-window-option -g utf8 on
-set-option -g status-utf8 on
-
-# pane border
 set-option -g pane-border-fg colour235 #base02
 set-option -g pane-active-border-fg colour240 #base01
 
@@ -23,7 +18,7 @@ set -s escape-time 0
 # Rather than constraining window size to the maximum size of any client
 # connected to the *session*, constrain window size to the maximum size of any
 # client connected to *that window*. Much more reasonable.
-set -g aggressive-resize on
+# set -g aggressive-resize on
 
 # Pane resizing
 bind-key J resize-pane -D 5
@@ -77,10 +72,13 @@ set-option -g allow-rename on
 # set -g mode-mouse off
 
 # Set the terminal to 16 colors
-# set -g default-terminal "screen-256color"
+set -g default-terminal "xterm-16color"
+set -ga terminal-overrides ",xterm-16color:Tc"
+set -ga terminal-overrides ",xterm*:Tc"
+set -ga terminal-overrides ",screen*:Tc"
 
 # Configure statusbar
-set -g status-bg "colour10"
+set -g status-bg "#ffffff"
 set -g message-command-fg "colour12"
 set -g status-justify "left"
 set -g status-left-length "100"
@@ -92,7 +90,6 @@ set -g status-right-attr "none"
 set -g message-fg "colour12"
 set -g message-command-bg "colour11"
 set -g status-attr "none"
-set -g status-utf8 "on"
 set -g pane-border-fg "colour10"
 set -g status-left-attr "none"
 setw -g window-status-fg "colour8"
