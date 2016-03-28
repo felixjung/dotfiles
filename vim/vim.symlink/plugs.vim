@@ -29,6 +29,7 @@ call plug#begin('~/.vim/plugs')
   Plug 'rking/ag.vim'
   Plug 'junegunn/goyo.vim'
   Plug 'junegunn/vim-easy-align'
+  Plug 'nathanaelkane/vim-indent-guides'
 " }
 
 " Development features {
