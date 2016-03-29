@@ -1,7 +1,7 @@
 " Configure UI {
   " Theming
   set background=dark                            " Use dark variant of theme
-  colorscheme base16-ocean                       " Set theme
+  colorscheme onedark                            " Set theme
 
   " Misc settings
   set linespace=0                                " No extra spaces between rows

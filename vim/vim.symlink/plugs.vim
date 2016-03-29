@@ -55,6 +55,7 @@ call plug#begin('~/.vim/plugs')
 
 " UI configuration {
   Plug 'itchyny/lightline.vim'
+  Plug 'shirataki/lightline-onedark'
   Plug 'joshdick/onedark.vim'
 " }
 
