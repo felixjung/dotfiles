@@ -78,7 +78,7 @@ set -ga terminal-overrides ",xterm*:Tc"
 set -ga terminal-overrides ",screen*:Tc"
 
 # Configure statusbar
-set -g status-bg "#ffffff"
+set -g status-bg "colour10"
 set -g message-command-fg "colour12"
 set -g status-justify "left"
 set -g status-left-length "100"
