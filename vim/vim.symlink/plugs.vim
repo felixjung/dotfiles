@@ -55,12 +55,11 @@ call plug#begin('~/.vim/plugs')
 
 " UI configuration {
   Plug 'itchyny/lightline.vim'
-  Plug 'shirataki/lightline-onedark'
-  Plug 'joshdick/onedark.vim'
 " }
 
 " Themes {
   Plug 'chriskempson/base16-vim'
+  Plug 'daviesjamie/vim-base16-lightline'
 " }
 
 " tmux integration {
@@ -89,6 +88,7 @@ call plug#begin('~/.vim/plugs')
   if count(g:languages, 'javascript')
     Plug 'elzr/vim-json', { 'for': 'json' }
     Plug 'mustache/vim-mustache-handlebars', { 'for': 'html.handlebars' }
+    Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
     " Plug 'othree/yajs.vim', { 'for': 'javascript' }
     Plug 'pangloss/vim-javascript'
     Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }

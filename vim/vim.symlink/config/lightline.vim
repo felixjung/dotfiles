@@ -1,5 +1,5 @@
 let g:lightline = {
-  \ 'colorscheme': 'onedark',
+  \ 'colorscheme': 'base16',
   \ 'active': {
   \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ],
   \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]

@@ -58,4 +58,8 @@
 
   " For when you forget to sudo.. Really Write the file.
   cmap w!! w !sudo tee % >/dev/null
+
+  " Cycle buffers
+  nnoremap <C-N> :bnext<CR>
+  nnoremap <C-P> :bprev<CR>
 " }
