@@ -59,7 +59,7 @@ call plug#begin('~/.vim/plugs')
 
 " Themes {
   Plug 'chriskempson/base16-vim'
-  Plug 'daviesjamie/vim-base16-lightline'
+  Plug 'felixjung/vim-base16-lightline'
 " }
 
 " tmux integration {
