@@ -2,7 +2,10 @@ let g:lightline = {
   \ 'colorscheme': 'base16_ocean',
   \ 'active': {
   \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ],
-  \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+  \   'right': [ [ 'syntastic', 'percent', 'lineinfo' ], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+  \ },
+  \ 'component': {
+  \   'lineinfo': '%3l:%-2v', 'line': '%l', 'column': '%c', 'close': '%999X X '
   \ },
   \ 'component_function': {
   \   'fugitive': 'LightLineFugitive',
@@ -10,7 +13,7 @@ let g:lightline = {
   \   'fileformat': 'LightLineFileformat',
   \   'filetype': 'LightLineFiletype',
   \   'fileencoding': 'LightLineFileencoding',
-  \   'mode': 'LightLineMode'
+  \   'mode': 'LightLineMode',
   \ },
   \ 'component_expand': {
   \   'syntastic': 'SyntasticStatuslineFlag',
@@ -18,7 +21,7 @@ let g:lightline = {
   \ 'component_type': {
   \   'syntastic': 'error',
   \ },
-  \ 'subseparator': { 'left': '|', 'right': '|' }
+  \ 'subseparator': { 'left': '', 'right': '' }
 \ }
 
 function! LightLineModified()
