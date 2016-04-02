@@ -1,11 +1,12 @@
 let g:lightline = {
   \ 'colorscheme': 'base16_ocean',
   \ 'active': {
-  \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ],
+  \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename', 'tagbar' ] ],
   \   'right': [ [ 'syntastic', 'percent', 'lineinfo' ], [ 'fileformat', 'fileencoding', 'filetype' ] ]
   \ },
   \ 'component': {
-  \   'lineinfo': '%3l:%-2v', 'line': '%l', 'column': '%c', 'close': '%999X X '
+  \   'lineinfo': '%3l:%-2v',
+  \   'tagbar': '%{tagbar#currenttag("%s", "")}'
   \ },
   \ 'component_function': {
   \   'fugitive': 'LightLineFugitive',
