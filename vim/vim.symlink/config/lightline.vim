@@ -6,7 +6,7 @@ let g:lightline = {
   \ },
   \ 'component': {
   \   'lineinfo': '%3l:%-2v',
-  \   'tagbar': '%{tagbar#currenttag("%s", "")}'
+  \   'tagbar': ' ' . '%{tagbar#currenttag("%s", "")}'
   \ },
   \ 'component_function': {
   \   'fugitive': 'LightLineFugitive',
@@ -22,7 +22,7 @@ let g:lightline = {
   \ 'component_type': {
   \   'syntastic': 'error',
   \ },
-  \ 'subseparator': { 'left': '', 'right': '' }
+  \ 'subseparator': { 'left': '', 'right': '' }
 \ }
 
 function! LightLineModified()
@@ -42,7 +42,7 @@ function! LightLineFilename()
         \ &ft == 'unite' ? unite#get_status_string() :
         \ &ft == 'vimshell' ? vimshell#get_status_string() :
         \ ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
-        \ ('' != fname ? fname : '[No Name]') .
+        \ ('' != fname ? ' ' . fname : '[No Name]') .
         \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
 endfunction
 
