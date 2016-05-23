@@ -1,5 +1,0 @@
-alias git-lcommits="git log -5 --pretty --oneline"
-alias git-lbranches="git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format='%(refname:short)'"
-alias git-tree="git log --all --graph --decorate --oneline --simplify-by-decoration"
-alias git-stats="git shortlog -sn"
-alias git-sync="git remote update --prune"

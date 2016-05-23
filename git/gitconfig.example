@@ -15,3 +15,9 @@
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
+[alias]
+	latest-commits = log -5 --pretty --oneline
+	list-branches = for-each-ref --count=30 --sort=-committerdate refs/heads/ --format='%(refname:short)'
+	tree = log --all --graph --decorate --oneline --simplify-by-decoration
+	stats = shortlog -sn
+	sync = remote update --prune
