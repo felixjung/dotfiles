@@ -2,6 +2,8 @@
   "atom-alignment": {}
   "atom-beautify":
     _analyticsUserId: "016e9f8c-043c-4df4-b21b-8532dd9d8856"
+    general:
+      _analyticsUserId: "b34d75b0-43ef-49e3-973a-21111427aa02"
   "atom-color-highlight": {}
   "atom-ctags":
     autoBuildTagsWhenActive: true
@@ -47,7 +49,6 @@
       "atom-ctags"
       "tidy-markdown"
       "markdown-scroll-sync"
-      "markdown-writer"
     ]
     ignoredNames: [
       ".git"
@@ -58,6 +59,10 @@
       "dash"
     ]
     projectHome: "/Users/Felix/Development"
+    themes: [
+      "one-dark-ui"
+      "cake-syntax"
+    ]
   docblockr: {}
   editor:
     autoIndentOnPaste: false
@@ -101,7 +106,8 @@
     executablePath: "/usr/local/bin/scss-lint"
   "linter-tidy":
     tidyExecutablePath: "/usr/local/bin/tidy5"
-  "markdown-preview": {}
+  "markdown-preview":
+    useGitHubStyle: true
   "markdown-preview-plus":
     enableLatexRenderingByDefault: true
     useGitHubStyle: true
@@ -175,7 +181,12 @@
     ]
 ".gfm.source":
   editor:
+    preferredLineLength: 80
     softWrap: true
+  "multi-wrap-guide":
+    columns: [
+      80
+    ]
   "wrap-guide":
     enabled: false
 ".gfm.source .code":
@@ -216,6 +227,13 @@
     scrollPastEnd: true
     softWrap: false
     tabLength: 2
+".null-grammar.plain.text":
+  editor:
+    preferredLineLength: 80
+  "multi-wrap-guide":
+    columns: [
+      80
+    ]
 ".python.regexp.source":
   editor:
     preferredLineLength: 80
