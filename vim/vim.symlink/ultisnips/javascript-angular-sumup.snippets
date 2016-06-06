@@ -19,6 +19,11 @@ snippet us "use strict;" b
 'use strict';
 endsnippet
 
+snippet imp "import library" b
+import ${1:\{ ${2:modules} \}} from '${3:library}';
+$0
+endsnippet
+
 snippet asercon "angular service or controller" bm
 const ${1:TYPE}_NAME = '${2:name}';
 
@@ -37,27 +42,28 @@ export default {
 endsnippet
 
 snippet acom "angular component" bm
-const COMPONENT_NAME = '${1:name}';
+const name = '${1:name}';
+const component  = {
+	template: \`
+		${3:template-markup}
+	\`,
+	${4:transclude: ${5: true},}
+	bindings: { ${6:bindings} },
+	${7:controller () \{
+		const $ctrl = this;
+		${8}
+	\}}
+	${9: controller: [`!p dependencies(t[10], snip)`, function(${10:dependencies}) \{
+		const $ctrl = this;
+		${11:body}
+	\}}
+};
 
-$1.$inject = [`!p dependencies(t[2], snip)`];
-
-function $1(${2:dependencies}) {
-	return {
-		${5:templateUrl: '${6:/path/to/template}',}
-		${7:template: \`
-		  ${8:template-markup}
-	  \`,}
-		bindings: {
-			${9:bindings}
-		}
-		controller: ${10:'ControllerName'},
-		controllerAs: '$1'
-	}
-}
+export default { name, component };
 endsnippet
 
 snippet areg "register with angular" bm
-${1:module}.${2:type}(`!p snip.rv = t[2].upper()`_NAME, ${3:constructor});
+${1:module}.${2:type}(name, ${3:constructor});
 endsnippet
 
 snippet aexp "export the component" bm
