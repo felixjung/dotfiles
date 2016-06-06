@@ -1,5 +1,7 @@
 # Easy access to find utility
-alias ff='find . -iname '
+ff() {
+  find . -iname '*$1*'
+}
 alias ffr='find -E . -iregex '
 
 # Access zsh configuration
