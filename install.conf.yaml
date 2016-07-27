@@ -1,0 +1,62 @@
+- clean: ['~', '~/.config']
+- link:
+    ~/.atom:
+      path: atom/atom 
+    ~/.ctags:
+      path: ctags/ctags 
+    ~/.gitignore:
+      path: git/gitignore 
+    ~/.latexmkrc:
+      path: latex/latexmkrc 
+    ~/.config/nvim:
+      create: true
+      path: neovim/nvim
+    ~/.vim:
+      path: neovim/nvim
+    ~/.vimrc:
+      path: neovim/nvim/init.vim
+    ~/.Rprofile:
+      path: r/Rprofile
+    ~/.tmux.conf:
+      path: tmux/tmux.conf
+    ~/.zsh:
+      path: zsh/zsh
+    ~/.zshenv:
+      path: zsh/zshenv
+- shell:
+  -
+    command: sh homebrew/install.sh
+    stdin: true
+    stdout: true
+    stderr: true
+  -
+    command: sh git/install.sh
+    stdin: true
+    stdout: true
+    stderr: true
+  -
+    command: sh node/install.sh
+    stdin: true
+    stdout: true
+    stderr: true
+  -
+    command: sh atom/install.sh
+    stdin: true
+    stdout: true
+    stderr: true
+  -
+    command: sh neovim/install.sh
+    stdin: true
+    stdout: true
+    stderr: true
+  -
+    command: sh tmux/install.sh
+    stdin: true
+    stdout: true
+    stderr: true
+  -
+    command: sh zsh/install.sh
+    stdin: true
+    stdout: true
+    stderr: true
+

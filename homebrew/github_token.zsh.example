@@ -1,2 +1,3 @@
-# Set hombrew Github token
-# export HOMEBREW_GITHUB_API_TOKEN=""
+# Set Github token for Homebrew
+
+export HOMEBREW_GITHUB_API_TOKEN="__TOKEN__"

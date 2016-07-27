@@ -1,2 +1,3 @@
-# Set Github token for Github dashboard
-# export GITHUB_TOKEN=""
+# Set Github token for Github Dashboard
+
+export GITHUB_TOKEN="__TOKEN__"
