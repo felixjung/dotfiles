@@ -15,8 +15,6 @@
       path: neovim/nvim
     ~/.vimrc:
       path: neovim/nvim/init.vim
-    ~/.Rprofile:
-      path: r/Rprofile
     ~/.tmux.conf:
       path: tmux/tmux.conf
     ~/.zsh:
