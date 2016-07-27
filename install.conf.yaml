@@ -1,15 +1,22 @@
+- defaults:
+    link:
+      relink: true
+      create: true
+    shell:
+      stdin: true
+      stdout: true
+      stderr: true
 - clean: ['~', '~/.config']
 - link:
     ~/.atom:
-      path: atom/atom 
+      path: atom/atom
     ~/.ctags:
-      path: ctags/ctags 
+      path: ctags/ctags
     ~/.gitignore:
-      path: git/gitignore 
+      path: git/gitignore
     ~/.latexmkrc:
-      path: latex/latexmkrc 
+      path: latex/latexmkrc
     ~/.config/nvim:
-      create: true
       path: neovim/nvim
     ~/.vim:
       path: neovim/nvim
@@ -24,37 +31,16 @@
 - shell:
   -
     command: sh homebrew/install.sh
-    stdin: true
-    stdout: true
-    stderr: true
   -
     command: sh git/install.sh
-    stdin: true
-    stdout: true
-    stderr: true
   -
     command: sh node/install.sh
-    stdin: true
-    stdout: true
-    stderr: true
   -
     command: sh atom/install.sh
-    stdin: true
-    stdout: true
-    stderr: true
   -
     command: sh neovim/install.sh
-    stdin: true
-    stdout: true
-    stderr: true
   -
     command: sh tmux/install.sh
-    stdin: true
-    stdout: true
-    stderr: true
   -
     command: sh zsh/install.sh
-    stdin: true
-    stdout: true
-    stderr: true
 
