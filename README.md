@@ -6,9 +6,5 @@ listed on [dotfiles.github.io](https://dotfiles.github.io).
 
 
 # Usage
-Everything is very much in beta and the automated installation via the
-``bootstrap`` script is probably going to fail.
-
-# TODO
-
-- [ ] Improve readme.
+The dotfiles are managed using [dotbot](https://github.com/anishathalye/dotbot).
+Run `./install` from the project root to set things up.
