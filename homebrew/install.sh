@@ -18,8 +18,8 @@ fi
 if yes_no_prompt "Set up Github token for Homebrew?"; then
   user "Enter your Homebrew Github auth token: "
   read -r token
-  cp -f ./github_token.zsh.example ./github_token.zsh
-  sed -i "" "s/__TOKEN__/$token/g" ./github_token.zsh
+  cp -f "$homebrew_dir/github_token.zsh.example" "$homebrew_dir/github_token.zsh"
+  sed -i "" "s/__TOKEN__/$token/g" "$homebrew_dir/github_token.zsh"
 
   if [ -s ./github_token.zsh ]; then
     source "$homebrew_dir/github_token.zsh"
