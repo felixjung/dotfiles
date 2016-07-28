@@ -46,15 +46,15 @@ brew upgrade
 success "Upgraded installed formulae."
 
 info "Tapping into taps..."
-source "./taps.sh"
+source "$homebrew_dir/taps.sh"
 success "Tapped all taps."
 
 info "Installing Homebrew formulae..."
-source "./packages.sh"
+source "$homebrew_dir/packages.sh"
 success "Installed Homebrew formulae."
 
 info "Installing Homebrew casks..."
-source "./casks.sh"
+source "$homebrew_dir/casks.sh"
 success "Installed casks."
 
 success "Successfully installed Homebrew."
