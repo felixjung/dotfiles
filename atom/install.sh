@@ -8,6 +8,10 @@ if ! yes_no_prompt "Install starred Atom packages? "; then
   exit
 fi
 
+if ! type "apm" > /dev/null; then
+  failure "Could not find apm. Please install it via Atom.app"
+fi
+
 apm login
 info "Installing starred packages..."
 apm stars --install
