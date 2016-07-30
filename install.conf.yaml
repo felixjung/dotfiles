@@ -28,6 +28,8 @@
       path: zsh/zsh
     ~/.zshenv:
       path: zsh/zshenv
+    ~/.hyperterm.js:
+      path: hyperterm/hyperterm.js
 - shell:
   -
     command: sh homebrew/install.sh
@@ -43,4 +45,6 @@
     command: sh tmux/install.sh
   -
     command: sh zsh/install.sh
+  -
+    command: sh hyperterm/install.sh
 

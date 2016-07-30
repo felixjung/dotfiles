@@ -39,6 +39,7 @@ fi
 
 info "Updating formulae..."
 brew update
+brew cask update
 success "Updated formulae."
 
 info "Upgrading formulae..."
