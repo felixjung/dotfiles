@@ -59,6 +59,7 @@ call plug#begin('~/.vim/plugs')
 
 " Themes {
   Plug 'chriskempson/base16-vim'
+  Plug 'joshdick/onedark.vim'
   Plug 'felixjung/vim-base16-lightline'
 " }
 
