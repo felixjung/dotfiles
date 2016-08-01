@@ -5,6 +5,7 @@
   endif
 
   " Theming
+  let g:onedark_terminal_italics=1               " Use italics
   set background=dark                            " Use dark variant of theme
   colorscheme onedark                            " Set theme
 
