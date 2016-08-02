@@ -1,11 +1,14 @@
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_echo_current_error = 0
+let g:syntastic_cursor_column = 0
+let g:syntastic_error_symbol = "\u2717"
+let g:syntastic_warning_symbol = "\u26A0"
+let g:syntastic_enable_highlighting = 0
+let g:syntastic_auto_jump = 2
+let g:syntastic_stl_format = "%E{\u2717 %e}%B{, }%W{\u26A0 %w}"
 
 " Configure checkers
 let g:syntastic_scss_checkers = ['sass_lint']
