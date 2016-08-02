@@ -2,7 +2,7 @@ let g:lightline = {
   \ 'colorscheme': 'onedark',
   \ 'active': {
   \   'left': [ [ 'mode' ], [ 'filename' ] ],
-  \   'right': [ [ 'fugitive'] ]
+  \   'right': [ [ 'fugitive' ], [ 'syntastic' ] ]
   \ },
   \ 'inactive': {
   \   'left': [ [ 'filename' ] ],
@@ -96,7 +96,7 @@ endfunction
 
 augroup AutoSyntastic
   autocmd!
-  autocmd BufWritePost *.c,*.cpp call s:syntastic()
+  autocmd BufWritePost call s:syntastic()
 augroup END
 
 function! s:syntastic()
@@ -126,7 +126,7 @@ if exists('g:lightline')
   let s:p = {'normal':{}, 'inactive':{}, 'insert':{}, 'replace':{}, 'visual':{}, 'tabline':{}}
 
   let s:p.normal.left     = [ [ s:gutter_grey, s:black ], [ s:comment_grey, s:black ] ]
-  let s:p.normal.right    = [ [ s:dark_blue, s:black ], [ s:comment_grey, s:black ] ]
+  let s:p.normal.right    = [ [ s:dark_blue, s:black ], [ s:light_red, s:black ] ]
   let s:p.normal.middle   = [ [ s:comment_grey, s:black ] ]
 
 
@@ -135,15 +135,15 @@ if exists('g:lightline')
   let s:p.inactive.middle = [ [ s:comment_grey, s:black ] ]
 
   let s:p.insert.left     = [ [ s:green, s:black ], [ s:comment_grey, s:black ] ]
-  let s:p.insert.right    = [ [ s:dark_blue, s:black ], [ s:comment_grey, s:black ] ]
+  let s:p.insert.right    = [ [ s:dark_blue, s:black ], [ s:light_red, s:black ] ]
   let s:p.insert.middle   = [ [ s:comment_grey, s:black ] ]
 
   let s:p.replace.left     = [ [ s:light_red, s:black ], [ s:comment_grey, s:black ] ]
-  let s:p.replace.right    = [ [ s:dark_blue, s:black ], [ s:comment_grey, s:black ] ]
+  let s:p.replace.right    = [ [ s:dark_blue, s:black ], [ s:light_red, s:black ] ]
   let s:p.replace.middle   = [ [ s:comment_grey, s:black ] ]
 
   let s:p.visual.left     = [ [ s:magenta, s:black ], [ s:comment_grey, s:black ] ]
-  let s:p.visual.right    = [ [ s:dark_blue, s:black ], [ s:comment_grey, s:black ] ]
+  let s:p.visual.right    = [ [ s:dark_blue, s:black ], [ s:light_red, s:black ] ]
   let s:p.visual.middle   = [ [ s:comment_grey, s:black ] ]
 
   let s:p.tabline.left    = [ [ s:comment_grey, s:black ] ]
