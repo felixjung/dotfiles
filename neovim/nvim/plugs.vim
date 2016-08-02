@@ -33,7 +33,7 @@ call plug#begin('~/.vim/plugs')
 " }
 
 " Development features {
-  " Plug 'scrooloose/syntastic'
+  Plug 'scrooloose/syntastic'
 
   " if executable('ctags')
    " Plug 'majutsushi/tagbar'
@@ -89,7 +89,7 @@ call plug#begin('~/.vim/plugs')
     Plug 'mustache/vim-mustache-handlebars', { 'for': 'html.handlebars' }
     Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
     " Plug 'othree/yajs.vim', { 'for': 'javascript' }
-    " Plug 'pangloss/vim-javascript'
+    Plug 'pangloss/vim-javascript'
     Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
     Plug 'digitaltoad/vim-jade', { 'for': ['html', 'javascript'] }
     Plug 'ternjs/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' }
