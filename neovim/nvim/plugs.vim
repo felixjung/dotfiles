@@ -19,7 +19,7 @@ call plug#begin('~/.vim/plugs')
   Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
   Plug 'vim-scripts/YankRing.vim'
   Plug 'tpope/vim-surround'
-  Plug 'Lokaltog/vim-easymotion'
+  " Plug 'Lokaltog/vim-easymotion'
   Plug 'scrooloose/nerdcommenter'
   Plug 'Shougo/vimproc.vim', { 'do': 'make' }
   Plug 'terryma/vim-multiple-cursors'
@@ -28,16 +28,16 @@ call plug#begin('~/.vim/plugs')
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install --no-update-rc --bin' }
   Plug 'rking/ag.vim'
   Plug 'junegunn/goyo.vim'
-  Plug 'junegunn/vim-easy-align'
-  Plug 'nathanaelkane/vim-indent-guides'
+  " Plug 'junegunn/vim-easy-align'
+  " Plug 'nathanaelkane/vim-indent-guides'
 " }
 
 " Development features {
-  Plug 'scrooloose/syntastic'
+  " Plug 'scrooloose/syntastic'
 
-  if executable('ctags')
-   Plug 'majutsushi/tagbar'
-  endif
+  " if executable('ctags')
+   " Plug 'majutsushi/tagbar'
+  " endif
 " }
 
 " Completion {
@@ -89,7 +89,7 @@ call plug#begin('~/.vim/plugs')
     Plug 'mustache/vim-mustache-handlebars', { 'for': 'html.handlebars' }
     Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
     " Plug 'othree/yajs.vim', { 'for': 'javascript' }
-    Plug 'pangloss/vim-javascript'
+    " Plug 'pangloss/vim-javascript'
     Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
     Plug 'digitaltoad/vim-jade', { 'for': ['html', 'javascript'] }
     Plug 'ternjs/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' }
@@ -98,7 +98,7 @@ call plug#begin('~/.vim/plugs')
   " HTML
   if count(g:languages, 'html')
     Plug 'othree/html5.vim', { 'for': ['html', 'javascript'] }
-    Plug 'amirh/HTML-AutoCloseTag', { 'for': 'html' }
+    Plug 'amirh/HTML-AutoCloseTag', { 'for': ['html', 'javascript'] }
     Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript'] }
   endif
 
