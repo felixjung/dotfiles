@@ -69,7 +69,7 @@ call plug#begin('~/.vim/plugs')
   " Academic work
   if count(g:languages, 'academic')
     Plug 'vim-scripts/Vim-R-plugin', { 'for': 'r' }
-    Plug 'JuliaLang/julia-vim', { 'for': 'r' }
+    Plug 'JuliaLang/julia-vim', { 'for': 'julia' }
   endif
 
   " PHP
