@@ -85,11 +85,11 @@ call plug#begin('~/.vim/plugs')
 
   " Javascript
   if count(g:languages, 'javascript')
+    Plug 'mtscout6/syntastic-local-eslint.vim', { 'for': 'javascript' }
     Plug 'elzr/vim-json', { 'for': 'json' }
     Plug 'mustache/vim-mustache-handlebars', { 'for': 'html.handlebars' }
     Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
-    " Plug 'othree/yajs.vim', { 'for': 'javascript' }
-    Plug 'pangloss/vim-javascript'
+    Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
     Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
     Plug 'digitaltoad/vim-jade', { 'for': ['html', 'javascript'] }
     Plug 'ternjs/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' }
