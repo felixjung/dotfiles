@@ -13,8 +13,5 @@ if ! type "pip2" > /dev/null; then
   pip2 install --user neovim
 fi
 
-# Install json_pure for Github dashboard plugin.
-gem install json_pure
-
 # Launch Neovim and install bundles
 nvim -u "$neovim_dir/nvim/plugs.vim" +PlugInstall +qa

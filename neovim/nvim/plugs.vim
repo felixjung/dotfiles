@@ -49,7 +49,7 @@ call plug#begin('~/.vim/plugs')
   Plug 'airblade/vim-gitgutter'
   Plug 'mattn/gist-vim', { 'on': 'Gist' }
   Plug 'tpope/vim-fugitive'
-  Plug 'junegunn/vim-github-dashboard', { 'on': ['GHDashboard', 'GHActivity'] }
+  Plug 'junegunn/vim-github-dashboard', { 'on': ['GHDashboard', 'GHActivity'], 'do': 'gem install json_pure' }
 " }
 
 
