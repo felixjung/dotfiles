@@ -1,0 +1,11 @@
+#!/usr/local/env bash
+
+source "$git_dir/../lib/log.sh"
+
+info "Updating gems..."
+gem update
+info "Updating npm packages..."
+npm update -g
+info "Updating brew formulae..."
+brew update && brew upgrade
+success "Finished updates."
