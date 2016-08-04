@@ -33,7 +33,7 @@ call plug#begin('~/.vim/plugs')
 " }
 
 " Development features {
-  Plug 'scrooloose/syntastic'
+  Plug 'neomake/neomake'
 
   " if executable('ctags')
    " Plug 'majutsushi/tagbar'

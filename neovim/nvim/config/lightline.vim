@@ -2,7 +2,7 @@ let g:lightline = {
   \ 'colorscheme': 'onedark',
   \ 'active': {
   \   'left': [ [ 'mode' ], [ 'filename' ] ],
-  \   'right': [ [ 'fugitive' ], [ 'syntastic' ] ]
+  \   'right': [ [ 'fugitive' ], [ 'neomake' ] ]
   \ },
   \ 'inactive': {
   \   'left': [ [ 'filename' ] ],
@@ -22,6 +22,7 @@ let g:lightline = {
   \ },
   \ 'component_expand': {
   \   'syntastic': 'SyntasticStatuslineFlag',
+  \   'neomake': 'neomake#statusline#LoclistStatus'
   \ },
   \ 'component_type': {
   \   'syntastic': 'error',

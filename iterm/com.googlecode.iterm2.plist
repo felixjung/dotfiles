@@ -1100,7 +1100,7 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>609 461 445 77 0 0 1680 1050 </string>
+	<string>472 816 445 77 0 0 1680 1027 </string>
 	<key>NSWindow Frame Preferences</key>
 	<string>396 556 606 456 0 0 1680 1027 </string>
 	<key>NSWindow Frame SUStatusFrame</key>
@@ -1108,11 +1108,11 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>528 476 620 392 0 0 1680 1027 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>269 317 918 381 0 0 1680 1027 </string>
+	<string>441 279 918 452 0 0 1680 1027 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>99 293 592 584 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>340 65 1117 855 0 0 1680 1027 </string>
+	<string>191 124 810 622 0 0 1680 1027 </string>
 	<key>NeverWarnAboutMeta</key>
 	<integer>1</integer>
 	<key>NeverWarnAboutShortLivedSessions_C02BDF49-8474-4F58-9980-55A3EFE11C2C</key>
@@ -1787,7 +1787,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>Hack 12</string>
+			<string>Hack-Regular 14</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
