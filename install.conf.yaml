@@ -18,10 +18,6 @@
       path: latex/latexmkrc
     ~/.config/nvim:
       path: neovim/nvim
-    ~/.vim:
-      path: neovim/nvim
-    ~/.vimrc:
-      path: neovim/nvim/init.vim
     ~/.tmux.conf:
       path: tmux/tmux.conf
     ~/.zsh:

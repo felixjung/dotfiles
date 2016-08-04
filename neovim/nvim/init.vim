@@ -1,19 +1,5 @@
-" Set Vim and Neovim specific options {
-  if !has('nvim')
-    set nocompatible                              " Use Vim settings rather than Vi's
-    set backspace=indent,eol,start                " Specify <BS> behavior
-    set encoding=utf-8                            " Encoding should be UTF-8 (also fileencoding)
-    set nrformats=hex                             " Use hex as base for numbers
-    set ttyfast                                   " We have a fast terminal connection
-    set wildmenu                                  " Enhance command-line completion
-    set wildmode=list:longest,full                " Completion behavior for wildchar
-    set clipboard+=unnamed                        " Use unnamed clipboard
-  else
-    set clipboard+=unnamedplus                    " Neovim works with standard pbcopy/pbpaste on OS X
-  endif
-" }
-
 " Basic settings {
+  set clipboard+=unnamedplus                    " Neovim works with standard pbcopy/pbpaste on OS X
   set mouse=a                                     " Automatically enable mouse usage
   set mousehide                                   " Hide the mouse cursor while typing
   set shortmess+=I                                " Disable welcome message
@@ -49,8 +35,8 @@
 
 " Persistent Undo {
   if has('persistent_undo')
-    silent !mkdir ~/.vim/undo > /dev/null 2>&1
-    set undodir=~/.vim/undo
+    silent !mkdir /undo > /dev/null 2>&1
+    set undodir=$NVIM_ROOT.'/undo'
     set undofile
   endif
 " }
@@ -72,7 +58,7 @@
   " (https://raw.githubusercontent.com/skwp/dotfiles/master/vimrc)
   " Ignore the following paths/file types
   set wildignore=*.o,*.obj,*~
-  set wildignore+=*vim/backups*
+  set wildignore+=*nvim/backups*
   set wildignore+=*sass-cache*
   set wildignore+=*DS_Store*
   set wildignore+=vendor/rails/**
@@ -91,13 +77,14 @@
 " }
 
 " Install plugins using vim-plug {
-  if filereadable(expand("~/.vim/plugs.vim"))
-    source ~/.vim/plugs.vim
+  let plugfile = $NVIM_ROOT.'/plugs.vim'
+  if filereadable(plugfile)
+    exec 'source' plugfile
   endif
 " }
 
 " Source remaining config scripts {
-  let configdir = '~/.vim/config'
+  let configdir = $NVIM_ROOT.'/config'
 
   for fpath in split(globpath(configdir, '*.vim'), '\n')
     exe 'source' fpath
