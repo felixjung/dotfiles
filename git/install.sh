@@ -1,4 +1,4 @@
-# /usr/local/env bash
+#! /usr/local/env bash
 
 git_dir="$(dirname "$(realpath "$0")")"
 source "$git_dir/../lib/log.sh"
