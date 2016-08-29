@@ -19,6 +19,7 @@ call plug#begin('~/.vim/plugs')
   Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
   Plug 'vim-scripts/YankRing.vim'
   Plug 'tpope/vim-surround'
+  Plug 'jaawerth/nrun.vim'
   " Plug 'Lokaltog/vim-easymotion'
   Plug 'scrooloose/nerdcommenter'
   Plug 'Shougo/vimproc.vim', { 'do': 'make' }
@@ -85,7 +86,6 @@ call plug#begin('~/.vim/plugs')
 
   " Javascript
   if count(g:languages, 'javascript')
-    Plug 'mtscout6/syntastic-local-eslint.vim', { 'for': 'javascript' }
     Plug 'elzr/vim-json', { 'for': 'json' }
     Plug 'mustache/vim-mustache-handlebars', { 'for': 'html.handlebars' }
     Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
