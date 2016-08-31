@@ -63,6 +63,33 @@ function! LightLineFugitive()
   return ''
 endfunction
 
+function! GetNeomakeErrors()
+
+endfunction
+
+function! GetNeomakeWarnings()
+    if !exists('*neomake#statusline#LoclistCounts')
+        return ''
+    endif
+
+    " Count all the errors, warnings
+    let total = 0
+
+    for v in values(neomake#statusline#LoclistCounts())
+        let total += v
+    endfor
+
+    for v in items(neomake#statusline#QflistCounts())
+        let total += v
+    endfor
+
+    if total == 0
+        return ''
+    endif
+
+    return 'line '.getloclist(0)[0].lnum. ', 1 of '.total
+endfunction
+
 function! LightLineFileformat()
   return winwidth(0) > 70 ? &fileformat : ''
 endfunction

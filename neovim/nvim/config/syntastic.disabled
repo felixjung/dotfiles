@@ -5,10 +5,10 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_echo_current_error = 0
 let g:syntastic_cursor_column = 0
 let g:syntastic_error_symbol = "\u2717"
-let g:syntastic_warning_symbol = "\u26A0"
+let g:syntastic_warning_symbol = "!"
 let g:syntastic_enable_highlighting = 0
-let g:syntastic_auto_jump = 2
-let g:syntastic_stl_format = "%E{\u2717 %e}%B{, }%W{\u26A0 %w}"
+let g:syntastic_auto_jump = 0
+let g:syntastic_stl_format = "%E{\u2717 %e}%B{ | }%W{! %w}"
 
 " Configure checkers
 let g:syntastic_scss_checkers = ['sass_lint']
