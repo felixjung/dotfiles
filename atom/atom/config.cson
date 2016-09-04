@@ -61,7 +61,7 @@
     projectHome: "/Users/Felix/Development"
     themes: [
       "one-dark-ui"
-      "cake-syntax"
+      "dracula-theme"
     ]
   docblockr: {}
   editor:
