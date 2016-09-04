@@ -3,8 +3,8 @@ if &compatible
 endif
 
 " Language groups to install. Options are:
-" ['academic', 'javascript', 'html', 'css', 'php', 'python', 'ruby', 'go']
-let g:languages = ['javascript', 'html', 'css', 'ruby', 'go', 'elm']
+" ['academic', 'javascript', 'typescript', 'html', 'css', 'php', 'python', 'ruby', 'go']
+let g:languages = ['javascript', 'typescript', 'html', 'css', 'ruby', 'elm']
 
 " Install vim-plug automatically, if not present.
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -93,6 +93,11 @@ call plug#begin('~/.vim/plugs')
     Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
     Plug 'digitaltoad/vim-jade', { 'for': ['html', 'javascript'] }
     Plug 'ternjs/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' }
+  endif
+
+  " Typescript
+  if count(g:languages, 'typescript')
+    Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
   endif
 
   " HTML
