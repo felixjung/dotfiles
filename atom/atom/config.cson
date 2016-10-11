@@ -1,9 +1,8 @@
 "*":
   "atom-alignment": {}
   "atom-beautify":
-    _analyticsUserId: "016e9f8c-043c-4df4-b21b-8532dd9d8856"
     general:
-      _analyticsUserId: "b34d75b0-43ef-49e3-973a-21111427aa02"
+      _analyticsUserId: "016e9f8c-043c-4df4-b21b-8532dd9d8856"
   "atom-color-highlight": {}
   "atom-ctags":
     autoBuildTagsWhenActive: true
@@ -46,9 +45,6 @@
       "file-type-icons"
       "autocomplete-bibtex"
       "wrap-guide"
-      "atom-ctags"
-      "tidy-markdown"
-      "markdown-scroll-sync"
     ]
     ignoredNames: [
       ".git"
@@ -60,7 +56,7 @@
     ]
     projectHome: "/Users/Felix/Development"
     themes: [
-      "one-dark-ui"
+      "dracula-ui"
       "dracula-theme"
     ]
   docblockr: {}
@@ -143,6 +139,7 @@
     position: "Left"
   "tree-view":
     hideIgnoredNames: true
+    showOnRightSide: true
   "vim-mode": {}
   "vim-surround":
     surroundKey: "S"
