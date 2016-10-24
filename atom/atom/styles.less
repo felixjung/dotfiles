@@ -8,6 +8,8 @@
  * http://www.lesscss.org
  */
 
+@import "syntax-variables";
+
 body {
  -webkit-font-smoothing: auto;
 }
@@ -32,10 +34,14 @@ atom-text-editor {
 }
 
 atom-text-editor::shadow {
+  .leading-whitespace, .invisible-character {
+    color: lighten(@syntax-background-color, 10%);
+  }
+
  .vertical {
    .multi-wrap-guide {
      .multi-wrap-guide-line {
-       background-color: fadeout(#999999, 95%);
+       background-color: lighten(@syntax-background-color, 5%);
        width: 5px;
      }
    }

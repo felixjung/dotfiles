@@ -20,3 +20,11 @@ autocmd! BufWritePost * Neomake
 
 " Sass {
 " }
+
+" Typescript {
+  " let g:neomake_typescript_tslint_maker = {
+      " \ 'exe': nrun#Which('tslint'),
+      " \ 'args': ['--exclude node_modules']
+      " \ }
+  " let g:neomake_typescript_enabled_makers = ['tslint']
+" }
