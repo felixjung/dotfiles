@@ -57,13 +57,18 @@
     ]
     projectHome: "/Users/Felix/Development"
     telemetryConsent: "limited"
+    themes: [
+      "dracula-ui"
+      "dracula-theme"
+    ]
     useCustomTitleBar: true
   docblockr: {}
   editor:
     autoIndentOnPaste: false
     fontFamily: "Menlo"
-    fontSize: 12
-    invisibles: {}
+    invisibles:
+      space: "•"
+      tab: "›"
     showInvisibles: true
     tabType: "soft"
     useHardwareAcceleration: true
@@ -75,6 +80,11 @@
   "filetype-color":
     enabled: "false"
   "flex-tool-bar": {}
+  "genesis-ui":
+    distractionFree:
+      hideBottom: false
+      hideFiles: false
+      hideTabs: false
   "git-diff": {}
   "jscs-fixer":
     defaultPreset: "airbnb"
@@ -141,6 +151,13 @@
     showOnRightSide: true
   "vim-mode":
     useClipboardAsDefaultRegister: true
+  "vim-mode-plus":
+    smoothScrollOnFullScrollMotion: true
+    smoothScrollOnHalfScrollMotion: true
+    stayOnDelete: true
+    stayOnYank: true
+    useClipboardAsDefaultRegister: true
+    useSmartcaseForSearch: true
   "vim-surround":
     surroundKey: "S"
   welcome:
