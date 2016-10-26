@@ -45,6 +45,7 @@
       "file-type-icons"
       "autocomplete-bibtex"
       "wrap-guide"
+      "vim-mode-clipboard-plus"
     ]
     ignoredNames: [
       ".git"
@@ -55,10 +56,8 @@
       "dash"
     ]
     projectHome: "/Users/Felix/Development"
-    themes: [
-      "dracula-ui"
-      "dracula-theme"
-    ]
+    telemetryConsent: "limited"
+    useCustomTitleBar: true
   docblockr: {}
   editor:
     autoIndentOnPaste: false
@@ -140,7 +139,8 @@
   "tree-view":
     hideIgnoredNames: true
     showOnRightSide: true
-  "vim-mode": {}
+  "vim-mode":
+    useClipboardAsDefaultRegister: true
   "vim-surround":
     surroundKey: "S"
   welcome:

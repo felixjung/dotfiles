@@ -38,12 +38,20 @@ atom-text-editor::shadow {
     color: lighten(@syntax-background-color, 10%);
   }
 
- .vertical {
+  .lines .line.cursor-line {
+    background-color: lighten(@syntax-background-color, 2%);
+  }
+
+  .line-number.cursor-line {
+    background-color: transparent;
+    color: @syntax-color-added;
+  }
+  .vertical {
    .multi-wrap-guide {
      .multi-wrap-guide-line {
        background-color: lighten(@syntax-background-color, 5%);
        width: 5px;
      }
    }
- }
+  }
 }

@@ -6,19 +6,8 @@
   'ctrl-j': 'window:focus-pane-below'
 
   # Surround mode in vim-mode-plus
-'atom-text-editor.vim-mode.normal-mode':
+'atom-text-editor.vim-mode-plus.normal-mode':
   'y s': 'vim-mode-plus:surround'
-  'y s w': 'vim-mode-plus:surround-word'
-
-  'd s': 'vim-mode-plus:delete-surround'
-  'd s': 'vim-mode-plus:delete-surround-any-pair'
-  'd s': 'vim-mode-plus:delete-surround-any-pair-allow-forwarding'
-
-  'y s c': 'vim-mode-plus:change-surround'
-  'y s c': 'vim-mode-plus:change-surround-any-pair'
-  'y s c': 'vim-mode-plus:change-surround-any-pair-allow-forwarding'
-
-  'y m s':  'vim-mode-plus:map-surround'
 
 # Exit insert mode in vim-mode when autocomplete-plus is open
 '.autocomplete-plus input.hidden-input':
