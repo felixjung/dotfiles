@@ -21,6 +21,7 @@ call plug#begin('~/.vim/plugs')
   Plug 'tpope/vim-surround'
   Plug 'jaawerth/nrun.vim'
   " Plug 'Lokaltog/vim-easymotion'
+  " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'scrooloose/nerdcommenter'
   Plug 'Shougo/vimproc.vim', { 'do': 'make' }
   Plug 'terryma/vim-multiple-cursors'
@@ -88,10 +89,12 @@ call plug#begin('~/.vim/plugs')
   if count(g:languages, 'javascript')
     Plug 'elzr/vim-json', { 'for': 'json' }
     Plug 'mustache/vim-mustache-handlebars', { 'for': 'html.handlebars' }
-    " Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
+    Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
     Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
     Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
     Plug 'digitaltoad/vim-jade', { 'for': ['html', 'javascript'] }
+    " Plug 'carlitux/deoplete-ternjs'
+    " Plug 'ternjs/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' }
   endif
 
   " Typescript
