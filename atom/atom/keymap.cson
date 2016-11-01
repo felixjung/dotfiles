@@ -14,8 +14,11 @@
   'escape': 'vim-mode-plus:activate-command-mode'
 
 # Vim-mode bindings for clipboard plus
-'atom-text-editor.vim-mode:not(.insert-mode)':
+'.platform-darwin atom-text-editor.vim-mode-plus:not(.insert-mode)':
   'ctrl-p': 'clipboard-plus:toggle'
+
+'.platform-linux atom-text-editor.vim-mode-plus:not(.insert-mode)':
+  'alt-p': 'clipboard-plus:toggle'
 
 # Toggle find panes
 '.platform-darwin':

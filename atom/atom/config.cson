@@ -15,9 +15,12 @@
     slimScrollbar: true
     themeSyle: "Lighter"
   "atom-ternjs":
+    excludeLowerPriorityProviders: true
+    guess: false
+    inlineFnCompletion: false
     lint: false
+    snippetsFirst: true
     useSnippets: true
-    useSnippetsAndFunction: true
   "auto-update-packages":
     intervalMinutes: 60
   "autocomplete-bibtex": {}
@@ -28,12 +31,17 @@
     fileWhitelist: "*.md, *.swift, *.jl"
   "autocomplete-plus":
     autoActivationDelay: 200
+    backspaceTriggersAutocomplete: true
+    confirmCompletion: "enter"
+    enableBuiltinProvider: false
     fileBlacklist: [
       "*.md"
       "*.json"
+      "*.txt"
     ]
     includeCompletionsFromAllBuffers: true
-  "clipboard-plus": {}
+  "clipboard-plus":
+    useVimModePlus: true
   "color-picker":
     preferredFormat: "HEX"
   core:
@@ -45,7 +53,6 @@
       "file-type-icons"
       "autocomplete-bibtex"
       "wrap-guide"
-      "vim-mode-clipboard-plus"
     ]
     ignoredNames: [
       ".git"
@@ -57,15 +64,12 @@
     ]
     projectHome: "/Users/Felix/Development"
     telemetryConsent: "limited"
-    themes: [
-      "dracula-ui"
-      "dracula-theme"
-    ]
     useCustomTitleBar: true
   docblockr: {}
   editor:
     autoIndentOnPaste: false
     fontFamily: "Menlo"
+    fontSize: 13
     invisibles:
       space: "•"
       tab: "›"
@@ -85,7 +89,14 @@
       hideBottom: false
       hideFiles: false
       hideTabs: false
+  "gist-it":
+    openAfterCreate: true
+    userToken: "7276667d2ad01f57328f6108abc0ddd85cc2688c"
   "git-diff": {}
+  "imdone-atom":
+    excludeVcsIgnoredPaths: true
+    maxFilesPrompt: 1000
+    showTagsInline: true
   "jscs-fixer":
     defaultPreset: "airbnb"
   linter:
@@ -125,7 +136,9 @@
   metrics:
     userId: "62e806a948537de01b816d7735025a087eddc82a"
   minimap: {}
-  "multi-wrap-guide": {}
+  "multi-wrap-guide":
+    locked: true
+    silent: true
   "one-dark-ui":
     fontSize: 10
     layoutMode: "Compact"
@@ -195,11 +208,11 @@
     ]
 ".gfm.source":
   editor:
-    preferredLineLength: 80
+    preferredLineLength: 75
     softWrap: true
   "multi-wrap-guide":
     columns: [
-      80
+      75
     ]
   "wrap-guide":
     enabled: false
