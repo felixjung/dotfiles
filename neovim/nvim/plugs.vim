@@ -43,7 +43,7 @@ call plug#begin('~/.vim/plugs')
 " }
 
 " Completion {
-  Plug 'Valloric/YouCompleteMe', { 'do': './install.py --gocode-completer --tern-completer' }
+  " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --gocode-completer --tern-completer' }
   Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " }
 
