@@ -22,9 +22,21 @@ autocmd! BufWritePost * Neomake
 " }
 
 " Typescript {
-  " let g:neomake_typescript_tslint_maker = {
-      " \ 'exe': nrun#Which('tslint'),
-      " \ 'args': ['--exclude node_modules']
-      " \ }
-  " let g:neomake_typescript_enabled_makers = ['tslint']
+  let g:neomake_typescript_tslint_maker = {
+      \ 'exe': nrun#Which('tslint'),
+      \ 'args': ['--exclude node_modules']
+      \ }
+
+  let g:neomake_typescript_tsc__maker = {
+      \ 'exe': nrun#Which('tsc'),
+      \ 'args': ['--noEmit'],
+      \ 'append_file': 0,
+      \ 'errorformat':
+          \ '%E%f %#(%l\,%c): error %m,' .
+          \ '%E%f %#(%l\,%c): %m,' .
+          \ '%Eerror %m,' .
+          \ '%C%\s%\+%m'
+      \ }
+
+  let g:neomake_typescript_enabled_makers = ['tslint']
 " }

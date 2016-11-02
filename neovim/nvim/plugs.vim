@@ -93,6 +93,7 @@ call plug#begin('~/.vim/plugs')
   " Typescript
   if count(g:languages, 'typescript')
     Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+    Plug 'mhartington/deoplete-typescript', { 'for': 'typescript' }
   endif
 
   " HTML
