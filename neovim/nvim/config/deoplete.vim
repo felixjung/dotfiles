@@ -5,3 +5,4 @@ let g:deoplete#auto_complete_delay = 200
 let g:deoplete#sources = {}
 let g:deoplete#sources['javascript.jsx'] = ['file', 'ultisnips', 'ternjs']
 let g:deoplete#sources['javascript'] = ['file', 'ultisnips', 'ternjs']
+let g:deoplete#sources['ruby'] = ['file', 'ultisnips', 'omni']

@@ -115,6 +115,7 @@ call plug#begin('~/.vim/plugs')
   if count(g:languages, 'ruby')
     Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
     Plug 'tpope/vim-rails', { 'for': 'ruby' }
+    Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
   endif
 
   " Golang
