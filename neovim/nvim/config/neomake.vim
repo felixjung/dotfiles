@@ -7,7 +7,20 @@ let g:neomake_open_list = 0
 let g:neomake_list_height = 5
 let g:neomake_echo_current_error = 0
 let g:neomake_place_signs = 1
-autocmd! BufWritePost * Neomake
+
+augroup neomake_group
+  autocmd!
+  autocmd BufWritePost * Neomake
+  autocmd User NeomakeFinished call UpdateLightline()
+augroup END
+
+function! UpdateLightline()
+  if !exists('*lightline#update')
+    return
+  endif
+
+  call lightline#update()
+endfunction
 
 " JavaScript {
   " let g:neomake_javascript_eslint_maker = {
