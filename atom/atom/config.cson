@@ -90,8 +90,8 @@
       hideFiles: false
       hideTabs: false
   "gist-it":
+    newGistsDefaultToPrivate: true
     openAfterCreate: true
-    userToken: "7276667d2ad01f57328f6108abc0ddd85cc2688c"
   "git-diff": {}
   "imdone-atom":
     excludeVcsIgnoredPaths: true
