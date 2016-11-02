@@ -8,6 +8,14 @@
   map <C-L> <C-W>l<C-W>_
   map <C-H> <C-W>h<C-W>_
 
+  " Terminal mode mappings
+  tnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
+  tnoremap <silent> <c-j> :TmuxNavigateDown<cr>
+  tnoremap <silent> <c-k> :TmuxNavigateUp<cr>
+  tnoremap <silent> <c-l> :TmuxNavigateRight<cr>
+  tnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
+  tnoremap <Esc> <C-\><C-n>
+
   " Proper navigation for visual line breaks
   noremap k gk
   noremap j gj
@@ -60,6 +68,6 @@
   cmap w!! w !sudo tee % >/dev/null
 
   " Cycle buffers
-  nnoremap <C-N> :bnext<CR>
-  nnoremap <C-P> :bprev<CR>
+  nnoremap <A-N> :bnext<CR>
+  nnoremap <A-P> :bprev<CR>
 " }
