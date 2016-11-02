@@ -20,8 +20,9 @@ call plug#begin('~/.vim/plugs')
   Plug 'vim-scripts/YankRing.vim'
   Plug 'tpope/vim-surround'
   Plug 'jaawerth/nrun.vim'
-  " Plug 'Lokaltog/vim-easymotion'
-  " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'Lokaltog/vim-easymotion'
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'ervandew/supertab'
   Plug 'scrooloose/nerdcommenter'
   Plug 'Shougo/vimproc.vim', { 'do': 'make' }
   Plug 'terryma/vim-multiple-cursors'
@@ -30,28 +31,20 @@ call plug#begin('~/.vim/plugs')
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install --no-update-rc --bin' }
   Plug 'rking/ag.vim'
   Plug 'junegunn/goyo.vim'
-  " Plug 'junegunn/vim-easy-align'
-  " Plug 'nathanaelkane/vim-indent-guides'
 " }
 
 " Development features {
   Plug 'neomake/neomake'
-
-  " if executable('ctags')
-   " Plug 'majutsushi/tagbar'
-  " endif
 " }
 
 " Completion {
-  " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --gocode-completer --tern-completer' }
   Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " }
 
 " Git and Github {
   Plug 'airblade/vim-gitgutter'
-  Plug 'mattn/gist-vim', { 'on': 'Gist' }
+  Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim', { 'on': 'Gist' }
   Plug 'tpope/vim-fugitive'
-  Plug 'junegunn/vim-github-dashboard', { 'on': ['GHDashboard', 'GHActivity'], 'do': 'gem install json_pure' }
 " }
 
 
@@ -93,8 +86,8 @@ call plug#begin('~/.vim/plugs')
     Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
     Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
     Plug 'digitaltoad/vim-jade', { 'for': ['html', 'javascript'] }
-    " Plug 'carlitux/deoplete-ternjs'
-    " Plug 'ternjs/tern_for_vim', { 'for': 'javascript', 'do': 'npm install' }
+    Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
+    Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'], 'do': 'npm install' }
   endif
 
   " Typescript
