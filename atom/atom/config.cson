@@ -64,12 +64,15 @@
     ]
     projectHome: "/Users/Felix/Development"
     telemetryConsent: "limited"
+    themes: [
+      "one-dark-ui"
+      "ariake-dark-syntax"
+    ]
     useCustomTitleBar: true
   docblockr: {}
   editor:
     autoIndentOnPaste: false
     fontFamily: "Menlo"
-    fontSize: 13
     invisibles:
       space: "•"
       tab: "›"
