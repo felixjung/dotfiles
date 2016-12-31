@@ -126,7 +126,7 @@ call plug#begin('~/.vim/plugs')
 
   " Elm
   if count(g:languages, 'elm')
-    Plug 'lambdatoast/elm.vim', { 'for': 'elm' }
+    Plug 'elmcast/elm-vim', { 'for': 'elm' }
   endif
 
   " Tmux configuration files

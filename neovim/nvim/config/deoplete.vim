@@ -6,3 +6,4 @@ let g:deoplete#sources = {}
 let g:deoplete#sources['javascript.jsx'] = ['file', 'ultisnips', 'ternjs']
 let g:deoplete#sources['javascript'] = ['file', 'ultisnips', 'ternjs']
 let g:deoplete#sources['ruby'] = ['file', 'ultisnips', 'omni']
+let g:deoplete#sources['elm'] = ['file', 'ultisnips', 'omni']
