@@ -99,7 +99,6 @@ call plug#begin('~/.config/nvim/plugs')
   " HTML
   if count(g:languages, 'html')
     Plug 'othree/html5.vim', { 'for': ['html', 'javascript'] }
-    Plug 'amirh/HTML-AutoCloseTag', { 'for': ['html', 'javascript'] }
     Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript'] }
   endif
 
