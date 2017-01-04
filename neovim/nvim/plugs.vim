@@ -7,13 +7,13 @@ endif
 let g:languages = ['javascript', 'typescript', 'html', 'css', 'ruby', 'elm']
 
 " Install vim-plug automatically, if not present.
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
 
 " Set plugs
-call plug#begin('~/.vim/plugs')
+call plug#begin('~/.config/nvim/plugs')
 " Basic editor features {
   Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
   Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -99,7 +99,6 @@ call plug#begin('~/.vim/plugs')
   " HTML
   if count(g:languages, 'html')
     Plug 'othree/html5.vim', { 'for': ['html', 'javascript'] }
-    Plug 'amirh/HTML-AutoCloseTag', { 'for': ['html', 'javascript'] }
     Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript'] }
   endif
 
@@ -126,7 +125,7 @@ call plug#begin('~/.vim/plugs')
 
   " Elm
   if count(g:languages, 'elm')
-    Plug 'lambdatoast/elm.vim', { 'for': 'elm' }
+    Plug 'elmcast/elm-vim', { 'for': 'elm' }
   endif
 
   " Tmux configuration files

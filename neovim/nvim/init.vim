@@ -1,6 +1,6 @@
 " Basic settings {
-  set clipboard+=unnamedplus                    " Neovim works with standard pbcopy/pbpaste on OS X
-  set mouse=a                                     " Automatically enable mouse usage
+  set clipboard+=unnamedplus                      " Neovim works with standard pbcopy/pbpaste on OS X
+  set mouse=                                      " Automatically enable mouse usage
   set mousehide                                   " Hide the mouse cursor while typing
   set shortmess+=I                                " Disable welcome message
   set shiftround                                  " Round to multiples of shift
