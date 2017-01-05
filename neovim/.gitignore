@@ -1,0 +1,4 @@
+nvim/autoload/*
+nvim/plugs/*
+nvim/undo/*
+nvim/tags

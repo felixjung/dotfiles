@@ -1,13 +1,18 @@
-setopt extended_glob
-
 # Dotilfes
 export DOTFILES="$HOME/.dotfiles"
+
+# Source zim
+if [[ -s ${ZDOTDIR:-${HOME}}/.zim/init.zsh ]]; then
+  source ${ZDOTDIR:-${HOME}}/.zim/init.zsh
+fi
+
+setopt extended_glob
 
 # Define all zsh files
 # Taken from Holman's dotfiles
 # (https://github.com/holman/dotfiles/tree/master/zsh)
 typeset -U config_files
-config_files=($DOTFILES/(^(undo|packages|.zprezto))#/*.zsh)
+config_files=($DOTFILES/(^(undo|packages|.zim))#/*.zsh)
 
 # Load path files
 for file in ${(M)config_files:#*/path.zsh}
@@ -34,7 +39,3 @@ do
 done
 
 unset config_files
-
-# Source Prezto
-PREZTO="${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-[[ -s "$PREZTO" ]] && source $PREZTO

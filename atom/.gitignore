@@ -1,0 +1,12 @@
+storage/*
+packages/*
+compile-cache/*
+packages/*
+.apm/*
+atom/storage/*
+atom/blob-store/*
+atom/packages/*
+atom/compile-cache/*
+atom/packages/*
+atom/.apm/*
+

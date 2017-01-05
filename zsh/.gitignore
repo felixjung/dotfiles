@@ -1,0 +1,6 @@
+zsh/.zhistory
+zsh/.zcompdump
+zsh/.zcompdump.zwc
+zsh/.zcompcache/*
+zsh/.zim/*
+zsh/.zshrc.zwc
