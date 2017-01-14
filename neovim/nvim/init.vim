@@ -35,8 +35,6 @@
 
 " Persistent Undo {
   if has('persistent_undo')
-    silent !mkdir /undo > /dev/null 2>&1
-    set undodir=$NVIM_ROOT.'/undo'
     set undofile
   endif
 " }
