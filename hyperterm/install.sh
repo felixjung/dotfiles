@@ -8,6 +8,8 @@ if ! yes_no_prompt "Install hyperterm?"; then
   exit
 fi
 
+defaults write com.github.atom ApplePressAndHoldEnabled -bool false
+
 brew cask update
 brew cask install hyperterm
 
