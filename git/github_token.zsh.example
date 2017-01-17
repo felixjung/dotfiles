@@ -1,3 +1,4 @@
-# Set Github token for Github Dashboard
+# Set Github tokens for Github Dashboard
 
 export GITHUB_TOKEN="__TOKEN__"
+export JEKYLL_GITHUB_TOKEN="__TOKEN__"
