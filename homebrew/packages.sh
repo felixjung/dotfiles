@@ -3,7 +3,8 @@ brew install ack
 brew install bash
 brew install graphicsmagick
 brew install zsh
-brew install node
+brew install node --without-npm
+brew install yarn
 brew install weechat --with-aspell --with-curl --with-perl --with-python --with-ruby --with-lua
 brew install unrar
 brew install gotags

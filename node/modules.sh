@@ -1,6 +1,4 @@
-npm install -g bower
-npm install -g tern
-npm install -g eslint
-npm install -g gulp
-npm install -g git+https://github.com/ramitos/jsctags.git
-npm install -g tslint typescript
+yarn global add tern
+yarn global add eslint
+yarn global add git+https://github.com/ramitos/jsctags.git
+yarn global add tslint typescript
