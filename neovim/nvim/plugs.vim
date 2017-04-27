@@ -107,10 +107,11 @@ call plug#begin('~/.config/nvim/plugs')
 
   " CSS/Less/Sass
   if count(g:languages, 'css')
-    Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'sass'] }
-    Plug 'gorodinskiy/vim-coloresque', { 'for': ['css', 'sass'] }
+    Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'sass', 'scss'] }
+    Plug 'gorodinskiy/vim-coloresque', { 'for': ['css', 'sass', 'scss'] }
     Plug 'groenewege/vim-less', { 'for': 'less' }
-    Plug 'cakebaker/scss-syntax.vim', { 'for': 'sass' }
+    Plug 'cakebaker/scss-syntax.vim', { 'for': ['sass', 'scss'] }
+    Plug 'othree/csscomplete.vim', { 'for': ['css', 'sass', 'scss'] }
   endif
 
 
