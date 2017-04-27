@@ -82,8 +82,10 @@ call plug#begin('~/.config/nvim/plugs')
   if count(g:languages, 'javascript')
     Plug 'elzr/vim-json', { 'for': 'json' }
     Plug 'mustache/vim-mustache-handlebars', { 'for': 'html.handlebars' }
-    Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
-    Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+    Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
+    Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
+    Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
+    Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
     Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
     Plug 'digitaltoad/vim-jade', { 'for': ['html', 'javascript'] }
     Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
@@ -98,8 +100,8 @@ call plug#begin('~/.config/nvim/plugs')
 
   " HTML
   if count(g:languages, 'html')
-    Plug 'othree/html5.vim', { 'for': ['html', 'javascript'] }
-    Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript'] }
+    Plug 'othree/html5.vim', { 'for': ['html', 'javascript', 'javascript.jsx'] }
+    Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript', 'javascript.jsx'] }
   endif
 
   " CSS/Less/Sass
