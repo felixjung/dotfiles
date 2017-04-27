@@ -13,4 +13,5 @@ if exists(':UltiSnipsAddFiletypes')
   :UltiSnipsAddFiletypes javascript-es-2015
   :UltiSnipsAddFiletypes javascript-jsdoc
   :UltiSnipsAddFiletypes javascript-jasmine
+  :UltiSnipsAddFiletypes javascript-react
 endif

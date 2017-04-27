@@ -64,14 +64,15 @@
     projectHome: "/Users/Felix/Development"
     telemetryConsent: "limited"
     themes: [
-      "one-dark-ui"
-      "ariake-dark-syntax"
+      "dracula-ui"
+      "dracula-theme"
     ]
-    useCustomTitleBar: true
+    titleBar: "custom-inset"
   docblockr: {}
   editor:
     autoIndentOnPaste: false
     fontFamily: "Menlo"
+    fontSize: 12
     invisibles:
       space: "•"
       tab: "›"
@@ -102,10 +103,6 @@
     defaultPreset: "airbnb"
   linter:
     clearOnChange: true
-    lintOnFly: false
-    showErrorPanel: false
-    showErrorTabFile: false
-    showErrorTabProject: false
     showInfoMessages: true
     subtleLinterErrors: [
       "jshint"
