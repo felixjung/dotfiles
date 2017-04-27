@@ -45,6 +45,7 @@ call plug#begin('~/.config/nvim/plugs')
   Plug 'airblade/vim-gitgutter'
   Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim', { 'on': 'Gist' }
   Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-rhubarb'
 " }
 
 
