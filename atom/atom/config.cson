@@ -48,7 +48,6 @@
     audioBeep: false
     disabledPackages: [
       "feedback"
-      "symbols-view"
       "save-session"
       "file-type-icons"
       "autocomplete-bibtex"
@@ -77,7 +76,6 @@
       space: "•"
       tab: "›"
     showInvisibles: true
-    tabType: "soft"
     useHardwareAcceleration: true
   "exception-reporting":
     userId: "7652af63-0a80-ab67-85f4-9d3eebd7294e"
@@ -143,7 +141,7 @@
     locked: true
     silent: true
   "one-dark-ui":
-    fontSize: 10
+    fontSize: 13
     layoutMode: "Compact"
   "one-light-ui":
     fontSize: 10
