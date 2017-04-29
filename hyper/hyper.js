@@ -54,7 +54,7 @@ module.exports = {
 
     // the shell to run when spawning a new session (i.e. /usr/local/bin/fish)
     // if left empty, your system's login shell will be used by default
-    shell: 'zsh'
+    shell: ''
 
     // for advanced config flags please refer to https://hyperterm.org/#cfg
   },
@@ -68,8 +68,14 @@ module.exports = {
   plugins: [
     'hyperterm-atom-dark',
     'hyperlayout',
-    'hyper-pane'
+    'hyper-pane',
+    'hyperlinks',
+    'hyper-statusline'
   ],
+
+  hyperStatusLine: {
+    dirtyColor: 'salmon',
+  },
 
   // in development, you can create a directory under
   // `~/.hyperterm_plugins/local/` and include it here
