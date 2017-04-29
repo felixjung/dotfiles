@@ -31,6 +31,7 @@ call plug#begin('~/.config/nvim/plugs')
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install --no-update-rc --bin' }
   Plug 'rking/ag.vim'
   Plug 'junegunn/goyo.vim'
+  Plug 'editorconfig/editorconfig-vim'
 " }
 
 " Development features {
