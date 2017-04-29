@@ -52,6 +52,7 @@
       "file-type-icons"
       "autocomplete-bibtex"
       "wrap-guide"
+      "whitespace"
     ]
     ignoredNames: [
       ".git"
