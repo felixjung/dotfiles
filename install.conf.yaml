@@ -26,6 +26,8 @@
       path: zsh/zshenv
     ~/.hyper.js:
       path: hyper/hyper.js
+    ~/.editorconfig:
+      path: configs/editorconfig
 - shell:
   -
     command: sh homebrew/install.sh
