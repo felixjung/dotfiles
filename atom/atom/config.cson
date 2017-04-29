@@ -64,10 +64,6 @@
     ]
     projectHome: "/Users/Felix/Development"
     telemetryConsent: "limited"
-    themes: [
-      "dracula-ui"
-      "dracula-theme"
-    ]
     titleBar: "custom-inset"
   docblockr: {}
   editor:
@@ -139,7 +135,7 @@
     locked: true
     silent: true
   "one-dark-ui":
-    fontSize: 13
+    fontSize: 11
     layoutMode: "Compact"
   "one-light-ui":
     fontSize: 10
