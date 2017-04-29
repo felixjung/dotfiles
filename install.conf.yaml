@@ -24,8 +24,8 @@
       path: zsh/zsh
     ~/.zshenv:
       path: zsh/zshenv
-    ~/.hyperterm.js:
-      path: hyperterm/hyperterm.js
+    ~/.hyper.js:
+      path: hyper/hyper.js
 - shell:
   -
     command: sh homebrew/install.sh
@@ -42,5 +42,4 @@
   -
     command: sh zsh/install.sh
   -
-    command: sh hyperterm/install.sh
-
+    command: sh hyper/install.sh
