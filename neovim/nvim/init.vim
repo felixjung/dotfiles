@@ -35,6 +35,8 @@
 
 " Persistent Undo {
   if has('persistent_undo')
+    let undodir = $NVIM_ROOT.'undo'
+    set undodir=undodir
     set undofile
   endif
 " }
