@@ -1,5 +1,6 @@
 module.exports = {
   config: {
+    // Hyper configuration
     fontSize: 14,
     fontFamily: 'Hack, "DejaVu Sans Mono", Menlo, monospace',
     cursorColor: 'rgba(248,28,229,0.75)',
@@ -8,6 +9,18 @@ module.exports = {
     css: '',
     termCSS: '',
     padding: '12px 14px',
+    // Plugin configurations
+    hyperStatusLine: {
+      dirtyColor: 'salmon',
+    },
+    tabIcons: {
+      mapIcons: {
+        nodejs: ['node'],
+        vim: ['nvim', 'vim']
+      },
+      mapColors: { },
+      processNameRegex: /: (.*?)$/
+    }
   },
 
   plugins: [
@@ -15,10 +28,7 @@ module.exports = {
     'hyperlayout',
     'hyper-pane',
     'hyperlinks',
-    'hyper-statusline'
+    'hyper-statusline',
+    'hyper-tab-icons'
   ],
-
-  hyperStatusLine: {
-    dirtyColor: 'salmon',
-  }
 };
