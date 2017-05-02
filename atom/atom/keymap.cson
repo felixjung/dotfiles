@@ -5,10 +5,6 @@
   'ctrl-k': 'window:focus-pane-above'
   'ctrl-j': 'window:focus-pane-below'
 
-  # Surround mode in vim-mode-plus
-'atom-text-editor.vim-mode-plus.normal-mode':
-  'y s': 'vim-mode-plus:surround'
-
 # Exit insert mode in vim-mode when autocomplete-plus is open
 '.autocomplete-plus input.hidden-input':
   'escape': 'vim-mode-plus:activate-command-mode'
@@ -17,6 +13,10 @@
 '.platform-darwin atom-text-editor.vim-mode-plus:not(.insert-mode)':
   'ctrl-p': 'clipboard-plus:toggle'
 
+# Surround mode in vim-mode-plus
+'atom-text-editor.vim-mode-plus.normal-mode':
+  'y s': 'vim-mode-plus:surround'
+
 '.platform-linux atom-text-editor.vim-mode-plus:not(.insert-mode)':
   'alt-p': 'clipboard-plus:toggle'
 
@@ -24,3 +24,8 @@
 '.platform-darwin':
   'cmd-F': 'project-find:toggle'
   'cmd-f': 'find-and-replace:toggle'
+
+# Cycle through autocompletion suggestions
+'body atom-text-editor.autocomplete-active':
+  'tab': 'autocomplete-plus:move-down'
+  'alt-tab': 'autocomplete-plus:move-up'

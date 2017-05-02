@@ -32,14 +32,21 @@
   "autocomplete-plus":
     autoActivationDelay: 200
     backspaceTriggersAutocomplete: true
-    confirmCompletion: "enter"
     enableBuiltinProvider: false
+    enableExtendedUnicodeSupport: true
     fileBlacklist: [
       "*.md"
       "*.json"
       "*.txt"
     ]
     includeCompletionsFromAllBuffers: true
+    suppressActivationForEditorClasses: [
+      "vim-mode-plus.normal-mode"
+      "vim-mode-plus.visual-mode"
+      "vim-mode-plus.operator-pending-mode"
+      "vim-mode-plus.insert-mode.replace"
+    ]
+    useCoreMovementCommands: false
   "clipboard-plus":
     useVimModePlus: true
   "color-picker":
@@ -53,6 +60,7 @@
       "autocomplete-bibtex"
       "wrap-guide"
       "whitespace"
+      "tabs"
     ]
     ignoredNames: [
       ".git"
@@ -68,7 +76,7 @@
   docblockr: {}
   editor:
     autoIndentOnPaste: false
-    fontFamily: "Menlo"
+    fontFamily: "Hack"
     fontSize: 12
     invisibles:
       space: "•"
@@ -117,6 +125,8 @@
     executablePath: "/usr/local/bin/scss-lint"
   "linter-tidy":
     tidyExecutablePath: "/usr/local/bin/tidy5"
+  "linter-ui-default":
+    showPanel: true
   "markdown-preview":
     useGitHubStyle: true
   "markdown-preview-plus":
@@ -267,3 +277,6 @@
 ".python.text.traceback":
   editor:
     tabLength: 4
+".source.ts":
+  editor:
+    autoIndentOnPaste: true
