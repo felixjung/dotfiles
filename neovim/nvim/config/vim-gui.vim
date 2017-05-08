@@ -1,13 +1,13 @@
 " Configure UI {
-  " User 24bit colors
+  " Use 24bit colors
   if (has("termguicolors"))
     set termguicolors
   endif
 
   " Theming
-  let g:onedark_terminal_italics=1               " Use italics
   set background=dark                            " Use dark variant of theme
-  colorscheme onedark                            " Set theme
+  let g:one_allow_italics = 1                    " Allow italics in comments etc.
+  colorscheme one                                " Set theme
 
   " Misc settings
   set linespace=0                                " No extra spaces between rows
