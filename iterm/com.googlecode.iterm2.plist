@@ -1131,17 +1131,17 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>954 33 445 77 0 0 1920 1178 </string>
+	<string>1368 33 445 77 0 0 2560 1440 </string>
 	<key>NSWindow Frame Preferences</key>
 	<string>-1240 316 606 456 -1440 -100 1440 877 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>928 596 700 622 0 0 2560 1417 </string>
+	<string>610 417 700 622 0 0 1920 1178 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>610 462 796 473 0 0 1920 1178 </string>
+	<string>610 568 918 495 0 0 1920 1178 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>230 833 592 584 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>324 104 1266 971 0 0 1920 1178 </string>
+	<string>1006 416 910 762 0 0 1920 1178 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>694 2 1242 1234 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -1406,7 +1406,7 @@
 			<key>Blend</key>
 			<real>0.30000001192092896</real>
 			<key>Blink Allowed</key>
-			<false/>
+			<true/>
 			<key>Blinking Cursor</key>
 			<false/>
 			<key>Blur</key>
@@ -1511,7 +1511,7 @@
 			<key>Hide After Opening</key>
 			<false/>
 			<key>Horizontal Spacing</key>
-			<real>1</real>
+			<real>0.90000000000000002</real>
 			<key>HotKey Characters</key>
 			<string>v</string>
 			<key>HotKey Characters Ignoring Modifiers</key>
@@ -1822,7 +1822,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>Hack 12</string>
+			<string>Hack 15</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
@@ -1986,7 +1986,7 @@
 			<key>Terminal Type</key>
 			<string>xterm-256color</string>
 			<key>Thin Strokes</key>
-			<false/>
+			<integer>2</integer>
 			<key>Transparency</key>
 			<real>0.0</real>
 			<key>Triggers</key>
@@ -1996,7 +1996,7 @@
 			<key>Use Bold Font</key>
 			<true/>
 			<key>Use Bright Bold</key>
-			<false/>
+			<true/>
 			<key>Use Canonical Parser</key>
 			<false/>
 			<key>Use Cursor Guide</key>
@@ -2121,7 +2121,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-01-04T11:34:09Z</date>
+	<date>2017-05-04T13:14:09Z</date>
 	<key>SavePasteHistory</key>
 	<true/>
 	<key>ShowBookmarkName</key>
@@ -2175,7 +2175,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.0.13</string>
+	<string>3.0.15</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
