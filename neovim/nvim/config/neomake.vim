@@ -10,7 +10,7 @@ let g:neomake_place_signs = 1
 
 augroup neomake_group
   autocmd!
-  autocmd InsertChange,TextChanged * update | Neomake
+  autocmd! BufWritePost,BufEnter * Neomake
   autocmd User NeomakeFinished call UpdateLightline()
 augroup END
 
