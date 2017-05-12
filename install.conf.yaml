@@ -8,6 +8,8 @@
       stderr: true
 - clean: ['~', '~/.config']
 - link:
+    ~/.config/alacritty.yml:
+      path: alacritty/alactritty.yml
     ~/.atom:
       path: atom/atom
     ~/.ctags:
