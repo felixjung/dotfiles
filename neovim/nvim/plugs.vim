@@ -55,7 +55,7 @@ call plug#begin('~/.config/nvim/plugs')
 " }
 
 " Themes {
-  Plug 'rakr/vim-one'
+  Plug 'joshdick/onedark.vim'
 " }
 
 " tmux integration {
