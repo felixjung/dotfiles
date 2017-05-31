@@ -60,7 +60,8 @@
       "autocomplete-bibtex"
       "wrap-guide"
       "whitespace"
-      "tabs"
+      "vim-mode-plus"
+      "vim-mode-clipboard-plus"
     ]
     ignoredNames: [
       ".git"
@@ -77,7 +78,6 @@
   editor:
     autoIndentOnPaste: false
     fontFamily: "Hack"
-    fontSize: 12
     invisibles:
       space: "•"
       tab: "›"
@@ -146,7 +146,6 @@
     silent: true
   "one-dark-ui":
     fontSize: 11
-    layoutMode: "Compact"
   "one-light-ui":
     fontSize: 10
     layoutMode: "Compact"
