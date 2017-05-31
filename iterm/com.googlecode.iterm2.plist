@@ -1131,17 +1131,17 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>1368 33 445 77 0 0 2560 1440 </string>
+	<string>1065 967 445 77 0 0 1920 1178 </string>
 	<key>NSWindow Frame Preferences</key>
 	<string>-1240 316 606 456 -1440 -100 1440 877 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>610 417 700 622 0 0 1920 1178 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>654 1936 937 512 -303 1200 2560 1440 </string>
+	<string>654 1914 918 495 -303 1200 2560 1418 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>230 833 592 584 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>497 1488 910 762 -303 1200 2560 1418 </string>
+	<string>-298 1209 2544 1404 -303 1200 2560 1418 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>694 2 1242 1234 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -1822,7 +1822,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>Hack 15</string>
+			<string>Hack 12</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
@@ -2121,7 +2121,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-05-08T15:57:54Z</date>
+	<date>2017-05-12T14:01:08Z</date>
 	<key>SavePasteHistory</key>
 	<true/>
 	<key>ShowBookmarkName</key>
