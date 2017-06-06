@@ -16,6 +16,10 @@
 	<integer>1</integer>
 	<key>AutoHideTmuxClientSession</key>
 	<true/>
+	<key>BadgeRightMargin</key>
+	<integer>20</integer>
+	<key>BadgeTopMargin</key>
+	<integer>20</integer>
 	<key>CheckTestRelease</key>
 	<true/>
 	<key>ClosingHotkeySwitchesSpaces</key>
@@ -896,6 +900,8 @@
 	<false/>
 	<key>DisableFullscreenTransparency</key>
 	<true/>
+	<key>EnableDivisionView</key>
+	<false/>
 	<key>EnableRendezvous</key>
 	<false/>
 	<key>FocusFollowsMouse</key>
@@ -1114,11 +1120,11 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>610 1813 700 622 -320 1200 2560 1440 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>412 610 918 416 0 0 1680 1028 </string>
+	<string>422 389 1018 447 0 0 1680 1028 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>99 293 592 584 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>340 112 994 809 0 0 1680 1028 </string>
+	<string>340 113 994 808 0 0 1680 1028 </string>
 	<key>NeverWarnAboutMeta</key>
 	<integer>1</integer>
 	<key>NeverWarnAboutShortLivedSessions_C02BDF49-8474-4F58-9980-55A3EFE11C2C</key>
@@ -1423,15 +1429,15 @@
 			<key>Cursor Guide Color</key>
 			<dict>
 				<key>Alpha Component</key>
-				<real>0.71710205078125</real>
+				<real>0.25</real>
 				<key>Blue Component</key>
-				<real>0.17884907126426697</real>
+				<real>1</real>
 				<key>Color Space</key>
 				<string>Calibrated</string>
 				<key>Green Component</key>
-				<real>0.14665406942367554</real>
+				<real>0.9100000262260437</real>
 				<key>Red Component</key>
-				<real>0.12974913418292999</real>
+				<real>0.64999997615814209</real>
 			</dict>
 			<key>Cursor Text Color</key>
 			<dict>
@@ -1976,6 +1982,8 @@
 			<true/>
 			<key>Use Non-ASCII Font</key>
 			<false/>
+			<key>Use Underline Color</key>
+			<false/>
 			<key>Vertical Spacing</key>
 			<real>1</real>
 			<key>Visual Bell</key>
@@ -2095,6 +2103,8 @@
 	<true/>
 	<key>SplitPaneDimmingAmount</key>
 	<real>0.10000000149011612</real>
+	<key>StretchTabsToFillBar</key>
+	<true/>
 	<key>SwitchTabModifier</key>
 	<integer>4</integer>
 	<key>SwitchWindowModifier</key>
@@ -2103,6 +2113,10 @@
 	<integer>1</integer>
 	<key>TabViewType</key>
 	<integer>1</integer>
+	<key>TerminalMargin</key>
+	<integer>12</integer>
+	<key>TerminalVMargin</key>
+	<integer>12</integer>
 	<key>ThreeFingerEmulates</key>
 	<false/>
 	<key>TmuxDashboardLimit</key>
