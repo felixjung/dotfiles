@@ -7,7 +7,7 @@
   " Theming
   set background=dark                            " Use dark variant of theme
   let g:one_allow_italics = 1                    " Allow italics in comments etc.
-  colorscheme one                                " Set theme
+  colorscheme onedark                                " Set theme
 
   " Misc settings
   set linespace=0                                " No extra spaces between rows
