@@ -60,7 +60,6 @@
       "autocomplete-bibtex"
       "wrap-guide"
       "whitespace"
-      "tabs"
     ]
     ignoredNames: [
       ".git"
@@ -77,7 +76,7 @@
   editor:
     autoIndentOnPaste: false
     fontFamily: "Hack"
-    fontSize: 12
+    fontSize: 13
     invisibles:
       space: "•"
       tab: "›"
@@ -120,13 +119,13 @@
     executablePath: "/usr/local/bin/jscs"
     onlyConfig: true
   "linter-jshint":
+    disableWhenNoJshintrcFileInPath: true
     jshintExecutablePath: "/usr/local/bin/jshint"
   "linter-scss-lint":
     executablePath: "/usr/local/bin/scss-lint"
   "linter-tidy":
     tidyExecutablePath: "/usr/local/bin/tidy5"
-  "linter-ui-default":
-    showPanel: true
+  "linter-ui-default": {}
   "markdown-preview":
     useGitHubStyle: true
   "markdown-preview-plus":
@@ -145,8 +144,7 @@
     locked: true
     silent: true
   "one-dark-ui":
-    fontSize: 11
-    layoutMode: "Compact"
+    fontSize: 14
   "one-light-ui":
     fontSize: 10
     layoutMode: "Compact"
