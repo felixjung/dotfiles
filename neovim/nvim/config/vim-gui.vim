@@ -18,7 +18,7 @@
   set list                                       " Display whitespace
   set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Set whitespace symbols
   set foldenable                                 " Enable code folding
-  set cursorline                                 " Highlight current line
+  set nocursorline                               " Highlight current line
 
   " Status line
   set laststatus=2                               " Always show the status line
