@@ -35,7 +35,6 @@ call plug#begin('~/.config/nvim/plugs')
 " }
 
 " Development features {
-  Plug 'neomake/neomake'
 " }
 
 " Completion {
