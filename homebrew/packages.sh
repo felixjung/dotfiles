@@ -24,3 +24,4 @@ brew install unrar
 brew install weechat --with-aspell --with-curl --with-perl --with-python --with-ruby --with-lua
 brew install yarn
 brew install zsh
+brew install zplug
