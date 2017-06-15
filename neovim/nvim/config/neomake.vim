@@ -23,11 +23,11 @@ function! UpdateLightline()
 endfunction
 
 " JavaScript {
-  let g:neomake_javascript_enabled_makers = ['eslint', 'xo', 'standard']
+  let g:neomake_javascript_enabled_makers = ['eslint']
   " Prefer the local ESlint version
   au BufEnter *.js let b:neomake_javascript_eslint_exe = nrun#Which('eslint')
-  au BufEnter *.js let b:neomake_javascript_eslint_exe = nrun#Which('xo')
-  au BufEnter *.js let b:neomake_javascript_eslint_exe = nrun#Which('standard')
+  au BufEnter *.js let b:neomake_javascript_xo_exe = nrun#Which('xo')
+  au BufEnter *.js let b:neomake_javascript_standard_exe = nrun#Which('standard')
 " }
 " Typescript {
   au BufEnter *.ts let b:neomake_typescript_tslint_exe = nrun#Which('tslint')
