@@ -1,3 +1,7 @@
+# Source splug
+if [[ -s ${ZDOTDIR:-${HOME}}/.zim/init.zsh ]]; then
+  source $ZPLUG_HOME/init.zsh
+fi
 
 # Source zim
 if [[ -s ${ZDOTDIR:-${HOME}}/.zim/init.zsh ]]; then
