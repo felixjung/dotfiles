@@ -1,5 +1,3 @@
-# Dotilfes
-export DOTFILES="$HOME/.dotfiles"
 
 # Source zim
 if [[ -s ${ZDOTDIR:-${HOME}}/.zim/init.zsh ]]; then
