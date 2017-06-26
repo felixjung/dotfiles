@@ -93,7 +93,7 @@ call plug#begin('~/.config/nvim/plugs')
     Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
     Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
     Plug 'digitaltoad/vim-jade', { 'for': ['html', 'javascript'] }
-    Plug 'roxma/nvim-cm-tern',  {'for': ['javascript', 'javascript.jsx'], 'do': 'npm install'}
+    Plug 'roxma/nvim-cm-tern',  { 'do': 'npm install' }
   endif
 
   " Typescript
