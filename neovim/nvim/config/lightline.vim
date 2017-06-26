@@ -1,8 +1,8 @@
 let g:lightline = {
   \ 'colorscheme': 'onedark',
   \ 'active': {
-  \   'left': [ [ 'mode' ], [ 'filename' ] ],
-  \   'right': [ [ 'fugitive' ], [ 'neomake' ] ]
+  \   'left': [ [ 'mode' ], [ 'filename', 'filetype'] ],
+  \   'right': [ [ 'fugitive' ], [ 'AleError', 'AleWarning', 'AleOk' ] ]
   \ },
   \ 'inactive': {
   \   'left': [ [ 'filename' ] ],
@@ -21,14 +21,22 @@ let g:lightline = {
   \   'mode': 'LightLineMode',
   \ },
   \ 'component_expand': {
-  \   'syntastic': 'SyntasticStatuslineFlag',
-  \   'neomake': 'neomake#statusline#LoclistStatus'
+  \   'AleError':   'LightlineAleError',
+  \   'AleWarning': 'LightlineAleWarning',
+  \   'AleOk':      'LightlineAleOk',
   \ },
   \ 'component_type': {
-  \   'syntastic': 'error',
+  \   'AleError':   'error',
+  \   'AleWarning': 'warning',
+  \   'AleOk':      'ok',
   \ },
   \ 'subseparator': { 'left': '', 'right': '' }
 \ }
+
+augroup LightLineOnALE
+  autocmd!
+  autocmd User ALELint call lightline#update()
+augroup END
 
 function! LightLineModified()
   return &ft =~ 'help' ? '' : &modified ? '±' : &modifiable ? '' : '-'
@@ -51,6 +59,18 @@ function! LightLineFilename()
         \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
 endfunction
 
+function! LightLineFiletype()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? WebDevIconsGetFileTypeSymbol() : '') : ''
+endfunction
+
+function! LightLineFileFormat()
+  return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+endfunction
+
+function! LightLineFileencoding()
+  return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+endfunction
+
 function! LightLineFugitive()
   try
     if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
@@ -61,45 +81,6 @@ function! LightLineFugitive()
   catch
   endtry
   return ''
-endfunction
-
-function! GetNeomakeErrors()
-
-endfunction
-
-function! GetNeomakeWarnings()
-    if !exists('*neomake#statusline#LoclistCounts')
-        return ''
-    endif
-
-    " Count all the errors, warnings
-    let total = 0
-
-    for v in values(neomake#statusline#LoclistCounts())
-        let total += v
-    endfor
-
-    for v in items(neomake#statusline#QflistCounts())
-        let total += v
-    endfor
-
-    if total == 0
-        return ''
-    endif
-
-    return 'line '.getloclist(0)[0].lnum. ', 1 of '.total
-endfunction
-
-function! LightLineFileformat()
-  return winwidth(0) > 70 ? &fileformat : ''
-endfunction
-
-function! LightLineFiletype()
-  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
-endfunction
-
-function! LightLineFileencoding()
-  return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
 endfunction
 
 function! LightLineMode()
@@ -115,21 +96,36 @@ function! LightLineMode()
         \ lightline#mode()
 endfunction
 
-let g:tagbar_status_func = 'TagbarStatusFunc'
-
-function! TagbarStatusFunc(current, sort, fname, ...) abort
-    let g:lightline.fname = a:fname
-  return lightline#statusline(0)
+function! LightlineAleError() abort
+  return LightlineAleString(0)
 endfunction
 
-augroup AutoSyntastic
-  autocmd!
-  autocmd BufWritePost call s:syntastic()
-augroup END
+function! LightLineAleWarning() abort
+  return LightlineAleString(1)
+endfunction
 
-function! s:syntastic()
-  SyntasticCheck
-  call lightline#update()
+function! LightlineAleOk() abort
+  return LightlineAleString(2)
+endfunction
+
+function! LightlineAleString(mode)
+  if !exists('g:ale_buffer_info')
+    return ''
+  endif
+
+  let l:buffer = bufnr('%')
+  let l:counts = ale#statusline#Count(l:buffer)
+  let [l:error_format, l:warning_format, l:no_errors] = g:ale_statusline_format
+
+  if a:mode == 0 " Error
+    let l:errors = l:counts.error + l:counts.style_error
+    return l:errors ? printf(l:error_format, l:errors) : ''
+  elseif a:mode == 1 " Warning
+    let l:warnings = l:counts.warning + l:counts.style_warning
+    return l:warnings ? printf(l:warning_format, l:warnings) : ''
+  endif
+
+  return l:counts.total == 0 ? '' : ''
 endfunction
 
 " Set the colorscheme. Modified from onedark.vim
@@ -181,6 +177,7 @@ if exists('g:lightline')
 
   let s:p.normal.error    = [ [ s:light_red, s:black ] ]
   let s:p.normal.warning  = [ [ s:light_yellow, s:black ] ]
+  let s:p.normal.ok  = [ [ s:green, s:black ] ]
 
 
   let g:lightline#colorscheme#onedark#palette = lightline#colorscheme#flatten(s:p)

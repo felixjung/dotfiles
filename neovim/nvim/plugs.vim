@@ -21,7 +21,6 @@ call plug#begin('~/.config/nvim/plugs')
   Plug 'tpope/vim-surround'
   Plug 'jaawerth/nrun.vim'
   Plug 'Lokaltog/vim-easymotion'
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'ervandew/supertab'
   Plug 'scrooloose/nerdcommenter'
   Plug 'Shougo/vimproc.vim', { 'do': 'make' }
@@ -32,9 +31,12 @@ call plug#begin('~/.config/nvim/plugs')
   Plug 'rking/ag.vim'
   Plug 'junegunn/goyo.vim'
   Plug 'editorconfig/editorconfig-vim'
+  Plug 'roxma/nvim-completion-manager'
+  Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 " }
 
 " Development features {
+  Plug 'w0rp/ale'
 " }
 
 " Completion {
@@ -51,6 +53,8 @@ call plug#begin('~/.config/nvim/plugs')
 
 " UI configuration {
   Plug 'itchyny/lightline.vim'
+  Plug 'ryanoasis/vim-devicons'
+
 " }
 
 " Themes {
@@ -89,8 +93,7 @@ call plug#begin('~/.config/nvim/plugs')
     Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
     Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
     Plug 'digitaltoad/vim-jade', { 'for': ['html', 'javascript'] }
-    Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
-    Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'], 'do': 'npm install' }
+    Plug 'roxma/nvim-cm-tern',  {'for': ['javascript', 'javascript.jsx'], 'do': 'npm install'}
   endif
 
   " Typescript
@@ -119,7 +122,6 @@ call plug#begin('~/.config/nvim/plugs')
   if count(g:languages, 'ruby')
     Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
     Plug 'tpope/vim-rails', { 'for': 'ruby' }
-    Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
   endif
 
   " Golang
