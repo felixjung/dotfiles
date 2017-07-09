@@ -22,4 +22,4 @@ if [[ -z "$LANG" ]]; then
   export LANG='en_US.UTF-8'
 fi
 
-export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="/usr/local/bin:$HOME/.cargo/bin:$PATH"
