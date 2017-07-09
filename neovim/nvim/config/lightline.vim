@@ -105,7 +105,10 @@ function! LightLineAleWarning() abort
 endfunction
 
 function! LightlineAleOk() abort
-  return LightlineAleString(2)
+  let l:ok_string = LightlineAleString(2)
+  let l:active_linters = strlen(&filetype) ? ale#linter#Get(&filetype) : []
+  let l:has_linters = len(l:active_linters) > 0
+  return l:has_linters ? l:ok_string : ''
 endfunction
 
 function! LightlineAleString(mode)
