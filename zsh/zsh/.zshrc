@@ -3,11 +3,6 @@ if [[ -s ${ZDOTDIR:-${HOME}}/.zim/init.zsh ]]; then
   source $ZPLUG_HOME/init.zsh
 fi
 
-# Source zim
-if [[ -s ${ZDOTDIR:-${HOME}}/.zim/init.zsh ]]; then
-  source ${ZDOTDIR:-${HOME}}/.zim/init.zsh
-fi
-
 setopt extended_glob
 
 # Define all zsh files
@@ -39,5 +34,7 @@ for file in ${(R)config_files:#*/(path|alias|completion).zsh}
 do
   source $file
 done
+
+ZSH_THEME="spaceship"
 
 unset config_files
