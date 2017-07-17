@@ -35,6 +35,4 @@ do
   source $file
 done
 
-ZSH_THEME="spaceship"
-
 unset config_files
