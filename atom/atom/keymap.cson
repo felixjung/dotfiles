@@ -13,10 +13,6 @@
 '.platform-darwin atom-text-editor.vim-mode-plus:not(.insert-mode)':
   'ctrl-p': 'clipboard-plus:toggle'
 
-# Surround mode in vim-mode-plus
-'atom-text-editor.vim-mode-plus.normal-mode':
-  'y s': 'vim-mode-plus:surround'
-
 '.platform-linux atom-text-editor.vim-mode-plus:not(.insert-mode)':
   'alt-p': 'clipboard-plus:toggle'
 

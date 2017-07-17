@@ -60,6 +60,7 @@
       "autocomplete-bibtex"
       "wrap-guide"
       "whitespace"
+      "tabs"
     ]
     ignoredNames: [
       ".git"
@@ -71,21 +72,27 @@
     ]
     projectHome: "/Users/Felix/Development"
     telemetryConsent: "limited"
+    themes: [
+      "pristine-ui"
+      "one-dark-syntax"
+    ]
     titleBar: "custom-inset"
+  "dark-mode":
+    ambientLight: true
+    ambientLightThreshold: 5000000
+    darkProfile: "pristine-ui one-dark-syntax"
   docblockr: {}
   editor:
-    autoIndentOnPaste: false
-    fontFamily: "Hack"
-    fontSize: 13
+    fontFamily: "Fira Code"
     invisibles:
       space: "•"
       tab: "›"
+    lineHeight: 1.3
     showInvisibles: true
     useHardwareAcceleration: true
   "exception-reporting":
     userId: "7652af63-0a80-ab67-85f4-9d3eebd7294e"
   "file-icons":
-    onChanges: true
     tabPaneIcon: false
   "filetype-color":
     enabled: "false"
@@ -108,10 +115,6 @@
   linter:
     clearOnChange: true
     showInfoMessages: true
-    subtleLinterErrors: [
-      "jshint"
-      "shellcheck"
-    ]
   "linter-csslint":
     csslintExecutablePath: "/usr/local/bin/csslint"
   "linter-jscs":
@@ -125,7 +128,10 @@
     executablePath: "/usr/local/bin/scss-lint"
   "linter-tidy":
     tidyExecutablePath: "/usr/local/bin/tidy5"
-  "linter-ui-default": {}
+  "linter-ui-default":
+    panelHeight: 99
+    showProviderName: true
+    statusBarRepresents: "Current File"
   "markdown-preview":
     useGitHubStyle: true
   "markdown-preview-plus":
@@ -145,10 +151,15 @@
     silent: true
   "one-dark-ui":
     fontSize: 14
-  "one-light-ui":
-    fontSize: 10
-    layoutMode: "Compact"
+  "one-light-ui": {}
   pigments: {}
+  "prettier-atom":
+    formatOnSaveOptions:
+      isDisabledIfNotInPackageJson: true
+    prettierOptions:
+      singleQuote: true
+    useEslint: true
+  "pristine-ui": {}
   "repl-term":
     focusTerminal: true
   sassbeautify:

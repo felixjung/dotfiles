@@ -25,21 +25,21 @@ atom-text-editor {
  }
 
  ::-webkit-scrollbar-track {
-   background-color: #303030;
+   background-color: @syntax-background-color;
  }
 
  ::-webkit-scrollbar-thumb {
-   background-color: lighten(#303030, 15%);
+   background-color: lighten(@syntax-background-color, 5%);
  }
 }
 
 atom-text-editor.editor {
   .leading-whitespace, .invisible-character {
-    color: rgba(255, 255, 255, .05);
+    color: lighten(@syntax-background-color, 5%);
   }
 
   .lines .line.cursor-line {
-    background-color: rgba(255, 255, 255, .03);
+    background-color: fade(lighten(@syntax-background-color, 5%), 5%);
   }
 
   .line-number.cursor-line {
@@ -49,7 +49,7 @@ atom-text-editor.editor {
   .vertical {
    .multi-wrap-guide {
      .multi-wrap-guide-line {
-      background-color: rgba(255, 255, 255, .03);
+        background-color: fade(lighten(@syntax-background-color, 35%), 10%);
        width: 5px;
      }
    }

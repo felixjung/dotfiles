@@ -9,4 +9,4 @@ atom/packages/*
 atom/compile-cache/*
 atom/packages/*
 atom/.apm/*
-
+atom/github.cson
