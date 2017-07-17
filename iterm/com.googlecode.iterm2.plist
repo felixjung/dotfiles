@@ -1137,19 +1137,19 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>993 1592 445 77 -303 1200 2560 1418 </string>
+	<string>993 1458 445 77 -303 1200 2560 1418 </string>
 	<key>NSWindow Frame Preferences</key>
 	<string>-1240 316 606 456 -1440 -100 1440 877 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>608 417 700 622 0 0 1920 1178 </string>
+	<string>627 1797 700 622 -303 1200 2560 1418 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>-34 1326 606 469 -303 1200 2560 1418 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>586 1657 918 416 -303 1200 2560 1418 </string>
+	<string>586 1771 796 473 -303 1200 2560 1418 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>230 833 592 584 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>-298 1207 2544 1406 -303 1200 2560 1418 </string>
+	<string>127 1327 1696 1168 -303 1200 2560 1418 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>694 2 1242 1234 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -1996,7 +1996,7 @@
 			<key>Terminal Type</key>
 			<string>xterm-256color</string>
 			<key>Thin Strokes</key>
-			<integer>1</integer>
+			<integer>2</integer>
 			<key>Transparency</key>
 			<real>0.0</real>
 			<key>Triggers</key>
@@ -2006,7 +2006,7 @@
 			<key>Use Bold Font</key>
 			<true/>
 			<key>Use Bright Bold</key>
-			<true/>
+			<false/>
 			<key>Use Canonical Parser</key>
 			<false/>
 			<key>Use Cursor Guide</key>
@@ -2133,7 +2133,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-07-07T15:19:36Z</date>
+	<date>2017-07-12T05:54:08Z</date>
 	<key>SavePasteHistory</key>
 	<true/>
 	<key>ShowBookmarkName</key>
@@ -2195,7 +2195,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.1.20170706-nightly</string>
+	<string>3.1.20170711-nightly</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
