@@ -26,9 +26,8 @@ module.exports = {
   plugins: [
     'hyperterm-one-dark',
     'hyperlayout',
-    'hyper-pane',
+    'hypercwd',
     'hyperlinks',
-    'hyper-statusline',
     'hyper-tab-icons'
   ],
 };
