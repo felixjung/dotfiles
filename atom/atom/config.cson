@@ -79,7 +79,6 @@
     titleBar: "custom-inset"
   "dark-mode":
     ambientLight: true
-    ambientLightThreshold: 5000000
     darkProfile: "pristine-ui one-dark-syntax"
   docblockr: {}
   editor:
