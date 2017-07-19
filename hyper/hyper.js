@@ -20,14 +20,26 @@ module.exports = {
       },
       mapColors: { },
       processNameRegex: /: (.*?)$/
-    }
+    },
+    paneNavigation: {
+      hotkeys: {
+        navigation: {
+          up: 'ctrl+alt+k',
+          down: 'ctrl+alt+j',
+          left: 'ctrl+alt+h',
+          right: 'ctrl+alt+l'
+        }
+      },
+      showIndicators: false
+    },
+    bell: false
   },
-
   plugins: [
+    'hyper-pane',
     'hyperterm-one-dark',
     'hyperlayout',
     'hypercwd',
     'hyperlinks',
     'hyper-tab-icons'
-  ],
+  ]
 };
