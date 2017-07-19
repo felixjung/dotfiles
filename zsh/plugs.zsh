@@ -2,6 +2,7 @@ zplug denysdovhan/spaceship-zsh-theme, use:spaceship.zsh, from:github, as:theme
 zplug "plugins/git",   from:oh-my-zsh
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-history-substring-search"
+zplug "zsh-users/zsh-completions"
 
 # History search keyboard shortcuts
 bindkey '^[[A' history-substring-search-up
