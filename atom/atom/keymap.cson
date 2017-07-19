@@ -1,20 +1,33 @@
-# Modifications for easy pane switching in vim mode
+# All platforms vim-mode-plus key bindings
 'atom-text-editor.vim-mode-plus:not(.insert-mode)':
+  # Modifications for easy pane switching in vim mode
   'ctrl-h': 'window:focus-pane-on-left'
   'ctrl-l': 'window:focus-pane-on-right'
   'ctrl-k': 'window:focus-pane-above'
   'ctrl-j': 'window:focus-pane-below'
+  
+  # Toggle fuzzy finder
+  'ctrl-t': 'fuzzy-finder:toggle-file-finder'
+
+  # Remove search highlight
+  ', /': 'vim-mode-plus:clear-highlight-search'
+  
+# Toggle comment
+'atom-workspace atom-text-editor:not([mini]).vim-mode-plus:not(.insert-mode)':
+  ', c space': 'editor:toggle-line-comments'
+
+# Platform-specific vim-mode-plus key bindings
+'.platform-darwin atom-text-editor.vim-mode-plus:not(.insert-mode)':
+  # Vim-mode bindings for clipboard plus
+  'ctrl-p': 'clipboard-plus:toggle'
+
+'.platform-linux atom-text-editor.vim-mode-plus:not(.insert-mode)':
+  # Vim-mode bindings for clipboard plus
+  'alt-p': 'clipboard-plus:toggle'
 
 # Exit insert mode in vim-mode when autocomplete-plus is open
 '.autocomplete-plus input.hidden-input':
   'escape': 'vim-mode-plus:activate-command-mode'
-
-# Vim-mode bindings for clipboard plus
-'.platform-darwin atom-text-editor.vim-mode-plus:not(.insert-mode)':
-  'ctrl-p': 'clipboard-plus:toggle'
-
-'.platform-linux atom-text-editor.vim-mode-plus:not(.insert-mode)':
-  'alt-p': 'clipboard-plus:toggle'
 
 # Toggle find panes
 '.platform-darwin':
