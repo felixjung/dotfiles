@@ -980,6 +980,20 @@
 			<key>Text</key>
 			<string></string>
 		</dict>
+		<key>0xf708-0x0</key>
+		<dict>
+			<key>Action</key>
+			<integer>40</integer>
+			<key>Text</key>
+			<string>One Dark</string>
+		</dict>
+		<key>0xf709-0x0</key>
+		<dict>
+			<key>Action</key>
+			<integer>40</integer>
+			<key>Text</key>
+			<string>Tango Light</string>
+		</dict>
 		<key>0xf729-0x100000</key>
 		<dict>
 			<key>Action</key>
@@ -1145,11 +1159,11 @@
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>-34 1326 606 469 -303 1200 2560 1418 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>586 1854 918 416 -303 1200 2560 1418 </string>
+	<string>889 680 796 473 0 0 2560 1418 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>230 833 592 584 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>-298 1207 632 1406 -303 1200 2560 1418 </string>
+	<string>5 7 2544 1406 0 0 2560 1418 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>694 2 1242 1234 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
