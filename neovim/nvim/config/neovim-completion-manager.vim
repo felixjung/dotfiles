@@ -2,9 +2,11 @@
 " '-- XXX completion (YYY)', 'match 1 of 2', 'The only match',
 set shortmess+=c
 
+let g:cm_complete_delay = 400
+
 " Set up CSS/Sass completion.
 au User CmSetup call cm#register_source({'name' : 'cm-css',
-		\ 'priority': 9, 
+		\ 'priority': 9,
 		\ 'scoping': 1,
 		\ 'scopes': ['css','scss'],
 		\ 'abbreviation': 'css',
