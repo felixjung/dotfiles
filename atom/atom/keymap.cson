@@ -5,13 +5,51 @@
   'ctrl-l': 'window:focus-pane-on-right'
   'ctrl-k': 'window:focus-pane-above'
   'ctrl-j': 'window:focus-pane-below'
-  
+
   # Toggle fuzzy finder
   'ctrl-t': 'fuzzy-finder:toggle-file-finder'
 
   # Remove search highlight
   ', /': 'vim-mode-plus:clear-highlight-search'
-  
+
+  # TODO: Narrow key bindings from creator. Update once you know how you use
+  #       the package.
+
+  # START narrow config.
+  # For frequent uses, assign shorter keymap(non-2-step keymap).
+  'ctrl-z': 'narrow:reopen'
+
+  'space f': 'narrow:fold'
+
+  'cmd-o': 'narrow:symbols-by-current-word'
+  'cmd-shift-o': 'narrow:project-symbols-by-current-word'
+
+  # Override default cmd-r and cmd-shift-r
+  'cmd-r': 'narrow:symbols'
+  'cmd-shift-r': 'narrow:project-symbols'
+
+  'space l': 'narrow:scan'
+  'cmd-l': 'narrow:scan-by-current-word'
+
+  'space s': 'narrow:search'
+
+  'space G': 'narrow:git-diff-all'
+  # END Narrow config.
+
+'.tree-view':
+  'ctrl-h': 'focus-pane-or-panel:focus-on-left'
+  'ctrl-l': 'focus-pane-or-panel:focus-on-right'
+
+# for cmd-f panel
+'.platform-darwin .find-and-replace atom-text-editor':
+  'ctrl-j': 'focus-pane-or-panel:focus-below'
+  'ctrl-k': 'focus-pane-or-panel:focus-above'
+
+# for cmd-shift-f panel
+'.platform-darwin .project-find atom-text-editor':
+  'ctrl-j': 'focus-pane-or-panel:focus-below'
+  'ctrl-k': 'focus-pane-or-panel:focus-above'
+
 # Toggle comment
 'atom-workspace atom-text-editor:not([mini]).vim-mode-plus:not(.insert-mode)':
   ', c space': 'editor:toggle-line-comments'
@@ -38,3 +76,51 @@
 'body atom-text-editor.autocomplete-active':
   'tab': 'autocomplete-plus:move-down'
   'alt-tab': 'autocomplete-plus:move-up'
+
+# Narrow shortcuts from creator
+# TODO: edit these once you know the tool a bit better.
+# From outside of narrow-editor
+# -------------------------
+
+# `cmd-e` start `search-by-current-word` only when workspace does NOT have `narrow-editor`.
+# NOTE: When workspace.has-narrow, `cmd-e` is mapped to `query-current-word` by default.
+'atom-workspace:not(.has-narrow) atom-text-editor.vim-mode-plus:not(.insert-mode)':
+  'cmd-e': 'narrow:search-by-current-word'
+
+# When workspace has narrow-editor
+'atom-workspace.has-narrow atom-text-editor.vim-mode-plus.normal-mode':
+  'cmd-f': 'narrow:focus' # focus to narrow-editor
+  'cmd-i': 'narrow:focus-prompt' # focus to prompt of narrow-editor
+
+  # Following three command have ctrl- prefixed by default to avoid conflicts.
+  # But I don' care conflict, prefer more accessible keymap.
+  'cmd-[': 'narrow:previous-query-history'
+  'cmd-]': 'narrow:next-query-history'
+  'cmd-e': 'narrow:query-current-word'
+
+# narrow-editor regardless of mode of vim
+'atom-text-editor.narrow.narrow-editor[data-grammar="source narrow"]':
+  'cmd-f': 'narrow:focus'
+  'cmd-i': 'narrow:focus-prompt' # cmd-i to return to calling editor.
+  # Danger: apply change on narrow-editor to real file by `cmd-s`.
+  'cmd-s': 'narrow-ui:update-real-file'
+
+'atom-workspace.has-narrow atom-text-editor.vim-mode-plus.normal-mode,
+  atom-workspace.has-narrow atom-text-editor.vim-mode-plus.visual-mode':
+    # cmd-e to set current word as query of active ui.
+    'cmd-e': 'narrow:query-current-word'
+
+'atom-text-editor.narrow.narrow-editor.vim-mode-plus.normal-mode[data-grammar="source narrow"]':
+  # Danger: I use direct-edit very frequently, so intentionally recover `i` of vim-mode-plus.
+  'i': 'vim-mode-plus:activate-insert-mode'
+  '-': 'narrow-ui:exclude-file'
+  '=': 'narrow-ui:clear-excluded-files'
+  's': 'narrow-ui:select-files'
+  "enter": 'core:confirm' # recover original enter for narrow-editor
+
+# Cursor history key bindings
+'atom-workspace':
+  'ctrl-i':     'cursor-history:next'
+  'ctrl-o':     'cursor-history:prev'
+  'ctrl-cmd-i': 'cursor-history:next-within-editor'
+  'ctrl-cmd-o': 'cursor-history:prev-within-editor'

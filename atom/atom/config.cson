@@ -59,7 +59,6 @@
       "file-type-icons"
       "autocomplete-bibtex"
       "wrap-guide"
-      "whitespace"
       "tabs"
     ]
     ignoredNames: [
@@ -74,12 +73,13 @@
     telemetryConsent: "limited"
     themes: [
       "pristine-ui"
-      "one-dark-syntax"
+      "pure-syntax"
     ]
-    titleBar: "custom-inset"
+    titleBar: "custom"
+  "cursor-history":
+    excludeClosedBuffer: true
   "dark-mode":
-    ambientLight: true
-    darkProfile: "pristine-ui one-dark-syntax"
+    darkProfile: "pristine-ui pure-syntax"
   docblockr: {}
   editor:
     fontFamily: "FuraCode Nerd Font"
@@ -156,6 +156,7 @@
     formatOnSaveOptions:
       isDisabledIfNotInPackageJson: true
     prettierOptions:
+      semi: false
       singleQuote: true
     useEslint: true
   "pristine-ui": {}
@@ -178,8 +179,17 @@
   "vim-mode":
     useClipboardAsDefaultRegister: true
   "vim-mode-plus":
+    charactersToAddSpaceOnSurround: [
+      "("
+      "{"
+      "["
+      "<"
+    ]
+    clearMultipleCursorsOnEscapeInsertMode: true
     smoothScrollOnFullScrollMotion: true
     smoothScrollOnHalfScrollMotion: true
+    smoothScrollOnHalfScrollMotionDuration: 200
+    statusBarModeStringStyle: "long"
     stayOnDelete: true
     stayOnYank: true
     useClipboardAsDefaultRegister: true
