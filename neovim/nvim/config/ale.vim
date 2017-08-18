@@ -39,9 +39,25 @@ let g:ale_echo_msg_format = '[%linter%] %s %severity%'
 
 " \}
 
-" Quickfix window height.
-let g:ale_list_window_size = 15
+" Set how errors are shown in lists.
+let g:ale_list_window_size = 20
+let g:ale_open_list = 0
+let g:ale_set_loclist = 1
+" let g:ale_set_quickfix = 1
 
 " Don't always lint. It causes bad performance.
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_insert_leave = 1
+
+let g:ale_fixers = {
+\   'javascript': [
+\       'prettier',
+\       'eslint'
+\   ],
+\}
+
+" Prettier configuration
+let g:ale_javascript_prettier_options = '--single-quote'
+
+" Fix shortcut
+nmap <F8> <Plug>(ale_fix)
