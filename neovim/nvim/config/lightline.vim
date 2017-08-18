@@ -100,7 +100,7 @@ function! LightlineAleError() abort
   return LightlineAleString(0)
 endfunction
 
-function! LightLineAleWarning() abort
+function! LightlineAleWarning() abort
   return LightlineAleString(1)
 endfunction
 
