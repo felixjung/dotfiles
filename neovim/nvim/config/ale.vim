@@ -18,6 +18,11 @@ let g:ale_sign_error = s:error_icon
 let g:ale_sign_warning = s:warning_icon
 let g:ale_sign_info = s:info_icon
 
+" Custom colors to match lightline.
+highlight link ALEWarningSign NeomakeWarningSign
+highlight link ALEErrorSign NeomakeErrorSign
+highlight link ALEInfoSign NeomakeInfoSign
+
 " Statusline format
 " TODO: use nerdfont symbols here (same as for sign column).
 let g:ale_statusline_format = [s:error_icon . ' %d', s:warning_icon . ' %d', '']
