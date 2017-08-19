@@ -3,6 +3,7 @@ brew install bash
 brew install cairo
 brew install coreutils
 brew install ctags
+brew install exa
 brew install fontconfig
 brew install gettext
 brew install git
