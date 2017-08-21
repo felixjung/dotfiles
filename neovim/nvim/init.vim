@@ -19,6 +19,7 @@
   set concealcursor=nc                            " Don't conceal while editing
   set autoread                                    " Reload files changed outside vim"
   set visualbell                                  " No sounds
+  set lazyredraw
 
 
   let mapleader=','                               " Change global leader
