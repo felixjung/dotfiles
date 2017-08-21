@@ -113,7 +113,6 @@ call plug#begin('~/.config/nvim/plugs')
     Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'sass', 'scss'] }
     Plug 'gorodinskiy/vim-coloresque', { 'for': ['css', 'sass', 'scss'] }
     Plug 'groenewege/vim-less', { 'for': 'less' }
-    Plug 'cakebaker/scss-syntax.vim', { 'for': ['sass', 'scss'] }
     Plug 'othree/csscomplete.vim', { 'for': ['css', 'sass', 'scss'] }
   endif
 
