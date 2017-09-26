@@ -1154,16 +1154,18 @@
 	<string>993 1458 445 77 -303 1200 2560 1418 </string>
 	<key>NSWindow Frame Preferences</key>
 	<string>-1240 316 606 456 -1440 -100 1440 877 </string>
+	<key>NSWindow Frame SUStatusFrame</key>
+	<string>1054 966 400 129 0 0 2560 1418 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>610 417 700 622 0 0 1920 1178 </string>
+	<string>904 597 700 622 0 0 2560 1418 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>-34 1326 606 469 -303 1200 2560 1418 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>888 741 796 473 0 0 2560 1418 </string>
+	<string>490 696 1018 447 0 0 2560 1418 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>230 833 592 584 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>430 127 1696 1168 0 0 2560 1418 </string>
+	<string>5 7 2544 1406 0 0 2560 1418 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>694 2 1242 1234 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -2095,6 +2097,8 @@
 	<false/>
 	<key>PasteFromClipboard</key>
 	<false/>
+	<key>PerformDNSLookups</key>
+	<false/>
 	<key>PointerActions</key>
 	<dict>
 		<key>Button,1,1,,</key>
@@ -2149,7 +2153,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-08-11T05:01:35Z</date>
+	<date>2017-09-18T07:49:13Z</date>
 	<key>SavePasteHistory</key>
 	<true/>
 	<key>ShowBookmarkName</key>
@@ -2211,7 +2215,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.1.20170810-nightly</string>
+	<string>3.1.20170830-nightly</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
