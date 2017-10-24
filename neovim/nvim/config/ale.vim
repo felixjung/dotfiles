@@ -61,3 +61,5 @@ let g:ale_javascript_prettier_options = '--single-quote'
 
 " Fix shortcut
 nmap <F8> <Plug>(ale_fix)
+nmap <silent> <M-k> <Plug>(ale_previous_wrap)
+nmap <silent> <M-j> <Plug>(ale_next_wrap)
