@@ -60,6 +60,7 @@
       "autocomplete-bibtex"
       "wrap-guide"
       "tabs"
+      "linter"
     ]
     ignoredNames: [
       ".git"
@@ -128,7 +129,7 @@
   "linter-tidy":
     tidyExecutablePath: "/usr/local/bin/tidy5"
   "linter-ui-default":
-    panelHeight: 99
+    panelHeight: 300
     showProviderName: true
     statusBarRepresents: "Current File"
   "markdown-preview":
@@ -148,12 +149,15 @@
   "multi-wrap-guide":
     locked: true
     silent: true
+  narrow:
+    notifiedVimModePlusSpecificDefaultKeymap: true
   "one-dark-ui":
     fontSize: 14
   "one-light-ui": {}
   pigments: {}
   "prettier-atom":
     formatOnSaveOptions:
+      enabled: true
       isDisabledIfNotInPackageJson: true
     prettierOptions:
       semi: false
@@ -186,6 +190,7 @@
       "<"
     ]
     clearMultipleCursorsOnEscapeInsertMode: true
+    notifiedCoffeeScriptNoLongerSupportedToExtendVMP: true
     smoothScrollOnFullScrollMotion: true
     smoothScrollOnHalfScrollMotion: true
     smoothScrollOnHalfScrollMotionDuration: 200
