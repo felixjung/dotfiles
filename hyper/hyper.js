@@ -36,10 +36,11 @@ module.exports = {
   },
   plugins: [
     'hyper-pane',
-    'hyperterm-one-dark',
+    'hyper-snazzy',
     'hyperlayout',
     'hypercwd',
     'hyperlinks',
-    'hyper-tab-icons'
+    'hyper-tab-icons',
+    'hyperterm-atom-dark'
   ]
 };

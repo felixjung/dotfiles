@@ -106,6 +106,7 @@
     newGistsDefaultToPrivate: true
     openAfterCreate: true
   "git-diff": {}
+  "ide-flowtype": {}
   "imdone-atom":
     excludeVcsIgnoredPaths: true
     maxFilesPrompt: 1000
@@ -170,7 +171,7 @@
     indent: 2
     path: '''
       /usr/local/bin:/usr/local/sbin:/usr/local/git/bin:/usr/texbin:/Users/Felix/.rvm/gems/ruby-2.1.0/bin:/Users/Felix/.rvm/gems/ruby-2.1.0@global/bin:/Users/Felix/.rvm/rubies/ruby-2.1.0/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/Felix/.rvm/bin:/Users/Felix/.rvm/bin
-      
+
     '''
   tabs:
     alwaysShowTabBar: false
