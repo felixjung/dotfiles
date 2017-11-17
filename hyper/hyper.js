@@ -35,9 +35,6 @@ module.exports = {
     bell: false
   },
   plugins: [
-    'hyper-pane',
-    'hyper-snazzy',
-    'hyperlayout',
     'hypercwd',
     'hyperlinks',
     'hyper-tab-icons',
