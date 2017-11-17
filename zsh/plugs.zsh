@@ -3,6 +3,8 @@ zplug "plugins/git",   from:oh-my-zsh
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-completions"
+zplug "lukechilds/zsh-better-npm-completion", defer:2
+zplug 'zsh-users/zsh-autosuggestions', at:develop
 
 # History search keyboard shortcuts
 bindkey '^[[A' history-substring-search-up
