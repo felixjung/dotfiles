@@ -60,7 +60,6 @@
       "autocomplete-bibtex"
       "wrap-guide"
       "tabs"
-      "linter"
     ]
     ignoredNames: [
       ".git"
@@ -74,13 +73,15 @@
     telemetryConsent: "limited"
     themes: [
       "pristine-ui"
-      "pure-syntax"
+      "one-dark-syntax"
     ]
-    titleBar: "custom"
+    titleBar: "custom-inset"
   "cursor-history":
     excludeClosedBuffer: true
   "dark-mode":
-    darkProfile: "pristine-ui pure-syntax"
+    ambientLight: true
+    ambientLightThreshold: 9000000
+    darkProfile: "pristine-ui one-dark-syntax"
   docblockr: {}
   editor:
     fontFamily: "FuraCode Nerd Font"
@@ -158,7 +159,6 @@
   pigments: {}
   "prettier-atom":
     formatOnSaveOptions:
-      enabled: true
       isDisabledIfNotInPackageJson: true
     prettierOptions:
       semi: false
@@ -171,7 +171,7 @@
     indent: 2
     path: '''
       /usr/local/bin:/usr/local/sbin:/usr/local/git/bin:/usr/texbin:/Users/Felix/.rvm/gems/ruby-2.1.0/bin:/Users/Felix/.rvm/gems/ruby-2.1.0@global/bin:/Users/Felix/.rvm/rubies/ruby-2.1.0/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/Felix/.rvm/bin:/Users/Felix/.rvm/bin
-
+      
     '''
   tabs:
     alwaysShowTabBar: false
@@ -184,6 +184,7 @@
   "vim-mode":
     useClipboardAsDefaultRegister: true
   "vim-mode-plus":
+    automaticallyEscapeInsertModeOnActivePaneItemChange: true
     charactersToAddSpaceOnSurround: [
       "("
       "{"
@@ -191,12 +192,13 @@
       "<"
     ]
     clearMultipleCursorsOnEscapeInsertMode: true
-    notifiedCoffeeScriptNoLongerSupportedToExtendVMP: true
+    sequentialPaste: true
     smoothScrollOnFullScrollMotion: true
     smoothScrollOnHalfScrollMotion: true
     smoothScrollOnHalfScrollMotionDuration: 200
     statusBarModeStringStyle: "long"
     stayOnDelete: true
+    stayOnTransformString: false
     stayOnYank: true
     useClipboardAsDefaultRegister: true
     useSmartcaseForSearch: true
