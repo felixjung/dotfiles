@@ -86,13 +86,13 @@ call plug#begin('~/.config/nvim/plugs')
   " Javascript
   if count(g:languages, 'javascript')
     Plug 'elzr/vim-json', { 'for': 'json' }
-    Plug 'mustache/vim-mustache-handlebars', { 'for': 'html.handlebars' }
-    Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
-    Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
+    " Plug 'mustache/vim-mustache-handlebars', { 'for': 'html.handlebars' }
+    " Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
+    " Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
     Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
     Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
-    Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
-    Plug 'digitaltoad/vim-jade', { 'for': ['html', 'javascript'] }
+    " Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
+    " Plug 'digitaltoad/vim-jade', { 'for': ['html', 'javascript'] }
     Plug 'roxma/nvim-cm-tern',  { 'do': 'npm install' }
   endif
 
