@@ -26,3 +26,4 @@ brew install weechat --with-aspell --with-curl --with-perl --with-python --with-
 brew install yarn
 brew install zsh
 brew install zplug
+brew install yarn
