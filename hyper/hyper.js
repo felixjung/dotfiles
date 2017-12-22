@@ -38,6 +38,7 @@ module.exports = {
     'hypercwd',
     'hyperlinks',
     'hyper-tab-icons',
+    'hyper-font-smoothig',
     'hyperterm-atom-dark'
   ]
 };
