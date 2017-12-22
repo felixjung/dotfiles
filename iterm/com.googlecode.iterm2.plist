@@ -1128,19 +1128,19 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>902 33 445 77 0 0 1920 1178 </string>
+	<string>755 33 445 77 0 0 1680 1050 </string>
 	<key>NSWindow Frame Preferences</key>
 	<string>396 556 606 456 0 0 1680 1027 </string>
 	<key>NSWindow Frame SUStatusFrame</key>
 	<string>758 786 400 129 0 0 1920 1178 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>340 299 700 622 0 0 1680 1028 </string>
+	<string>490 304 700 622 0 0 1680 1028 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>537 678 1018 447 0 0 1920 1178 </string>
+	<string>596 378 918 401 0 0 1680 1050 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>99 293 592 584 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>5 382 824 641 0 0 1680 1028 </string>
+	<string>191 124 824 641 0 0 1680 1028 </string>
 	<key>NeverWarnAboutMeta</key>
 	<integer>1</integer>
 	<key>NeverWarnAboutShortLivedSessions_C02BDF49-8474-4F58-9980-55A3EFE11C2C</key>
@@ -1981,7 +1981,7 @@
 			<key>Terminal Type</key>
 			<string>xterm-256color</string>
 			<key>Thin Strokes</key>
-			<integer>1</integer>
+			<integer>0</integer>
 			<key>Transparency</key>
 			<real>0.0</real>
 			<key>Triggers</key>
@@ -2108,7 +2108,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-10-17T22:45:39Z</date>
+	<date>2017-12-20T20:41:00Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SavePasteHistory</key>
@@ -2172,7 +2172,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.1.20170930-nightly</string>
+	<string>3.1.20171210-nightly</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
