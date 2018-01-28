@@ -35,10 +35,8 @@ module.exports = {
     bell: false
   },
   plugins: [
-    'hypercwd',
     'hyperlinks',
     'hyper-tab-icons',
-    'hyper-font-smoothig',
     'hyperterm-atom-dark'
   ]
 };
