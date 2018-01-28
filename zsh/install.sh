@@ -8,8 +8,8 @@ if ! yes_no_prompt "Set up ZSH?"; then
   exit
 fi
 
-info "Installing zim"
-git clone --recursive https://github.com/Eriner/zim.git ${ZDOTDIR:-${HOME}}/.zim
+brew install zplug
+
 echo $(which zsh) | sudo tee -a /etc/shells
 chsh -s $(which zsh)
 success "Installed and set up zsh."
