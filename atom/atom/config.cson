@@ -7,6 +7,8 @@
   "atom-ctags":
     autoBuildTagsWhenActive: true
     cmdArgs: "--exclude=node_modules --exclude=bower_components"
+  "atom-jest-snippets":
+    toggleSemicolons: false
   "atom-material-ui":
     compactTreeView: true
     depth: true
@@ -58,7 +60,6 @@
       "save-session"
       "file-type-icons"
       "autocomplete-bibtex"
-      "wrap-guide"
       "tabs"
     ]
     ignoredNames: [
@@ -85,12 +86,16 @@
   docblockr: {}
   editor:
     fontFamily: "FuraCode Nerd Font"
+    fontSize: 12
     invisibles:
       space: "•"
       tab: "›"
     lineHeight: 1.3
     showInvisibles: true
     useHardwareAcceleration: true
+  "ex-mode":
+    splitbelow: true
+    splitright: true
   "exception-reporting":
     userId: "7652af63-0a80-ab67-85f4-9d3eebd7294e"
   "file-icons":
@@ -119,6 +124,7 @@
     showInfoMessages: true
   "linter-csslint":
     csslintExecutablePath: "/usr/local/bin/csslint"
+  "linter-eslint": {}
   "linter-jscs":
     esnext: true
     executablePath: "/usr/local/bin/jscs"
@@ -131,7 +137,7 @@
   "linter-tidy":
     tidyExecutablePath: "/usr/local/bin/tidy5"
   "linter-ui-default":
-    panelHeight: 300
+    panelHeight: 99
     showProviderName: true
     statusBarRepresents: "Current File"
   "markdown-preview":
@@ -159,11 +165,13 @@
   pigments: {}
   "prettier-atom":
     formatOnSaveOptions:
+      enabled: true
       isDisabledIfNotInPackageJson: true
     prettierOptions:
       semi: false
       singleQuote: true
     useEslint: true
+    useStylelint: true
   "pristine-ui": {}
   "repl-term":
     focusTerminal: true
@@ -206,6 +214,9 @@
     surroundKey: "S"
   welcome:
     showOnStartup: false
+  zentabs:
+    maximumOpenedTabs: 1
+    neverCloseUnsaved: true
 ".angular.html.text":
   editor:
     preferredLineLength: 80
