@@ -1,0 +1,67 @@
+{
+    "editor.fontFamily": "'FuraCode Nerd Font', Menlo",
+    "workbench.colorTheme": "Material Theme",
+    "editor.cursorStyle": "block",
+    "editor.cursorBlinking": "solid",
+    "docker.showExplorer": false,
+    "flow.useNPMPackagedFlow": true,
+    "vsicons.dontShowNewVersionMessage": true,
+    "vim.enableNeovim": true,
+    "vim.easymotion": true,
+    "vim.easymotionMarkerFontFamily": "'FuraCode Nerd Font', Menlo",
+    "git.path": "git",
+    "workbench.activityBar.visible": false,
+    "window.titleBarStyle": "custom",
+    "window.nativeTabs": false,
+    "workbench.editor.showTabs": false,
+    "workbench.startupEditor": "none",
+    "window.zoomLevel": 0,
+    "editor.fontSize": 14,
+    "workbench.iconTheme": "eq-material-theme-icons",
+    "materialTheme.cache.workbench.settings": {
+        "themeColours": "Palenight",
+        "accent": "Purple",
+        "accentPrevious": "Lime"
+    },
+    "workbench.colorCustomizations": {
+        "activityBarBadge.background": "#AB47BC",
+        "list.activeSelectionForeground": "#AB47BC",
+        "list.inactiveSelectionForeground": "#AB47BC",
+        "list.highlightForeground": "#AB47BC",
+        "scrollbarSlider.activeBackground": "#AB47BC50",
+        "editorSuggestWidget.highlightForeground": "#AB47BC",
+        "textLink.foreground": "#AB47BC",
+        "progressBar.background": "#AB47BC",
+        "pickerGroup.foreground": "#AB47BC",
+        "tab.activeBorder": "#AB47BC",
+    },
+    "vim.foldfix": true,
+    "vim.leader": ",",
+    "vim.otherModesKeyBindings": [
+        {
+            "before": [
+                "j",
+                "j"
+            ],
+            "after": [
+                "<Esc>"
+            ]
+        },
+        {
+            "before": [
+                "leader", "/"
+            ],
+            "after": [],
+            "commands": [
+                {
+                    "command": ":nohl",
+                    "args": []
+                }
+            ]
+        }
+    ],
+    "vim.statusBarColorControl": false,
+    "vim.showmodename": true,
+    "vim.useSystemClipboard": true,
+    "editor.fontLigatures": true
+}

@@ -1,0 +1,13 @@
+code --install-extension Equinusocio.vsc-material-theme
+code --install-extension PeterJausovec.vscode-docker
+code --install-extension dbaeumer.vscode-eslint
+code --install-extension esbenp.prettier-vscode
+code --install-extension flowtype.flow-for-vscode
+code --install-extension freebroccolo.reasonml
+code --install-extension mohsen1.prettify-json
+code --install-extension patrys.vscode-code-outline
+code --install-extension robertohuertasm.vscode-icons
+code --install-extension robinbentley.sass-indented
+code --install-extension teabyii.ayu
+code --install-extension vscodevim.vim
+code --install-extension xabikos.ReactSnippets
