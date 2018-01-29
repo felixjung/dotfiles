@@ -7,6 +7,14 @@
   "atom-ctags":
     autoBuildTagsWhenActive: true
     cmdArgs: "--exclude=node_modules --exclude=bower_components"
+  "atom-ide-ui":
+    "atom-ide-code-format":
+      formatOnSave: true
+    "atom-ide-diagnostics-ui":
+      autoVisibility: true
+      showDiagnosticTraces: true
+      showDirectoryColumn: true
+    "atom-ide-find-references": {}
   "atom-jest-snippets":
     toggleSemicolons: false
   "atom-material-ui":
@@ -31,6 +39,11 @@
     std: {}
   "autocomplete-emojis":
     fileWhitelist: "*.md, *.swift, *.jl"
+  "autocomplete-paths":
+    ignoredPatterns: [
+      "node_modules"
+      ".git"
+    ]
   "autocomplete-plus":
     autoActivationDelay: 200
     backspaceTriggersAutocomplete: true
@@ -61,6 +74,7 @@
       "file-type-icons"
       "autocomplete-bibtex"
       "tabs"
+      "linter"
     ]
     ignoredNames: [
       ".git"
@@ -74,9 +88,9 @@
     telemetryConsent: "limited"
     themes: [
       "pristine-ui"
-      "one-dark-syntax"
+      "material-palenight-syntax"
     ]
-    titleBar: "custom-inset"
+    titleBar: "hidden"
   "cursor-history":
     excludeClosedBuffer: true
   "dark-mode":
@@ -103,6 +117,12 @@
   "filetype-color":
     enabled: "false"
   "flex-tool-bar": {}
+  "fuzzy-finder":
+    ignoredNames: [
+      ".git"
+      "node_modules"
+    ]
+    prefillFromSelection: true
   "genesis-ui":
     distractionFree:
       hideBottom: false
@@ -112,7 +132,8 @@
     newGistsDefaultToPrivate: true
     openAfterCreate: true
   "git-diff": {}
-  "ide-flowtype": {}
+  "ide-flowtype":
+    tryFlowBin: true
   "imdone-atom":
     excludeVcsIgnoredPaths: true
     maxFilesPrompt: 1000
@@ -159,6 +180,8 @@
     silent: true
   narrow:
     notifiedVimModePlusSpecificDefaultKeymap: true
+  "ocaml-merlin":
+    completePartialPrefixes: true
   "one-dark-ui":
     fontSize: 14
   "one-light-ui": {}
@@ -170,6 +193,7 @@
     prettierOptions:
       semi: false
       singleQuote: true
+    useEditorConfig: false
     useEslint: true
     useStylelint: true
   "pristine-ui": {}
@@ -200,7 +224,8 @@
       "<"
     ]
     clearMultipleCursorsOnEscapeInsertMode: true
-    sequentialPaste: true
+    keymapPToPutWithAutoIndent: true
+    keymapYToYankToLastCharacterOfLine: true
     smoothScrollOnFullScrollMotion: true
     smoothScrollOnHalfScrollMotion: true
     smoothScrollOnHalfScrollMotionDuration: 200
@@ -209,6 +234,7 @@
     stayOnTransformString: false
     stayOnYank: true
     useClipboardAsDefaultRegister: true
+    useSmartcaseForFind: true
     useSmartcaseForSearch: true
   "vim-surround":
     surroundKey: "S"
@@ -314,6 +340,22 @@
 ".python.text.traceback":
   editor:
     tabLength: 4
+".reason.source":
+  editor:
+    showIndentGuide: true
 ".source.ts":
   editor:
     autoIndentOnPaste: true
+"atom-material-ui":
+  colors:
+    abaseColor: "#7e57c2"
+    paintCursor: true
+    predefinedColor: "Purple"
+  tabs:
+    compactTabs: true
+    noTabMinWidth: true
+  treeView:
+    blendTabs: true
+    compactList: false
+  ui:
+    panelShadows: true
