@@ -94,7 +94,6 @@
   "cursor-history":
     excludeClosedBuffer: true
   "dark-mode":
-    ambientLight: true
     ambientLightThreshold: 9000000
     darkProfile: "pristine-ui one-dark-syntax"
   docblockr: {}
@@ -146,13 +145,6 @@
   "linter-csslint":
     csslintExecutablePath: "/usr/local/bin/csslint"
   "linter-eslint": {}
-  "linter-jscs":
-    esnext: true
-    executablePath: "/usr/local/bin/jscs"
-    onlyConfig: true
-  "linter-jshint":
-    disableWhenNoJshintrcFileInPath: true
-    jshintExecutablePath: "/usr/local/bin/jshint"
   "linter-scss-lint":
     executablePath: "/usr/local/bin/scss-lint"
   "linter-tidy":
@@ -189,9 +181,11 @@
   "prettier-atom":
     formatOnSaveOptions:
       enabled: true
+      isDisabledIfNoConfigFile: true
       isDisabledIfNotInPackageJson: true
+    prettierEslintOptions:
+      prettierLast: true
     prettierOptions:
-      semi: false
       singleQuote: true
     useEditorConfig: false
     useEslint: true
@@ -203,15 +197,16 @@
     indent: 2
     path: '''
       /usr/local/bin:/usr/local/sbin:/usr/local/git/bin:/usr/texbin:/Users/Felix/.rvm/gems/ruby-2.1.0/bin:/Users/Felix/.rvm/gems/ruby-2.1.0@global/bin:/Users/Felix/.rvm/rubies/ruby-2.1.0/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/Felix/.rvm/bin:/Users/Felix/.rvm/bin
-      
+
     '''
   tabs:
-    alwaysShowTabBar: false
+    addNewTabsAtEnd: true
     enableVcsColoring: true
   "tool-bar":
     position: "Left"
   "tree-view":
     hideIgnoredNames: true
+    hideVcsIgnoredFiles: true
     showOnRightSide: true
   "vim-mode":
     useClipboardAsDefaultRegister: true
