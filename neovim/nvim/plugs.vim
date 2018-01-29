@@ -19,7 +19,6 @@ call plug#begin('~/.config/nvim/plugs')
   Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
   Plug 'vim-scripts/YankRing.vim'
   Plug 'tpope/vim-surround'
-  Plug 'jaawerth/nrun.vim'
   Plug 'Lokaltog/vim-easymotion'
   Plug 'ervandew/supertab'
   Plug 'scrooloose/nerdcommenter'
@@ -91,7 +90,7 @@ call plug#begin('~/.config/nvim/plugs')
     " Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
     " Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
     Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
-    Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
+    Plug 'maxmellon/vim-jsx-pretty', { 'for': ['javascript', 'javascript.jsx'] }
     " Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
     " Plug 'digitaltoad/vim-jade', { 'for': ['html', 'javascript'] }
     Plug 'roxma/nvim-cm-tern',  { 'do': 'npm install' }

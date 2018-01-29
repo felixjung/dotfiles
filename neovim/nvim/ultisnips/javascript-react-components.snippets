@@ -1,0 +1,22 @@
+extends javascript-react
+
+priority -60
+
+snippet ccomp "React class component" b
+class ${1:componentName} extends Component {
+	${0}
+}
+
+export default $1;
+endsnippet
+
+snippet fcomp "React class component" b
+const ${1:componentName} = (${2:props}) => {
+	${0}
+	return (
+
+	);
+};
+
+export default $1;
+endsnippet

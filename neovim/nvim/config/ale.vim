@@ -54,10 +54,19 @@ let g:ale_fixers = {
 \       'prettier',
 \       'eslint'
 \   ],
+\   'scss': [
+\       'prettier',
+\       'stylelint'
+\   ],
+\   'sass': [
+\       'prettier',
+\       'stylelint'
+\   ],
 \}
 
-" Prettier configuration
-let g:ale_javascript_prettier_options = '--single-quote'
+let g:ale_sass_stylelint_options = '--fix'
+let g:ale_scss_stylelint_options = '--fix'
+let g:ale_javascript_prettier_use_local_config = 1
 
 " Fix shortcut
 nmap <F8> <Plug>(ale_fix)
