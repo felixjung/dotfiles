@@ -58,7 +58,8 @@ call plug#begin('~/.config/nvim/plugs')
 " }
 
 " Themes {
-  Plug 'joshdick/onedark.vim'
+  " Plug 'joshdick/onedark.vim'
+  Plug 'kaicataldo/material.vim'
 " }
 
 " tmux integration {

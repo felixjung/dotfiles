@@ -20,6 +20,7 @@
   set autoread                                    " Reload files changed outside vim"
   set visualbell                                  " No sounds
   set lazyredraw
+  set termguicolors
 
 
   let mapleader=','                               " Change global leader
