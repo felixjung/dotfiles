@@ -11,7 +11,6 @@
     "atom-ide-code-format":
       formatOnSave: true
     "atom-ide-diagnostics-ui":
-      autoVisibility: true
       showDiagnosticTraces: true
       showDirectoryColumn: true
     "atom-ide-find-references": {}
@@ -27,8 +26,7 @@
   "atom-ternjs":
     excludeLowerPriorityProviders: true
     guess: false
-    inlineFnCompletion: false
-    lint: false
+    lint: true
     snippetsFirst: true
     useSnippets: true
   "auto-update-packages":
@@ -68,6 +66,7 @@
     preferredFormat: "HEX"
   core:
     audioBeep: false
+    debugLSP: true
     disabledPackages: [
       "feedback"
       "save-session"
@@ -83,6 +82,8 @@
     ]
     packagesWithKeymapsDisabled: [
       "dash"
+      "atom-ternjs"
+      "zentabs"
     ]
     projectHome: "/Users/Felix/Development"
     telemetryConsent: "limited"
@@ -99,7 +100,7 @@
   docblockr: {}
   editor:
     fontFamily: "FuraCode Nerd Font"
-    fontSize: 12
+    fontSize: 11
     invisibles:
       space: "•"
       tab: "›"
@@ -133,6 +134,8 @@
   "git-diff": {}
   "ide-flowtype":
     tryFlowBin: true
+  "ide-typescript":
+    javascriptSupport: false
   "imdone-atom":
     excludeVcsIgnoredPaths: true
     maxFilesPrompt: 1000
@@ -150,7 +153,7 @@
   "linter-tidy":
     tidyExecutablePath: "/usr/local/bin/tidy5"
   "linter-ui-default":
-    panelHeight: 99
+    panelHeight: 300
     showProviderName: true
     statusBarRepresents: "Current File"
   "markdown-preview":
@@ -180,9 +183,9 @@
   pigments: {}
   "prettier-atom":
     formatOnSaveOptions:
-      enabled: true
       isDisabledIfNoConfigFile: true
       isDisabledIfNotInPackageJson: true
+      showInStatusBar: true
     prettierEslintOptions:
       prettierLast: true
     prettierOptions:
@@ -190,14 +193,16 @@
     useEditorConfig: false
     useEslint: true
     useStylelint: true
-  "pristine-ui": {}
+  "pristine-ui":
+    fontSize: 10
+    hideDockButtons: true
   "repl-term":
     focusTerminal: true
   sassbeautify:
     indent: 2
     path: '''
       /usr/local/bin:/usr/local/sbin:/usr/local/git/bin:/usr/texbin:/Users/Felix/.rvm/gems/ruby-2.1.0/bin:/Users/Felix/.rvm/gems/ruby-2.1.0@global/bin:/Users/Felix/.rvm/rubies/ruby-2.1.0/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/Felix/.rvm/bin:/Users/Felix/.rvm/bin
-
+      
     '''
   tabs:
     addNewTabsAtEnd: true
@@ -236,7 +241,6 @@
   welcome:
     showOnStartup: false
   zentabs:
-    maximumOpenedTabs: 1
     neverCloseUnsaved: true
 ".angular.html.text":
   editor:
