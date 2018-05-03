@@ -1,6 +1,6 @@
 {
-    "editor.fontFamily": "'FuraCode Nerd Font', Menlo",
-    "workbench.colorTheme": "Material Theme",
+    "editor.fontFamily": "'Operator Mono Lig', 'FuraCode Nerd Font', Menlo",
+    "workbench.colorTheme": "Ayu Light",
     "editor.cursorStyle": "block",
     "editor.cursorBlinking": "solid",
     "docker.showExplorer": false,
@@ -63,5 +63,8 @@
     "vim.statusBarColorControl": false,
     "vim.showmodename": true,
     "vim.useSystemClipboard": true,
-    "editor.fontLigatures": true
+    "editor.fontLigatures": true,
+    "flow.enabled": false,
+    "eslint.autoFixOnSave": true,
+    "prettier.eslintIntegration": true
 }
