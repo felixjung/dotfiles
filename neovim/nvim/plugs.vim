@@ -30,7 +30,6 @@ call plug#begin('~/.config/nvim/plugs')
   Plug 'rking/ag.vim'
   Plug 'junegunn/goyo.vim'
   Plug 'editorconfig/editorconfig-vim'
-  Plug 'roxma/nvim-completion-manager'
   Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 " }
 
@@ -39,6 +38,8 @@ call plug#begin('~/.config/nvim/plugs')
 " }
 
 " Completion {
+  Plug 'ncm2/ncm2'
+  Plug 'roxma/nvim-yarp'
   Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " }
 
