@@ -33,14 +33,6 @@ let g:ale_echo_msg_error_str = s:error_icon
 let g:ale_echo_msg_warning_str = s:warning_icon
 let g:ale_echo_msg_format = '[%linter%] %s %severity%'
 
-" Fixers that should be used to automatically fix linting errors.
-let g:ale_fixers = {
-\   'javascript': [
-\       'eslint'
-\   ],
-\}
-let g:ale_fix_on_save = 1
-
 " Set how errors are shown in lists.
 let g:ale_list_window_size = 20
 let g:ale_open_list = 0
@@ -53,22 +45,12 @@ let g:ale_lint_on_insert_leave = 1
 
 let g:ale_fixers = {
 \   'javascript': [
-\       'prettier',
 \       'eslint'
-\   ],
-\   'scss': [
-\       'prettier',
-\       'stylelint'
-\   ],
-\   'sass': [
-\       'prettier',
-\       'stylelint'
 \   ],
 \}
 
-let g:ale_sass_stylelint_options = '--fix'
-let g:ale_scss_stylelint_options = '--fix'
 let g:ale_javascript_prettier_use_local_config = 1
+let g:ale_javascript_eslint_use_local_config = 1
 
 " Fix shortcut
 nmap <F8> <Plug>(ale_fix)
