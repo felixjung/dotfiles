@@ -1,7 +1,7 @@
+brew install coreutils
 brew install ack
 brew install bash
 brew install cairo
-brew install coreutils
 brew install ctags
 brew install exa
 brew install fontconfig
