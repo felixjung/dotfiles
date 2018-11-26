@@ -1,6 +1,6 @@
 #!/usr/local/env bash
 
-lib_dir="$(dirname "$(realpath "$0")")"
+lib_dir="$(dirname "$(grealpath "$0")")"
 source "$lib_dir/../lib/log.sh"
 
 yes_no_prompt () {
