@@ -14,4 +14,4 @@ if [[ -s "$FZF_HOME" ]]; then
 fi
 
 # Filter with ag to respect gitignore
-export FZF_DEFAULT_COMMAND='ag -g ""'
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
