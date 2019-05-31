@@ -35,4 +35,11 @@ do
   source $file
 done
 
+# TODO: find the right place for this
+# Load rbenv automatically by appending
+# the following to ~/.zshrc:
+
+eval "$(rbenv init -)"
+
+
 unset config_files
