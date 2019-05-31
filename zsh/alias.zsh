@@ -11,6 +11,7 @@ alias zshconfig='vim ~/.zshrc'
 alias top-cpu='top -n 10 -o cpu -O time -stats pid,command,cpu,cpu_me,time,threads,ports'
 alias ll='exa --long'
 alias ls='exa'
+alias tree='exa --tree --level 2'
 
 # Create a gif
 movToGif() {
