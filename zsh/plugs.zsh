@@ -1,10 +1,12 @@
-zplug denysdovhan/spaceship-zsh-theme, use:spaceship.zsh, from:github, as:theme
-zplug "plugins/git",   from:oh-my-zsh
+zplug "denysdovhan/spaceship-zsh-theme", use:spaceship.zsh, from:github, as:theme
+zplug "plugins/git", from:oh-my-zsh
+zplug "plugins/kubectl", from:oh-my-zsh
+zplug "plugins/jump", from:oh-my-zsh
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-completions"
 zplug "lukechilds/zsh-better-npm-completion", defer:2
-zplug 'zsh-users/zsh-autosuggestions', at:develop
+zplug "zsh-users/zsh-autosuggestions", at:develop
 
 # History search keyboard shortcuts
 bindkey '^[[A' history-substring-search-up
