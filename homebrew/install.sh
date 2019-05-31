@@ -37,26 +37,7 @@ if ! type "brew" > /dev/null; then
   fail "Installing Homebrew failed. Aborting..."
 fi
 
-info "Updating formulae..."
-brew update
-brew cask update
-success "Updated formulae."
-
-info "Upgrading formulae..."
-brew upgrade
-success "Upgraded installed formulae."
-
-info "Tapping into taps..."
-source "$homebrew_dir/taps.sh"
-success "Tapped all taps."
-
-info "Installing Homebrew formulae..."
-source "$homebrew_dir/packages.sh"
-success "Installed Homebrew formulae."
-
-info "Installing Homebrew casks..."
-source "$homebrew_dir/casks.sh"
-success "Installed casks."
+brew bundle --file ./Brewfile
 
 success "Successfully installed Homebrew."
 exit
