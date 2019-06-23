@@ -28,7 +28,6 @@ call plug#begin('~/.config/nvim/plugs')
   Plug 'vim-scripts/Auto-Pairs'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install --no-update-rc --bin' }
   Plug 'rking/ag.vim'
-  Plug 'junegunn/goyo.vim'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 " }
