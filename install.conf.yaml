@@ -18,6 +18,8 @@
       path: git/gitignore
     ~/.latexmkrc:
       path: latex/latexmkrc
+    ~/.config/kitty:
+      path: kitty
     ~/.config/nvim:
       path: neovim/nvim
     ~/.tmux.conf:
