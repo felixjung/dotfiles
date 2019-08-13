@@ -4,7 +4,7 @@ endif
 
 " Language groups to install. Options are:
 " ['academic', 'javascript', 'typescript', 'html', 'css', 'php', 'python', 'ruby', 'go']
-let g:languages = ['javascript', 'typescript', 'html', 'css', 'ruby', 'elm']
+let g:languages = ['javascript', 'typescript', 'html', 'css', 'ruby', 'go']
 
 " Install vim-plug automatically, if not present.
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
