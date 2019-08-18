@@ -6,7 +6,7 @@ tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
 tap "homebrew/services"
-tap "neovim/neovim"
+tap "neovim/neovim", args: ["head"]
 
 cask_args appdir: "/Applications"
 
