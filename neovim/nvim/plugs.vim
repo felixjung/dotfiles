@@ -3,7 +3,7 @@ if &compatible
 endif
 
 " Language groups to install. Options are:
-" ['academic', 'javascript', 'typescript', 'html', 'css', 'php', 'python', 'ruby', 'go']
+" ['javascript', 'typescript', 'html', 'css', 'python', 'ruby', 'go']
 let g:languages = ['javascript', 'typescript', 'html', 'css', 'ruby', 'go']
 
 " Install vim-plug automatically, if not present.
@@ -20,16 +20,12 @@ call plug#begin('~/.config/nvim/plugs')
   Plug 'vim-scripts/YankRing.vim'
   Plug 'tpope/vim-surround'
   Plug 'Lokaltog/vim-easymotion'
-  Plug 'ervandew/supertab'
   Plug 'scrooloose/nerdcommenter'
-  Plug 'Shougo/vimproc.vim', { 'do': 'make' }
   Plug 'terryma/vim-multiple-cursors'
-  Plug 'danro/rename.vim'
   Plug 'vim-scripts/Auto-Pairs'
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install --no-update-rc --bin' }
-  Plug 'rking/ag.vim'
+  Plug '~/.fzf'
+  Plug 'junegunn/fzf.vim'
   Plug 'editorconfig/editorconfig-vim'
-  Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 " }
 
 " Development features {
@@ -37,8 +33,7 @@ call plug#begin('~/.config/nvim/plugs')
 " }
 
 " Completion {
-  Plug 'ncm2/ncm2'
-  Plug 'roxma/nvim-yarp'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " }
 
@@ -57,7 +52,6 @@ call plug#begin('~/.config/nvim/plugs')
 " }
 
 " Themes {
-  " Plug 'joshdick/onedark.vim'
   Plug 'kaicataldo/material.vim'
 " }
 
@@ -68,13 +62,7 @@ call plug#begin('~/.config/nvim/plugs')
 " Language support {
   " Academic work
   if count(g:languages, 'academic')
-    Plug 'vim-scripts/Vim-R-plugin', { 'for': 'r' }
     Plug 'JuliaLang/julia-vim', { 'for': 'julia' }
-  endif
-
-  " PHP
-  if count(g:languages, 'php')
-    Plug 'arnaud-lb/vim-php-namespace', { 'for': 'php' }
   endif
 
   " Python
@@ -86,14 +74,8 @@ call plug#begin('~/.config/nvim/plugs')
   " Javascript
   if count(g:languages, 'javascript')
     Plug 'elzr/vim-json', { 'for': 'json' }
-    " Plug 'mustache/vim-mustache-handlebars', { 'for': 'html.handlebars' }
-    " Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
-    " Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
     Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
     Plug 'maxmellon/vim-jsx-pretty', { 'for': ['javascript', 'javascript.jsx'] }
-    " Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
-    " Plug 'digitaltoad/vim-jade', { 'for': ['html', 'javascript'] }
-    Plug 'roxma/nvim-cm-tern',  { 'do': 'npm install' }
   endif
 
   " Typescript
@@ -102,20 +84,15 @@ call plug#begin('~/.config/nvim/plugs')
     Plug 'mhartington/nvim-typescript', { 'for': 'typescript' }
   endif
 
-  " HTML
-  if count(g:languages, 'html')
+  " Web
+  if count(g:languages, 'css')
     Plug 'othree/html5.vim', { 'for': ['html', 'javascript', 'javascript.jsx'] }
     Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript', 'javascript.jsx'] }
-  endif
-
-  " CSS/Less/Sass
-  if count(g:languages, 'css')
     Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'sass', 'scss'] }
     Plug 'gorodinskiy/vim-coloresque', { 'for': ['css', 'sass', 'scss'] }
     Plug 'groenewege/vim-less', { 'for': 'less' }
     Plug 'othree/csscomplete.vim', { 'for': ['css', 'sass', 'scss'] }
   endif
-
 
   " Ruby
   if count(g:languages, 'ruby')
@@ -128,18 +105,11 @@ call plug#begin('~/.config/nvim/plugs')
     Plug 'fatih/vim-go', { 'for': 'go' }
   endif
 
-  " Elm
-  if count(g:languages, 'elm')
-    Plug 'elmcast/elm-vim', { 'for': 'elm' }
-  endif
-
   " Tmux configuration files
   Plug 'tmux-plugins/vim-tmux'
 
   " Writing
   Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
-  " Plug 'reedes/vim-pencil'
-  Plug 'LaTeX-Box-Team/LaTeX-Box', { 'for': ['tex', 'latex'] }
 " }
 
 call plug#end()
