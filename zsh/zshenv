@@ -7,8 +7,10 @@ export ZDOTDIR="$HOME/.zsh"
 # Load zplug
 export ZPLUG_HOME=/usr/local/opt/zplug
 
-# Set fpath
-fpath+=${ZDOTDIR:-~}/.zsh_functions
+# Zsh functions
+export ZFUNCTIONS="${ZDOTDIR:-~}/.zshfunc"
+mkdir -p $ZFUNCTIONS
+fpath+=$ZFUNCTIONS
 
 # Ensure that a non-login, non-interactive shell has a defined environment.
 if [[ "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
