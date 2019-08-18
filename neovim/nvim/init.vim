@@ -14,13 +14,14 @@
   set spelllang=en_us                             " Spelling in US English
   set history=1000                                " Store a ton of history (default is 20)
   set hidden                                      " Allow buffer switching without saving
-  set shortmess+=filmnrxoOtT                      " Abbrev. of messages (avoids 'hit enter')
+  set shortmess+=filmnrxoOtTc                     " Abbrev. of messages (avoids 'hit enter')
   set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
   set concealcursor=nc                            " Don't conceal while editing
   set autoread                                    " Reload files changed outside vim"
   set visualbell                                  " No sounds
   set lazyredraw
   set termguicolors
+  set updatetime=300                              " You will have bad experience for diagnostic messages when it's default 4000.
 
 
   let mapleader=','                               " Change global leader
