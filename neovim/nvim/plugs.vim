@@ -34,7 +34,6 @@ call plug#begin('~/.config/nvim/plugs')
 
 " Completion {
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " }
 
 " Git and Github {
