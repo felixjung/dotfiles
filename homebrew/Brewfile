@@ -8,6 +8,8 @@ tap "homebrew/core"
 tap "homebrew/services"
 tap "neovim/neovim"
 
+cask_args appdir: "/Applications"
+
 # Packages
 brew "ack"
 brew "python"
@@ -71,6 +73,7 @@ cask "cheatsheet"
 cask "dash"
 cask "docker"
 cask "dropbox"
+cask "kitty"
 cask "figma"
 cask "firefox-nightly"
 cask "font-hack"
