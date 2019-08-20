@@ -55,7 +55,7 @@ let g:ale_fixers = {
 \   'javascript': ['eslint'],
 \   'graphql': ['eslint'],
 \   'go': ['gofmt'],
-\   'ruby': ['rufo', 'rubocop'],
+\   'ruby': ['rufo', 'rubocop', 'solargraph'],
 \   'rust': ['rustfmt'],
 \   'terraform': ['terraform-fmt-fixer'],
 \}
