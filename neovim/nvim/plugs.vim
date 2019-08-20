@@ -46,6 +46,7 @@ call plug#begin('~/.config/nvim/plugs')
 
 " UI configuration {
   Plug 'itchyny/lightline.vim'
+  Plug 'maximbaz/lightline-ale'
   Plug 'ryanoasis/vim-devicons'
 
 " }
