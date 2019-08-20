@@ -21,22 +21,19 @@ let g:lightline = {
   \   'mode': 'LightLineMode',
   \ },
   \ 'component_expand': {
-  \   'AleError':   'LightlineAleError',
-  \   'AleWarning': 'LightlineAleWarning',
-  \   'AleOk':      'LightlineAleOk',
+  \   'AleChecking': 'lightline#ale#checking',
+  \   'AleError':   'lightline#ale#errors',
+  \   'AleWarning': 'lightline#ale#warnings',
+  \   'AleOk':      'lightline#ale#ok',
   \ },
   \ 'component_type': {
+  \   'AleChecking': 'left',
   \   'AleError':   'error',
   \   'AleWarning': 'warning',
   \   'AleOk':      'ok',
   \ },
   \ 'subseparator': { 'left': '', 'right': '' }
 \ }
-
-augroup LightLineOnALE
-  autocmd!
-  autocmd User ALELint call lightline#update()
-augroup END
 
 function! LightLineModified()
   return &ft =~ 'help' ? '' : &modified ? '±' : &modifiable ? '' : '-'
@@ -94,41 +91,6 @@ function! LightLineMode()
         \ &ft == 'vimfiler' ? 'VimFiler' :
         \ &ft == 'vimshell' ? 'VimShell' :
         \ lightline#mode()
-endfunction
-
-function! LightlineAleError() abort
-  return LightlineAleString(0)
-endfunction
-
-function! LightLineAleWarning() abort
-  return LightlineAleString(1)
-endfunction
-
-function! LightlineAleOk() abort
-  let l:ok_string = LightlineAleString(2)
-  let l:active_linters = strlen(&filetype) ? ale#linter#Get(&filetype) : []
-  let l:has_linters = len(l:active_linters) > 0
-  return l:has_linters ? l:ok_string : ''
-endfunction
-
-function! LightlineAleString(mode)
-  if !exists('g:ale_buffer_info')
-    return ''
-  endif
-
-  let l:buffer = bufnr('%')
-  let l:counts = ale#statusline#Count(l:buffer)
-  let [l:error_format, l:warning_format, l:no_errors] = g:ale_statusline_format
-
-  if a:mode == 0 " Error
-    let l:errors = l:counts.error + l:counts.style_error
-    return l:errors ? printf(l:error_format, l:errors) : ''
-  elseif a:mode == 1 " Warning
-    let l:warnings = l:counts.warning + l:counts.style_warning
-    return l:warnings ? printf(l:warning_format, l:warnings) : ''
-  endif
-
-  return l:counts.total == 0 ? '' : ''
 endfunction
 
 " Set the colorscheme. Modified from onedark.vim
