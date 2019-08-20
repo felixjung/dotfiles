@@ -26,6 +26,7 @@ call plug#begin('~/.config/nvim/plugs')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'fszymanski/deoplete-emoji'
   Plug 'ervandew/supertab'
+  Plug 'liuchengxu/vista.vim'
 " }
 
 " Git and Github {
