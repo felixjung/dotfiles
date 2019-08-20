@@ -6,7 +6,7 @@ tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
 tap "homebrew/services"
-tap "neovim/neovim", args: ["head"]
+tap "neovim/neovim"
 
 cask_args appdir: "/Applications"
 
@@ -24,7 +24,8 @@ brew "coreutils"
 brew "ctags"
 brew "docker"
 brew "exa"
-brew "git" brew "git-lfs"
+brew "git"
+brew "git-lfs"
 brew "gnu-sed"
 brew "go"
 brew "gotags"
@@ -62,7 +63,6 @@ brew "youtube-dl"
 brew "zplug"
 brew "zsh"
 brew "datawire/blackbird/telepresence"
-brew mas
 
 # Casks
 cask "osxfuse"
