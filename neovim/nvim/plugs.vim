@@ -33,7 +33,7 @@ call plug#begin('~/.config/nvim/plugs')
 " }
 
 " Completion {
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " }
 
 " Git and Github {
