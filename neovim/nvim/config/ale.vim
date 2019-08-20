@@ -2,18 +2,17 @@
 let g:signcolumns = 'yes'
 let g:ale_sign_column_always = 1
 let g:ale_set_highlights = 0
+let g:ale_cursor_detail = 1
+let g:ale_close_preview_on_insert = 1
+let g:ale_echo_delay = 500
+let g:ale_change_sign_column_color = 0
 
 " Configure linters for different languages.
-" TODO: find out how to only run linters, if they are configured for the
-" project.
-let g:ale_linters = {
-\  'javascript': ['eslint']
-\}
-
 let s:warning_icon = ''
 let s:error_icon = ''
 let s:info_icon = ''
-let s:checking_icon = 'Checking'
+let s:checking_icon = '\uf110'
+let s:ok_icon = ''
 
 " Custom Ale signs using nerd-fonts.
 let g:ale_sign_error = s:error_icon
@@ -26,14 +25,13 @@ highlight link ALEErrorSign NeomakeErrorSign
 highlight link ALEInfoSign NeomakeInfoSign
 
 " Statusline format
-" TODO: use nerdfont symbols here (same as for sign column).
-let g:ale_statusline_format = [s:checking_icon, s:error_icon . ' %d', s:warning_icon . ' %d', '']
+let g:ale_statusline_format = [s:checking_icon, s:error_icon . ' %d', s:warning_icon . ' %d', s:ok_icon]
 
 " TODO: remove this again
-let g:lightline#ale#indicator_checking = "\uf110"
+let g:lightline#ale#indicator_checking = s:checking_icon
 let g:lightline#ale#indicator_warnings = s:warning_icon
 let g:lightline#ale#indicator_errors = s:error_icon
-let g:lightline#ale#indicator_ok = ''
+let g:lightline#ale#indicator_ok = s:ok_icon
 
 " Show error/warning for current cursor line below status line.
 let g:ale_echo_cursor = 1
@@ -45,7 +43,6 @@ let g:ale_echo_msg_format = '[%linter%] %s %severity%'
 let g:ale_list_window_size = 20
 let g:ale_open_list = 0
 let g:ale_set_loclist = 1
-" let g:ale_set_quickfix = 1
 
 let g:ale_lint_on_text_changed = 'always'
 let g:ale_lint_on_insert_leave = 1
@@ -54,16 +51,26 @@ let g:ale_lint_on_save = 1
 let g:ale_fix_on_save = 1
 
 let g:ale_fixers = {
-\   'javascript': [
-\       'eslint'
-\   ],
-\   'ruby': [
-\       'rubocop'
-\   ],
+\   'typescript': ['eslint'],
+\   'javascript': ['eslint'],
+\   'graphql': ['eslint'],
+\   'go': ['gofmt'],
+\   'ruby': ['rufo', 'rubocop'],
+\   'rust': ['rustfmt'],
+\   'terraform': ['terraform-fmt-fixer'],
 \}
 
-let g:ale_javascript_prettier_use_local_config = 1
-let g:ale_javascript_eslint_use_local_config = 1
+let g:ale_linters = {
+\   'typescript': ['eslint', 'tsserver'],
+\   'javascript': ['eslint'],
+\   'graphql': ['eslint', 'gqlint'],
+\   'go': ['gofmt', 'golint', 'golangserver'],
+\   'ruby': ['rubocop'],
+\   'rust': ['rls'],
+\   'terraform': ['terraform-fmt-fixer', 'terraform'],
+\   'vim': ['vint'],
+\   'yaml': ['prettier', 'yamllint'],
+\}
 
 " Fix shortcut
 nmap <silent> <M-k> <Plug>(ale_previous_wrap)
