@@ -68,5 +68,5 @@
   cmap w!! w !sudo tee % >/dev/null
 
   " Cycle buffers
-  nnoremap <A-N> :bnext<CR>
-  nnoremap <A-P> :bprev<CR>
+  map <M-N> :bnext<CR>
+  map <M-P> :bprev<CR>
