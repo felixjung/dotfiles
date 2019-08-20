@@ -55,9 +55,6 @@ call plug#begin('~/.config/nvim/plugs')
   " Academic work
   Plug 'JuliaLang/julia-vim', { 'for': 'julia' }
 
-  " Python
-  Plug 'klen/python-mode', { 'for': 'python' }
-
   " Javascript
   Plug 'elzr/vim-json', { 'for': 'json' }
   Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
