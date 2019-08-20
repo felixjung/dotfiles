@@ -24,6 +24,7 @@ call plug#begin('~/.config/nvim/plugs')
   Plug 'editorconfig/editorconfig-vim'
   Plug 'w0rp/ale'
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'fszymanski/deoplete-emoji'
   Plug 'ervandew/supertab'
 " }
 
