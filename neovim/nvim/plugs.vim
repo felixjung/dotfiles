@@ -2,10 +2,6 @@ if &compatible
   set nocompatible                              " Use Vim settings rather than Vi's
 endif
 
-" Language groups to install. Options are:
-" ['javascript', 'typescript', 'html', 'css', 'python', 'ruby', 'go']
-let g:languages = ['javascript', 'typescript', 'html', 'css', 'ruby', 'go']
-
 " Install vim-plug automatically, if not present.
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
@@ -26,13 +22,7 @@ call plug#begin('~/.config/nvim/plugs')
   Plug '~/.fzf'
   Plug 'junegunn/fzf.vim'
   Plug 'editorconfig/editorconfig-vim'
-" }
-
-" Development features {
   Plug 'w0rp/ale'
-" }
-
-" Completion {
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " }
 
@@ -61,52 +51,37 @@ call plug#begin('~/.config/nvim/plugs')
 
 " Language support {
   " Academic work
-  if count(g:languages, 'academic')
-    Plug 'JuliaLang/julia-vim', { 'for': 'julia' }
-  endif
+  Plug 'JuliaLang/julia-vim', { 'for': 'julia' }
 
   " Python
-  if count(g:languages, 'python')
-    " See what else might be useful for developing python
-    Plug 'klen/python-mode', { 'for': 'python' }
-  endif
+  Plug 'klen/python-mode', { 'for': 'python' }
 
   " Javascript
-  if count(g:languages, 'javascript')
-    Plug 'elzr/vim-json', { 'for': 'json' }
-    Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
-    Plug 'maxmellon/vim-jsx-pretty', { 'for': ['javascript', 'javascript.jsx'] }
-  endif
+  Plug 'elzr/vim-json', { 'for': 'json' }
+  Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
+  Plug 'maxmellon/vim-jsx-pretty', { 'for': ['javascript', 'javascript.jsx'] }
 
   " Typescript
-  if count(g:languages, 'typescript')
-    Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
-    Plug 'mhartington/nvim-typescript', { 'for': 'typescript' }
-  endif
+  Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+  Plug 'mhartington/nvim-typescript', { 'for': 'typescript' }
 
   " Web
-  if count(g:languages, 'css')
-    Plug 'othree/html5.vim', { 'for': ['html', 'javascript', 'javascript.jsx'] }
-    Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript', 'javascript.jsx'] }
-    Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'sass', 'scss'] }
-    Plug 'gorodinskiy/vim-coloresque', { 'for': ['css', 'sass', 'scss'] }
-    Plug 'groenewege/vim-less', { 'for': 'less' }
-    Plug 'othree/csscomplete.vim', { 'for': ['css', 'sass', 'scss'] }
-  endif
+  Plug 'othree/html5.vim', { 'for': ['html', 'javascript', 'javascript.jsx'] }
+  Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript', 'javascript.jsx'] }
+  Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'sass', 'scss'] }
+  Plug 'gorodinskiy/vim-coloresque', { 'for': ['css', 'sass', 'scss'] }
+  Plug 'groenewege/vim-less', { 'for': 'less' }
+  Plug 'othree/csscomplete.vim', { 'for': ['css', 'sass', 'scss'] }
 
   " Rust
   Plug 'cespare/vim-toml', { 'for': ['toml'] }
 
   " Ruby
-  if count(g:languages, 'ruby')
-    Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-    Plug 'tpope/vim-rails', { 'for': 'ruby' }
-  endif
+  Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+  Plug 'tpope/vim-rails', { 'for': 'ruby' }
 
   " Golang
-  if count(g:languages, 'go')
-    Plug 'fatih/vim-go', { 'for': 'go' }
-  endif
+  Plug 'fatih/vim-go', { 'for': 'go' }
 
   " Tmux configuration files
   Plug 'tmux-plugins/vim-tmux'
