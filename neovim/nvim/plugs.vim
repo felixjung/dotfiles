@@ -94,6 +94,9 @@ call plug#begin('~/.config/nvim/plugs')
     Plug 'othree/csscomplete.vim', { 'for': ['css', 'sass', 'scss'] }
   endif
 
+  " Rust
+  Plug 'cespare/vim-toml', { 'for': ['toml'] }
+
   " Ruby
   if count(g:languages, 'ruby')
     Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
