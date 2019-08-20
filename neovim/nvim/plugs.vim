@@ -45,7 +45,7 @@ call plug#begin('~/.config/nvim/plugs')
 " }
 
 " Themes {
-  Plug 'kaicataldo/material.vim'
+  Plug 'drewtempelmeyer/palenight.vim'
 " }
 
 " tmux integration {
