@@ -1,0 +1,3 @@
+color cursor			color8	green	bold
+color title-blur		color15	color5
+color title-focus		color15	color5	bold
