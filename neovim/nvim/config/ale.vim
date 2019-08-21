@@ -56,7 +56,7 @@ let g:ale_fixers = {
 \   'javascript': ['eslint'],
 \   'graphql': ['eslint'],
 \   'go': ['gofmt'],
-\   'ruby': ['rufo', 'rubocop', 'solargraph'],
+\   'ruby': ['rufo', 'rubocop'],
 \   'rust': ['rustfmt'],
 \   'terraform': ['terraform-fmt-fixer'],
 \}
@@ -66,7 +66,7 @@ let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'graphql': ['eslint', 'gqlint'],
 \   'go': ['gofmt', 'golint', 'golangserver'],
-\   'ruby': ['rubocop'],
+\   'ruby': ['rubocop', 'solargraph'],
 \   'rust': ['rls'],
 \   'terraform': ['terraform-fmt-fixer', 'terraform'],
 \   'vim': ['vint'],
