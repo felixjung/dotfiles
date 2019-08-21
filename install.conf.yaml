@@ -9,16 +9,8 @@
       stderr: true
 - clean: ['~', '~/.config']
 - link:
-    ~/.config/alacritty.yml:
-      path: alacritty/alactritty.yml
-    ~/.atom:
-      path: atom/atom
-    ~/.ctags:
-      path: ctags/ctags
     ~/.gitignore:
       path: git/gitignore
-    ~/.latexmkrc:
-      path: latex/latexmkrc
     ~/.config/kitty:
       path: kitty
     ~/.tigrc:
@@ -31,8 +23,6 @@
       path: zsh/zsh
     ~/.zshenv:
       path: zsh/zshenv
-    ~/.hyper.js:
-      path: hyper/hyper.js
     ~/.editorconfig:
       path: configs/editorconfig
 - shell:
