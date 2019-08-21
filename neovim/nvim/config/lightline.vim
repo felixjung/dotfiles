@@ -84,6 +84,7 @@ endfunction
 function! LightLineMode()
   let fname = expand('%:t')
   return fname == '__Tagbar__' ? 'Tagbar' :
+        \ fname == '__vista__' ? '' :
         \ fname == 'ControlP' ? 'CtrlP' :
         \ fname == '__Gundo__' ? 'Gundo' :
         \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
@@ -91,7 +92,7 @@ function! LightLineMode()
         \ &ft == 'unite' ? 'Unite' :
         \ &ft == 'vimfiler' ? 'VimFiler' :
         \ &ft == 'vimshell' ? 'VimShell' :
-        \ lightline#mode()
+        \ "\uf111" . " "
 endfunction
 
 " Set the colorscheme. Modified from onedark.vim
@@ -116,22 +117,26 @@ if exists('g:lightline')
   let s:p_comment_grey = ["#697098", 59, 15]
   let s:p_black = ["#292D3E", 235, 0]
 
-  let s:p.normal.left     = [ [ s:p_black, s:p_blue ], [ s:p_blue, s:p_menu_grey ] ]
-  let s:p.normal.right    = [ [ s:p_black, s:p_blue ], [ s:p_blue, s:p_menu_grey ] ]
-  let s:p.normal.middle   = [ [ s:p_comment_grey, s:p_black ] ]
-  let s:p.normal.warning  = [ [ s:p_black, s:p_yellow ] ]
-  let s:p.normal.error    = [ [ s:p_black, s:p_red ] ]
+  let s:filename_colors = [ s:p_comment_grey, s:p_black ]
+  let s:git_colors = [ s:p_blue, s:p_black ]
 
-  let s:p.insert.left     = [ [ s:p_black, s:p_blue ], [ s:p_blue, s:p_menu_grey ] ]
-  let s:p.insert.right    = copy(s:p.insert.left)
+  let s:p.normal.left     = [ [ s:p_blue, s:p_black ], copy(s:filename_colors) ]
+  let s:p.normal.right    = [ copy(s:git_colors), [ s:p_blue, s:p_menu_grey ] ]
+  let s:p.normal.middle   = [ [ s:p_comment_grey, s:p_black ] ]
+  let s:p.normal.warning  = [ [ s:p_black, s:p_black ] ]
+  let s:p.normal.error    = [ [ s:p_red, s:p_black ] ]
+  let s:p.normal.ok       = [ [ s:p_green, s:p_black ] ]
+
+  let s:p.insert.left     = [ [ s:p_green, s:p_black ], copy(s:filename_colors) ]
+  let s:p.insert.right    = [ copy(s:git_colors) ]
   let s:p.insert.middle   = copy(s:p.normal.middle)
 
-  let s:p.visual.left     = [ [ s:p_black, s:p_purple ], [ s:p_purple, s:p_menu_grey ] ]
-  let s:p.visual.right    = copy(s:p.visual.left)
+  let s:p.visual.left     = [ [ s:p_purple, s:p_black ], copy(s:filename_colors) ]
+  let s:p.visual.right    = [ copy(s:git_colors) ]
   let s:p.visual.middle   = copy(s:p.normal.middle)
 
-  let s:p.replace.left    = [ [ s:p_black, s:p_green ], [ s:p_green, s:p_menu_grey ] ]
-  let s:p.replace.right   = copy(s:p.replace.left)
+  let s:p.replace.left    = [ [ s:p_dark_red, s:p_black ], copy(s:filename_colors) ]
+  let s:p.replace.right   = [ copy(s:git_colors) ]
   let s:p.replace.middle  = copy(s:p.normal.middle)
 
   let s:p.tabline.left    = [ [ s:p_black, s:p_yellow ] ]
@@ -139,9 +144,9 @@ if exists('g:lightline')
   let s:p.tabline.middle  = [ [ s:p_black, s:p_menu_grey ] ]
   let s:p.tabline.tabsel  = [ [ s:p_black, s:p_yellow ] ]
 
-  let s:p.inactive.left   = [ [ s:p_black, s:p_menu_grey ], [ s:p_black, s:p_menu_grey ] ]
+  let s:p.inactive.left   = [ [ s:p_comment_grey, s:p_black ], [ s:p_comment_grey, s:p_black ] ]
   let s:p.inactive.right  = copy(s:p.inactive.left)
-  let s:p.inactive.middle = [ [ s:p_black, s:p_menu_grey ] ]
+  let s:p.inactive.middle = copy(s:p.inactive.left)
 
   let g:lightline#colorscheme#palenight#palette = lightline#colorscheme#flatten(s:p)
 endif
