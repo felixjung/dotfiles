@@ -4,7 +4,8 @@ let g:ale_sign_column_always = 1
 let g:ale_set_highlights = 0
 let g:ale_cursor_detail = 1
 let g:ale_close_preview_on_insert = 1
-let g:ale_echo_delay = 500
+let g:ale_cursor_detail = 0
+let g:ale_echo_delay = 20
 let g:ale_change_sign_column_color = 0
 
 " Configure linters for different languages.
