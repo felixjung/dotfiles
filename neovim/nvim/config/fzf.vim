@@ -49,3 +49,11 @@ command! -bar FZFTags if !empty(tagfiles()) | call fzf#run({
 " Key mappings
 nnoremap <C-t> :FZF<CR>
 nnoremap <C-f> :FZFLines<CR>
+
+function! s:fzf_statusline()
+  " Override statusline as you like
+  highlight fzf1 guifg=#959dcb guibg=#292d3e
+  setlocal statusline=%#fzf1#
+endfunction
+
+autocmd! User FzfStatusLine call <SID>fzf_statusline()
