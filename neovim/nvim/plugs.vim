@@ -27,6 +27,7 @@ call plug#begin('~/.config/nvim/plugs')
   Plug 'fszymanski/deoplete-emoji'
   Plug 'ervandew/supertab'
   Plug 'liuchengxu/vista.vim'
+  Plug 'sheerun/vim-polyglot' " Syntax support for all kinds of languages
 " }
 
 " Git and Github {
@@ -55,6 +56,9 @@ call plug#begin('~/.config/nvim/plugs')
 " Language support {
   " Academic work
   Plug 'JuliaLang/julia-vim', { 'for': 'julia' }
+
+  " GraphQL
+  Plug 'jparise/vim-graphql'
 
   " Javascript
   Plug 'elzr/vim-json', { 'for': 'json' }
