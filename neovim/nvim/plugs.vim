@@ -16,7 +16,7 @@ call plug#begin('~/.config/nvim/plugs')
   Plug 'vim-scripts/YankRing.vim'
   Plug 'tpope/vim-surround'
   Plug 'Lokaltog/vim-easymotion'
-  Plug 'scrooloose/nerdcommenter'
+  Plug 'tpope/vim-commentary'
   Plug 'terryma/vim-multiple-cursors'
   Plug 'vim-scripts/Auto-Pairs'
   Plug '~/.fzf'
