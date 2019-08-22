@@ -47,7 +47,7 @@
   " Language specific indentation should be handled using the editor
   " config plugin
   set expandtab     " Use spaces instead of tabs
-  set wrap          " Wrap lines when they exceed textwidth
+  set nowrap          " Wrap lines when they exceed textwidth
   set nolinebreak   " Soft-wrap long lines
   set textwidth=80  " Preferred line width
   set tabstop=2     " Width of a tab stop
