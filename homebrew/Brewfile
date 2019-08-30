@@ -65,6 +65,7 @@ brew "yarn"
 brew "youtube-dl"
 brew "zplug"
 brew "zsh"
+brew "httpie"
 brew "datawire/blackbird/telepresence"
 
 # Casks
