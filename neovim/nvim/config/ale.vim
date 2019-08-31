@@ -54,23 +54,26 @@ let g:ale_fix_on_save = 1
 let g:ale_fixers = {
 \   'typescript': ['eslint'],
 \   'javascript': ['eslint'],
+\   'json': ['prettier'],
 \   'graphql': ['eslint'],
-\   'go': ['gofmt'],
+\   'go': ['goimports', 'gofmt'],
 \   'ruby': ['rufo', 'rubocop'],
 \   'rust': ['rustfmt'],
 \   'terraform': ['terraform-fmt-fixer'],
+\   'yaml': ['prettier'],
 \}
 
 let g:ale_linters = {
 \   'typescript': ['eslint', 'tsserver'],
 \   'javascript': ['eslint'],
+\   'json': ['jsonlint'],
 \   'graphql': ['eslint', 'gqlint'],
-\   'go': ['gofmt', 'golint', 'golangserver'],
+\   'go': ['golint', 'gopls'],
 \   'ruby': ['rubocop', 'solargraph'],
 \   'rust': ['rls'],
 \   'terraform': ['terraform-fmt-fixer', 'terraform'],
 \   'vim': ['vint'],
-\   'yaml': ['prettier', 'yamllint'],
+\   'yaml': ['yamllint'],
 \}
 
 " Fix shortcut
