@@ -82,3 +82,10 @@ let g:ale_linters = {
 " Fix shortcut
 nmap <silent> <M-k> <Plug>(ale_previous_wrap)
 nmap <silent> <M-j> <Plug>(ale_next_wrap)
+
+" Language server functionality
+nmap <silent> <C-r> <Plug>(ale_find_references)
+nmap <silent> gd <Plug>(ale_go_to_definition)
+nmap <silent> gds <Plug>(ale_go_to_definition_in_split)
+nmap <silent> <M-h> <Plug>(ale_hover)
+
