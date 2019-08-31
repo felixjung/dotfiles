@@ -71,7 +71,7 @@ let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'json': ['jsonlint'],
 \   'graphql': ['eslint', 'gqlint'],
-\   'go': ['golint', 'gopls'],
+\   'go': ['gometalinter', 'gopls'],
 \   'ruby': ['rubocop', 'solargraph'],
 \   'rust': ['rls'],
 \   'terraform': ['terraform-fmt-fixer', 'terraform'],
