@@ -25,6 +25,9 @@ highlight link ALEWarningSign NeomakeWarningSign
 highlight link ALEErrorSign NeomakeErrorSign
 highlight link ALEInfoSign NeomakeInfoSign
 
+" Hover information
+let g:ale_set_balloons = 0
+
 " Statusline format
 let g:ale_statusline_format = [s:checking_icon, s:error_icon . ' %d', s:warning_icon . ' %d', s:ok_icon]
 
