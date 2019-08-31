@@ -85,7 +85,7 @@ call plug#begin('~/.config/nvim/plugs')
   Plug 'tpope/vim-rails', { 'for': 'ruby' }
 
   " Golang
-  Plug 'fatih/vim-go', { 'for': 'go' }
+  Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries' }
 
   " Tmux configuration files
   Plug 'tmux-plugins/vim-tmux'
