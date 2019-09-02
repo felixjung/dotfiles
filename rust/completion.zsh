@@ -1,1 +1,0 @@
-source <(rustup completions zsh)
