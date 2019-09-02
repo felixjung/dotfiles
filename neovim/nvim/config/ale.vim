@@ -71,7 +71,7 @@ let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'json': ['jsonlint'],
 \   'graphql': ['eslint', 'gqlint'],
-\   'go': ['gometalinter', 'gopls'],
+\   'go': ['golint', 'gopls'],
 \   'ruby': ['rubocop', 'solargraph'],
 \   'rust': ['rls'],
 \   'terraform': ['terraform-fmt-fixer', 'terraform'],
@@ -84,7 +84,7 @@ nmap <silent> <M-k> <Plug>(ale_previous_wrap)
 nmap <silent> <M-j> <Plug>(ale_next_wrap)
 
 " Language server functionality
-nmap <silent> <C-r> <Plug>(ale_find_references)
+nmap <silent> <M-r> <Plug>(ale_find_references)
 nmap <silent> gd <Plug>(ale_go_to_definition)
 nmap <silent> gds <Plug>(ale_go_to_definition_in_split)
 nmap <silent> <M-h> <Plug>(ale_hover)
