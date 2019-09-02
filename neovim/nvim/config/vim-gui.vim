@@ -6,8 +6,8 @@
 
   " Theming
   set background=dark                            " Use dark variant of theme
-  let g:palenight_terminal_italics=1             " Use italics
   colorscheme palenight                          " Set theme
+  let g:palenight_terminal_italics=1             " Use italics
 
   " Misc settings
   set linespace=0                                " No extra spaces between rows
