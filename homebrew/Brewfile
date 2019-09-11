@@ -37,6 +37,8 @@ brew "gzip"
 brew "highlight"
 brew "hugo"
 brew "kubernetes-cli"
+brew "hyperkit"
+brew "docker-machine-driver-hyperkit"
 brew "kubectx"
 brew "maven"
 brew "neovim", args: ["HEAD"]
