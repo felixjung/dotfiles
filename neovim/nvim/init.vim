@@ -47,12 +47,18 @@
   " Language specific indentation should be handled using the editor
   " config plugin
   set expandtab     " Use spaces instead of tabs
-  set nowrap          " Wrap lines when they exceed textwidth
-  set nolinebreak   " Soft-wrap long lines
+  set wrap          " Wrap lines when they exceed textwidth
+  set breakindent   " Match the indentation when breaking
+  set linebreak     " Soft-wrap long lines at breakat charaters
   set textwidth=80  " Preferred line width
   set tabstop=2     " Width of a tab stop
   set softtabstop=2 " Width of a soft tab stop when using spaces
   set shiftwidth=2  " Indent width
+  " Indent by an additional 2 characters on wrapped lines,
+  " when line >= 40 characters, put 'showbreak' at start of line
+  set breakindentopt=shift:2,min:40,sbr
+  " Append '>>' to indent
+  set showbreak=↳
 " }
 
 " Completion {
