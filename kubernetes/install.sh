@@ -1,4 +1,3 @@
-kubectl completion zsh > "$ZFUNCTIONS/_kubectl"
 ###
 # Setting up minikube
 ###
