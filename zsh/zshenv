@@ -10,6 +10,8 @@ export ZDOTDIR="$HOME/.zsh"
 # Load zplug
 export ZPLUG_HOME=/usr/local/opt/zplug
 
+export PATH="/usr/local/sbin:$PATH"
+
 # Zsh functions
 export ZFUNCTIONS="${ZDOTDIR:-~}/.zshfunc"
 mkdir -p $ZFUNCTIONS
