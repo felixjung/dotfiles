@@ -62,9 +62,13 @@ let g:ale_fixers = {
 \   'go': ['goimports', 'gofmt'],
 \   'ruby': ['rufo', 'rubocop'],
 \   'rust': ['rustfmt'],
+\   'sql': ['pgformatter'],
 \   'terraform': ['terraform-fmt-fixer'],
 \   'yaml': ['prettier'],
 \}
+
+" Fixer options
+let g:ale_yaml_prettier_options = '--parser yaml --prose-wrap always --max-width 80'
 
 let g:ale_linters = {
 \   'typescript': ['eslint', 'tsserver'],
@@ -74,6 +78,7 @@ let g:ale_linters = {
 \   'go': ['golint', 'gopls'],
 \   'ruby': ['rubocop', 'solargraph'],
 \   'rust': ['rls'],
+\   'sql': ['sqlint'],
 \   'terraform': ['terraform-fmt-fixer', 'terraform'],
 \   'vim': ['vint'],
 \   'yaml': ['yamllint'],
