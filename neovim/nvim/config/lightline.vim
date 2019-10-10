@@ -44,7 +44,8 @@ function! LightLineReadonly()
 endfunction
 
 function! LightLineFilename()
-  let fname = expand('%:t')
+  let fname = expand('%:~:.')
+
   return fname == 'ControlP' ? g:lightline.ctrlp_item :
         \ fname == '__Tagbar__' ? '' :
         \ fname == '__vista__' ? '' :
