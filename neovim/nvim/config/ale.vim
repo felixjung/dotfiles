@@ -65,6 +65,7 @@ let g:ale_fixers = {
 \   'sql': ['pgformatter'],
 \   'terraform': ['terraform-fmt-fixer'],
 \   'yaml': ['prettier'],
+\   'markdown': ['prettier']
 \}
 
 " Fixer options
