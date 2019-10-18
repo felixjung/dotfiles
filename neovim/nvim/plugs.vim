@@ -65,10 +65,6 @@ call plug#begin('~/.config/nvim/plugs')
   Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
   Plug 'maxmellon/vim-jsx-pretty', { 'for': ['javascript', 'javascript.jsx'] }
 
-  " Typescript
-  Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
-  Plug 'mhartington/nvim-typescript', { 'for': 'typescript' }
-
   " Web
   Plug 'othree/html5.vim', { 'for': ['html', 'javascript', 'javascript.jsx'] }
   Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript', 'javascript.jsx'] }
