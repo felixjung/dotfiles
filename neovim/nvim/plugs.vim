@@ -28,6 +28,7 @@ call plug#begin('~/.config/nvim/plugs')
   Plug 'ervandew/supertab'
   Plug 'liuchengxu/vista.vim'
   Plug 'sheerun/vim-polyglot' " Syntax support for all kinds of languages
+  Plug 'psliwka/vim-smoothie'
 " }
 
 " Git and Github {
