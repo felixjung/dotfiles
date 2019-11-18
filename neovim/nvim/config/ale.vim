@@ -59,7 +59,7 @@ let g:ale_fixers = {
 \   'javascript': ['eslint'],
 \   'json': ['prettier'],
 \   'graphql': ['eslint'],
-\   'go': ['goimports', 'gofmt'],
+\   'go': ['goimports'],
 \   'ruby': ['rufo', 'rubocop'],
 \   'rust': ['rustfmt'],
 \   'sql': ['pgformatter'],
@@ -76,7 +76,7 @@ let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'json': ['jsonlint'],
 \   'graphql': ['eslint', 'gqlint'],
-\   'go': ['golint', 'gopls'],
+\   'go': ['golangci-lint'],
 \   'ruby': ['rubocop', 'solargraph'],
 \   'rust': ['rls'],
 \   'sql': ['sqlint'],
@@ -84,6 +84,9 @@ let g:ale_linters = {
 \   'vim': ['vint'],
 \   'yaml': ['yamllint'],
 \}
+
+" Linter options
+let g:ale_go_golangci_lint_options = '--enable-all'
 
 " Fix shortcut
 nmap <silent> <M-k> <Plug>(ale_previous_wrap)
