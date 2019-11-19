@@ -29,6 +29,7 @@ call plug#begin('~/.config/nvim/plugs')
   Plug 'liuchengxu/vista.vim'
   Plug 'sheerun/vim-polyglot' " Syntax support for all kinds of languages
   Plug 'psliwka/vim-smoothie'
+  Plug 'junegunn/vim-easy-align'
 " }
 
 " Git and Github {
