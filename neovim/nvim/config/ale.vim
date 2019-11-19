@@ -62,7 +62,6 @@ let g:ale_fixers = {
 \   'go': ['goimports'],
 \   'ruby': ['rufo', 'rubocop'],
 \   'rust': ['rustfmt'],
-\   'sql': ['pgformatter'],
 \   'terraform': ['terraform-fmt-fixer'],
 \   'yaml': ['prettier'],
 \   'markdown': ['prettier']
