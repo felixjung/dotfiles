@@ -85,7 +85,7 @@ let g:ale_linters = {
 \}
 
 " Linter options
-let g:ale_go_golangci_lint_options = '--enable-all'
+let g:ale_go_golangci_lint_options = '--enable-all --disable typecheck'
 
 " Fix shortcut
 nmap <silent> <M-k> <Plug>(ale_previous_wrap)
