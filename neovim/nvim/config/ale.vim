@@ -75,7 +75,7 @@ let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'json': ['jsonlint'],
 \   'graphql': ['eslint', 'gqlint'],
-\   'go': ['golangci-lint'],
+\   'go': ['golangci-lint', 'gopls'],
 \   'ruby': ['rubocop', 'solargraph'],
 \   'rust': ['rls'],
 \   'sql': ['sqlint'],
