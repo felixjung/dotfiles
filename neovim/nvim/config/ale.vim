@@ -84,9 +84,6 @@ let g:ale_linters = {
 \   'yaml': ['yamllint'],
 \}
 
-" Linter options
-let g:ale_go_golangci_lint_options = '--enable-all --disable typecheck'
-
 " Fix shortcut
 nmap <silent> <M-k> <Plug>(ale_previous_wrap)
 nmap <silent> <M-j> <Plug>(ale_next_wrap)
