@@ -56,6 +56,8 @@ call plug#begin('~/.config/nvim/plugs')
 " }
 
 " Language support {
+  Plug 'jjo/vim-cue', { 'for': ['cue'] }
+
   " Academic work
   Plug 'JuliaLang/julia-vim', { 'for': 'julia' }
 
