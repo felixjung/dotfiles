@@ -27,7 +27,9 @@ call plug#begin('~/.config/nvim/plugs')
   Plug 'fszymanski/deoplete-emoji'
   Plug 'ervandew/supertab'
   Plug 'liuchengxu/vista.vim'
-  Plug 'sheerun/vim-polyglot' " Syntax support for all kinds of languages
+  " Needs to happen here, before polyglot registers autcmds
+  let g:polyglot_disabled = ['go', 'cue', 'javascript', 'typescript', 'jsx']
+  " Plug 'sheerun/vim-polyglot' " Syntax support for all kinds of languages
   Plug 'psliwka/vim-smoothie'
   Plug 'junegunn/vim-easy-align'
 " }
