@@ -63,6 +63,9 @@ call plug#begin('~/.config/nvim/plugs')
   " Academic work
   Plug 'JuliaLang/julia-vim', { 'for': 'julia' }
 
+  " Terraform
+  Plug 'hashivim/vim-terraform'
+
   " GraphQL
   Plug 'jparise/vim-graphql'
 

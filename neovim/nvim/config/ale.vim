@@ -62,7 +62,7 @@ let g:ale_fixers = {
 \   'go': ['goimports'],
 \   'ruby': ['rufo', 'rubocop'],
 \   'rust': ['rustfmt'],
-\   'terraform': ['terraform-fmt-fixer'],
+\   'terraform': ['terraform'],
 \   'yaml': ['prettier'],
 \   'markdown': ['prettier']
 \}
@@ -79,7 +79,7 @@ let g:ale_linters = {
 \   'ruby': ['rubocop', 'solargraph'],
 \   'rust': ['rls'],
 \   'sql': ['sqlint'],
-\   'terraform': ['terraform-fmt-fixer', 'terraform'],
+\   'terraform': ['terraform', 'tflint'],
 \   'vim': ['vint'],
 \   'yaml': ['yamllint'],
 \}
