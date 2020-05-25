@@ -1,0 +1,13 @@
+printWidth: 80
+tabWidth: 2
+useTabs: false
+singleQuote: false
+proseWrap: "always"
+
+overrides:
+  - files: "*.md"
+    options:
+      parser: "markdown"
+  - files: "*.yaml"
+    options:
+      parser: "yaml"

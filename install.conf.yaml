@@ -25,6 +25,8 @@
       path: zsh/zshenv
     ~/.editorconfig:
       path: configs/editorconfig
+    ~/.prettierrc.yaml:
+      path: config/prettierrc.yaml
 - shell:
     -
       command: sh homebrew/install.sh

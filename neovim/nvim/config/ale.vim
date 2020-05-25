@@ -67,9 +67,6 @@ let g:ale_fixers = {
 \   'markdown': ['prettier']
 \}
 
-" Fixer options
-let g:ale_yaml_prettier_options = '--parser yaml --prose-wrap always --max-width 80'
-
 let g:ale_linters = {
 \   'typescript': ['eslint', 'tsserver'],
 \   'javascript': ['eslint'],
