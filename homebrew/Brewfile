@@ -1,4 +1,6 @@
+###
 # Taps
+###
 tap "datawire/blackbird"
 tap "homebrew/bundle"
 tap "homebrew/cask"
@@ -6,12 +8,12 @@ tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
 tap "homebrew/services"
-tap "neovim/neovim"
-tap "argoproj/tap"
 
 cask_args appdir: "/Applications"
 
+###
 # Casks
+###
 cask "osxfuse"
 cask "1password"
 cask "alfred"
@@ -39,7 +41,9 @@ cask "typora"
 cask "viscosity"
 cask "visual-studio-code-insiders"
 
+###
 # Mac App Store
+###
 mas "Kindle", id: 405399194
 mas "Pastebot", id: 1179623856
 mas "Xcode", id: 497799835
@@ -54,66 +58,80 @@ mas "Pixelmator Pro", id: 1289583905
 mas "Divvy", id: 413857545
 mas "Gapplin", id: 768053424
 
+###
 # Packages
-brew "ack"
-brew "python"
-brew "awscli"
-brew "bash"
-brew "fontconfig"
+###
+
+# Command Line Utilities
+brew "rename"
+brew "the_silver_searcher"
 brew "gettext"
+brew "fontconfig"
 brew "schollz/tap/croc"
-brew "cairo"
-brew "clang-format"
 brew "coreutils"
-brew "ctags"
-brew "docker"
 brew "exa"
-brew "lsd"
-brew "git"
-brew "git-lfs"
-brew "hub"
-brew "gnu-sed"
-brew "go"
-brew "cuelang/tap/cue"
-brew "gotags"
-brew "graphicsmagick"
 brew "grep"
 brew "gzip"
 brew "highlight"
-brew "hugo"
+brew "gnu-sed"
+brew "lsd"
+brew "up"
+brew "watchman"
+
+brew "bash"
+brew "zsh"
+brew "zplug"
+
+brew "unrar"
+brew "youtube-dl"
+
+brew "neovim"
+brew "tmux"
+brew "reattach-to-user-namespace"
+
+# Programming languages
+brew "yarn"
+brew "node"
+brew "nodenv"
+
+brew "python"
+
+brew "go"
+brew "gotags"
+brew "protobuf"
+
+brew "tflint"
+
+brew "clang-format"
+brew "ctags"
+brew "cairo"
+brew "cuelang/tap/cue"
+brew "graphicsmagick"
+brew "python@2"
+
+brew "ruby"
+brew "rbenv"
+
+brew "pgformatter"
+brew "rustup-init"
+brew "swiftlint"
+brew "tidy-html5"
+
+# Developer Tooling
+brew "git"
+brew "git-lfs"
+brew "tig"
+brew "hub"
+brew "github/gh/gh"
+brew "httpie"
+brew "docker"
+brew "hyperkit"
+
+# Developer Infrastructure Tooling
+brew "awscli"
 brew "kubernetes-cli"
 brew "kubernetes-helm"
 brew "argoproj/tap/argocd"
-brew "hyperkit"
-brew "kubectx"
-brew "neovim", args: ["HEAD"]
-brew "nginx"
-brew "node"
-brew "nodenv"
-brew "pango"
-brew "postgresql"
-brew "pgformatter"
-brew "protobuf"
-brew "python@2"
-brew "rbenv"
-brew "reattach-to-user-namespace"
-brew "redis", restart_service: true
-brew "rename"
-brew "ruby"
-brew "rustup-init"
-brew "swiftlint"
-brew "the_silver_searcher"
-brew "tidy-html5"
-brew "tig"
-brew "tmux"
-brew "terraform"
-brew "tflint"
-brew "unrar"
-brew "watchman"
-brew "yarn"
-brew "youtube-dl"
-brew "zplug"
-brew "zsh"
-brew "httpie"
-brew "up"
 brew "datawire/blackbird/telepresence"
+brew "kubectx"
+brew "terraform"
