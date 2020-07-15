@@ -64,13 +64,13 @@ mas "Gapplin", id: 768053424
 
 # Command Line Utilities
 brew "rename"
-brew "the_silver_searcher"
 brew "gettext"
 brew "fontconfig"
 brew "schollz/tap/croc"
 brew "coreutils"
 brew "exa"
 brew "grep"
+brew "ripgrep"
 brew "gzip"
 brew "highlight"
 brew "gnu-sed"
