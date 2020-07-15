@@ -7,7 +7,7 @@
       stdin: true
       stdout: true
       stderr: true
-- clean: ['~', '~/.config']
+- clean: ["~", "~/.config"]
 - link:
     ~/.gitignore:
       path: git/gitignore
@@ -26,21 +26,15 @@
     ~/.editorconfig:
       path: configs/editorconfig
     ~/.prettierrc.yaml:
-      path: config/prettierrc.yaml
+      path: configs/prettierrc.yaml
+    ~/.config/wezterm:
+      path: wezterm
 - shell:
-    -
-      command: sh homebrew/install.sh
-    -
-      command: sh git/install.sh
-    -
-      command: sh node/install.sh
-    -
-      command: sh atom/install.sh
-    -
-      command: sh neovim/install.sh
-    -
-      command: sh tmux/install.sh
-    -
-      command: sh zsh/install.sh
-    -
-      command: sh hyper/install.sh
+    - command: sh homebrew/install.sh
+    - command: sh git/install.sh
+    - command: sh node/install.sh
+    - command: sh atom/install.sh
+    - command: sh neovim/install.sh
+    - command: sh tmux/install.sh
+    - command: sh zsh/install.sh
+    - command: sh hyper/install.sh
