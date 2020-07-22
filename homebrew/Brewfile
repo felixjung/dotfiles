@@ -103,7 +103,6 @@ brew "protobuf"
 brew "tflint"
 
 brew "clang-format"
-brew "ctags"
 brew "cairo"
 brew "cuelang/tap/cue"
 brew "graphicsmagick"
