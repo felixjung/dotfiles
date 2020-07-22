@@ -25,19 +25,19 @@ return {
     {
       italic = true,
       intensity = "Bold",
-      font = font_with_fallback("Operator Mono Ssm Lig Bold Italic"),
+      font = font_with_fallback("Operator Mono Ssm Lig Medium Italic"),
     },
 
     -- Make regular bold text a different color to make it stand out even more
     {
       intensity = "Bold",
-      font = font_with_fallback("Operator Mono Ssm Lig Bold"),
+      font = font_with_fallback("Operator Mono Ssm Lig Medium"),
     },
 
     -- For half-intensity text, use a lighter weight font
     {
       intensity = "Half",
-      font = font_with_fallback("Operator Mono Ssm Lig Medium"),
+      font = font_with_fallback("Operator Mono Ssm Lig Book"),
     },
   },
 
@@ -49,9 +49,9 @@ return {
   enable_tab_bar = false,
   default_cursor_style = "SteadyUnderline",
   window_padding = {
-    left = 12,
-    right = 12,
-    top = 0,
-    bottom = 12,
+    left = 10,
+    right = 10,
+    top = 10,
+    bottom = 10,
   }
 }
