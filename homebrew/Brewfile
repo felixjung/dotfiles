@@ -94,7 +94,7 @@ brew "yarn"
 brew "node"
 brew "nodenv"
 
-brew "python"
+brew "pyenv"
 
 brew "go"
 brew "gotags"
@@ -107,7 +107,6 @@ brew "ctags"
 brew "cairo"
 brew "cuelang/tap/cue"
 brew "graphicsmagick"
-brew "python@2"
 
 brew "ruby"
 brew "rbenv"
