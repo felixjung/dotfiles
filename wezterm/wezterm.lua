@@ -8,24 +8,24 @@ end
 
 return {
   -- Font
-  font_size = 10.0,
+  font_size = 12.0,
   font_antialias = "Greyscale", -- None, Greyscale, Subpixel
-  font_hinting = "None",  -- None, Vertical, VerticalSubpixel, Full
+  font_hinting = "Full",  -- None, Vertical, VerticalSubpixel, Full
   line_height = 1.2,
 
-  font = font_with_fallback("Operator Mono Ssm Lig Book"),
+  font = font_with_fallback("Operator Mono Ssm Lig Book", {}),
   font_rules= {
     -- Select a fancy italic font for italic text
     {
       italic = true,
-      font = font_with_fallback("Operator Mono Ssm Lig Book Italic"),
+      font = font_with_fallback("Operator Mono Ssm Lig Book", {italic=true}),
     },
 
     -- Similarly, a fancy bold+italic font
     {
       italic = true,
       intensity = "Bold",
-      font = font_with_fallback("Operator Mono Ssm Lig Medium Italic"),
+      font = font_with_fallback("Operator Mono Ssm Lig Medium", {italic=true}),
     },
 
     -- Make regular bold text a different color to make it stand out even more
@@ -46,6 +46,7 @@ return {
   color_scheme = "MaterialPalenight",
 
   -- Appearance
+  dpi = 80.0,
   enable_tab_bar = false,
   default_cursor_style = "SteadyUnderline",
   window_padding = {
