@@ -27,7 +27,9 @@
   let mapleader=','                               " Change global leader
   let maplocalleader='_'                          " Change local leader
 
-  syntax on                                       " Syntax highlighting
+  syntax sync fromstart
+  set redrawtime=10000
+  syntax enable                                       " Syntax highlighting
 " }
 
 " Swap files or backups {
