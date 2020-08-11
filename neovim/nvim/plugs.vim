@@ -50,7 +50,7 @@ call plug#begin('~/.config/nvim/plugs')
 " }
 
 " Themes {
-  Plug 'drewtempelmeyer/palenight.vim'
+  Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 " }
 
 " tmux integration {
