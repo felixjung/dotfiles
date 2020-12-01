@@ -77,6 +77,7 @@ brew "gnu-sed"
 brew "lsd"
 brew "up"
 brew "watchman"
+brew "delta"
 
 brew "bash"
 brew "zsh"
