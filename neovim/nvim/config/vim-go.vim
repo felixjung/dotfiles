@@ -2,6 +2,10 @@
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 
+" Disable key mapping
+let g:go_doc_keywordprg_enabled = 0
+let g:go_def_mapping_enabled = 0
+
 " Add more syntax highlighting
 let g:go_highlight_chan_whitespace_error = 1
 let g:go_highlight_array_whitespace_error = 1

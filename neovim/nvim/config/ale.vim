@@ -1,3 +1,5 @@
+let g:ale_disable_lsp = 1
+
 " Always keep column for Ale signs in gutter.
 let g:signcolumns = 'yes'
 let g:ale_sign_column_always = 1
@@ -55,8 +57,9 @@ let g:ale_lint_on_save = 1
 let g:ale_fix_on_save = 1
 
 let g:ale_fixers = {
-\   'typescript': ['eslint', 'prettier'],
-\   'javascript': ['eslint'],
+\   'typescript': ['prettier'],
+\   'typescriptreact': ['prettier'],
+\   'javascript': ['prettier'],
 \   'json': ['prettier'],
 \   'graphql': ['eslint'],
 \   'go': ['goimports'],
@@ -67,12 +70,26 @@ let g:ale_fixers = {
 \   'markdown': ['prettier']
 \}
 
+let g:ale_typescriptreact_prettier_use_local_config = 1
+let g:ale_typescriptreact_eslint_use_local_config = 1
+
+let g:ale_typescript_prettier_use_local_config = 1
+let g:ale_typescript_eslint_use_local_config = 1
+
+let g:ale_javascript_prettier_use_local_config = 1
+let g:ale_javascript_eslint_use_local_config = 1
+
+let g:ale_javascript_eslint_options = '--cache'
+let g:ale_typescript_eslint_options = '--cache'
+let g:ale_typescriptreact_eslint_options = '--cache'
+
 let g:ale_linters = {
-\   'typescript': ['eslint', 'tsserver'],
+\   'typescript': ['eslint'],
+\   'typescriptreact': ['eslint'],
 \   'javascript': ['eslint'],
 \   'json': ['jsonlint'],
 \   'graphql': ['eslint', 'gqlint'],
-\   'go': ['golangci-lint', 'gopls'],
+\   'go': ['golangci-lint'],
 \   'ruby': ['rubocop', 'solargraph'],
 \   'rust': ['rls'],
 \   'sql': ['sqlint'],
@@ -81,13 +98,15 @@ let g:ale_linters = {
 \   'yaml': ['yamllint'],
 \}
 
+let g:ale_linters_explicit = 1
+
 " Fix shortcut
 nmap <silent> <M-k> <Plug>(ale_previous_wrap)
 nmap <silent> <M-j> <Plug>(ale_next_wrap)
 
 " Language server functionality
-nmap <silent> <M-r> <Plug>(ale_find_references)
-nmap <silent> gd <Plug>(ale_go_to_definition)
-nmap <silent> gds <Plug>(ale_go_to_definition_in_split)
-nmap <silent> <M-h> <Plug>(ale_hover)
+" nmap <silent> <M-r> <Plug>(ale_find_references)
+" nmap <silent> gd <Plug>(ale_go_to_definition)
+" nmap <silent> gds <Plug>(ale_go_to_definition_in_split)
+" nmap <silent> <M-h> <Plug>(ale_hover)
 

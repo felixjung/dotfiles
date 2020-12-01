@@ -33,5 +33,5 @@
   set splitbelow                                 " Puts new split windows to the bottom of the current
 
   " Completion
-  set completeopt=menu
+  set completeopt=menuone,noinsert,noselect
 " }
