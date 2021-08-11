@@ -1,4 +1,0 @@
-let g:julia_latex_to_unicode=0
-let g:julia_latex_suggestions_enabled=0
-let g:julia_auto_latex_to_unicode=0
-
