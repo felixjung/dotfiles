@@ -18,23 +18,18 @@ call plug#begin('~/.config/nvim/plugs')
   Plug 'Lokaltog/vim-easymotion'
   Plug 'tpope/vim-commentary'
   Plug 'terryma/vim-multiple-cursors'
-  Plug 'vim-scripts/Auto-Pairs'
   Plug '~/.fzf'
-  Plug 'junegunn/fzf.vim'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'w0rp/ale'
   Plug 'ervandew/supertab'
   Plug 'liuchengxu/vista.vim'
-  " Needs to happen here, before polyglot registers autcmds
-  " let g:polyglot_disabled = ['go', 'cue', 'javascript', 'typescript', 'jsx']
-  " Plug 'sheerun/vim-polyglot' " Syntax support for all kinds of languages
   Plug 'psliwka/vim-smoothie'
   Plug 'neovim/nvim-lspconfig'
-  Plug 'nvim-lua/completion-nvim'
+  Plug 'hrsh7th/nvim-compe'
+  Plug 'windwp/nvim-autopairs'
   Plug 'nathunsmitty/nvim-ale-diagnostic', { 'branch': 'main' }
-  Plug 'junegunn/vim-easy-align'
   " Better syntax highlighting
-  Plug 'nvim-treesitter/nvim-treesitter'
+  Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 " }
 
 " Git and Github {
@@ -71,23 +66,6 @@ call plug#begin('~/.config/nvim/plugs')
 
   " GraphQL
   Plug 'jparise/vim-graphql'
-
-  " Javascript
-  " Plug 'elzr/vim-json', { 'for': 'json' }
-  " Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
-  " Plug 'maxmellon/vim-jsx-pretty', { 'for': ['javascript', 'javascript.jsx'] }
-
-  " TypeScript
-  " Plug 'leafgarland/typescript-vim', { 'for': ['typescript', 'typescript.tsx'] }
-  " Plug 'peitalin/vim-jsx-typescript', { 'for': ['typescript', 'typescript.tsx'] }
-  " Plug 'styled-components/vim-styled-components', { 'for': ['typescript.tsx', 'javascript.jsx'], 'branch': 'main' }
-
-  " Web
-  " Plug 'othree/html5.vim', { 'for': ['html'] }
-  " Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'sass', 'scss'] }
-  " Plug 'gorodinskiy/vim-coloresque', { 'for': ['css', 'sass', 'scss'] }
-  " Plug 'groenewege/vim-less', { 'for': 'less' }
-  " Plug 'othree/csscomplete.vim', { 'for': ['css', 'sass', 'scss'] }
 
   " Rust
   Plug 'cespare/vim-toml', { 'for': ['toml'] }

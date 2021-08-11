@@ -31,3 +31,6 @@ let g:go_code_completion_enabled = 0
 let g:go_fmt_autosave = 0
 let g:go_mod_fmt_autosave = 0
 let g:go_metalinter_autosave = 0
+
+let g:go_doc_popup_window = 1
+let g:go_echo_go_info = 0
