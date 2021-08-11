@@ -2,7 +2,7 @@ printWidth: 80
 tabWidth: 2
 useTabs: false
 singleQuote: false
-proseWrap: "preserve"
+proseWrap: "never"
 
 overrides:
   - files: "*.md"
