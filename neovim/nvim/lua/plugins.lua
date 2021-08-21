@@ -21,7 +21,7 @@ local function plugins(use)
       "RRethy/nvim-treesitter-textsubjects",
     },
     config = function()
-      require('config.treesitter')
+      require("config.treesitter")
     end,
   })
 
