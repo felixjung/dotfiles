@@ -1,4 +1,4 @@
-local packer = require("util.packer")
+local packer = require("lib.packer")
 
 local config = {
   profile = {
@@ -9,6 +9,21 @@ local config = {
 
 local function plugins(use)
   use({ "wbthomason/packer.nvim", opt = true })
+
+  use({
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
+    opt = true,
+    event = "BufRead",
+    requires = {
+      { "nvim-treesitter/playground", cmd = "TSHighlightCapturesUnderCursor" },
+      "nvim-treesitter/nvim-treesitter-textobjects",
+      "RRethy/nvim-treesitter-textsubjects",
+    },
+    config = function()
+      require('config.treesitter')
+    end,
+  })
 
   use({
     "marko-cerovac/material.nvim",
@@ -23,6 +38,14 @@ local function plugins(use)
     module = "nvim-web-devicons",
     config = function()
       require("nvim-web-devicons").setup({ default = true })
+    end,
+  })
+
+  -- Tmux navigation
+  use({
+    "alexghergh/nvim-tmux-navigation",
+    config = function()
+      require("config.nvim-tmux-navigation")
     end,
   })
 end

@@ -1,7 +1,5 @@
 local M = {}
 
-M.local_plugins = {}
-
 function M.bootstrap()
   local fn = vim.fn
   -- TODO: what's the actual location here?
