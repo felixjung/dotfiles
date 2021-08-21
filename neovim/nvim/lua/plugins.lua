@@ -48,6 +48,14 @@ local function plugins(use)
       require("config.nvim-tmux-navigation")
     end,
   })
+
+  -- Fuzzy finder
+  use({
+    "junegunn/fzf",
+    config = function()
+      require("config.fzf")
+    end,
+  })
 end
 
 return packer.setup(config, plugins)
