@@ -69,6 +69,16 @@ local function plugins(use)
       require("config.tree")
     end,
   })
+
+  -- Statusline
+  use({
+    "hoob3rt/lualine.nvim",
+    event = "VimEnter",
+    config = function()
+      require("config.lualine")
+    end,
+    wants = "nvim-web-devicons",
+  })
 end
 
 return packer.setup(config, plugins)
