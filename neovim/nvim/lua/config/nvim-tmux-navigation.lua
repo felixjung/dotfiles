@@ -1,5 +1,3 @@
-local mapping = require("lib.keymapping")
-
 require("nvim-tmux-navigation").setup({
   keybindings = {
     left = "<C-h>",
