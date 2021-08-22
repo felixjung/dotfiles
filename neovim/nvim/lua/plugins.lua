@@ -10,6 +10,9 @@ local config = {
 local function plugins(use)
   use({ "wbthomason/packer.nvim", opt = true })
 
+  -- Function library for various plugins.
+  use({ "nvim-lua/plenary.nvim" })
+
   use({
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
@@ -78,6 +81,21 @@ local function plugins(use)
       require("config.lualine")
     end,
     wants = "nvim-web-devicons",
+  })
+
+  -- Language server client
+  use({
+    "neovim/nvim-lspconfig",
+    opt = true,
+    event = "BufReadPre",
+    wants = { "nvim-lsp-ts-utils", "null-ls.nvim" },
+    config = function()
+      require("config.lsp")
+    end,
+    requires = {
+      "jose-elias-alvarez/nvim-lsp-ts-utils",
+      "jose-elias-alvarez/null-ls.nvim",
+    },
   })
 end
 
