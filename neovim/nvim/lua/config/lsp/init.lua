@@ -23,27 +23,31 @@ local function default_on_attach(_, bufnr)
 end
 
 local default_lsp_config = {
-  on_attach = default_on_attach,
   flags = {
     debounce_text_changes = DEBOUNCE,
   },
 }
 
-local nls_sources = {}
+local function new_on_attach(on_attach)
+  return function(client, bufnr)
+    default_on_attach(client, bufnr)
 
-for lang, config in pairs(language_configs) do
-  -- Collect null-ls sources
-  nls_sources = vim.list_extend(nls_sources, config.nls_sources)
+    if type(on_attach) == "function" then
+      on_attach(client, bufnr)
+    end
 
-  -- Set up language server
-  if config.ls ~= nil then
-    local cfg = vim.tbl_deep_extend("force", default_lsp_config, config.ls.config)
-    if not (cfg and cfg.cmd and vim.fn.executable(cfg.cmd[1]) == 1) then
-      log.error(lang .. ": cmd not found: " .. vim.inspect(cfg.cmd))
-    else
-      lspconfig[config.ls.name].setup(cfg)
+    -- Register formatting on save
+    if client.resolved_capabilities.document_formatting then
+      vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
     end
   end
+end
+
+local nls_sources = {}
+
+-- Collect null-ls sources
+for _, config in pairs(language_configs) do
+  nls_sources = vim.list_extend(nls_sources, config.nls_sources)
 end
 
 -- Configure null-ls so it's available on lspconfig. Should receive a
@@ -53,4 +57,27 @@ nls.config({
   sources = nls_sources,
 })
 
-lspconfig["null-ls"].setup({})
+-- null-ls is set up last and handles multiple languages and features.
+-- Configure it centrally.
+lspconfig["null-ls"].setup({
+  on_attach = new_on_attach(),
+})
+
+-- Collect null-ls sources
+for lang, config in pairs(language_configs) do
+  -- Set up language server
+  if config.ls ~= nil then
+    local cfg = vim.tbl_deep_extend(
+      "force",
+      default_lsp_config,
+      config.ls.config,
+      { on_attach = new_on_attach(config.ls.config.on_attach) }
+    )
+
+    if not (cfg and cfg.cmd and vim.fn.executable(cfg.cmd[1]) == 1) then
+      log.error(lang .. ": cmd not found: " .. vim.inspect(cfg.cmd))
+    else
+      lspconfig[config.ls.name].setup(cfg)
+    end
+  end
+end

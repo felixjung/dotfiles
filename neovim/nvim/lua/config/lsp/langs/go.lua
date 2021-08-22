@@ -5,12 +5,15 @@ local ls = {
   name = "gopls",
   config = {
     cmd = { "gopls" },
+    on_attach = function(client, bufnr)
+      -- We format with goimports via null-ls
+      client.resolved_capabilities.document_formatting = false
+    end,
     filetypes = { "go", "gomod" },
     root_dir = util.root_pattern("go.mod", ".git"),
   },
 }
 
--- TODO: add config
 local nls_sources = {
   nls.builtins.formatting.goimports,
 }
