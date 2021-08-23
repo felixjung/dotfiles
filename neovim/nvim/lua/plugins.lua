@@ -97,6 +97,23 @@ local function plugins(use)
       "jose-elias-alvarez/null-ls.nvim",
     },
   })
+
+  use({
+    "hrsh7th/nvim-compe",
+    event = "InsertEnter",
+    opt = true,
+    config = function()
+      require("config.compe")
+    end,
+    requires = {
+      {
+        "windwp/nvim-autopairs",
+        config = function()
+          require("config.autopairs")
+        end,
+      },
+    },
+  })
 end
 
 return packer.setup(config, plugins)
