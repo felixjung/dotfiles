@@ -98,6 +98,8 @@ local function plugins(use)
     },
   })
 
+  use({ "tpope/vim-surround" })
+
   use({
     "hrsh7th/nvim-compe",
     event = "InsertEnter",
