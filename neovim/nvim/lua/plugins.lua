@@ -101,6 +101,17 @@ local function plugins(use)
   use({ "tpope/vim-surround" })
 
   use({
+    "b3nj5m1n/kommentary",
+    opt = true,
+    wants = "nvim-ts-context-commentstring",
+    keys = { "gc", "gcc" },
+    config = function()
+      require("config.kommentary")
+    end,
+    requires = "JoosepAlviste/nvim-ts-context-commentstring",
+  })
+
+  use({
     "hrsh7th/nvim-compe",
     event = "InsertEnter",
     opt = true,
