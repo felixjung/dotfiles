@@ -7,6 +7,9 @@ local language_configs = require("config.lsp.langs")
 
 local DEBOUNCE = 150
 
+require("config.lsp.diagnostics")
+require("config.lsp.icons").setup()
+
 local function default_on_attach(_, bufnr)
   -- Goto...
   mapping.nnoremap("gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { buffer = bufnr })
