@@ -127,6 +127,17 @@ local function plugins(use)
       },
     },
   })
+
+  -- Git Gutter
+  use({
+    "lewis6991/gitsigns.nvim",
+    event = "BufReadPre",
+    wants = "plenary.nvim",
+    requires = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("config.gitsigns")
+    end,
+  })
 end
 
 return packer.setup(config, plugins)
