@@ -42,7 +42,7 @@ return {
 
   -- Colors
   color_scheme_dirs = {"/Users/Felix/.config/wezterm/colors"},
-  color_scheme = "MaterialPalenight",
+  color_scheme = "TokyonightStorm",
 
   -- Appearance
   dpi = 80.0,
