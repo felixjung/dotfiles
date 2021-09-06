@@ -65,6 +65,17 @@ local function plugins(use)
     end,
   })
 
+  use({
+    "L3MON4D3/LuaSnip",
+    wants = { "friendly-snippets" },
+    config = function()
+      require("config.luasnip")
+    end,
+    requires = {
+      "rafamadriz/friendly-snippets",
+    },
+  })
+
   -- Statusline
   use({
     "hoob3rt/lualine.nvim",
@@ -76,10 +87,10 @@ local function plugins(use)
   })
 
   use({
-    'windwp/nvim-autopairs',
+    "windwp/nvim-autopairs",
     config = function()
       require("config.autopairs")
-    end
+    end,
   })
 
   -- Autocompletion with nvim-cmp
@@ -88,9 +99,15 @@ local function plugins(use)
     config = function()
       require("config.cmp")
     end,
+    wants = {
+      "cmp-nvim-lsp",
+      "cmp_luasnip",
+      "cmp-buffer",
+      "friendly-snippets",
+    },
     requires = {
       "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/vim-vsnip",
+      "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-buffer",
     },
   })

@@ -17,6 +17,10 @@ mapping.inoremap("jj", "<Esc>")
 -- Yank from the cursor to the end of the line, to be consistent with C and D.
 mapping.nnoremap("Y", "y$")
 
+-- Normal indent
+mapping.nnoremap("<Tab>", ">>_")
+mapping.nnoremap("<S-Tab>", "<<_")
+
 -- Visual shifting (does not exit Visual mode)
 mapping.vnoremap("<", "<gv")
 mapping.vnoremap(">", ">gv")

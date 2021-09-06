@@ -1,15 +1,16 @@
 local cmp = require("cmp")
 local npairs = require("nvim-autopairs.completion.cmp")
+local luasnip = require("luasnip")
 
 local icons = require("config.lsp.icons")
 
 local check_back_space = function()
-  local col = vim.fn.col '.' - 1
-  return col == 0 or vim.fn.getline('.'):sub(col, col):match '%s' ~= nil
+  local col = vim.fn.col(".") - 1
+  return col == 0 or vim.fn.getline("."):sub(col, col):match("%s") ~= nil
 end
 
 local t = function(str)
-    return vim.api.nvim_replace_termcodes(str, true, true, true)
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
 cmp.setup({
@@ -19,19 +20,13 @@ cmp.setup({
     keyword_length = 1,
   },
 
-  snippet = {
-    expand = function(args)
-      vim.fn["vsnip#anonymous"](args.body)
-    end,
-  },
-
   mapping = {
-    ['<CR>'] = cmp.mapping.confirm(),
+    ["<CR>"] = cmp.mapping.confirm(),
     ["<Tab>"] = cmp.mapping(function(fallback)
       if vim.fn.pumvisible() == 1 then
         vim.fn.feedkeys(t("<C-n>"), "n")
-      --[[ elseif luasnip.expand_or_jumpable() then
-        vim.fn.feedkeys(t("<Plug>luasnip-expand-or-jump"), "") ]]
+      elseif luasnip.expand_or_jumpable() then
+        vim.fn.feedkeys(t("<Plug>luasnip-expand-or-jump"), "")
       elseif check_back_space() then
         vim.fn.feedkeys(t("<Tab>"), "n")
       else
@@ -44,8 +39,8 @@ cmp.setup({
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       if vim.fn.pumvisible() == 1 then
         vim.fn.feedkeys(t("<C-p>"), "n")
-      --[[ elseif luasnip.jumpable(-1) then
-        vim.fn.feedkeys(t("<Plug>luasnip-jump-prev"), "") ]]
+      elseif luasnip.jumpable(-1) then
+        vim.fn.feedkeys(t("<Plug>luasnip-jump-prev"), "")
       else
         fallback()
       end
@@ -53,6 +48,12 @@ cmp.setup({
       "i",
       "s",
     }),
+  },
+
+  snippet = {
+    expand = function(args)
+      require("luasnip").lsp_expand(args.body)
+    end,
   },
 
   format = function(entry, vim_item)
@@ -74,6 +75,12 @@ cmp.setup({
   sources = {
     {
       name = "nvim_lsp",
+    },
+    {
+      name = "buffer",
+    },
+    {
+      name = "luasnip",
     },
   },
 })
