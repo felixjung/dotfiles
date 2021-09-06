@@ -9,16 +9,15 @@ end
 return {
   -- Font
   font_size = 12.0,
-  font_antialias = "Greyscale", -- None, Greyscale, Subpixel
   freetype_load_target = "Light",
   line_height = 1.2,
 
-  font = font_with_fallback("Operator Mono SSm Lig", {weight=325}),
+  font = font_with_fallback("Operator Mono SSm Lig", {weight="Light"}),
   font_rules= {
     -- Select a fancy italic font for italic text
     {
       italic = true,
-      font = font_with_fallback("Operator Mono SSm Lig", {italic=true, weight=325}),
+      font = font_with_fallback("Operator Mono SSm Lig", {italic=true, weight="Light"}),
     },
 
     -- Similarly, a fancy bold+italic font
