@@ -1,143 +1,199 @@
 local packer = require("lib.packer")
 
 local config = {
-  profile = {
-    enable = true,
-    threshold = 0, -- the amount in ms that a plugins load time must be over for it to be included in the profile
-  },
+	profile = {
+		enable = true,
+		threshold = 0, -- the amount in ms that a plugins load time must be over for it to be included in the profile
+	},
 }
 
 local function plugins(use)
-  use({ "wbthomason/packer.nvim", opt = true })
+	use({ "wbthomason/packer.nvim", opt = true })
 
-  -- Function library for various plugins.
-  use({ "nvim-lua/plenary.nvim" })
+	-- Function library for various plugins.
+	use({ "nvim-lua/plenary.nvim" })
 
-  use({
-    "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
-    opt = true,
-    event = "BufRead",
-    requires = {
-      { "nvim-treesitter/playground", cmd = "TSHighlightCapturesUnderCursor" },
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      "RRethy/nvim-treesitter-textsubjects",
-    },
+	use({
+		"nvim-treesitter/nvim-treesitter",
+		run = ":TSUpdate",
+		opt = true,
+		event = "BufRead",
+		requires = {
+			{ "nvim-treesitter/playground", cmd = "TSHighlightCapturesUnderCursor" },
+			"nvim-treesitter/nvim-treesitter-textobjects",
+			"RRethy/nvim-treesitter-textsubjects",
+		},
+		config = function()
+			require("config.treesitter")
+		end,
+	})
+
+	use({
+		"folke/tokyonight.nvim",
+		config = function()
+			require("config.theme")
+		end,
+	})
+
+	-- Theme: icons
+	use({
+		"kyazdani42/nvim-web-devicons",
+		module = "nvim-web-devicons",
+		config = function()
+			require("nvim-web-devicons").setup({ default = true })
+		end,
+	})
+
+	-- Tmux navigation
+	use({
+		"alexghergh/nvim-tmux-navigation",
+		config = function()
+			require("config.nvim-tmux-navigation")
+		end,
+	})
+
+	-- File tree sidebar
+	use({
+		"kyazdani42/nvim-tree.lua",
+		cmd = { "NvimTreeToggle", "NvimTreeClose" },
+		keys = {
+			"normal",
+			"<C-e>",
+		},
+		config = function()
+			require("config.tree")
+		end,
+	})
+
+	-- Statusline
+	use({
+		"hoob3rt/lualine.nvim",
+		event = "VimEnter",
+		config = function()
+			require("config.lualine")
+		end,
+		wants = "nvim-web-devicons",
+	})
+
+  -- Autocompletion with nvim-cmp
+	use({
+		"hrsh7th/nvim-cmp",
     config = function()
-      require("config.treesitter")
+      require("config.cmp")
     end,
-  })
+		requires = {
+      "hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/vim-vsnip",
+			"hrsh7th/cmp-buffer",
+		},
+	})
 
-  use({
-    "marko-cerovac/material.nvim",
-    config = function()
-      require("config.theme")
-    end,
-  })
+	-- Language server client
+	use({
+		"neovim/nvim-lspconfig",
+		opt = true,
+		event = "BufReadPre",
+		wants = { "nvim-lsp-ts-utils", "null-ls.nvim" },
+		config = function()
+			require("config.lsp")
+		end,
+		requires = {
+			"jose-elias-alvarez/nvim-lsp-ts-utils",
+			"jose-elias-alvarez/null-ls.nvim",
+		},
+	})
 
-  -- Theme: icons
-  use({
-    "kyazdani42/nvim-web-devicons",
-    module = "nvim-web-devicons",
-    config = function()
-      require("nvim-web-devicons").setup({ default = true })
-    end,
-  })
+	use({ "tpope/vim-surround" })
 
-  -- Tmux navigation
-  use({
-    "alexghergh/nvim-tmux-navigation",
-    config = function()
-      require("config.nvim-tmux-navigation")
-    end,
-  })
+	use({
+		"b3nj5m1n/kommentary",
+		opt = true,
+		wants = "nvim-ts-context-commentstring",
+		keys = { "gc", "gcc" },
+		config = function()
+			require("config.kommentary")
+		end,
+		requires = "JoosepAlviste/nvim-ts-context-commentstring",
+	})
 
-  -- Fuzzy finder
-  use({
-    "junegunn/fzf",
-    config = function()
-      require("config.fzf")
-    end,
-  })
+	-- Git Gutter
+	use({
+		"lewis6991/gitsigns.nvim",
+		event = "BufReadPre",
+		wants = "plenary.nvim",
+		requires = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("config.gitsigns")
+		end,
+	})
 
-  -- File tree sidebar
-  use({
-    "kyazdani42/nvim-tree.lua",
-    cmd = { "NvimTreeToggle", "NvimTreeClose" },
-    keys = {
-      "normal",
-      "<C-e>",
-    },
-    config = function()
-      require("config.tree")
-    end,
-  })
+	use({
+		"mbbill/undotree",
+		cmd = "UndotreeToggle",
+	})
 
-  -- Statusline
-  use({
-    "hoob3rt/lualine.nvim",
-    event = "VimEnter",
-    config = function()
-      require("config.lualine")
-    end,
-    wants = "nvim-web-devicons",
-  })
+	-- Indent Guides and rainbow brackets
+	use({
+		"lukas-reineke/indent-blankline.nvim",
+		event = "BufReadPre",
+		config = function()
+			require("config.blankline")
+		end,
+	})
 
-  -- Language server client
-  use({
-    "neovim/nvim-lspconfig",
-    opt = true,
-    event = "BufReadPre",
-    wants = { "nvim-lsp-ts-utils", "null-ls.nvim" },
-    config = function()
-      require("config.lsp")
-    end,
-    requires = {
-      "jose-elias-alvarez/nvim-lsp-ts-utils",
-      "jose-elias-alvarez/null-ls.nvim",
-    },
-  })
+	-- Smooth Scrolling
+	use({
+		"karb94/neoscroll.nvim",
+		keys = { "<C-u>", "<C-d>", "gg", "G" },
+		config = function()
+			require("config.neoscroll")
+		end,
+	})
 
-  use({ "tpope/vim-surround" })
+	use({ "npxbr/glow.nvim", cmd = "Glow" })
 
-  use({
-    "b3nj5m1n/kommentary",
-    opt = true,
-    wants = "nvim-ts-context-commentstring",
-    keys = { "gc", "gcc" },
-    config = function()
-      require("config.kommentary")
-    end,
-    requires = "JoosepAlviste/nvim-ts-context-commentstring",
-  })
+	use({
+		"folke/zen-mode.nvim",
+		cmd = "ZenMode",
+		opt = true,
+		wants = "twilight.nvim",
+		requires = { "folke/twilight.nvim" },
+		config = function()
+			require("zen-mode").setup({
+				plugins = { gitsigns = true, tmux = true, kitty = { enabled = false, font = "+2" } },
+			})
+		end,
+	})
 
-  use({
-    "hrsh7th/nvim-compe",
-    event = "InsertEnter",
-    opt = true,
-    config = function()
-      require("config.compe")
-    end,
-    requires = {
-      {
-        "windwp/nvim-autopairs",
-        config = function()
-          require("config.autopairs")
-        end,
-      },
-    },
-  })
+	use({
+		"folke/todo-comments.nvim",
+		cmd = { "TodoTrouble", "TodoTelescope" },
+		event = "BufReadPost",
+		config = function()
+			require("config.todo")
+		end,
+	})
 
-  -- Git Gutter
-  use({
-    "lewis6991/gitsigns.nvim",
-    event = "BufReadPre",
-    wants = "plenary.nvim",
-    requires = { "nvim-lua/plenary.nvim" },
-    config = function()
-      require("config.gitsigns")
-    end,
-  })
+	use({
+		"folke/trouble.nvim",
+		event = "BufReadPre",
+		wants = "nvim-web-devicons",
+		cmd = { "TroubleToggle", "Trouble" },
+		config = function()
+			require("trouble").setup({ auto_open = false })
+		end,
+	})
+
+	use({
+		"ibhagwan/fzf-lua",
+		requires = {
+			"vijaymarupudi/nvim-fzf",
+			"kyazdani42/nvim-web-devicons",
+		},
+		config = function()
+			require("config.fzf")
+		end,
+	})
 end
 
 return packer.setup(config, plugins)

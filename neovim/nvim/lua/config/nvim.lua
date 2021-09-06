@@ -1,3 +1,7 @@
+vim.g.mapleader = ","
+vim.g.maplocalleader = "_"
+vim.g.hlsearch = true
+
 vim.opt.autowrite = true -- enable auto write
 vim.opt.clipboard = "unnamedplus" -- sync with system clipboard
 vim.opt.conceallevel = 2 -- Hide * markup for bold and italic
@@ -32,3 +36,10 @@ vim.opt.wildmode = "longest:full,full" -- Command-line completion mode
 vim.opt.wrap = false -- Disable line wrap
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
 vim.o.shortmess = "IToOlxfitn"
+
+-- Handle line breaks
+vim.opt.textwidth = 80
+vim.opt.wrap = true
+vim.opt.breakindent = true
+vim.opt.breakindentopt = "shift:2,min:40,sbr"
+vim.opt.showbreak = ">>"

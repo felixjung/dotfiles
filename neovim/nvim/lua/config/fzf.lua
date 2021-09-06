@@ -1,5 +1,11 @@
 local mapping = require("lib.keymapping")
 
--- TODO: integrate with language server etc. when done.
+require("fzf-lua").setup({
+	winopts = {
+		window_on_create = function() -- nvim window options override
+			vim.cmd("set winhl=Normal:Normal") -- popup bg match normal windows
+		end,
+	},
+})
 
-mapping.nnoremap("<C-t>", ":FZF<CR>")
+mapping.nnoremap("<C-t>", ":FzfLua files<CR>")
