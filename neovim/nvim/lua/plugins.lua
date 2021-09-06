@@ -75,6 +75,13 @@ local function plugins(use)
     wants = "nvim-web-devicons",
   })
 
+  use({
+    'windwp/nvim-autopairs',
+    config = function()
+      require("config.autopairs")
+    end
+  })
+
   -- Autocompletion with nvim-cmp
   use({
     "hrsh7th/nvim-cmp",
