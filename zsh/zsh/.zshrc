@@ -1,4 +1,4 @@
-# Source splug
+# Source zplug
 if [[ -s $ZPLUG_HOME/init.zsh ]]; then
   source $ZPLUG_HOME/init.zsh
 fi

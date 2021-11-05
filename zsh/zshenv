@@ -8,18 +8,18 @@ export DOTFILES="$HOME/.dotfiles"
 export ZDOTDIR="$HOME/.zsh"
 
 # Load zplug
-export ZPLUG_HOME=/usr/local/opt/zplug
+export ZPLUG_HOME=/opt/homebrew/opt/zplug
 
-export PATH="/usr/local/sbin:$PATH"
+# export PATH="/opt/homebrew/bin:$PATH"
 
 # Zsh functions
 export ZFUNCTIONS="${ZDOTDIR:-~}/.zshfunc"
 mkdir -p $ZFUNCTIONS
 fpath+=$ZFUNCTIONS
 
-if type brew &>/dev/null; then
-  fpath=$(brew --prefix)/share/zsh/site-functions:$fpath
-fi
+# if type brew &>/dev/null; then
+#   fpath=$(brew --prefix)/share/zsh/site-functions:$(brew --prefix)/share/zsh/functions:$fpath
+# fi
 
 # Ensure that a non-login, non-interactive shell has a defined environment.
 if [[ "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
