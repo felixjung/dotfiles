@@ -5,3 +5,4 @@
 atom/atom/recovery
 atom/atom/package-deps-state.json
 *token.zsh
+.zsh_sessions

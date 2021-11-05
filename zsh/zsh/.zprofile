@@ -14,6 +14,9 @@ export EDITOR='nvim'
 export VISUAL='nvim'
 export PAGER='less'
 
+# Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 #
 # Language
 #

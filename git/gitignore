@@ -36,7 +36,6 @@
 *.toc
 *.vrb
 *.xdy
-*.xml
 *.fmt
 .Rapp.history
 .vs
