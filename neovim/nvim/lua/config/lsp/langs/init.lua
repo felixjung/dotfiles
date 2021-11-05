@@ -3,4 +3,5 @@ return {
   yaml = require("config.lsp.langs.yaml"),
   typescript = require("config.lsp.langs.typescript"),
   lua = require("config.lsp.langs.lua"),
+  terraform = require("config.lsp.langs.terraform"),
 }
