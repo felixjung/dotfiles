@@ -55,11 +55,6 @@ local function plugins(use)
   -- File tree sidebar
   use({
     "kyazdani42/nvim-tree.lua",
-    cmd = { "NvimTreeToggle", "NvimTreeClose" },
-    keys = {
-      "normal",
-      "<C-e>",
-    },
     config = function()
       require("config.tree")
     end,

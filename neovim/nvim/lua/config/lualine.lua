@@ -37,10 +37,7 @@ local config = {
     lualine_z = {},
   },
   inactive_sections = {
-    lualine_c = {
-      "filename",
-      color = { fg = colors.fg_dark, bg = colors.bg },
-    },
+    lualine_c = {},
     lualine_b = {},
     lualine_a = {},
     lualine_x = {},
