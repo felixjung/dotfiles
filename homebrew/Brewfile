@@ -125,6 +125,8 @@ brew "gh"
 brew "httpie"
 brew "docker"
 brew "hyperkit"
+brew "tanka"
+brew "jsonnet-bundler"
 
 # Developer Infrastructure Tooling
 brew "awscli"
