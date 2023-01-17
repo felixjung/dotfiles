@@ -88,6 +88,9 @@ local function plugins(use)
     end,
   })
 
+  -- Editorconfig
+  use({ "editorconfig/editorconfig-vim" })
+
   -- Autocompletion with nvim-cmp
   use({
     "hrsh7th/nvim-cmp",
@@ -146,6 +149,17 @@ local function plugins(use)
     end,
   })
 
+  -- Git Linker
+  use {
+    "ruifm/gitlinker.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("gitlinker").setup({
+        mappings = "<leader>gy"
+      })
+    end,
+  }
+
   use({
     "mbbill/undotree",
     cmd = "UndotreeToggle",
@@ -155,6 +169,7 @@ local function plugins(use)
   use({
     "lukas-reineke/indent-blankline.nvim",
     event = "BufReadPre",
+    requires = { "nvim-treesitter" },
     config = function()
       require("config.blankline")
     end,
@@ -186,7 +201,7 @@ local function plugins(use)
 
   use({
     "folke/todo-comments.nvim",
-    cmd = { "TodoTrouble", "TodoTelescope" },
+    cmd = { "TodoTrouble" },
     event = "BufReadPost",
     config = function()
       require("config.todo")
@@ -199,7 +214,7 @@ local function plugins(use)
     wants = "nvim-web-devicons",
     cmd = { "TroubleToggle", "Trouble" },
     config = function()
-      require("trouble").setup({ auto_open = false })
+      require("config.trouble")
     end,
   })
 

@@ -14,9 +14,9 @@ local function default_on_attach(_, bufnr)
   -- Goto...
   mapping.nnoremap("gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { buffer = bufnr })
   mapping.nnoremap("gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", { buffer = bufnr })
-  mapping.nnoremap("gr", "<cmd>lua vim.lsp.buf.references()<CR>", { buffer = bufnr })
-  mapping.nnoremap("gp", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", { buffer = bufnr })
-  mapping.nnoremap("gn", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", { buffer = bufnr })
+  mapping.nnoremap("gr", "<cmd>TroubleToggle lsp_references<cr>", { buffer = bufnr })
+  mapping.nnoremap("gp", "<cmd>lua vim.diagnostic.goto_prev()<CR>", { buffer = bufnr })
+  mapping.nnoremap("gn", "<cmd>lua vim.diagnostic.goto_next()<CR>", { buffer = bufnr })
 
   -- Show details on hover
   mapping.nnoremap("K", "<cmd>lua vim.lsp.buf.hover()<CR>", { buffer = bufnr })
@@ -39,7 +39,7 @@ local function new_on_attach(on_attach)
     end
 
     -- Register formatting on save
-    if client.resolved_capabilities.document_formatting then
+    if client.server_capabilities.document_formatting then
       vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
     end
   end
@@ -56,15 +56,9 @@ end
 
 -- Configure null-ls so it's available on lspconfig. Should receive a
 -- config table.
-nls.config({
+nls.setup({
   debounce = DEBOUNCE,
   sources = nls_sources,
-})
-
--- null-ls is set up last and handles multiple languages and features.
--- Configure it centrally.
-lspconfig["null-ls"].setup({
-  on_attach = new_on_attach(),
 })
 
 for lang, config in pairs(language_configs) do

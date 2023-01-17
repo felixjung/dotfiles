@@ -36,4 +36,8 @@ mapping.nmap("<Leader>/", ":set invhlsearch<CR>")
 mapping.nmap("<Leader>u", ":UndotreeToggle<CR>")
 
 -- Trouble
-mapping.nmap("t", ":TroubleToggle<CR>")
+mapping.nnoremap("<Leader>t", ":TroubleToggle<CR>")
+mapping.nnoremap("<Leader>tw", ":TroubleToggle workspace_diagnostics<CR>")
+mapping.nnoremap("<Leader>td", ":TroubleToggle document_diagnostics<CR>")
+mapping.nnoremap("<Leader>tl", ":TroubleToggle loclist<CR>")
+mapping.nnoremap("<Leader>tq", ":TroubleToggle quickfix<CR>")
