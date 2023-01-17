@@ -25,6 +25,8 @@
       path: zsh/zshenv
     ~/.editorconfig:
       path: configs/editorconfig
+    ~/.config/helix:
+      path: helix
     ~/.prettierrc.yaml:
       path: configs/prettierrc.yaml
     ~/.config/wezterm:
