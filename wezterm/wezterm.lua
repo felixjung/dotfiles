@@ -44,15 +44,18 @@ return {
   color_scheme_dirs = {"/Users/Felix/.config/wezterm/colors"},
   color_scheme = "TokyonightStorm",
 
+  -- Behavior
+  window_close_confirmation = "NeverPrompt",
+
   -- Appearance
   dpi = 80.0,
   enable_tab_bar = false,
   default_cursor_style = "SteadyUnderline",
-  window_decoration = "NONE",
+  window_decorations = "RESIZE",
   window_padding = {
-    left = 10,
-    right = 10,
-    top = 10,
+    left = 20,
+    right = 20,
+    top = 20,
     bottom = 10,
   }
 }
