@@ -1,0 +1,20 @@
+theme = "dracula"
+
+[editor]
+line-number = "absolute"
+mouse = false
+scrolloff = 5
+true-color = true
+
+[editor.cursor-shape]
+insert = "underline"
+normal = "block"
+select = "block"
+
+[editor.file-picker]
+hidden = false
+
+[editor.lsp]
+display-messages = true
+
+
