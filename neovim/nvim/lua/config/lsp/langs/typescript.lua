@@ -55,6 +55,7 @@ local ls = {
             "scss",
             "html",
             "json",
+            "yaml",
           },
           condition = function(utils)
             return utils.root_has_file("prettier.config.js")

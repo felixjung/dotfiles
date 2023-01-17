@@ -7,7 +7,7 @@ local ls = {
   config = {
     cmd = { "gopls" },
     on_attach = function(client)
-      client.resolved_capabilities.document_formatting = false
+      client.server_capabilities.document_formatting = false
     end,
     filetypes = { "go", "gomod" },
     root_dir = util.root_pattern("go.mod"),
@@ -16,6 +16,7 @@ local ls = {
 
 local nls_sources = {
   nls.builtins.formatting.goimports,
+  nls.builtins.diagnostics.golangci_lint,
 }
 
 return {

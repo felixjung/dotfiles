@@ -8,3 +8,4 @@ require("fzf-lua").setup({
 })
 
 mapping.nnoremap("<C-t>", ":FzfLua files<CR>")
+mapping.nnoremap("<C-z>", ":FzfLua grep_project<CR>")
