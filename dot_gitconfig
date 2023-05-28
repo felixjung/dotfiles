@@ -1,0 +1,25 @@
+[credential "https://github.com"]
+	helper = 
+	helper = !/home/linuxbrew/.linuxbrew/Cellar/gh/2.29.0/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/home/linuxbrew/.linuxbrew/Cellar/gh/2.29.0/bin/gh auth git-credential
+[user]
+	email = jung.felix@gmail.com
+	name = Felix Jung
+[core]
+	editor = nvim
+	excludesfile = ~/.gitignore
+[push]
+	default = simple
+[mergetool]
+	keepBackup = true
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+[alias]
+	latest-commits = log -5 --pretty --oneline
+	list-branches = for-each-ref --count=30 --sort=-committerdate refs/heads/ --format='%(refname:short)'
+	tree = log --all --graph --decorate --oneline --simplify-by-decoration
+	stats = shortlog -sn
+	sync = remote update --prune
