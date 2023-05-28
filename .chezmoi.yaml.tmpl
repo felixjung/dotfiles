@@ -1,0 +1,10 @@
+{{ $email := promptString "email" -}}
+{{ $full_name := promptString "Full name" -}}
+
+git:
+    autoPush: true
+
+data:
+    email: {{ $email | quote }}
+    full_name: {{$full_name | quote}}
+
