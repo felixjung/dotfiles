@@ -1,1 +1,5 @@
 .zsh_history
+
+# TODO: use configuration value in template for $XDG_CONFIG_HOME?
+.config/zsh/oh-my-zsh/cache/**
+.config/zsh/oh-my-zsh/custom/themes/spaceship-prompt/**/*.zwc
