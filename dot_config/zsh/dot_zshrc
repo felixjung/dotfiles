@@ -69,3 +69,23 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
         --color=fg+:#c0caf5,bg+:#24283b,hl+:#7dcfff
         --color=info:#7aa2f7,prompt:#7dcfff,pointer:#7dcfff
         --color=marker:#9ece6a,spinner:#9ece6a,header:#9ece6a'
+
+###
+# Aliases
+###
+
+# Easy access to find utility
+ff() {
+  find . -iname '*$1*'
+}
+alias ffr='find -E . -iregex '
+
+# Access zsh configuration
+alias zshconfig='vim ~/.zshrc'
+
+# System monitoring
+alias top-cpu='top -n 10 -o cpu -O time -stats pid,command,cpu,cpu_me,time,threads,ports'
+alias ls='exa'
+alias ll='ls -l'
+alias tree='ls --tree --level 2'
+alias j='jump'
