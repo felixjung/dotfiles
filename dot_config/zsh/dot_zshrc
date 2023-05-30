@@ -1,3 +1,10 @@
+###
+# Initialization configuration
+###
+
+# Load completions from homebrew.
+FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
 export ZSH="$ZDOTDIR/oh-my-zsh"
 
 ZSH_THEME="spaceship-prompt/spaceship"
