@@ -23,3 +23,8 @@
 	tree = log --all --graph --decorate --oneline --simplify-by-decoration
 	stats = shortlog -sn
 	sync = remote update --prune
+
+[tig "color"]
+	cursor = color15 red bold
+	title-blur = color0 color5
+	title-focus = color0 color5 bold
