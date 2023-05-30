@@ -1,4 +1,0 @@
-# If you come from bash you might have to change your $PATH.
-# TODO: use script here
-export PATH=/home/linuxbrew/.linuxbrew/bin:$HOME/.local/bin:$PATH
-export ZDOTDIR=~/.config/zsh

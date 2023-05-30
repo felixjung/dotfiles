@@ -1,5 +1,6 @@
 {{ $email := promptString "email" -}}
 {{ $full_name := promptString "Full name" -}}
+{{ $dev_folder := promptString "Dev Folder" -}}
 
 git:
     autoPush: true
@@ -7,4 +8,5 @@ git:
 data:
     email: {{ $email | quote }}
     full_name: {{$full_name | quote}}
+    dev_folder: {{$dev_folder | quote}}
 
