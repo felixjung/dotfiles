@@ -4,6 +4,6 @@ export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 
 # Go
 export GOROOT="$(brew --prefix)/opt/go/libexec"
-export GOPATH="$HOME/{{ .chezmoi.data.dev_folder }}/Go"
+export GOPATH="$HOME/{{ .dev_folder }}/Go"
 export GOFLAGS=""
 export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
