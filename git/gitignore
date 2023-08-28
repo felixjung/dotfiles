@@ -40,4 +40,7 @@
 *.fmt
 .Rapp.history
 .vs
+
+# Editor settings
+.neoconf.json
 .vscode
