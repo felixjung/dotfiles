@@ -8,9 +8,9 @@ end
 
 local function scheme_for_appearance(appearance)
 	if appearance:find("Light") then
-		return "Catppuccin Latte"
+		return "TokyonightDay"
 	else
-		return "Catppuccin Macchiato"
+		return "TokyonightStorm"
 	end
 end
 
@@ -30,7 +30,7 @@ return {
 	window_close_confirmation = "NeverPrompt",
 
 	-- Appearance
-	dpi = 80.0,
+	-- dpi = 80.0,
 	enable_tab_bar = false,
 	default_cursor_style = "SteadyUnderline",
 	window_decorations = "RESIZE",
