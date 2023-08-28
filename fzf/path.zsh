@@ -1,6 +1,6 @@
 
 # Filter with ag to respect gitignore
-export FZF_DEFAULT_COMMAND='rg --files --hidden --ignore-file ~/.ignore'
+export FZF_DEFAULT_COMMAND='rg --files --hidden --glob=!.git/* --glob=!node_modules/*'
 
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' 
 	--color=fg:#c0caf5,bg:#24283b,hl:#bb9af7
