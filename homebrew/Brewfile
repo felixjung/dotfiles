@@ -74,6 +74,7 @@ brew "up"
 brew "watchman"
 brew "delta"
 brew "fzf"
+brew "wget"
 
 brew "bash"
 brew "zsh"
@@ -103,6 +104,8 @@ brew "clang-format"
 brew "cairo"
 brew "cuelang/tap/cue"
 brew "graphicsmagick"
+
+brew "luarocks"
 
 brew "ruby"
 brew "rbenv"

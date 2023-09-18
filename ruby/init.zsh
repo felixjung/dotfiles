@@ -1,2 +1,2 @@
 # Initialize rbenv for version management
-eval "$(rbenv init -)"
+# eval "$(rbenv init -)"
