@@ -5,7 +5,7 @@
 	"derailed/k9s" -}}
 
 {{ if eq .chezmoi.os "darwin" -}}
-$taps = concat taps (list 
+$taps = concat taps (list
 	"datawire/blackbird"
 	"homebrew/bundle"
 	"homebrew/cask"
@@ -31,6 +31,8 @@ $taps = concat taps (list
 	"bash"
 	"zsh"
 	"tmux"
+
+	"bat"
 
 	"neovim"
 
