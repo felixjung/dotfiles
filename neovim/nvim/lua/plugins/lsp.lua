@@ -1,3 +1,12 @@
+local util = require("lspconfig.util")
+local lzUtil = require("lazyvim.util")
+
+lzUtil.on_attach(function(client, _)
+  if client.name == "yamlls" then
+    client.server_capabilities.documentFormattingProvider = true
+  end
+end)
+
 return {
   -- tools
   {
@@ -7,6 +16,9 @@ return {
         -- Lua
         "stylua",
         "luacheck",
+        "lua-language-server",
+
+        -- Writing
 
         -- Go
         "goimports",
@@ -16,7 +28,6 @@ return {
         -- TypeScript and Javascript
         "deno",
         "rome",
-        "eslint_d",
         "prettierd",
 
         -- Shell
@@ -26,17 +37,43 @@ return {
     },
   },
 
+  {
+    "folke/neoconf.nvim",
+    cmd = "Neoconf",
+    config = {
+      import = {
+        vscode = false,
+        coc = false,
+        nlsp = false,
+      },
+    },
+    dependencies = { "nvim-lspconfig" },
+  },
+
   -- lsp servers
   {
     "neovim/nvim-lspconfig",
     opts = {
+      diagnostics = {
+        underline = false,
+      },
       servers = {
         ansiblels = {},
         bashls = {},
         cssls = {},
         dockerls = {},
-        tsserver = {},
-        eslint = {},
+        tsserver = {
+          root_dir = util.root_pattern("tsconfig.json"),
+        },
+        denols = {
+          root_dir = util.root_pattern("deno.json", "deno.jsonc"),
+        },
+        eslint = {
+          root_dir = util.root_pattern(".eslintrc.json", ".eslintrc.js"),
+        },
+        rome = {
+          root_dir = util.root_pattern("rome.json"),
+        },
         html = {},
         golangci_lint_ls = {},
         gopls = {},
@@ -52,56 +89,26 @@ return {
             },
           },
         },
-        yamlls = {},
-        sumneko_lua = {
-          single_file_support = true,
+        yamlls = {
           settings = {
-            Lua = {
-              workspace = {
-                checkThirdParty = false,
-              },
-              completion = {
-                workspaceWord = true,
-                callSnippet = "Both",
-              },
-              misc = {
-                parameters = {
-                  "--log-level=trace",
-                },
-              },
-              diagnostics = {
-                -- enable = false,
-                groupSeverity = {
-                  strong = "Warning",
-                  strict = "Warning",
-                },
-                groupFileStatus = {
-                  ["ambiguity"] = "Opened",
-                  ["await"] = "Opened",
-                  ["codestyle"] = "None",
-                  ["duplicate"] = "Opened",
-                  ["global"] = "Opened",
-                  ["luadoc"] = "Opened",
-                  ["redefined"] = "Opened",
-                  ["strict"] = "Opened",
-                  ["strong"] = "Opened",
-                  ["type-check"] = "Opened",
-                  ["unbalanced"] = "Opened",
-                  ["unused"] = "Opened",
-                },
-                unusedLocalExclude = { "_*" },
-              },
+            yaml = {
+              redhat = { telemetry = { enabled = false } },
               format = {
-                enable = false,
-                defaultConfig = {
-                  indent_style = "space",
-                  indent_size = "2",
-                  continuation_indent_size = "2",
-                },
+                enable = true,
+                singleQuote = false,
+                bracketSpacing = false,
+                prosewrap = "Preserve",
+                printWidth = 80,
+              },
+              validate = true,
+              completion = true,
+              schemaStore = {
+                enable = true,
               },
             },
           },
         },
+        lua_ls = {},
         vimls = {},
       },
     },
@@ -114,16 +121,24 @@ return {
       local nls = require("null-ls")
       nls.setup({
         debounce = 150,
-        save_after_format = false,
+        save_after_format = true,
         sources = {
-          nls.builtins.formatting.prettierd,
+          nls.builtins.formatting.prettierd.with({
+            filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "markdown" },
+            condition = function(utils)
+              return utils.root_has_file({
+                ".prettierrc",
+                ".prettierrc.json",
+                ".prettierrc.js",
+                "prettier.config.js",
+                ".prettierrc.yaml",
+              })
+            end,
+          }),
           nls.builtins.formatting.stylua,
           nls.builtins.formatting.fixjson.with({ filetypes = { "jsonc" } }),
-          nls.builtins.formatting.eslint_d,
-          nls.builtins.formatting.rome,
           nls.builtins.diagnostics.shellcheck,
           nls.builtins.formatting.shfmt,
-          nls.builtins.diagnostics.markdownlint,
           nls.builtins.diagnostics.selene.with({
             condition = function(utils)
               return utils.root_has_file({ "selene.toml" })
@@ -132,8 +147,9 @@ return {
           nls.builtins.code_actions.gitsigns,
           nls.builtins.formatting.isort,
           nls.builtins.formatting.black,
+          nls.builtins.formatting.goimports,
         },
-        root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", ".git"),
+        root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", ".git", "Makefile"),
       })
     end,
   },
