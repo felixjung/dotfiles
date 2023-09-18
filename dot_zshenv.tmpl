@@ -1,9 +1,19 @@
 # If you come from bash you might have to change your $PATH.
-export PATH="$(brew --prefix)/bin":$HOME/.local/bin:$PATH
-export ZDOTDIR=$XDG_CONFIG_HOME/zsh
+
+{{ $brew_prefix := "" -}}
+
+{{ if eq .chezmoi.os "linux" -}}
+	{{ $brew_prefix = "/home/linuxbrew/.linuxbrew" -}}
+{{ else -}}
+	{{ $brew_prefix = "/opt/homebrew" -}}
+{{ end -}}
+
+export XDG_CONFIG_HOME="$HOME/.config"
+export PATH={{ $brew_prefix }}/bin:$HOME/.local/bin:$PATH
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
 # Go
-export GOROOT="$(brew --prefix)/opt/go/libexec"
+export GOROOT={{ $brew_prefix }}/opt/go/libexec
 export GOPATH="$HOME/{{ .dev_folder }}/Go"
 export GOFLAGS=""
 export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
