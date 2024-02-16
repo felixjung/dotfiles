@@ -1,11 +1,17 @@
 local util = require("lspconfig.util")
 local lzUtil = require("lazyvim.util")
 
-lzUtil.on_attach(function(client, _)
+lzUtil.lsp.on_attach(function(client, _)
   if client.name == "yamlls" then
     client.server_capabilities.documentFormattingProvider = true
   end
 end)
+
+local function file_exists(files)
+  return function(ctx)
+    return vim.fs.find(files, { path = ctx.filename, type = "file", upward = true })[1]
+  end
+end
 
 return {
   -- tools
@@ -21,13 +27,16 @@ return {
         -- Writing
 
         -- Go
-        "goimports",
-        "golangci-lint-langserver",
-        "golangci-lint",
+        -- "goimports",
+        -- "golangci-lint-langserver",
+        -- "golangci-lint",
+
+        -- Terraform
+        "terraform-ls",
 
         -- TypeScript and Javascript
         "deno",
-        "rome",
+        "biome",
         "prettierd",
 
         -- Shell
@@ -71,8 +80,15 @@ return {
         eslint = {
           root_dir = util.root_pattern(".eslintrc.json", ".eslintrc.js"),
         },
-        rome = {
-          root_dir = util.root_pattern("rome.json"),
+        biome = {
+          root_dir = util.root_pattern("biome.json"),
+          filetypes = {
+            "javascript",
+            "javascriptreact",
+            "typescript",
+            "typescript.tsx",
+            "typescriptreact",
+          },
         },
         html = {},
         golangci_lint_ls = {},
@@ -97,7 +113,7 @@ return {
                 enable = true,
                 singleQuote = false,
                 bracketSpacing = false,
-                prosewrap = "Preserve",
+                prosewrap = "always",
                 printWidth = 80,
               },
               validate = true,
@@ -114,43 +130,55 @@ return {
     },
   },
 
-  -- null-ls
+  -- Linters and formatters.
+
   {
-    "jose-elias-alvarez/null-ls.nvim",
-    config = function()
-      local nls = require("null-ls")
-      nls.setup({
-        debounce = 150,
-        save_after_format = true,
-        sources = {
-          nls.builtins.formatting.prettierd.with({
-            filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "markdown" },
-            condition = function(utils)
-              return utils.root_has_file({
-                ".prettierrc",
-                ".prettierrc.json",
-                ".prettierrc.js",
-                "prettier.config.js",
-                ".prettierrc.yaml",
-              })
-            end,
-          }),
-          nls.builtins.formatting.stylua,
-          nls.builtins.formatting.fixjson.with({ filetypes = { "jsonc" } }),
-          nls.builtins.diagnostics.shellcheck,
-          nls.builtins.formatting.shfmt,
-          nls.builtins.diagnostics.selene.with({
-            condition = function(utils)
-              return utils.root_has_file({ "selene.toml" })
-            end,
-          }),
-          nls.builtins.code_actions.gitsigns,
-          nls.builtins.formatting.isort,
-          nls.builtins.formatting.black,
-          nls.builtins.formatting.goimports,
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        ["markdown"] = { { "dprint", "prettierd", "prettier" } },
+        ["markdown.mdx"] = { { "dprint", "prettierd", "prettier" } },
+        ["javascript"] = { "dprint", "prettierd", "prettier" },
+        ["javascriptreact"] = { "dprint", "prettierd", "prettier" },
+        ["typescript"] = { "dprint", "prettierd", "prettier" },
+        ["typescriptreact"] = { "dprint", "prettierd", "prettier" },
+        ["go"] = { "goimports" },
+        ["terraform"] = { "terraform_fmt" },
+      },
+      formatters = {
+        prettierd = {
+          condition = file_exists({ ".prettierrc", ".prettierrc.js", "prettier.config.js", ".prettierrc.json" }),
         },
-        root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", ".git", "Makefile"),
-      })
-    end,
+        prettier = {
+          condition = file_exists({ ".prettierrc", ".prettierrc.js", "prettier.config.js", ".prettierrc.json" }),
+        },
+        dprint = {
+          condition = file_exists({ "dprint.json", "dprint.jsonc", ".dprint.json", ".dprint.jsonc" }),
+        },
+      },
+    },
+  },
+  {
+    "mfussenegger/nvim-lint",
+    opts = {
+      events = { "BufWritePost", "BufReadPost", "InsertLeave" },
+      linters_by_ft = {
+        lua = { "selene", "luacheck" },
+        markdown = { "markdownlint" },
+        -- go = { "golangcilint" },
+        bash = { "shellcheck " },
+      },
+      linters = {
+        -- golangcilint = {
+        --   condition = file_exists({ ".golangci.yml", ".golangci.yaml", ".golangci.toml", ".golangci.json" }),
+        -- },
+        selene = {
+          condition = file_exists({ "selene.toml" }),
+        },
+        luacheck = {
+          condition = file_exists({ ".luacheckrc" }),
+        },
+      },
+    },
   },
 }

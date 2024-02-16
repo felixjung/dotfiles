@@ -10,62 +10,22 @@ return {
   { "goolord/alpha-nvim", enabled = false },
   {
     "nvim-lualine/lualine.nvim",
+    dependencies = {
+      { "felixjung/tokyonight-lualine", dev = true },
+    },
     opts = function()
       local icons = require("lazyvim.config").icons
       local Util = require("lazyvim.util")
-      local colors = require("tokyonight.colors").setup({ transform = true })
-      local config = require("tokyonight.config").options
-
-      local tokyonight = {}
-
-      tokyonight.normal = {
-        a = { bg = colors.bg_statusline, fg = colors.blue },
-        b = { bg = colors.bg_statusline, fg = colors.fg_sidebar },
-        c = { bg = colors.bg_statusline, fg = colors.fg_sidebar },
-        z = { bg = colors.bg_statusline, fg = colors.fg_sidebar },
+      local colors = {
+        [""] = Util.ui.fg("Special"),
+        ["Normal"] = Util.ui.fg("Special"),
+        ["Warning"] = Util.ui.fg("DiagnosticError"),
+        ["InProgress"] = Util.ui.fg("DiagnosticWarn"),
       }
-
-      tokyonight.insert = {
-        a = { bg = colors.bg_statusline, fg = colors.green },
-        z = { bg = colors.bg_statusline, fg = colors.fg_sidebar },
-      }
-
-      tokyonight.command = {
-        a = { bg = colors.bg_statusline, fg = colors.yellow },
-        z = { bg = colors.bg_statusline, fg = colors.fg_sidebar },
-      }
-
-      tokyonight.visual = {
-        a = { bg = colors.bg_statusline, fg = colors.magenta },
-        z = { bg = colors.bg_statusline, fg = colors.fg_sidebar },
-      }
-
-      tokyonight.replace = {
-        a = { bg = colors.bg_statusline, fg = colors.red },
-        z = { bg = colors.bg_statusline, fg = colors.fg_sidebar },
-      }
-
-      tokyonight.terminal = {
-        a = { bg = colors.bg_statusline, fg = colors.green1 },
-        z = { bg = colors.bg_statusline, fg = colors.fg_sidebar },
-      }
-
-      tokyonight.inactive = {
-        a = { bg = colors.bg_statusline, fg = colors.blue },
-        b = { bg = colors.bg_statusline, fg = colors.fg_sidebar, gui = "bold" },
-        c = { bg = colors.bg_statusline, fg = colors.fg_gutter },
-        z = { bg = colors.bg_statusline, fg = colors.fg_gutter },
-      }
-
-      if config.lualine_bold then
-        for _, mode in pairs(tokyonight) do
-          mode.a.gui = "bold"
-        end
-      end
 
       return {
         options = {
-          theme = tokyonight,
+          theme = "tokyonight-fixed",
           globalstatus = true,
           disabled_filetypes = { statusline = { "alpha" } },
           component_separators = " ",
@@ -107,13 +67,11 @@ return {
           },
           lualine_y = {
             {
-              function()
-                return require("noice").api.status.mode.get()
-              end,
+              require("noice").api.status.mode.get,
               cond = function()
                 return package.loaded["noice"] and require("noice").api.status.mode.has()
               end,
-              color = Util.fg("Constant"),
+              color = Util.ui.fg("Constant"),
             },
             {
               function()
@@ -122,7 +80,7 @@ return {
               cond = function()
                 return package.loaded["dap"] and require("dap").status() ~= ""
               end,
-              color = Util.fg("Debug"),
+              color = Util.ui.fg("Debug"),
             },
             {
               "diff",

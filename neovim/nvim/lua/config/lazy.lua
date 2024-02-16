@@ -12,15 +12,26 @@ require("lazy").setup({
     { import = "plugins" },
     { import = "lazyvim.plugins.extras.lang.typescript" },
     { import = "lazyvim.plugins.extras.lang.json" },
+    { import = "lazyvim.plugins.extras.coding.copilot" },
   },
   defaults = {
     lazy = false,
     version = false, -- always use the latest git commit
   },
   install = { colorscheme = { "tokyonight" } },
-  checker = { enabled = false }, -- automatically check for plugin updates
+  checker = { enabled = false },
+  opts = {
+    dev = {
+      path = "~/Developer/neovim-plugins",
+      patterns = "felixjung",
+      fallback = false,
+    },
+  },
   performance = {
     rtp = {
+      paths = {
+        "~/Developer/neovim-plugins/felixjung/tokyonight-lualine",
+      },
       -- disable some rtp plugins
       disabled_plugins = {
         "gzip",

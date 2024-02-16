@@ -1,3 +1,4 @@
+zplug "plugins/asdf", from:oh-my-zsh
 zplug "denysdovhan/spaceship-zsh-theme", use:spaceship.zsh, from:github, as:theme
 zplug "plugins/git", from:oh-my-zsh
 zplug "plugins/kubectl", from:oh-my-zsh
