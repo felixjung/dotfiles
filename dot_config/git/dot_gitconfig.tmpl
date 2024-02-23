@@ -1,14 +1,13 @@
 [credential "https://github.com"]
-	helper = 
+	helper =
 	helper = !/home/linuxbrew/.linuxbrew/Cellar/gh/2.29.0/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = 
+	helper =
 	helper = !/home/linuxbrew/.linuxbrew/Cellar/gh/2.29.0/bin/gh auth git-credential
 [user]
-	email = jung.felix@gmail.com
-	name = Felix Jung
+	email = {{ .email | quote }}
+	name = {{ .name | quote }}
 [core]
-	editor = nvim
 	excludesfile = ~/.gitignore
 [push]
 	default = simple
