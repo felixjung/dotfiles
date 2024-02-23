@@ -1,6 +1,6 @@
 # The MIT License (MIT)
 #
-# Copyright (c) 2022 Junegunn Choi
+# Copyright (c) 2024 Junegunn Choi
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -19,6 +19,9 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
+
+# shellcheck disable=SC2039
+[[ $0 = - ]] && return
 
 if [[ $# -eq 1 ]]; then
   branches() {
@@ -133,7 +136,7 @@ fi
 
 _fzf_git_files() {
   _fzf_git_check || return
-  (git -c color.status=always status --short
+  (git -c color.status=always status --short --no-branch
    git ls-files | grep -vxFf <(git status -s | grep '^[^?]' | cut -c4-; echo :) | sed 's/^/   /') |
   _fzf_git_fzf -m --ansi --nth 2..,.. \
     --border-label '📁 Files' \
@@ -156,8 +159,8 @@ _fzf_git_branches() {
     --no-hscroll \
     --bind 'ctrl-/:change-preview-window(down,70%|hidden|)' \
     --bind "ctrl-o:execute-silent:bash $__fzf_git branch {}" \
-    --bind "alt-a:change-prompt(🌳 All branches> )+reload:bash \"$__fzf_git\" all-branches" \
-    --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(auto)%cd %h%d %s" $(sed s/^..// <<< {} | cut -d" " -f1)' "$@" |
+    --bind "alt-a:change-border-label(🌳 All branches)+reload:bash \"$__fzf_git\" all-branches" \
+    --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(auto)%cd %h%d %s" $(sed s/^..// <<< {} | cut -d" " -f1) --' "$@" |
   sed 's/^..//' | cut -d' ' -f1
 }
 
@@ -192,7 +195,7 @@ _fzf_git_remotes() {
     --header $'CTRL-O (open in browser)\n\n' \
     --bind "ctrl-o:execute-silent:bash $__fzf_git remote {1}" \
     --preview-window right,70% \
-    --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(auto)%cd %h%d %s" {1}/"$(git rev-parse --abbrev-ref HEAD)"' "$@" |
+    --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(auto)%cd %h%d %s" {1}/"$(git rev-parse --abbrev-ref HEAD)" --' "$@" |
   cut -d$'\t' -f1
 }
 
@@ -201,9 +204,17 @@ _fzf_git_stashes() {
   git stash list | _fzf_git_fzf \
     --border-label '🥡 Stashes' \
     --header $'CTRL-X (drop stash)\n\n' \
-    --bind 'ctrl-x:execute-silent(git stash drop {1})+reload(git stash list)' \
+    --bind 'ctrl-x:reload(git stash drop -q {1}; git stash list)' \
     -d: --preview 'git show --color=always {1}' "$@" |
   cut -d: -f1
+}
+
+_fzf_git_lreflogs() {
+  _fzf_git_check || return
+  git reflog --color=always --format="%C(blue)%gD %C(yellow)%h%C(auto)%d %gs" | _fzf_git_fzf --ansi \
+    --border-label '📒 Reflogs' \
+    --preview 'git show --color=always {1}' "$@" |
+  awk '{print $1}'
 }
 
 _fzf_git_each_ref() {
@@ -219,9 +230,23 @@ _fzf_git_each_ref() {
     --bind 'ctrl-/:change-preview-window(down,70%|hidden|)' \
     --bind "ctrl-o:execute-silent:bash $__fzf_git {1} {2}" \
     --bind "alt-e:execute:${EDITOR:-vim} <(git show {2}) > /dev/tty" \
-    --bind "alt-a:change-prompt(🍀 Every ref> )+reload:bash \"$__fzf_git\" all-refs" \
-    --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(auto)%cd %h%d %s" {2}' "$@" |
+    --bind "alt-a:change-border-label(🍀 Every ref)+reload:bash \"$__fzf_git\" all-refs" \
+    --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(auto)%cd %h%d %s" {2} --' "$@" |
   awk '{print $2}'
+}
+
+_fzf_git_worktrees() {
+  _fzf_git_check || return
+  git worktree list | _fzf_git_fzf \
+    --border-label '🌴 Worktrees' \
+    --header $'CTRL-X (remove worktree)\n\n' \
+    --bind 'ctrl-x:reload(git worktree remove {1} > /dev/null; git worktree list)' \
+    --preview '
+      git -c color.status=always -C {1} status --short --branch
+      echo
+      git log --oneline --graph --date=short --color=always --pretty="format:%C(auto)%cd %h%d %s" {2} --
+    ' "$@" |
+  awk '{print $1}'
 }
 
 if [[ -n "${BASH_VERSION:-}" ]]; then
@@ -251,7 +276,7 @@ elif [[ -n "${ZSH_VERSION:-}" ]]; then
     done
   }
 fi
-__fzf_git_init files branches tags remotes hashes stashes each_ref
+__fzf_git_init files branches tags remotes hashes stashes lreflogs each_ref worktrees
 
 # -----------------------------------------------------------------------------
 fi
