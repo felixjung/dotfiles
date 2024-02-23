@@ -11,9 +11,3 @@
 export XDG_CONFIG_HOME="$HOME/.config"
 export PATH={{ $brew_prefix }}/bin:$HOME/.local/bin:$PATH
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-
-# Go
-export GOROOT={{ $brew_prefix }}/opt/go/libexec
-export GOPATH="$HOME/{{ .dev_folder }}/Go"
-export GOFLAGS=""
-export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
