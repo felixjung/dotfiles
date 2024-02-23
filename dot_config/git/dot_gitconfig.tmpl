@@ -1,9 +1,7 @@
 [credential "https://github.com"]
-	helper =
-	helper = !/home/linuxbrew/.linuxbrew/Cellar/gh/2.29.0/bin/gh auth git-credential
+	helper = /usr/bin/env gh auth git-credential
 [credential "https://gist.github.com"]
-	helper =
-	helper = !/home/linuxbrew/.linuxbrew/Cellar/gh/2.29.0/bin/gh auth git-credential
+	helper = /usr/bin/env gh auth git-credential
 [user]
 	email = {{ .email | quote }}
 	name = {{ .name | quote }}
@@ -22,7 +20,6 @@
 	tree = log --all --graph --decorate --oneline --simplify-by-decoration
 	stats = shortlog -sn
 	sync = remote update --prune
-
 [tig "color"]
 	cursor = color15 red bold
 	title-blur = color0 color5
