@@ -2,6 +2,6 @@
 
 .config/zsh/oh-my-zsh/cache/**
 .config/zsh/oh-my-zsh/.github/**
-.config/zsh/oh-my-zsh/custom/themes/spaceship-prompt/**/*.zwc
+.config/zsh/oh-my-zsh/themes/**
 
-.config/nvim/plugin/packer_compiled.lua
+.config/tmux/plugins/**

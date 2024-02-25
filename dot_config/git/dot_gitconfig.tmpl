@@ -4,7 +4,7 @@
 	helper = /usr/bin/env gh auth git-credential
 [user]
 	email = {{ .email | quote }}
-	name = {{ .name | quote }}
+	name = {{ .full_name | quote }}
 [core]
 	excludesfile = ~/.gitignore
 [push]
