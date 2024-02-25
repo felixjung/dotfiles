@@ -1,2 +1,0 @@
-//registry.npmjs.org/:_authToken=${NPM_TOKEN}
-scripts-prepend-node-path=true

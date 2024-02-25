@@ -1,4 +1,0 @@
-# Force macOS Sierra to use Keychain. Put at bottom of file.
-Host *
-  UseKeychain yes
-  AddKeysToAgent yes

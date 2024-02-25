@@ -1,5 +1,0 @@
-nvim/autoload/*
-nvim/plugs/*
-nvim/undo/*
-nvim/tags
-nvim/yankring_history*
