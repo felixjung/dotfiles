@@ -1,0 +1,130 @@
+#!/usr/bin/env bash
+
+{{ $taps := list
+	"hashicorp/tap"
+	"derailed/k9s" -}}
+
+{{ if eq .chezmoi.os "darwin" -}}
+$taps = concat taps (list
+	"datawire/blackbird"
+	"homebrew/bundle"
+	"homebrew/cask"
+	"homebrew/cask-fonts"
+	"homebrew/cask-versions"
+	"homebrew/core"
+	"homebrew/services"
+	"wez/wezterm")
+{{ end -}}
+
+{{ $brews := list
+	"bat"
+	"coreutils"
+	"exa"
+	"grep"
+	"ripgrep"
+	"gzip"
+	"highlight"
+	"gnu-sed"
+	"up"
+	"delta"
+	"fzf"
+
+	"bash"
+	"zsh"
+	"tmux"
+
+	"neovim"
+
+	"asdf"
+
+	"protobuf"
+	"tanka"
+	"jsonnet-bundler"
+
+	"pgformatter"
+
+	"rust"
+	"rustup-init"
+
+	"terraform"
+	"hashicorp/tap/terraform-ls"
+
+	"git"
+	"git-lfs"
+	"tig"
+	"gh"
+
+	"httpie"
+
+	"docker"
+	"docker-compose"
+	"docker-buildx"
+	"docker-credential-helper"
+
+	"awscli"
+
+	"kubernetes-cli"
+	"helm"
+	"derailed/k9s/k9s" -}}
+
+{{ $casks := list
+	"1password"
+	"alfred"
+	"bartender"
+	"cheatsheet"
+	"dash"
+	"figma"
+	"firefox"
+	"font-hack"
+	"imageoptim"
+	"nightowl"
+	"rocket"
+	"setapp"
+	"slack"
+	"soundcleod"
+	"transmit"
+	"typora"
+	"viscosity"
+	"visual-studio-code-insiders"
+	"rectangle"
+	"raycast"
+	"\"wezterm\" --no-quarantine" -}}
+
+{{ $mas := list
+	"\"Kindle\", id: 405399194"
+	"\"Pastebot\", id: 1179623856"
+	"\"Fantastical\", id: 975937182"
+	"\"Napkin\", id: 581789185"
+	"\"Keynote\", id: 409183694"
+	"\"Things\", id: 904280696"
+	"\"Deliveries\", id: 924726344"
+	"\"Tweetbot\", id: 1384080005"
+	"\"Pixelmator Pro\", id: 1289583905"
+	"\"Divvy\", id: 413857545"
+	"\"Gapplin\", id: 768053424" -}}
+
+brew bundle --no-lock --file=/dev/stdin <<EOF
+# Taps
+{{ range ($taps | sortAlpha | uniq) -}}
+tap "{{ . }}"
+{{ end -}}
+
+{{ if eq .chezmoi.os "darwin" -}}
+# Casks
+cask_args appdir: "/Applications"
+
+{{ range ($casks | sortAlpha | uniq) -}}
+cask "{{ . }}"
+{{ end -}}
+
+# Mac App Store Apps
+{{ range ($mas | sortAlpha | uniq) -}}
+mas "{{ . }}"
+{{ end -}}
+{{ end -}}
+
+# Packages
+{{ range ($brews | sortAlpha | uniq) -}}
+brew "{{ . }}"
+{{ end -}}
+EOF
