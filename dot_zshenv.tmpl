@@ -1,0 +1,13 @@
+# If you come from bash you might have to change your $PATH.
+
+{{ $brew_prefix := "" -}}
+
+{{ if eq .chezmoi.os "linux" -}}
+	{{ $brew_prefix = "/home/linuxbrew/.linuxbrew" -}}
+{{ else -}}
+	{{ $brew_prefix = "/opt/homebrew" -}}
+{{ end -}}
+
+export XDG_CONFIG_HOME="$HOME/.config"
+export PATH={{ $brew_prefix }}/bin:$HOME/.local/bin:$PATH
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"

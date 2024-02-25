@@ -1,0 +1,95 @@
+###
+# Initialization configuration
+###
+
+# Load completions from homebrew.
+FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+###
+# oh-my-zsh
+###
+
+export ZSH="$ZDOTDIR/oh-my-zsh"
+
+ZSH_THEME="spaceship-prompt/spaceship"
+
+CASE_SENSITIVE="true"
+
+zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+plugins=(git,asdf,jump,kubectl)
+
+source $ZSH/oh-my-zsh.sh
+
+###
+# Options
+###
+
+setopt extended_glob
+
+###
+# User configuration
+###
+
+export LANG=en_US.UTF-8
+
+export EDITOR='nvim'
+
+export HOMEBREW_NO_ENV_HINTS=false
+
+export ASDF_CONFIG_FILE="$XDG_CONFIG_HOME/.asdfrc"
+
+# Application-specific environment variables.
+export NVIM_ROOT="$XDG_CONFIG_HOME/nvim"
+
+###
+# Tooling configuration
+###
+
+# fzf
+# Filter with ag to respect gitignore
+export FZF_DEFAULT_COMMAND='rg --files --hidden --ignore-file ~/.ignore'
+
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+        --color=fg:#c0caf5,bg:#24283b,hl:#bb9af7
+        --color=fg+:#c0caf5,bg+:#24283b,hl+:#7dcfff
+        --color=info:#7aa2f7,prompt:#7dcfff,pointer:#7dcfff
+        --color=marker:#9ece6a,spinner:#9ece6a,header:#9ece6a'
+
+source "$XDG_CONFIG_HOME/fzf/fzf-git.sh"
+
+# Load 1Password CLI plugin configs
+source "$XDG_CONFIG_HOME/op/plugins.sh"
+
+# Go
+source "$XDG_CONFIG_HOME/go/config.sh"
+
+# JavaScript
+source "$XDG_CONFIG_HOME/npm/config.sh"
+
+###
+# Aliases
+###
+
+# Easy access to find utility
+ff() {
+  find . -iname '*$1*'
+}
+alias ffr='find -E . -iregex '
+
+# Access zsh configuration
+alias zshconfig='vim ~/.zshrc'
+
+# System monitoring
+alias top-cpu='top -n 10 -o cpu -O time -stats pid,command,cpu,cpu_me,time,threads,ports'
+alias ls='exa'
+alias ll='ls -l'
+alias tree='ls --tree --level 2'
+alias j='jump'
+
+# Tmux
+alias tmuxa='tmux attach-session -t '
+alias tmuxl='tmux list-sessions'

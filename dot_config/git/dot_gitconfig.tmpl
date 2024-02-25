@@ -1,0 +1,26 @@
+[credential "https://github.com"]
+	helper = /usr/bin/env gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = /usr/bin/env gh auth git-credential
+[user]
+	email = {{ .email | quote }}
+	name = {{ .name | quote }}
+[core]
+	excludesfile = ~/.gitignore
+[push]
+	default = simple
+[mergetool]
+	keepBackup = true
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+[alias]
+	latest-commits = log -5 --pretty --oneline
+	list-branches = for-each-ref --count=30 --sort=-committerdate refs/heads/ --format='%(refname:short)'
+	tree = log --all --graph --decorate --oneline --simplify-by-decoration
+	stats = shortlog -sn
+	sync = remote update --prune
+[tig "color"]
+	cursor = color15 red bold
+	title-blur = color0 color5
+	title-focus = color0 color5 bold
