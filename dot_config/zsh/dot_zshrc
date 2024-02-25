@@ -67,6 +67,9 @@ source "$XDG_CONFIG_HOME/op/plugins.sh"
 # Go
 source "$XDG_CONFIG_HOME/go/config.sh"
 
+# JavaScript
+source "$XDG_CONFIG_HOME/npm/config.sh"
+
 ###
 # Aliases
 ###

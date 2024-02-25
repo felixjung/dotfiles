@@ -1,0 +1,4 @@
+//registry.npmjs.org/:_authToken=$NPM_ACCESS_TOKEN
+scripts-prepend-node-path=true
+//npm.pkg.github.com/:_authToken=$SUMUP_GITHUB_NPM_REGISTRY
+@sumup:registry=https://npm.pkg.github.com/
