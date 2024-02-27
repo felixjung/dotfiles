@@ -1,3 +1,3 @@
---theme="$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo tokyonight_storm || echo tokyonight_day)"
+--theme="tokyonight_storm"
 
 --italic-text=always
