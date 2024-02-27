@@ -1,0 +1,1 @@
+set -U HOMEBREW_NO_ENV_HINTS false
