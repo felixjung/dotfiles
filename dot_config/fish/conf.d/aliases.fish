@@ -2,7 +2,6 @@ alias top-cpu='top -n 10 -o cpu -O time -stats pid,command,cpu,cpu_me,time,threa
 alias ls='exa'
 alias ll='ls -l'
 alias tree='ls --tree --level 2'
-alias j='jump'
 
 # Tmux
 alias tmuxa='tmux attach-session -t '
