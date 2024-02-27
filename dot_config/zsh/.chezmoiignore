@@ -1,0 +1,6 @@
+.zsh_history
+
+oh-my-zsh/cache/**
+oh-my-zsh/.github/**
+oh-my-zsh/custom/themes/**
+
