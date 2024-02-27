@@ -60,16 +60,27 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 source "$XDG_CONFIG_HOME/fzf/fzf-git.sh"
 
 # asdf
-source "$XDG_CONFIG_HOME/asdf/config.sh"
+export ASDF_DATA_DIR="$HOME/.asdf"
+export ASDF_CONFIG_FILE="$XDG_CONFIG_HOME/asdf/.asdfrc"
 
 # Load 1Password CLI plugin configs
 source "$XDG_CONFIG_HOME/op/plugins.sh"
 
 # Go
-source "$XDG_CONFIG_HOME/go/config.sh"
+# Populates $GOROOT and adds a zsh hook to re-configure
+# it based on the working directory.
+source "$ASDF_DATA_DIR/plugins/golang/set-env.zsh"
+
+export GOPATH="$HOME/Development/Go"
+export GOFLAGS=""
+export PATH=$PATH:$GOROOT/bin
+export PATH=$PATH:$GOPATH/bin
 
 # JavaScript
-source "$XDG_CONFIG_HOME/npm/config.sh"
+export SUMUP_GITHUB_NPM_REGISTRY="op://Private/NPM Registry GitHub Personal Access Token/token"
+export NPM_ACCESS_TOKEN="op://Private/npm Access Token/token"
+
+alias npm="op run -- npm"
 
 ###
 # Aliases
