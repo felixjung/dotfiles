@@ -1,0 +1,119 @@
+packages:
+  darwin:
+    brews:
+      - "bat"
+      - "coreutils"
+      - "exa"
+      - "grep"
+      - "ripgrep"
+      - "gzip"
+      - "highlight"
+      - "gnu-sed"
+      - "up"
+      - "delta"
+      - "fzf"
+      - "mas"
+
+      - "zsh"
+      - "fish"
+      - "starship"
+      - "tmux"
+
+      - "neovim"
+      - "asdf"
+
+      - "protobuf"
+      - "tanka"
+      - "jsonnet-bundler"
+
+      - "pgformatter"
+
+      - "rust"
+      - "rustup-init"
+
+      - "git"
+      - "gh"
+      - "git-lfs"
+      - "tig"
+
+      - "httpie"
+
+      - "docker"
+      - "docker-compose"
+      - "docker-buildx"
+      - "docker-credential-helper"
+
+      - "awscli"
+
+      - "terraform"
+      - "hashicorp/tap/terraform-ls"
+
+      - "kubernetes-cli"
+      - "helm"
+      - "derailed/k9s/k9s"
+    casks:
+      - "1password"
+      - "alfred"
+      - "figma"
+      - "font-hack"
+      - "imageoptim"
+      - "rocket"
+      - "setapp"
+      - "slack"
+      - "typora"
+      - "visual-studio-code-insiders"
+      - "raycast"
+      - "wezterm"
+    mas:
+      - name: Fantastical
+        id: 975937182
+      - name: "Things"
+        id: 904280696
+      - name: "Pixelmator Pro"
+        id: 1289583905
+  linux:
+    brews:
+      - "bat"
+      - "exa"
+      - "ripgrep"
+      - "up"
+      - "delta"
+      - "fzf"
+
+      - "zsh"
+      - "fish"
+      - "starship"
+      - "tmux"
+
+      - "neovim"
+      - "asdf"
+
+      - "protobuf"
+      - "tanka"
+      - "jsonnet-bundler"
+
+      - "pgformatter"
+
+      - "rust"
+      - "rustup-init"
+
+      - "git"
+      - "gh"
+      - "git-lfs"
+      - "tig"
+
+      - "httpie"
+
+      - "docker"
+      - "docker-compose"
+      - "docker-buildx"
+      - "docker-credential-helper"
+
+      - "awscli"
+
+      - "terraform"
+      - "hashicorp/tap/terraform-ls"
+
+      - "kubernetes-cli"
+      - "helm"
+      - "derailed/k9s/k9s"
