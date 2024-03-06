@@ -1,6 +1,7 @@
 packages:
   darwin:
     brews:
+      - "age"
       - "bat"
       - "coreutils"
       - "exa"
