@@ -71,11 +71,6 @@ source "$XDG_CONFIG_HOME/op/plugins.sh"
 # it based on the working directory.
 source "$ASDF_DATA_DIR/plugins/golang/set-env.zsh"
 
-export GOPATH="$HOME/Developer/Go"
-export GOFLAGS=""
-export PATH=$PATH:$GOROOT/bin
-export PATH=$PATH:$GOPATH/bin
-
 # JavaScript
 export SUMUP_GITHUB_NPM_REGISTRY="op://Private/NPM Registry GitHub Personal Access Token/token"
 export NPM_ACCESS_TOKEN="op://Private/npm Access Token/token"
