@@ -3,15 +3,17 @@ packages:
     brews:
       - "age"
       - "bat"
+      - "dasel"
       - "coreutils"
-      - "exa"
+      - "eza"
       - "grep"
       - "ripgrep"
       - "gzip"
       - "highlight"
       - "gnu-sed"
       - "up"
-      - "delta"
+      - "git-delta"
+      - "difftastic"
       - "fzf"
       - "mas"
 
@@ -28,6 +30,7 @@ packages:
       - "jsonnet-bundler"
 
       - "pgformatter"
+      - "pgcli"
 
       - "rust"
       - "rustup-init"
@@ -75,7 +78,7 @@ packages:
   linux:
     brews:
       - "bat"
-      - "exa"
+      - "eza"
       - "ripgrep"
       - "up"
       - "delta"
