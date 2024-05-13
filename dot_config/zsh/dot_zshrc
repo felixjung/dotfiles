@@ -72,8 +72,8 @@ source "$XDG_CONFIG_HOME/op/plugins.sh"
 source "$ASDF_DATA_DIR/plugins/golang/set-env.zsh"
 
 # JavaScript
-export SUMUP_GITHUB_NPM_REGISTRY="op://Private/NPM Registry GitHub Personal Access Token/token"
-export NPM_ACCESS_TOKEN="op://Private/npm Access Token/token"
+export SUMUP_GITHUB_NPM_REGISTRY="op://SumUp/NPM Registry GitHub Personal Access Token/token"
+export NPM_ACCESS_TOKEN="op://SumUp/npm Access Token/token"
 
 alias npm="op run -- npm"
 
