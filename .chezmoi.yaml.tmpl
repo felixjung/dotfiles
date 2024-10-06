@@ -3,7 +3,8 @@
 {{ $dev_folder := promptString "Dev Folder" -}}
 
 git:
-    autoPush: true
+    autoPush: false
+		autoCommit: false
 
 data:
     email: {{ $email | quote }}

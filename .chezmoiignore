@@ -5,3 +5,5 @@
 .config/zsh/oh-my-zsh/custom/themes/**
 
 .config/tmux/plugins/**
+LICENSE
+README.md

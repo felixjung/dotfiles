@@ -1,5 +1,5 @@
-local util = require("lspconfig.util")
 local conform_util = require("conform.util")
+local util = require("lspconfig.util")
 
 local function file_exists(files)
   return function(ctx)
@@ -10,37 +10,9 @@ end
 return {
   -- tools
   {
-    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
     opts = {
-      ensure_installed = {
-        -- Lua
-        "stylua",
-        "luacheck",
-        "lua-language-server",
-        "selene",
-
-        -- SQL
-        "sqlfmt",
-
-        -- Writing
-
-        -- Go
-        -- "goimports",
-        -- "golangci-lint-langserver",
-        -- "golangci-lint",
-
-        -- Terraform
-        "terraform-ls",
-
-        -- TypeScript and Javascript
-        "deno",
-        "biome",
-        "prettierd",
-
-        -- Shell
-        "shellcheck",
-        "shfmt",
-      },
+      automatic_installation = true,
     },
   },
 
@@ -69,6 +41,12 @@ return {
         bashls = {},
         cssls = {},
         dockerls = {},
+        typos_lsp = {
+          init_options = {
+            config = "~/.config/typos/typos.toml",
+            diagnosticSeverity = "Warning",
+          },
+        },
         tsserver = {
           root_dir = util.root_pattern("tsconfig.json"),
         },
@@ -89,7 +67,6 @@ return {
           },
         },
         html = {},
-        golangci_lint_ls = {},
         gopls = {},
         terraformls = {},
         rust_analyzer = {
@@ -117,11 +94,34 @@ return {
               validate = true,
               completion = true,
               schemaStore = {
+                url = "https://www.schemastore.org/api/json/catalog.json",
                 enable = true,
               },
               schemas = {
-                ["https://spec.openapis.org/oas/3.1/schema/2021-03-02"] = "/*.openapi.yaml",
+                ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+                ["https://json.schemastore.org/prettierrc"] = ".prettierrc",
+                ["https://json.schemastore.org/tsconfig"] = "tsconfig*.json",
+                ["https://json.schemastore.org/vscode"] = ".vscode/settings.json",
               },
+            },
+          },
+        },
+        jsonnet_ls = {
+          settings = {
+            formatting = {
+              -- default values
+              Indent = 2,
+              MaxBlankLines = 2,
+              StringStyle = "single",
+              CommentStyle = "slash",
+              PrettyFieldNames = true,
+              PadArrays = false,
+              PadObjects = true,
+              SortImports = false,
+              UseImplicitPlus = true,
+              StripEverything = false,
+              StripComments = false,
+              StripAllButComments = false,
             },
           },
         },
@@ -140,40 +140,38 @@ return {
         ["markdown"] = { { "dprint", "prettierd", "prettier" } },
         ["markdown.mdx"] = { { "dprint", "prettierd", "prettier" } },
         ["javascript"] = { "dprint", "prettierd", "prettier" },
-        ["yaml"] = { "prettierd", "prettier" },
+        -- ["yaml"] = { "prettierd", "prettier" },
         ["javascriptreact"] = { "dprint", "prettierd", "prettier" },
         ["typescript"] = { "dprint", "prettierd", "prettier" },
         ["typescriptreact"] = { "dprint", "prettierd", "prettier" },
         ["go"] = { "goimports" },
         ["terraform"] = { "terraform_fmt" },
-        ["sql"] = { "sqlfluff" },
       },
       formatters = {
         prettierd = {
-          condition = file_exists({ ".prettierrc", ".prettierrc.js", "prettier.config.js", ".prettierrc.json" }),
+          condition = file_exists({
+            ".prettierrc",
+            ".prettierrc.js",
+            "prettier.config.js",
+            ".prettierrc.json",
+          }),
         },
         prettier = {
-          condition = file_exists({ ".prettierrc", ".prettierrc.js", "prettier.config.js", ".prettierrc.json" }),
+          condition = file_exists({
+            ".prettierrc",
+            ".prettierrc.js",
+            "prettier.config.js",
+            ".prettierrc.json",
+          }),
         },
         dprint = {
-          condition = file_exists({ "dprint.json", "dprint.jsonc", ".dprint.json", ".dprint.jsonc" }),
+          condition = file_exists({
+            "dprint.json",
+            "dprint.jsonc",
+            ".dprint.json",
+            ".dprint.jsonc",
+          }),
         },
-        sqlfluff = {
-          condition = false,
-        },
-        -- sqlfluff = {
-        --   stdin = true,
-        --   args = {
-        --     "fix",
-        --     "--dialect",
-        --     "postgres",
-        --     "--config",
-        --     "/Users/felix/Developer/merchants/internal/repository/platform2/sql/.sqlfluff",
-        --     "--force",
-        --     "-",
-        --   },
-        --   condition = file_exists({ ".sqlfluff" }),
-        -- },
       },
     },
   },
@@ -185,9 +183,8 @@ return {
         lua = { "selene", "luacheck" },
         markdown = { "markdownlint" },
         fish = { "fish" },
-        -- go = { "golangcilint" },
-        bash = { "shellcheck " },
-        sql = { "sqlfluff" },
+        go = { "golangcilint" },
+        bash = { "shellcheck" },
       },
       linters = {
         selene = {
@@ -195,9 +192,6 @@ return {
         },
         luacheck = {
           condition = file_exists({ ".luacheckrc" }),
-        },
-        sqlfluff = {
-          condition = false,
         },
       },
     },

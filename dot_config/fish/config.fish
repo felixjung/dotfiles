@@ -1,7 +1,10 @@
-starship init fish | source
+if status --is-interactive
+    starship init fish | source
 
-# TODO: support dark mode
-fish_config theme choose "TokyoNight Storm"
+    update_theme
 
-# Hide greeting message
-set -g fish_greeting
+    fish_vi_key_bindings
+
+    # Hide greeting message
+    set -g fish_greeting
+end

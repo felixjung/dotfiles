@@ -1,0 +1,54 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "ui_font_size": 14,
+  "buffer_font_size": 12,
+  "buffer_font_family": "Operator Mono SSm Lig",
+  "buffer_font_weight": 100,
+  "terminal": {
+    "font_family": "Operator Mono SSm Lig",
+    "font_weight": 100,
+    "dock": "right",
+    "blinking": "off"
+  },
+  "tab_bar": {
+    "show_nav_history_buttons": false,
+    "show": false
+  },
+  "indent_guides": {
+    "enabled": true,
+    "line_width": 1,
+    "active_line_width": 2,
+    "coloring": "indent_aware",
+    "background_coloring": "disabled"
+  },
+  "vim_mode": true,
+  "theme": {
+    "mode": "system",
+    "light": "Tokyo Night Day",
+    "dark": "Tokyo Night Storm"
+  },
+  "cursor_blink": false,
+  "cursor_shape": "underscore",
+  "lsp": {
+    "gopls": {
+      "initialization_options": {
+        "hints": {
+          "assignVariableTypes": true,
+          "compositeLiteralFields": true,
+          "compositeLiteralTypes": true,
+          "constantValues": true,
+          "functionTypeParameters": true,
+          "parameterNames": true,
+          "rangeVariableTypes": true
+        }
+      }
+    }
+  }
+}
