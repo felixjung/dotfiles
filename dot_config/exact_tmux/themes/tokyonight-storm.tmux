@@ -2,4 +2,4 @@
 
 set -g @theme_variation "storm"
 
-run-shell "$HOME/.tmux/plugins/tmux-tokyonight/src/theme.sh"
+run-shell "$XDG_CONFIG_HOME/tmux/plugins/tmux-tokyonight/src/theme.sh"

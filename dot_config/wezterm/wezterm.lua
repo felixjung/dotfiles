@@ -8,9 +8,9 @@ end
 
 local function scheme_for_appearance(appearance)
 	if appearance:find("Light") then
-		return "TokyonightDay"
+		return "tokyonight_day"
 	else
-		return "TokyonightStorm"
+		return "tokyonight_storm"
 	end
 end
 
@@ -29,9 +29,16 @@ return {
 	-- Behavior
 	window_close_confirmation = "NeverPrompt",
 
-	-- Appearance
-	-- dpi = 80.0,
+	-- Tab bar
 	enable_tab_bar = false,
+	use_fancy_tab_bar = false,
+	show_close_tab_button_in_tabs = false,
+	show_tabs_in_tab_bar = true,
+	show_tab_index_in_tab_bar = true,
+	tab_bar_at_bottom = false,
+	tab_and_split_indices_are_zero_based = true,
+
+	-- Appearance
 	default_cursor_style = "SteadyUnderline",
 	window_decorations = "RESIZE",
 	window_padding = {

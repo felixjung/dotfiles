@@ -50,8 +50,5 @@ return {
   },
   {
     "nvim-telescope/telescope.nvim",
-    keys = {
-      { "<C-p>", mode = { "n", "v" }, Util.telescope("files"), desc = "Find Files (root dir)", silent = false },
-    },
   },
 }
