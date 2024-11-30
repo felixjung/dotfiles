@@ -6,3 +6,6 @@ alias tree='ls --tree --level 2'
 # Tmux
 alias tmuxa='tmux attach-session -t '
 alias tmuxl='tmux list-sessions'
+
+# Fish
+abbr -a fish-reload-config 'source ~/.config/fish/**/*.fish'
