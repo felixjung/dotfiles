@@ -12,10 +12,9 @@ return {
   {
     "williamboman/mason-lspconfig.nvim",
     opts = {
-      automatic_installation = true,
+      automatic_installation = { exclude = { "gopls" } },
     },
   },
-
   {
     "folke/neoconf.nvim",
     cmd = "Neoconf",
@@ -67,7 +66,37 @@ return {
           },
         },
         html = {},
-        gopls = {},
+        gopls = {
+          settings = {
+            gopls = {
+              analyses = {
+                unusedparams = true,
+                fieldalignment = true,
+                nonewvars = true,
+                nilness = true,
+                shadow = true,
+                unusedwrite = true,
+                unsafeptr = true,
+                unsafetype = true,
+              },
+              staticcheck = true,
+              linksInHover = false,
+              usePlaceholders = true,
+              usePlaceholdersForGoArguments = true,
+              usePlaceholdersForFunctionCalls = true,
+              completeUnimported = true,
+              allowModfileModifications = true,
+              enhancedHover = true,
+              deepCompletion = true,
+              workspaceConfiguration = true,
+              expandWorkspaceToModule = true,
+              semanticTokens = true,
+              semanticTokensAutoEnabled = true,
+              semanticTokensRefresh = "on",
+              ["local"] = "github.com/sumup",
+            },
+          },
+        },
         terraformls = {},
         rust_analyzer = {
           settings = {
@@ -144,7 +173,7 @@ return {
         ["javascriptreact"] = { "dprint", "prettierd", "prettier" },
         ["typescript"] = { "dprint", "prettierd", "prettier" },
         ["typescriptreact"] = { "dprint", "prettierd", "prettier" },
-        ["go"] = { "goimports" },
+        -- ["go"] = { "goimports" },
         ["terraform"] = { "terraform_fmt" },
       },
       formatters = {
@@ -188,10 +217,22 @@ return {
       },
       linters = {
         selene = {
-          condition = file_exists({ "selene.toml" }),
+          condition = function(ctx)
+            local root = LazyVim.root.get({ normalize = true })
+            if root ~= vim.uv.cwd() then
+              return false
+            end
+            return vim.fs.find({ "selene.toml" }, { path = root, upward = true })[1]
+          end,
         },
         luacheck = {
-          condition = file_exists({ ".luacheckrc" }),
+          condition = function(ctx)
+            local root = LazyVim.root.get({ normalize = true })
+            if root ~= vim.uv.cwd() then
+              return false
+            end
+            return vim.fs.find({ ".luacheckrc" }, { path = root, upward = true })[1]
+          end,
         },
       },
     },
