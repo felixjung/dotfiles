@@ -1,6 +1,15 @@
 {{ if eq .chezmoi.os "darwin" -}}
 #!/usr/bin/env bash
 
+if command -v brew 2>&1 >/dev/null
+then
+	echo "Updating Homebrew..."
+	brew update
+else
+	echo "Installing Homebrew..."
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
 brew bundle --no-lock --file=/dev/stdin <<EOF
 {{ range .packages.darwin.brews -}}
 # Brews
