@@ -10,14 +10,23 @@ else
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-brew bundle --no-lock --file=/dev/stdin <<EOF
+/opt/homebrew/bin/brew bundle --no-lock --file=/dev/stdin <<EOF
 {{ range .packages.darwin.brews -}}
 # Brews
 brew {{ . | quote }}
 {{ end -}}
+{{ if eq .machine_type "work" -}}
+{{ range .packages.darwin.work_brews -}}
+brew {{ . | quote }}
+{{ end -}}
+{{ end -}}
 
 # Casks
 {{ range .packages.darwin.casks -}}
+cask {{ . | quote }}
+{{ end -}}
+{{ if eq .machine_type "work" -}}
+{{ range .packages.darwin.work_casks -}}
 cask {{ . | quote }}
 {{ end -}}
 

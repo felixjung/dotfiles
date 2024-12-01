@@ -1,6 +1,7 @@
 {{ $email := promptString "email" -}}
 {{ $full_name := promptString "Full name" -}}
 {{ $dev_folder := promptString "Dev Folder" -}}
+{{ $machine_type := promptString "Machine Type (work/personal)" -}}
 
 git:
     autoPush: false
@@ -10,4 +11,5 @@ data:
     email: {{ $email | quote }}
     full_name: {{$full_name | quote}}
     dev_folder: {{$dev_folder | quote}}
+		machine_type: {{$machine_type | quote}}
 

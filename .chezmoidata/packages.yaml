@@ -1,9 +1,22 @@
 packages:
   darwin:
+    taps:
+      - "derailed/k9s"
+      - "hashicorp/tap"
+    work_brews:
+      - "tanka"
+      - "jsonnet-bundler"
+      - "awscli"
+
+      - "hashicorp/tap/terraform"
+
+      - "kubernetes-cli"
+      - "derailed/k9s/k9s"
     brews:
       - "age"
       - "bat"
       - "dasel"
+      - "chezmoi"
       - "coreutils"
       - "eza"
       - "grep"
@@ -17,6 +30,8 @@ packages:
       - "fzf"
       - "mas"
 
+      - "1password-cli"
+
       - "zsh"
       - "fish"
       - "starship"
@@ -26,14 +41,12 @@ packages:
       - "asdf"
 
       - "protobuf"
-      - "tanka"
-      - "jsonnet-bundler"
 
       - "pgformatter"
       - "pgcli"
 
       - "rust"
-      - "rustup-init"
+      - "rustup"
 
       - "git"
       - "gh"
@@ -42,30 +55,17 @@ packages:
 
       - "httpie"
 
-      - "docker"
+      - "colima"
       - "docker-compose"
       - "docker-buildx"
       - "docker-credential-helper"
-
-      - "awscli"
-
-      - "terraform"
-      - "hashicorp/tap/terraform-ls"
-
-      - "kubernetes-cli"
-      - "helm"
-      - "derailed/k9s/k9s"
+    work_casks:
+      - "figma"
+      - "slack"
     casks:
       - "1password"
-      - "alfred"
-      - "figma"
       - "font-hack"
-      - "imageoptim"
-      - "rocket"
       - "setapp"
-      - "slack"
-      - "typora"
-      - "visual-studio-code-insiders"
       - "raycast"
       - "wezterm"
     mas:
@@ -99,25 +99,22 @@ packages:
       - "pgformatter"
 
       - "rust"
-      - "rustup-init"
+      - "rustup"
 
       - "git"
       - "gh"
       - "git-lfs"
       - "tig"
 
-      - "httpie"
-
-      - "docker"
+      - "colima"
       - "docker-compose"
       - "docker-buildx"
       - "docker-credential-helper"
+      - "httpie"
 
       - "awscli"
 
-      - "terraform"
-      - "hashicorp/tap/terraform-ls"
+      - "hashicorp/tap/terraform"
 
       - "kubernetes-cli"
-      - "helm"
       - "derailed/k9s/k9s"
