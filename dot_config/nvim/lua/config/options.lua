@@ -6,3 +6,4 @@ vim.g.mapleader = ","
 vim.g.maplocalleader = ","
 
 vim.opt.relativenumber = false
+-- vim.g.lazyvim_picker = "fzf"
