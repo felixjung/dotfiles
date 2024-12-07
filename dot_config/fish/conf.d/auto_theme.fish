@@ -5,12 +5,14 @@ function update_theme --on-variable macos_theme
         set -xU FZF_DEFAULT_OPTS_FILE "$XDG_CONFIG_HOME/fzf/fzfrc_dark"
 
         tmux set -g @tokyo-night-tmux_theme storm
+        git config set --global delta.features tokyonight-storm
     else if [ "$macos_theme" = light ]
         fish_config theme choose "TokyoNight Day"
         set -Ux BAT_THEME tokyonight_day
         set -xU FZF_DEFAULT_OPTS_FILE "$XDG_CONFIG_HOME/fzf/fzfrc_light"
 
         tmux set -g @tokyo-night-tmux_theme day
+        git config set --global delta.features tokyonight-day
     end
 
     tmux source-file "$XDG_CONFIG_HOME/tmux/tmux.conf"
