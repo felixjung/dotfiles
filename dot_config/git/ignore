@@ -44,6 +44,7 @@
 # Editor settings
 .neoconf.json
 .vscode
+.zed
 
 # developer tools
 .tool-versions
