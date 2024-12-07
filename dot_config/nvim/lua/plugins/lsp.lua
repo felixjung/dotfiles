@@ -166,17 +166,38 @@ return {
     "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {
-        ["markdown"] = { { "dprint", "prettierd", "prettier" } },
-        ["markdown.mdx"] = { { "dprint", "prettierd", "prettier" } },
-        ["javascript"] = { "dprint", "prettierd", "prettier" },
+        ["markdown"] = { "dprint", "markdownlint-cli2", "markdown-toc" },
+        ["markdown.mdx"] = { "dprint", "markdownlint-cli2", "markdown-toc" },
+
+        ["javascript"] = { "biome", "prettierd", "prettier" },
+        ["javascriptreact"] = { "biome", "prettierd", "prettier" },
+        ["typescript"] = { "biome", "prettierd", "prettier" },
+        ["typescriptreact"] = { "biome", "prettierd", "prettier" },
+
         -- ["yaml"] = { "prettierd", "prettier" },
-        ["javascriptreact"] = { "dprint", "prettierd", "prettier" },
-        ["typescript"] = { "dprint", "prettierd", "prettier" },
-        ["typescriptreact"] = { "dprint", "prettierd", "prettier" },
+
         -- ["go"] = { "goimports" },
+
         ["terraform"] = { "terraform_fmt" },
       },
       formatters = {
+        ["markdown-toc"] = {
+          condition = function(_, ctx)
+            for _, line in ipairs(vim.api.nvim_buf_get_lines(ctx.buf, 0, -1, false)) do
+              if line:find("<!%-%- toc %-%->") then
+                return true
+              end
+            end
+          end,
+        },
+        ["markdownlint-cli2"] = {
+          condition = function(_, ctx)
+            local diag = vim.tbl_filter(function(d)
+              return d.source == "markdownlint"
+            end, vim.diagnostic.get(ctx.buf))
+            return #diag > 0
+          end,
+        },
         prettierd = {
           condition = file_exists({
             ".prettierrc",
@@ -210,7 +231,7 @@ return {
       events = { "BufWritePost", "BufReadPost", "InsertLeave" },
       linters_by_ft = {
         lua = { "selene", "luacheck" },
-        markdown = { "markdownlint" },
+        markdown = { "markdownlint-cli2" },
         fish = { "fish" },
         go = { "golangcilint" },
         bash = { "shellcheck" },
