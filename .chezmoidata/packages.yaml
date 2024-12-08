@@ -68,6 +68,8 @@ packages:
       - "setapp"
       - "raycast"
       - "wezterm"
+      - "arc"
+      - "jordanbaird-ice"
     mas:
       - name: Fantastical
         id: 975937182
@@ -75,6 +77,8 @@ packages:
         id: 904280696
       - name: "Pixelmator Pro"
         id: 1289583905
+      - name: "Tot"
+        id: 1491071483
   linux:
     brews:
       - "bat"
