@@ -14,8 +14,45 @@
   },
   {
     "context": "Editor",
+    "bindings": {}
+  },
+  {
+    "context": "vim_mode == visual",
     "bindings": {
-      // "j k": ["workspace::SendKeystrokes", "escape"]
+      "S": [
+        "vim::PushOperator",
+        {
+          "AddSurrounds": {}
+        }
+      ]
+    }
+  },
+  {
+    "context": "vim_mode == normal",
+    "bindings": {
+      // Moving around
+      "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
+      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
+      "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
+      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"],
+      // Managing files.
+      ", f f": "file_finder::Toggle",
+      ", f F": "file_finder::Toggle",
+      // LSP
+      "g e": "editor::OpenExcerpts",
+      ", c a": "editor::ToggleCodeActions",
+      ", c r": "editor::Rename",
+      "g r": "editor::FindAllReferences"
+    }
+  },
+  {
+    "context": "Dock",
+    "bindings": {
+      // Moving around
+      "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
+      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
+      "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
+      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"]
     }
   }
 ]
