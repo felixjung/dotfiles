@@ -7,6 +7,9 @@ local smart_splits =
 	wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
 local resurrect =
 	wezterm.plugin.require("https://github.com/MLFlexer/resurrect.wezterm")
+local workspace_switcher = wezterm.plugin.require(
+	"https://github.com/MLFlexer/smart_workspace_switcher.wezterm"
+)
 
 -- A helper function for my fallback fonts
 local function font_with_fallback(name, params)
@@ -167,40 +170,78 @@ config.keys = {
 		}),
 	},
 
-	-- Resurrect
+	-- Workspaces
+
+	-- Prompt for a name to use for a new workspace and switch to it.
+	{
+		key = "w",
+		mods = "LEADER",
+		action = act.PromptInputLine({
+			description = wezterm.format({
+				{ Attribute = { Intensity = "Bold" } },
+				{ Foreground = { AnsiColor = "Fuchsia" } },
+				{ Text = "Enter name for new workspace" },
+			}),
+			action = wezterm.action_callback(function(window, pane, line)
+				-- line will be `nil` if they hit escape without entering anything
+				-- An empty string if they just hit enter
+				-- Or the actual line of text they wrote
+				if line then
+					window:perform_action(
+						act.SwitchToWorkspace({
+							name = line,
+						}),
+						pane
+					)
+				end
+			end),
+		}),
+	},
 	{
 		key = "s",
 		mods = "LEADER",
-		action = wezterm.action_callback(function(_, _)
-			resurrect.save_state(resurrect.workspace_state.get_workspace_state())
-		end),
+		action = workspace_switcher.switch_workspace(),
 	},
 	{
-		key = "r",
+		key = "S",
 		mods = "LEADER",
-		action = wezterm.action_callback(function(win, pane)
-			resurrect.fuzzy_load(win, pane, function(id, label)
-				local type = string.match(id, "^([^/]+)") -- match before '/'
-				id = string.match(id, "([^/]+)$") -- match after '/'
-				id = string.match(id, "(.+)%..+$") -- remove file extention
-				local opts = {
-					relative = true,
-					restore_text = true,
-					on_pane_restore = resurrect.tab_state.default_on_pane_restore,
-				}
-				if type == "workspace" then
-					local state = resurrect.load_state(id, "workspace")
-					resurrect.workspace_state.restore_workspace(state, opts)
-				elseif type == "window" then
-					local state = resurrect.load_state(id, "window")
-					resurrect.window_state.restore_window(pane:window(), state, opts)
-				elseif type == "tab" then
-					local state = resurrect.load_state(id, "tab")
-					resurrect.tab_state.restore_tab(pane:tab(), state, opts)
-				end
-			end)
-		end),
+		action = workspace_switcher.switch_to_prev_workspace(),
 	},
+
+	-- Resurrect
+	-- {
+	-- 	key = "s",
+	-- 	mods = "LEADER",
+	-- 	action = wezterm.action_callback(function(_, _)
+	-- 		resurrect.save_state(resurrect.workspace_state.get_workspace_state())
+	-- 	end),
+	-- },
+	-- {
+	-- 	key = "r",
+	-- 	mods = "LEADER",
+	-- 	action = wezterm.action_callback(function(win, pane)
+	-- 		resurrect.fuzzy_load(win, pane, function(id, label)
+	-- 			local type = string.match(id, "^([^/]+)") -- match before '/'
+	-- 			id = string.match(id, "([^/]+)$") -- match after '/'
+	-- 			id = string.match(id, "(.+)%..+$") -- remove file extention
+	-- 			local opts = {
+	-- 				relative = true,
+	-- 				restore_text = true,
+	-- 				on_pane_restore = resurrect.tab_state.default_on_pane_restore,
+	-- 			}
+	-- 			if type == "workspace" then
+	-- 				local state = resurrect.load_state(id, "workspace")
+	-- 				resurrect.workspace_state.restore_workspace(state, opts)
+	-- 			elseif type == "window" then
+	-- 				local state = resurrect.load_state(id, "window")
+	-- 				resurrect.window_state.restore_window(pane:window(), state, opts)
+	-- 			elseif type == "tab" then
+	-- 				local state = resurrect.load_state(id, "tab")
+	-- 				resurrect.tab_state.restore_tab(pane:tab(), state, opts)
+	-- 			end
+	-- 		end)
+	-- 	end),
+	-- },
 }
 
 for i = 0, 8 do
@@ -210,6 +251,11 @@ for i = 0, 8 do
 		action = act.ActivateWindow(i),
 	})
 end
+
+-- Workspaces
+wezterm.on("update-right-status", function(window, pane)
+	window:set_right_status(window:active_workspace())
+end)
 
 -- Apply plugin configs.
 
@@ -222,11 +268,45 @@ smart_splits.apply_to_config(config, {
 })
 
 resurrect.set_encryption({
-	enable = true,
+	enable = false,
 	method = "age",
 	private_key = wezterm.config_dir .. "../age/key.txt",
 	public_key = "age1e0yqrnkup3faajva9mzlzmmhcg39r532xek5gueskw2crjge9ypqrlyafn",
 })
+resurrect.change_state_save_dir("~/.local/state/wezterm")
 resurrect.periodic_save()
+
+wezterm.on(
+	"smart_workspace_switcher.workspace_switcher.chosen",
+	function(window, workspace)
+		local gui_win = window:gui_window()
+		local base_path = string.gsub(workspace, "(.*[/\\])(.*)", "%2")
+		gui_win:set_right_status(wezterm.format({
+			{ Foreground = { Color = "green" } },
+			{ Text = base_path .. "  " },
+		}))
+	end
+)
+
+wezterm.on(
+	"smart_workspace_switcher.workspace_switcher.created",
+	function(window, workspace)
+		local gui_win = window:gui_window()
+		local base_path = string.gsub(workspace, "(.*[/\\])(.*)", "%2")
+		gui_win:set_right_status(wezterm.format({
+			{ Foreground = { Color = "green" } },
+			{ Text = base_path .. "  " },
+		}))
+	end
+)
+workspace_switcher.workspace_formatter = function(label)
+	return wezterm.format({
+		{ Attribute = { Italic = true } },
+		{ Foreground = { Color = "green" } },
+		{ Background = { Color = "black" } },
+		{ Text = "󱂬: " .. label },
+	})
+end
+workspace_switcher.apply_to_config(config)
 
 return config
