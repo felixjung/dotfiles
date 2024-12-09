@@ -58,6 +58,15 @@ config.window_padding = {
 	bottom = 10,
 }
 
+-- Multiplexing
+config.unix_domains = {
+	{
+		name = "local",
+		no_serve_automatically = false,
+		skip_permissions_check = false,
+	},
+}
+
 config.leader = {
 	key = "a",
 	mods = "CTRL",
