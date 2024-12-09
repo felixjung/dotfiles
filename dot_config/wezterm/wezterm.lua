@@ -61,7 +61,7 @@ config.window_padding = {
 -- Multiplexing
 config.unix_domains = {
 	{
-		name = "local",
+		name = "unix",
 		no_serve_automatically = false,
 		skip_permissions_check = false,
 	},
