@@ -70,6 +70,7 @@ packages:
       - "wezterm"
       - "arc"
       - "jordanbaird-ice"
+      - "nikitabobko/tap/aerospace"
     mas:
       - name: Fantastical
         id: 975937182
