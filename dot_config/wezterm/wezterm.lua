@@ -42,4 +42,6 @@ config.leader = {
 	timeout_milliseconds = 2000,
 }
 
+config.max_fps = 120
+
 return config
