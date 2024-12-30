@@ -16,7 +16,7 @@ function mod.with_options(config)
 
 		{
 			key = "f",
-			mods = "ALT",
+			mods = "LEADER",
 			action = act.TogglePaneZoomState,
 		},
 
