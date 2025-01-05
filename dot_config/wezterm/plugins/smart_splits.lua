@@ -7,7 +7,7 @@ local smart_splits_config = {
 	direction_keys = { "h", "j", "k", "l" },
 	modifiers = {
 		move = "CTRL",
-		resize = "META",
+		resize = "CTRL|META",
 	},
 }
 
