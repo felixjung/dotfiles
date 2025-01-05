@@ -1,8 +1,5 @@
 packages:
   darwin:
-    taps:
-      - "derailed/k9s"
-      - "hashicorp/tap"
     work_brews:
       - "tanka"
       - "jsonnet-bundler"
@@ -29,6 +26,9 @@ packages:
       - "difftastic"
       - "fzf"
       - "mas"
+
+      - "FelixKratz/formulae/borders"
+      - "FelixKratz/formulae/sketchybar"
 
       - "1password-cli"
 
@@ -71,6 +71,7 @@ packages:
       - "arc"
       - "jordanbaird-ice"
       - "nikitabobko/tap/aerospace"
+      - "tailscale"
     mas:
       - name: Fantastical
         id: 975937182
