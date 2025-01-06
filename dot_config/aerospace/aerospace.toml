@@ -3,7 +3,7 @@ after-login-command = []
 
 after-startup-command = [
 	# 'exec-and-forget sketchybar',
-	'exec-and-forget borders active_color=0xff7aa2f7 inactive_color=0xff565f89 width=5.0'
+	# 'exec-and-forget borders active_color=0xff7aa2f7 inactive_color=0xff565f89 width=5.0'
 ]
 
 start-at-login = true
@@ -60,19 +60,19 @@ alt-shift-minus = 'resize smart -50'
 alt-shift-equal = 'resize smart +50'
 
 alt-c = 'workspace C' # Communication
+alt-t = 'workspace D' # Development
 alt-e = 'workspace E' # Entertainment
 alt-f = 'workspace F' # Files
 alt-g = 'workspace G' # GTD
 alt-n = 'workspace N' # Notes
-alt-t = 'workspace T' # Terminal
 alt-w = 'workspace W' # Web
 
 alt-shift-c = ['move-node-to-workspace C', 'workspace C']
+alt-shift-d = ['move-node-to-workspace D', 'workspace D']
 alt-shift-e = ['move-node-to-workspace E', 'workspace E']
 alt-shift-f = ['move-node-to-workspace F', 'workspace F']
 alt-shift-g = ['move-node-to-workspace G', 'workspace G']
 alt-shift-n = ['move-node-to-workspace N', 'workspace N']
-alt-shift-t = ['move-node-to-workspace T', 'workspace T']
 alt-shift-w = ['move-node-to-workspace W', 'workspace W']
 
 alt-tab = 'workspace-back-and-forth'
@@ -103,7 +103,7 @@ shift-down = ['volume set 0', 'mode main']
 
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
-run = "move-node-to-workspace T"
+run = "move-node-to-workspace D"
 
 ## GTD workspace apps
 
@@ -113,7 +113,27 @@ run = "move-node-to-workspace G"
 
 [[on-window-detected]]
 if.app-id = 'com.flexibits.fantastical2.mac'
+if.app-name-regex-substring = 'Fantastical Helper'
+run = "layout floating"
+check-further-callbacks = false
+
+[[on-window-detected]]
+if.app-id = 'com.flexibits.fantastical2.mac'
 run = "move-node-to-workspace G"
+
+## Communication
+
+[[on-window-detected]]
+if.app-id = 'com.apple.mail'
+run = "move-node-to-workspace C"
+
+[[on-window-detected]]
+if.app-id = 'com.hnc.Discord'
+run = "move-node-to-workspace C"
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = "move-node-to-workspace C"
 
 ## Web workspace apps
 
@@ -125,6 +145,17 @@ run = "move-node-to-workspace W"
 if.app-id = 'com.apple.Safari'
 run = "move-node-to-workspace W"
 
+### All Orion preview windows should be floating
 [[on-window-detected]]
-if.app-id = 'com.apple.ActivityMonitor'
+if.app-id = 'com.kagi.kagimacOS'
+if.window-title-regex-substring = 'orion preview'
+run = 'layout floating'
+check-further-callbacks = false
+
+[[on-window-detected]]
+if.app-id = 'com.kagi.kagimacOS'
+run = "move-node-to-workspace W"
+
+## Everything else should be floating
+[[on-window-detected]]
 run = 'layout floating'
