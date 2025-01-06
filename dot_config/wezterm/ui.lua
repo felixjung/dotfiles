@@ -29,7 +29,7 @@ end
 
 -- Side effects
 wezterm.on("update-status", function(window, _)
-	window:set_right_status(window:active_workspace())
+	window:set_right_status(" " .. window:active_workspace() .. " ")
 end)
 
 return mod
