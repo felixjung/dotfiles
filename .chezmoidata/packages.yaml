@@ -17,6 +17,7 @@ packages:
       - "coreutils"
       - "eza"
       - "grep"
+      - "ast-grep"
       - "ripgrep"
       - "gzip"
       - "highlight"
