@@ -60,7 +60,7 @@ alt-shift-minus = 'resize smart -50'
 alt-shift-equal = 'resize smart +50'
 
 alt-c = 'workspace C' # Communication
-alt-t = 'workspace D' # Development
+alt-d = 'workspace D' # Development
 alt-e = 'workspace E' # Entertainment
 alt-f = 'workspace F' # Files
 alt-g = 'workspace G' # GTD
