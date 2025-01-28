@@ -20,3 +20,8 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     vim.lsp.buf.format({ async = false })
   end,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  -- TODO: set better formatoptions.
+  -- command = "set formatoptions-=cro",
+})
