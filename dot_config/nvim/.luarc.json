@@ -1,0 +1,22 @@
+{
+  "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",
+  "Lua.runtime.version": "Lua 5.4",
+  "diagnostics.enable": false,
+  "diagnostics.globals": [
+    "vim",
+    "nvim",
+    "vim.fn",
+    "vim.api",
+    "vim.lsp",
+    "vim.treesitter",
+    "vim.highlight",
+    "vim.loop",
+    "vim.lsp.buf",
+    "vim.lsp.diagnostic",
+    "vim.lsp.util",
+    "vim.lsp.log",
+    "vim.lsp.protocol",
+    "vim.lsp.handlers",
+    "vim.lsp.util"
+  ]
+}
