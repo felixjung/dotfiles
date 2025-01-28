@@ -154,6 +154,7 @@ check-further-callbacks = false
 
 [[on-window-detected]]
 if.app-id = 'com.kagi.kagimacOS'
+if.window-title-regex-substring = 'orion'
 run = "move-node-to-workspace W"
 
 ## Everything else should be floating
