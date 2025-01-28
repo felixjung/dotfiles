@@ -138,6 +138,9 @@ function mod.with_options(config)
 	end
 
 	config.keys = util.concat(config.keys, keyBindings)
+	config.use_dead_keys = true
+	config.send_composed_key_when_left_alt_is_pressed = true
+	config.send_composed_key_when_right_alt_is_pressed = true
 end
 
 return mod
