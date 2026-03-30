@@ -25,6 +25,8 @@ function mod.with_options(config)
 		top = 20,
 		bottom = 10,
 	}
+
+	config.adjust_window_size_when_changing_font_size = false
 end
 
 -- Side effects
