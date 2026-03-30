@@ -104,7 +104,7 @@ function mod.with_options(config)
 
 		{
 			-- Create and activate a new workspace
-			key = "w",
+			key = "s",
 			mods = "LEADER",
 			action = act.PromptInputLine({
 				description = wezterm.format({
