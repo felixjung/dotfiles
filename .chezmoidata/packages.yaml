@@ -1,7 +1,5 @@
 packages:
   darwin:
-    taps:
-      - "FelixKratz/formulae"
     work_brews:
       - "tanka"
       - "jsonnet-bundler"
@@ -31,9 +29,6 @@ packages:
       - "fzf"
       - "mas"
 
-      - "borders"
-      - "sketchybar"
-
       - "zsh"
       - "fish"
       - "starship"
@@ -57,6 +52,10 @@ packages:
 
       - "httpie"
 
+      # Coding agents.
+      - "lukehinds/nono/nono"
+      - "codex"
+
       - "colima"
       - "docker-compose"
       - "docker-buildx"
@@ -74,7 +73,7 @@ packages:
       - "arc"
       - "jordanbaird-ice"
       - "nikitabobko/tap/aerospace"
-      - "tailscale"
+      - "tailscale-app"
     mas:
       - name: Fantastical
         id: 975937182
