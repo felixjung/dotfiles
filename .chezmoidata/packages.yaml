@@ -52,10 +52,6 @@ packages:
 
       - "httpie"
 
-      # Coding agents.
-      - "lukehinds/nono/nono"
-      - "codex"
-
       - "colima"
       - "docker-compose"
       - "docker-buildx"
@@ -74,6 +70,11 @@ packages:
       - "jordanbaird-ice"
       - "nikitabobko/tap/aerospace"
       - "tailscale-app"
+
+      # Coding agents
+      - "codex-app"
+      - "codex"
+      - "claude-code"
     mas:
       - name: Fantastical
         id: 975937182
