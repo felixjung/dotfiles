@@ -3,8 +3,6 @@ if status --is-interactive
 
     update_theme
 
-    fish_vi_key_bindings
-
     # Hide greeting message
     set -g fish_greeting
 end
