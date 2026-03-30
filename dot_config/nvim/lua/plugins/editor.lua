@@ -126,15 +126,6 @@ return {
 		},
 	},
 	{
-		"ggandor/leap.nvim",
-		enabled = false,
-		keys = {
-			{ "z", mode = { "n", "x", "o" }, desc = "Leap forward to" },
-			{ "Z", mode = { "n", "x", "o" }, desc = "Leap backward to" },
-			{ "gz", mode = { "n", "x", "o" }, desc = "Leap from windows" },
-		},
-	},
-	{
 		"nvim-neo-tree/neo-tree.nvim",
 		dependencies = {
 			{
