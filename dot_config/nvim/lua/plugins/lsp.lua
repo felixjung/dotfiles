@@ -1,5 +1,4 @@
 local conform_util = require("conform.util")
-local util = require("lspconfig.util")
 
 local function file_exists(files)
 	return function(ctx)
@@ -12,12 +11,6 @@ end
 
 return {
 	-- tools
-	{
-		"mason-org/mason-lspconfig.nvim",
-		opts = {
-			automatic_installation = { exclude = { "gopls" } },
-		},
-	},
 	{
 		"folke/neoconf.nvim",
 		cmd = "Neoconf",
@@ -49,27 +42,24 @@ return {
 						diagnosticSeverity = "Warning",
 					},
 				},
-				tsserver = {
-					root_dir = util.root_pattern("tsconfig.json"),
-				},
-				denols = {
-					root_dir = util.root_pattern("deno.json", "deno.jsonc"),
-				},
+				vtsls = {},
+				denols = {},
 				eslint = {
-					root_dir = util.root_pattern(".eslintrc.json", ".eslintrc.js"),
+					settings = {
+						workingDirectories = { mode = "auto" },
+					},
 				},
 				biome = {
-					root_dir = util.root_pattern("biome.json"),
 					filetypes = {
 						"javascript",
 						"javascriptreact",
 						"typescript",
-						"typescript.tsx",
 						"typescriptreact",
 					},
 				},
 				html = {},
 				gopls = {
+					mason = false,
 					settings = {
 						gopls = {
 							analyses = {
