@@ -2,9 +2,10 @@ local wezterm = require("wezterm")
 
 local function scheme_for_appearance(appearance)
 	if appearance:find("Light") then
-		return "tokyonight_day"
+		-- return "tokyonight_day"
+		return "catppuccin-latte"
 	else
-		return "tokyonight_storm"
+		return "catppuccin-macchiato"
 	end
 end
 
