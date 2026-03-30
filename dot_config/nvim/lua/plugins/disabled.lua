@@ -1,7 +1,7 @@
 return {
 	{ "folke/flash.nvim", enabled = false },
 	{
-		"echasnovski/mini.indentscope",
+		"nvim-mini/mini.indentscope",
 		enabled = false,
 	},
 	{
