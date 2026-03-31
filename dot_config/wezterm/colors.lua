@@ -4,7 +4,7 @@ local function scheme_for_appearance(appearance)
 	if appearance:find("Light") then
 		return "Catppuccin Latte"
 	else
-		return "Catpuccin Macchiato"
+		return "Catppuccin Macchiato"
 	end
 end
 
