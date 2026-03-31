@@ -15,52 +15,50 @@ end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
 require("lazy").setup({
-	spec = {
-		{
-			"LazyVim/LazyVim",
-			import = "lazyvim.plugins",
-			opts = { colorscheme = "catppuccin" },
-		},
-		{ import = "lazyvim.plugins.extras.lang.typescript" },
-		{ import = "lazyvim.plugins.extras.lang.json" },
-		{ import = "lazyvim.plugins.extras.ai.copilot" },
-		{ import = "lazyvim.plugins.extras.ai.copilot-chat" },
-		{ import = "lazyvim.plugins.extras.lsp.neoconf" },
-		{ import = "lazyvim.plugins.extras.dap.core" },
-		{ import = "lazyvim.plugins.extras.ui.treesitter-context" },
-		{ import = "lazyvim.plugins.extras.lang.markdown" },
-		{ import = "lazyvim.plugins.extras.editor.outline" },
-		{ import = "lazyvim.plugins.extras.editor.fzf" },
-		{ import = "lazyvim.plugins.extras.coding.blink" },
-		{ import = "plugins" },
-	},
-	defaults = {
-		lazy = false,
-		version = false, -- always use the latest git commit
-	},
-	install = { colorscheme = { "catppuccin" } },
-	checker = { enabled = false },
-	dev = {
-		path = "~/Developer/neovim-plugins",
-		patterns = { "felixjung" },
-		-- fallback = false,
-	},
-	performance = {
-		rtp = {
-			paths = {
-				-- "~/Developer/neovim-plugins/felixjung/tokyonight-mnml-lualine",
-			},
-			-- disable some rtp plugins
-			disabled_plugins = {
-				"gzip",
-				"matchit",
-				"matchparen",
-				"netrwPlugin",
-				"tarPlugin",
-				"tohtml",
-				"tutor",
-				"zipPlugin",
-			},
-		},
-	},
+  spec = {
+    {
+      "LazyVim/LazyVim",
+      import = "lazyvim.plugins",
+      opts = { colorscheme = "catppuccin" },
+    },
+    { import = "lazyvim.plugins.extras.lang.typescript" },
+    { import = "lazyvim.plugins.extras.lang.json" },
+    { import = "lazyvim.plugins.extras.ai.copilot" },
+    { import = "lazyvim.plugins.extras.ai.copilot-chat" },
+    { import = "lazyvim.plugins.extras.lsp.neoconf" },
+    { import = "lazyvim.plugins.extras.dap.core" },
+    { import = "lazyvim.plugins.extras.ui.treesitter-context" },
+    { import = "lazyvim.plugins.extras.lang.markdown" },
+    { import = "lazyvim.plugins.extras.editor.outline" },
+    { import = "lazyvim.plugins.extras.editor.fzf" },
+    { import = "lazyvim.plugins.extras.coding.blink" },
+    { import = "plugins" },
+  },
+  defaults = {
+    lazy = false,
+    version = false, -- always use the latest git commit
+  },
+  install = { colorscheme = { "catppuccin" } },
+  checker = { enabled = false },
+  dev = {
+    path = "~/Developer/neovim-plugins",
+    patterns = { "felixjung" },
+    -- fallback = false,
+  },
+  performance = {
+    rtp = {
+      paths = {},
+      -- disable some rtp plugins
+      disabled_plugins = {
+        "gzip",
+        "matchit",
+        "matchparen",
+        "netrwPlugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
+  },
 })
