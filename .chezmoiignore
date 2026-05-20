@@ -4,10 +4,13 @@
 .config/zsh/oh-my-zsh/.github/**
 .config/zsh/oh-my-zsh/custom/themes/**
 
-# Pi Agent
+# Pi coding agent
 .pi/agent/sessions
+.pi/agent/npm
 .pi/agent/private_auth.json
 .pi/agent/auth.json
+.pi/agent/mcp-cache.json
+
 .pi/context-mode/
 
 .config/tmux/plugins/**

@@ -1,0 +1,25 @@
+{
+  "defaultModel": "qwen3-coder:30b",
+  "defaultProvider": "ollama",
+  "defaultThinkingLevel": "medium",
+  "enabledModels": [
+    "claude-opus-4.7",
+    "claude-sonnet-4.6",
+    "gpt-5.5",
+    "gpt-5.4-mini",
+    "qwen3-coder:30b"
+  ],
+  "lastChangelogVersion": "0.75.4",
+  "packages": [
+    "npm:context-mode",
+    "npm:pi-mcp-adapter",
+    "npm:@ollama/pi-web-search",
+    "npm:pi-autoresearch"
+  ],
+  "quietStartup": true,
+  "theme": "dark",
+  "steeringMode": "one-at-a-time",
+  "hideThinkingBlock": true,
+  "enableInstallTelemetry": false,
+  "treeFilterMode": "no-tools"
+}
