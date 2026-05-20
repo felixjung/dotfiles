@@ -1,0 +1,29 @@
+theme = light:Catppuccin Latte,dark:Catppuccin Macchiato
+window-theme = system
+
+# Shell / startup
+command = /opt/homebrew/bin/fish
+working-directory = inherit
+
+font-family = "Operator Mono SSm Lig"
+font-family = "Noto Color Emoji"
+font-family = "FiraCode Nerd Font"
+font-style = Light
+font-style-bold = Bold
+font-style-italic = "Light Italic"
+font-style-bold-italic = "Bold Italic"
+font-size = 12
+adjust-cell-height = 20%
+
+cursor-style = underline
+cursor-style-blink = false
+shell-integration-features = no-cursor
+
+window-decoration = auto
+macos-window-buttons = visible
+macos-titlebar-style = transparent
+macos-titlebar-proxy-icon = hidden
+background-blur = macos-glass-regular
+window-theme = auto
+window-padding-x = 20
+window-padding-y = 20,10
