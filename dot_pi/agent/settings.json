@@ -1,0 +1,18 @@
+{
+  "lastChangelogVersion": "0.75.4",
+  "defaultProvider": "github-copilot",
+  "defaultModel": "claude-opus-4.7",
+  "enabledModels": [
+    "claude-opus-4.7",
+    "claude-sonnet-4.6",
+    "gpt-5.5",
+    "gpt-5.4-mini"
+  ],
+  "quietStartup": true,
+  "defaultThinkingLevel": "medium",
+  "theme": "light",
+  "packages": [
+    "npm:context-mode",
+    "npm:pi-mcp-adapter"
+  ]
+}
