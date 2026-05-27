@@ -6,6 +6,9 @@ packages:
       platform: [darwin, linux]
     - name: "nikitabobko/tap"
       platform: [darwin]
+    - name: "atlassian/acli"
+      platform: [darwin, linux]
+      context: [work]
 
   brews:
     - name: "age"
@@ -73,6 +76,8 @@ packages:
       platform: [darwin, linux]
     - name: "rustup"
       platform: [darwin, linux]
+    - name: "rumdl"
+      platform: [darwin, linux]
 
     - name: "git"
       platform: [darwin, linux]
@@ -105,13 +110,16 @@ packages:
     - name: "awscli"
       platform: [darwin, linux]
       context: [work]
-    - name: "hashicorp/tap/terraform"
+    - name: "terraform"
       platform: [darwin, linux]
       context: [work]
     - name: "kubernetes-cli"
       platform: [darwin, linux]
       context: [work]
-    - name: "derailed/k9s/k9s"
+    - name: "k9s"
+      platform: [darwin, linux]
+      context: [work]
+    - name: "acli"
       platform: [darwin, linux]
       context: [work]
 
