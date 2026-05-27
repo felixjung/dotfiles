@@ -1,0 +1,28 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/usr/bin/env bash
+
+if command -v /home/linuxbrew/.linuxbrew/bin/brew 2>&1 >/dev/null
+then
+  echo "Updating Homebrew..."
+  /home/linuxbrew/.linuxbrew/bin/brew update
+else
+  echo "Installing Homebrew..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+/home/linuxbrew/.linuxbrew/bin/brew bundle --file=/dev/stdin <<EOF
+# Taps
+{{ range .packages.taps -}}
+{{ if has "linux" .platform -}}
+tap {{ .name | quote }}
+{{ end -}}
+{{ end -}}
+
+# Brews
+{{ range .packages.brews -}}
+{{ if and (has "linux" .platform) (or (not (hasKey . "context")) (has $.machine_type .context)) -}}
+brew {{ .name | quote }}
+{{ end -}}
+{{ end -}}
+EOF
+{{ end -}}
