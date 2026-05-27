@@ -1,5 +1,3 @@
-local conform_util = require("conform.util")
-
 local function file_exists(files)
 	return function(ctx)
 		return vim.fs.find(
@@ -161,8 +159,8 @@ return {
 		"stevearc/conform.nvim",
 		opts = {
 			formatters_by_ft = {
-				["markdown"] = { "dprint", "markdownlint-cli2", "markdown-toc" },
-				["markdown.mdx"] = { "dprint", "markdownlint-cli2", "markdown-toc" },
+				["markdown"] = { "rumdl", "markdown-toc" },
+				["markdown.mdx"] = { "rumdl", "markdown-toc" },
 
 				["javascript"] = { "biome", "prettierd", "prettier" },
 				["javascriptreact"] = { "biome", "prettierd", "prettier" },
@@ -187,14 +185,6 @@ return {
 						end
 					end,
 				},
-				["markdownlint-cli2"] = {
-					condition = function(_, ctx)
-						local diag = vim.tbl_filter(function(d)
-							return d.source == "markdownlint"
-						end, vim.diagnostic.get(ctx.buf))
-						return #diag > 0
-					end,
-				},
 				prettierd = {
 					condition = file_exists({
 						".prettierrc",
@@ -211,14 +201,6 @@ return {
 						".prettierrc.json",
 					}),
 				},
-				dprint = {
-					condition = file_exists({
-						"dprint.json",
-						"dprint.jsonc",
-						".dprint.json",
-						".dprint.jsonc",
-					}),
-				},
 			},
 		},
 	},
@@ -228,7 +210,7 @@ return {
 			events = { "BufWritePost", "BufReadPost", "InsertLeave" },
 			linters_by_ft = {
 				lua = { "selene" },
-				markdown = { "markdownlint-cli2" },
+				markdown = { "rumdl" },
 				fish = { "fish" },
 				go = { "golangcilint" },
 				bash = { "shellcheck" },
