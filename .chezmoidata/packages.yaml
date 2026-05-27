@@ -1,129 +1,168 @@
 packages:
-  darwin:
-    work_brews:
-      - "tanka"
-      - "jsonnet-bundler"
-      - "awscli"
+  taps:
+    - name: "hashicorp/tap"
+      platform: [darwin, linux]
+    - name: "derailed/k9s"
+      platform: [darwin, linux]
+    - name: "nikitabobko/tap"
+      platform: [darwin]
 
-      - "hashicorp/tap/terraform"
+  brews:
+    - name: "age"
+      platform: [darwin]
+    - name: "bat"
+      platform: [darwin, linux]
+    - name: "dasel"
+      platform: [darwin]
+    - name: "btop"
+      platform: [darwin]
+    - name: "chezmoi"
+      platform: [darwin]
+    - name: "coreutils"
+      platform: [darwin]
+    - name: "eza"
+      platform: [darwin, linux]
+    - name: "grep"
+      platform: [darwin]
+    - name: "ast-grep"
+      platform: [darwin]
+    - name: "ripgrep"
+      platform: [darwin, linux]
+    - name: "gzip"
+      platform: [darwin]
+    - name: "highlight"
+      platform: [darwin]
+    - name: "gnu-sed"
+      platform: [darwin]
+    - name: "up"
+      platform: [darwin, linux]
+    - name: "git-delta"
+      platform: [darwin]
+    - name: "delta"
+      platform: [linux]
+    - name: "difftastic"
+      platform: [darwin]
+    - name: "fzf"
+      platform: [darwin, linux]
+    - name: "mas"
+      platform: [darwin]
 
-      - "kubernetes-cli"
-      - "derailed/k9s/k9s"
-    brews:
-      - "age"
-      - "bat"
-      - "dasel"
-      - "btop"
-      - "chezmoi"
-      - "coreutils"
-      - "eza"
-      - "grep"
-      - "ast-grep"
-      - "ripgrep"
-      - "gzip"
-      - "highlight"
-      - "gnu-sed"
-      - "up"
-      - "git-delta"
-      - "difftastic"
-      - "fzf"
-      - "mas"
+    - name: "zsh"
+      platform: [darwin, linux]
+    - name: "fish"
+      platform: [darwin, linux]
+    - name: "starship"
+      platform: [darwin, linux]
+    - name: "tmux"
+      platform: [darwin, linux]
 
-      - "zsh"
-      - "fish"
-      - "starship"
-      - "tmux"
+    - name: "neovim"
+      platform: [darwin, linux]
+    - name: "asdf"
+      platform: [darwin, linux]
 
-      - "neovim"
-      - "asdf"
+    - name: "protobuf"
+      platform: [darwin, linux]
 
-      - "protobuf"
+    - name: "pgformatter"
+      platform: [darwin, linux]
+    - name: "pgcli"
+      platform: [darwin]
 
-      - "pgformatter"
-      - "pgcli"
+    - name: "rust"
+      platform: [darwin, linux]
+    - name: "rustup"
+      platform: [darwin, linux]
 
-      - "rust"
-      - "rustup"
+    - name: "git"
+      platform: [darwin, linux]
+    - name: "gh"
+      platform: [darwin, linux]
+    - name: "git-lfs"
+      platform: [darwin, linux]
+    - name: "tig"
+      platform: [darwin, linux]
 
-      - "git"
-      - "gh"
-      - "git-lfs"
-      - "tig"
+    - name: "httpie"
+      platform: [darwin, linux]
 
-      - "httpie"
+    - name: "colima"
+      platform: [darwin, linux]
+    - name: "docker-compose"
+      platform: [darwin, linux]
+    - name: "docker-buildx"
+      platform: [darwin, linux]
+    - name: "docker-credential-helper"
+      platform: [darwin, linux]
 
-      - "colima"
-      - "docker-compose"
-      - "docker-buildx"
-      - "docker-credential-helper"
-    work_casks:
-      - "figma"
-      - "slack"
-    casks:
-      - "1password"
-      - "1password-cli"
-      - "font-hack"
-      - "setapp"
-      - "raycast"
-      - "wezterm"
-      - "arc"
-      - "jordanbaird-ice"
-      - "nikitabobko/tap/aerospace"
-      - "tailscale-app"
+    # Work-only packages
+    - name: "tanka"
+      platform: [darwin, linux]
+      context: [work]
+    - name: "jsonnet-bundler"
+      platform: [darwin, linux]
+      context: [work]
+    - name: "awscli"
+      platform: [darwin, linux]
+      context: [work]
+    - name: "hashicorp/tap/terraform"
+      platform: [darwin, linux]
+      context: [work]
+    - name: "kubernetes-cli"
+      platform: [darwin, linux]
+      context: [work]
+    - name: "derailed/k9s/k9s"
+      platform: [darwin, linux]
+      context: [work]
 
-      # Coding agents
-      - "codex-app"
-      - "codex"
-      - "claude-code"
-    mas:
-      - name: Fantastical
-        id: 975937182
-      - name: "Things"
-        id: 904280696
-      - name: "Pixelmator Pro"
-        id: 1289583905
-      - name: "Tot"
-        id: 1491071483
-  linux:
-    brews:
-      - "bat"
-      - "eza"
-      - "ripgrep"
-      - "up"
-      - "delta"
-      - "fzf"
+  casks:
+    - name: "1password"
+      platform: [darwin]
+    - name: "1password-cli"
+      platform: [darwin]
+    - name: "font-hack"
+      platform: [darwin]
+    - name: "setapp"
+      platform: [darwin]
+    - name: "raycast"
+      platform: [darwin]
+    - name: "wezterm"
+      platform: [darwin]
+    - name: "arc"
+      platform: [darwin]
+    - name: "jordanbaird-ice"
+      platform: [darwin]
+    - name: "nikitabobko/tap/aerospace"
+      platform: [darwin]
+    - name: "tailscale-app"
+      platform: [darwin]
 
-      - "zsh"
-      - "fish"
-      - "starship"
-      - "tmux"
+    # Coding agents
+    - name: "codex-app"
+      platform: [darwin]
+    - name: "codex"
+      platform: [darwin]
+    - name: "claude-code"
+      platform: [darwin]
 
-      - "neovim"
-      - "asdf"
+    # Work-only casks
+    - name: "figma"
+      platform: [darwin]
+      context: [work]
+    - name: "slack"
+      platform: [darwin]
+      context: [work]
 
-      - "protobuf"
-      - "tanka"
-      - "jsonnet-bundler"
-
-      - "pgformatter"
-
-      - "rust"
-      - "rustup"
-
-      - "git"
-      - "gh"
-      - "git-lfs"
-      - "tig"
-
-      - "colima"
-      - "docker-compose"
-      - "docker-buildx"
-      - "docker-credential-helper"
-      - "httpie"
-
-      - "awscli"
-
-      - "hashicorp/tap/terraform"
-
-      - "kubernetes-cli"
-      - "derailed/k9s/k9s"
+  mas:
+    - name: Fantastical
+      id: 975937182
+      platform: [darwin]
+    - name: "Things"
+      id: 904280696
+      platform: [darwin]
+    - name: "Pixelmator Pro"
+      id: 1289583905
+      platform: [darwin]
+    - name: "Tot"
+      id: 1491071483
+      platform: [darwin]
