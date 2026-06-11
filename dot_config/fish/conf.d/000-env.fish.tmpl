@@ -4,6 +4,9 @@ set -U EDITOR nvim
 
 set -U LANG en_US.UTF-8
 
+# Used for user binaries, for example by Python's uv package manager.
+fish_add_path "$HOME/.local/bin"
+
 {{ if eq .machine_type "work" -}}
 set -U GITHUB_ACCESS_TOKEN "op://SumUp/GitHub Personal Access Token/token"
 {{ else -}}
