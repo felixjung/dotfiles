@@ -1,7 +1,7 @@
 function update_theme --on-variable macos_theme
     if [ "$macos_theme" = dark ]
         fish_config theme choose catppuccin-macchiato
-        set -Ux BAT_THEME "Capppuccin Macchiato"
+        set -Ux BAT_THEME "Catppuccin Macchiato"
         set -Ux FZF_DEFAULT_OPTS "\
           --color=bg+:#363A4F,bg:#24273A,spinner:#F4DBD6,hl:#ED8796 \
           --color=fg:#CAD3F5,header:#ED8796,info:#C6A0F6,pointer:#F4DBD6 \
