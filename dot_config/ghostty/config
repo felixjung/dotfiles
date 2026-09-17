@@ -3,7 +3,7 @@ window-theme = system
 
 # Shell / startup
 command = /opt/homebrew/bin/fish
-working-directory = inherit
+working-directory = home
 
 font-family = "Operator Mono SSm Lig"
 font-family = "Noto Color Emoji"
