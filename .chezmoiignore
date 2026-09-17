@@ -2,7 +2,6 @@
 
 .config/zsh/oh-my-zsh/cache/**
 .config/zsh/oh-my-zsh/.github/**
-.config/zsh/oh-my-zsh/custom/themes/**
 
 # Pi coding agent
 .pi/agent/sessions
@@ -13,6 +12,5 @@
 
 .pi/context-mode/
 
-.config/tmux/plugins/**
 LICENSE
 README.md
