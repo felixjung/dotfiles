@@ -9,5 +9,6 @@
 {{ end -}}
 
 export XDG_CONFIG_HOME="$HOME/.config"
-export PATH={{ $brew_prefix }}/bin:$HOME/.local/bin:$PATH
+export PATH=$HOME/.cargo/bin:{{ $brew_prefix }}/bin:$HOME/.local/bin:$PATH
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+
