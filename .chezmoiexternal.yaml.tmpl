@@ -16,7 +16,8 @@
     exact: true
     stripComponents: 1
 ".config/tmux/plugins/tpm":
-    type: "archive"
-    url: "https://github.com/tmux-plugins/tpm/archive/master.tar.gz"
-    exact: true
-    stripComponents: 1
+    type: "git-repo"
+    url: "https://github.com/tmux-plugins/tpm.git"
+    refreshPeriod: "168h"
+    pull:
+        args: ["--ff-only"]
