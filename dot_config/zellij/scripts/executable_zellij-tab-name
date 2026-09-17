@@ -1,0 +1,42 @@
+#!/bin/sh
+# Print a display name for a directory.
+#
+# This is only the FALLBACK name, used for tabs that nothing has deliberately
+# named. Once wald (or Ctrl+t r) renames a tab, zellij-tab-sync pins that name
+# and stops calling this. See zellij-tab-sync for the pin rule.
+set -u
+
+dir=${1:-$PWD}
+
+# wald lays worktrees out as <worktree_root>/<project>/<worktree>
+# (wald internal/app/add.go). Read the root from wald's own config so the two
+# never drift; fall back to the documented default.
+root=$(sed -n 's/^worktree_root *= *"\(.*\)"/\1/p' \
+    "$HOME/.config/wald/config.toml" 2>/dev/null | head -n 1)
+[ -n "$root" ] || root="$HOME/Developer/worktrees"
+
+case "$dir" in
+    "$root"/?*)
+        rest=${dir#"$root"/}
+        project=${rest%%/*}
+        worktree=${rest#"$project"}
+        worktree=${worktree#/}
+        worktree=${worktree%%/*}
+        if [ -n "$project" ] && [ -n "$worktree" ]; then
+            printf '%s · %s\n' "$project" "$worktree"
+            exit 0
+        fi
+        if [ -n "$project" ]; then
+            printf '%s\n' "$project"
+            exit 0
+        fi
+        ;;
+esac
+
+top=$(git -C "$dir" rev-parse --show-toplevel 2>/dev/null) || top=
+if [ -n "$top" ]; then
+    basename "$top"
+    exit 0
+fi
+
+basename "$dir"

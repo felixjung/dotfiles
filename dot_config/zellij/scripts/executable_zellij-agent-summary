@@ -1,0 +1,64 @@
+#!/bin/sh
+# One line summarising every live Claude Code agent, for the zjstatus
+# `command_agents` segment. Prints NOTHING when nothing is running, which is
+# what makes `command_agents_hideonemptystdout` collapse the segment.
+#
+# Rendered with `command_agents_rendermode "dynamic"`, so the #[fg=...] theme
+# references below are parsed by zjstatus and track the latte/macchiato switch.
+# They require the patched zjstatus fork (see the zellij config).
+#
+# READ-ONLY by design: this script never deletes state, it only skips entries
+# it considers dead. Pruning belongs to zellij-tab-sync, which runs on every
+# cd/shell start/agent hook -- so removing this segment from the bar can never
+# silently disable cleanup.
+set -u
+
+state_root=${XDG_STATE_HOME:-$HOME/.local/state}
+agent_dir=$state_root/zellij-agents
+[ -d "$agent_dir" ] || exit 0
+
+now=$(date +%s)
+stale=$((6 * 60 * 60))
+
+waiting=0
+running=0
+done_count=0
+subagents=0
+
+for f in "$agent_dir"/*; do
+    [ -f "$f" ] || continue
+    IFS='	' read -r status cwd sub epoch < "$f" || continue
+
+    # Skip, never delete -- see the header.
+    case "${epoch:-}" in
+        '' | *[!0-9]*) continue ;;
+    esac
+    [ $((now - epoch)) -gt "$stale" ] && continue
+    [ -d "${cwd:-/nonexistent}" ] || continue
+
+    case "${status:-}" in
+        waiting) waiting=$((waiting + 1)) ;;
+        running) running=$((running + 1)) ;;
+        done) done_count=$((done_count + 1)) ;;
+    esac
+    case "${sub:-}" in
+        '' | *[!0-9]*) ;;
+        *) subagents=$((subagents + sub)) ;;
+    esac
+done
+
+[ $((waiting + running + done_count)) -gt 0 ] || exit 0
+
+out=''
+add() { out="$out$1"; }
+
+[ "$waiting" -gt 0 ] &&
+    add "#[fg=ribbon_selected.emphasis_1,bold]●$waiting "
+[ "$running" -gt 0 ] &&
+    add "#[fg=ribbon_selected.background,bold]◐$running "
+[ "$subagents" -gt 0 ] &&
+    add "#[fg=ribbon_selected.background]+$subagents "
+[ "$done_count" -gt 0 ] &&
+    add "#[fg=text_unselected.base]✓$done_count "
+
+printf '%s' "${out% }"

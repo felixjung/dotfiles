@@ -1,0 +1,223 @@
+#!/bin/sh
+# Rename the calling pane's own tab. The ONLY thing that calls
+# `zellij action rename-tab-by-id` -- the fish PWD hook and the Claude Code
+# agent hooks both come through here, so they cannot clobber each other.
+#
+# PIN RULE. The script records the last name it wrote for each tab:
+#
+#   tab's current name        outcome
+#   ------------------------  ---------------------------------------------
+#   matches "Tab #<n>"        never named -> derive from PWD
+#   equals what we last wrote still ours  -> re-derive from PWD, refresh badge
+#   anything else             FOREIGN rename -> pin it; that string is now the
+#                             base, and PWD changes only refresh the badge
+#
+# wald's post-switch hook and Ctrl+t r both land in the third row, so neither
+# needs to know this mechanism exists. `zellij-tab-unpin` releases a tab.
+#
+# This is also the ONLY place that deletes state, for either store. That
+# deliberately does not live in zellij-agent-summary: the summary runs only
+# while the bar's agents segment is configured, and if that segment is ever
+# dropped an agent killed without its SessionEnd hook would leave a stale
+# entry -- and so a permanent phantom badge -- behind forever.
+#
+# Usage: zellij-tab-sync [--strict] [--unpin] [--gc] [dir]
+#   --strict  never fall back to the *focused* tab when this pane's tab cannot
+#             be resolved. Agent hooks must pass this: they may run in a
+#             background tab, and renaming the focused tab would be wrong.
+#   --unpin   drop the pin and hand the tab back to PWD tracking.
+#   --gc      also remove state directories for sessions that no longer exist.
+#             Costs an extra `zellij list-sessions`, so the shell passes it once
+#             at startup rather than on every cd.
+set -u
+
+strict=false
+unpin=false
+gc=false
+while [ $# -gt 0 ]; do
+    case "$1" in
+        --strict) strict=true; shift ;;
+        --unpin) unpin=true; shift ;;
+        --gc) gc=true; shift ;;
+        --) shift; break ;;
+        *) break ;;
+    esac
+done
+
+dir=${1:-$PWD}
+
+[ -n "${ZELLIJ:-}" ] || exit 0
+command -v zellij >/dev/null 2>&1 || exit 0
+command -v jq >/dev/null 2>&1 || exit 0
+
+self_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd) || exit 0
+
+state_root=${XDG_STATE_HOME:-$HOME/.local/state}
+tabs_root=$state_root/zellij-tabs
+session=${ZELLIJ_SESSION_NAME:-default}
+tab_dir=$tabs_root/$session
+agent_dir=$state_root/zellij-agents
+
+now=$(date +%s)
+stale=$((6 * 60 * 60))
+
+tabs=$(zellij action list-tabs -a -j 2>/dev/null) || exit 0
+case "$tabs" in '' | '[]') exit 0 ;; esac
+
+# --- resolve this pane's tab -------------------------------------------------
+# 1. cached by the shell (see fish conf.d/zellij.fish)
+tab_id=${ZELLIJ_TAB_ID:-}
+
+# 2. our own pane id -> tab id. Terminal and plugin panes share an id space,
+#    hence the is_plugin filter.
+if [ -z "$tab_id" ]; then
+    pane=${ZELLIJ_PANE_ID:-}
+    pane=${pane#terminal_}
+    pane=${pane#plugin_}
+    case "$pane" in '' | *[!0-9]*) pane= ;; esac
+    if [ -n "$pane" ]; then
+        tab_id=$(zellij action list-panes -a -j 2>/dev/null | jq -r \
+            --argjson p "$pane" \
+            'first(.[] | select(.is_plugin == false and .id == $p) | .tab_id)
+             // empty' 2>/dev/null)
+    fi
+fi
+
+# 3. name match -- our fallback names are a pure function of the path, so this
+#    is reliable unless two tabs sit on the same directory.
+if [ -z "$tab_id" ]; then
+    want=$("$self_dir/zellij-tab-name" "$dir")
+    if [ -n "$want" ]; then
+        tab_id=$(printf '%s' "$tabs" | jq -r --arg n "$want" \
+            'first(.[] | select(.name == $n or (.name | startswith($n))) | .tab_id)
+             // empty' 2>/dev/null)
+    fi
+fi
+
+# 4. the focused tab -- correct for the shell hook (the user is looking at it),
+#    never correct for an agent hook.
+if [ -z "$tab_id" ] && [ "$strict" = false ]; then
+    tab_id=$(printf '%s' "$tabs" | jq -r \
+        'first(.[] | select(.active) | .tab_id) // empty' 2>/dev/null)
+fi
+
+case "$tab_id" in '' | *[!0-9]*) exit 0 ;; esac
+
+current=$(printf '%s' "$tabs" | jq -r --argjson t "$tab_id" \
+    'first(.[] | select(.tab_id == $t) | .name) // empty' 2>/dev/null)
+
+# --- drop state for tabs that no longer exist --------------------------------
+mkdir -p "$tab_dir" || exit 0
+live=$(printf '%s' "$tabs" | jq -r '.[].tab_id' 2>/dev/null)
+for f in "$tab_dir"/*; do
+    [ -f "$f" ] || continue
+    id=$(basename "$f")
+    printf '%s\n' "$live" | grep -qx -- "$id" || rm -f "$f"
+done
+
+# --- drop state for sessions that no longer exist (--gc only) ----------------
+# `list-sessions -s` prints bare names and INCLUDES exited "attach to
+# resurrect" sessions, so a session that comes back keeps its pinned names.
+if [ "$gc" = true ]; then
+    sessions=$(zellij list-sessions -s 2>/dev/null) || sessions=
+    # NEVER prune against an empty or failed listing: a transient zellij
+    # hiccup would otherwise wipe every session's pin state at once.
+    if [ -n "$sessions" ]; then
+        for d in "$tabs_root"/*; do
+            [ -d "$d" ] || continue
+            s=$(basename "$d")
+            # Our own session stays regardless of what the listing claims.
+            [ "$s" = "$session" ] && continue
+            printf '%s\n' "$sessions" | grep -qx -- "$s" || rm -rf "$d"
+        done
+    fi
+fi
+
+# --- pin rule ----------------------------------------------------------------
+state_file=$tab_dir/$tab_id
+last=
+pinned=
+if [ -f "$state_file" ]; then
+    last=$(sed -n '1p' "$state_file")
+    pinned=$(sed -n '2p' "$state_file")
+fi
+
+if [ "$unpin" = true ]; then
+    pinned=
+elif [ -n "$current" ] && [ "$current" != "$last" ]; then
+    case "$current" in
+        'Tab #'[0-9]*) ;;          # zellij's default, not a deliberate name
+        *) pinned=$current ;;      # wald, or Ctrl+t r
+    esac
+fi
+
+if [ -n "$pinned" ]; then
+    base=$pinned
+else
+    base=$("$self_dir/zellij-tab-name" "$dir")
+fi
+[ -n "$base" ] || exit 0
+
+# --- agent badge -------------------------------------------------------------
+# Badges are part of {name} in the zjstatus pill, so they inherit the name
+# half's colours -- statuses are distinguished by glyph SHAPE, not colour.
+status=
+subagents=0
+if [ -d "$agent_dir" ]; then
+    for f in "$agent_dir"/*; do
+        [ -f "$f" ] || continue
+        IFS='	' read -r a_status a_cwd a_sub a_epoch < "$f" || continue
+
+        # Collect dead entries first, BEFORE the cwd match below, so that
+        # stale state for unrelated directories is cleaned up too and not
+        # just for whichever tab happens to be syncing. This runs on every
+        # cd, shell start and agent hook, so it does not depend on the bar's
+        # agents segment existing.
+        case "${a_epoch:-}" in
+            '' | *[!0-9]*) rm -f "$f"; continue ;;
+        esac
+        if [ $((now - a_epoch)) -gt "$stale" ]; then
+            rm -f "$f"
+            continue
+        fi
+        # Also covers an empty cwd, which would be unusable anyway.
+        if [ ! -d "${a_cwd:-/nonexistent}" ]; then
+            rm -f "$f"
+            continue
+        fi
+
+        # Related if either path contains the other: the shell pane may sit at
+        # the repo root while the agent works in a subdirectory, or vice versa.
+        case "$a_cwd" in
+            "$dir" | "$dir"/*) ;;
+            *) case "$dir" in
+                   "$a_cwd"/*) ;;
+                   *) continue ;;
+               esac ;;
+        esac
+        case "${a_status:-}" in
+            waiting) status=waiting ;;
+            running) [ "$status" = waiting ] || status=running ;;
+            done) [ -n "$status" ] || status=done ;;
+        esac
+        case "${a_sub:-}" in
+            '' | *[!0-9]*) ;;
+            *) subagents=$((subagents + a_sub)) ;;
+        esac
+    done
+fi
+
+badge=
+case "$status" in
+    waiting) badge=' ●' ;;
+    running) badge=' ◐' ;;
+    done) badge=' ✓' ;;
+esac
+[ -n "$badge" ] && [ "$subagents" -gt 0 ] && badge="$badge$subagents"
+
+# --- apply -------------------------------------------------------------------
+name=$base$badge
+if [ "$name" != "$current" ]; then
+    zellij action rename-tab-by-id "$tab_id" "$name" >/dev/null 2>&1 || exit 0
+fi
+printf '%s\n%s\n' "$name" "$pinned" > "$state_file"

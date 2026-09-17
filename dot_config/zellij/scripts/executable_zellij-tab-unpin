@@ -1,0 +1,5 @@
+#!/bin/sh
+# Release a pinned tab name so it tracks PWD again. See zellij-tab-sync.
+set -u
+self_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd) || exit 1
+exec "$self_dir/zellij-tab-sync" --unpin "$@"

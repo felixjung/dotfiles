@@ -1,0 +1,240 @@
+// Zellij configuration.
+//
+// NOTE: do not save from Zellij's built-in configuration plugin (Ctrl+o, c).
+// It rewrites this file in place and drops a config.kdl.bak, clobbering the
+// chezmoi-managed version. Edit the source in chezmoi instead.
+
+// Catppuccin Latte / Macchiato ship built into Zellij — no theme files needed.
+// Both theme_light and theme_dark must be set for automatic switching off the
+// host terminal's reported colour palette. `theme` is the fallback used when
+// the terminal does not report one (verified: it does not override the pair) —
+// without it, detection failure silently falls back to Zellij's default green.
+theme "catppuccin-macchiato"
+theme_light "catppuccin-latte"
+theme_dark "catppuccin-macchiato"
+
+// No borders around panes.
+pane_frames false
+// Stacked panes are unreadable without frames to delimit them.
+stacked_resize false
+
+// The default layout comes from layouts/default.kdl, which replaces both
+// built-in bars with a single zjstatus bar at the bottom (see the plugin
+// alias below). The built-in tab-bar is not used because it hard-codes
+// "Zellij (session-name)" with no way to remove it.
+show_startup_tips false
+
+// Match the tmux setup: mouse off, explicit pbcopy over OSC52.
+mouse_mode false
+copy_command "pbcopy"
+copy_on_select true
+
+// Built-in equivalent of tmux-resurrect + tmux-continuum.
+session_serialization true
+serialize_pane_viewport true
+
+scrollback_editor "nvim"
+
+// Status bar (dj95/zjstatus), declared once here as a plugin alias so the
+// layout files can say `plugin location="zjstatus"` and stay plain .kdl —
+// only this file needs templating for the absolute plugin path.
+//
+// IMPORTANT: colours below are Zellij *theme palette references* of the form
+// `category.field` (e.g. ribbon_selected.base). They resolve at render time
+// from the active theme, so the bar tracks the catppuccin latte/macchiato
+// switch live — including a mid-session change.
+//
+// This needs a patched zjstatus: upstream cannot read Zellij's theme
+// (dj95/zjstatus#12, open since 2023). We run a rebased build of zspotter's
+// `zach/zellij-theme-colors` branch — see .chezmoiexternal.yaml.tmpl. If the
+// plugin is ever reverted to an upstream release, these references stop
+// resolving and every segment using one renders EMPTY.
+//
+// Do NOT use hex here: it is emitted as truecolor and freezes the bar to one
+// flavour. Plain ANSI names (blue, bright_black) still work but cannot fill a
+// background legibly — no ANSI fg/bg pair clears 4.5 contrast in both
+// flavours (best is 3.44), which is why fills use theme pairs instead.
+//
+// Pair `X.base` with `X.background` for filled ribbons: the theme guarantees
+// that combination is legible, since it is what Zellij's own bars use.
+plugins {
+    zjstatus location="file:{{ .chezmoi.homeDir }}/.config/zellij/plugins/zjstatus.wasm" {
+        // NOTE: an unrecognised {placeholder} makes zjstatus render the *whole*
+        // format string as empty — not just the placeholder. If a segment goes
+        // blank after an edit, suspect a typo'd or unsupported widget name.
+        format_left   "{tabs}"
+        format_right  "{command_agents}{mode} "
+        format_space  ""
+        tab_separator " "
+
+        // Tab NAMES come from ~/.config/zellij/scripts/zellij-tab-sync,
+        // driven by the fish PWD hook and by Claude Code's hooks. A tab tracks
+        // its directory until something deliberately renames it (wald's
+        // post-switch hook, or Ctrl+t r), at which point that name is pinned
+        // and only the agent badge suffix keeps updating. `ztab-unpin`
+        // releases it. Badges are part of {name}, so they inherit this half's
+        // colours -- statuses differ by glyph shape, not colour.
+        //
+        // {focused_pane_title} is per-tab (it reads that tab's own focused
+        // pane), but zjstatus does not truncate it -- tab_truncate_* applies
+        // to the tab list, not to a placeholder. It is on the active tab only
+        // for that reason.
+        //
+        // Two-tone filled capsules: index and name each get their own related
+        // background, with caps (U+E0B6 / U+E0B4) in the colour of the half
+        // they adjoin. Slot -> catppuccin mapping, from Zellij's own
+        // assets/themes/catppuccin-{macchiato,latte}.kdl:
+        //   ribbon_selected.emphasis_3 = blue     text_unselected.emphasis_1 = sky
+        //   ribbon_selected.emphasis_2 = pink     ribbon_selected.emphasis_0 = red
+        //   ribbon_selected.base       = mantle (dark) / crust (light)
+        //   text_selected.background   = surface2  text_unselected.background = mantle/crust
+        //   text_unselected.base       = text
+        // Zellij's catppuccin exposes only peach/sky/green/pink/red/yellow —
+        // there is no mauve, sapphire, teal or lavender anywhere.
+        // AVOID these, they change colour between flavours:
+        //   text_unselected.emphasis_3 (pink->red), ribbon_unselected.emphasis_0 (red->pink)
+        // Note: accent backgrounds are ~2-4:1 in latte. That is catppuccin's
+        // own light-flavour look, not an accessible contrast ratio.
+        tab_normal "#[fg=text_selected.background]#[fg=text_unselected.base,bg=text_selected.background] {index} #[fg=text_unselected.base,bg=text_unselected.background] {name}{bell_indicator} #[fg=text_unselected.background]"
+        tab_active "#[fg=ribbon_selected.emphasis_3]#[fg=ribbon_selected.base,bg=ribbon_selected.emphasis_3,bold] {index} #[fg=ribbon_selected.base,bg=text_unselected.emphasis_1,bold] {name}{bell_indicator} ▸ {focused_pane_title} #[fg=text_unselected.emphasis_1]"
+        // Bell: Zellij raises has_bell_notification on a tab when any program
+        // in it emits BEL, and is_flashing_bell while that is fresh. Both are
+        // per-tab and survive the tab being in the background.
+        flashing_bell_indicator " ◆"
+        bell_indicator " ◇"
+
+        // Live agent summary, hidden entirely while nothing is running
+        // (hideonemptystdout returns before the format is applied, so the
+        // trailing space in the format disappears with it).
+        //
+        // KNOWN DEFECT: this segment renders correctly until the FIRST
+        // light/dark switch of a session, then stays blank until the session
+        // is restarted -- including after switching back. Measured here on
+        // zjstatus v0.24.0: the command keeps running on schedule (verified by
+        // logging every invocation: 9 -> 99 runs across a switch) and no lock
+        // file leaks, but its output stops reaching the bar. NOT caused by
+        // hideonemptystdout or by rendermode -- reproduced with the former off
+        // and with rendermode "static" too, and a control run with identical
+        // timing but no theme switch keeps rendering fine. The per-tab badges
+        // are unaffected: those are tab NAMES, rendered by the tabs widget.
+        // Since the theme follows macOS, expect this to blank once a day.
+        //
+        // rendermode "dynamic" means the format's own #[...] styling is NOT
+        // applied -- instead the script's stdout is re-parsed as a format
+        // string, so zellij-agent-summary emits its own theme references and
+        // each status colours independently. Needs the patched fork, same as
+        // everything else here.
+        //
+        // The command needs the RunCommands permission. That prompt cannot
+        // render in a 1-line bar, so grant it once via:
+        //   zellij action launch-or-focus-plugin --floating \
+        //     file:$HOME/.config/zellij/plugins/zjstatus.wasm
+        command_agents_command "{{ .chezmoi.homeDir }}/.config/zellij/scripts/zellij-agent-summary"
+        command_agents_format "{stdout} "
+        command_agents_interval "2"
+        command_agents_rendermode "dynamic"
+        command_agents_hideonemptystdout "true"
+
+        // Every mode is a capsule, coloured by family. Zellij's catppuccin
+        // exposes only six accents (peach/sky/green/pink/red/yellow); pink and
+        // red are taken by the active tab, so modes use what is left:
+        //   normal                surface2 (neutral)  - at rest
+        //   locked                peach               - all keys pass through
+        //   pane                  green
+        //   tab, session          pink                - container-level
+        //   resize, move          yellow              - geometry
+        //   scroll/search/rename  light neutral       - inspect / type
+        // Text is ribbon_selected.base, which flips mantle<->crust with the
+        // flavour, so it stays readable on all of these backgrounds.
+        mode_normal      "#[fg=text_selected.background]#[fg=text_unselected.base,bg=text_selected.background] normal #[fg=text_selected.background]"
+        mode_locked      "#[fg=ribbon_selected.emphasis_1]#[fg=ribbon_selected.base,bg=ribbon_selected.emphasis_1,bold] locked #[fg=ribbon_selected.emphasis_1]"
+        mode_pane        "#[fg=ribbon_selected.background]#[fg=ribbon_selected.base,bg=ribbon_selected.background,bold] pane #[fg=ribbon_selected.background]"
+        mode_tab         "#[fg=ribbon_selected.emphasis_2]#[fg=ribbon_selected.base,bg=ribbon_selected.emphasis_2,bold] tab #[fg=ribbon_selected.emphasis_2]"
+        mode_resize      "#[fg=exit_code_error.emphasis_0]#[fg=ribbon_selected.base,bg=exit_code_error.emphasis_0,bold] resize #[fg=exit_code_error.emphasis_0]"
+        mode_move        "#[fg=exit_code_error.emphasis_0]#[fg=ribbon_selected.base,bg=exit_code_error.emphasis_0,bold] move #[fg=exit_code_error.emphasis_0]"
+        mode_scroll      "#[fg=ribbon_unselected.background]#[fg=ribbon_selected.base,bg=ribbon_unselected.background,bold] scroll #[fg=ribbon_unselected.background]"
+        mode_search      "#[fg=ribbon_unselected.background]#[fg=ribbon_selected.base,bg=ribbon_unselected.background,bold] search #[fg=ribbon_unselected.background]"
+        mode_enter_search "#[fg=ribbon_unselected.background]#[fg=ribbon_selected.base,bg=ribbon_unselected.background,bold] search #[fg=ribbon_unselected.background]"
+        mode_session     "#[fg=ribbon_selected.emphasis_2]#[fg=ribbon_selected.base,bg=ribbon_selected.emphasis_2,bold] session #[fg=ribbon_selected.emphasis_2]"
+        mode_rename_tab  "#[fg=ribbon_unselected.background]#[fg=ribbon_selected.base,bg=ribbon_unselected.background,bold] rename tab #[fg=ribbon_unselected.background]"
+        mode_rename_pane "#[fg=ribbon_unselected.background]#[fg=ribbon_selected.base,bg=ribbon_unselected.background,bold] rename pane #[fg=ribbon_unselected.background]"
+    }
+
+}
+
+// Keybinding hints (b0o/zjstatus-hints) are deliberately NOT wired up: v0.1.4
+// (Jun 2025, latest) is incompatible with Zellij 0.43/0.44 — upstream issue #32
+// is still open, and #31/#37 cover the permission grant never being offered.
+// Observed here on 0.44.3: the plugin loads, but never emits its pipe and the
+// server logs "PluginId '0' not found - caching request". Revisit if #32 lands.
+
+// Keybinds: the stock modal scheme is kept intact (Ctrl+p pane, Ctrl+t tab,
+// Ctrl+n resize, Ctrl+o session, Ctrl+s scroll, Ctrl+g lock, Ctrl+q quit).
+// The only changes are freeing Ctrl+hjkl / Alt+hjkl for seamless Neovim
+// navigation via hiasr/vim-zellij-navigator, which cooperates with
+// mrjones2014/smart-splits.nvim (already configured in the Neovim config —
+// nothing is needed on the Neovim side).
+keybinds {
+    shared_except "locked" {
+        // These override Zellij's defaults for the same keys (Ctrl+h -> move
+        // mode, Alt+hjkl -> focus movement). Do NOT add `unbind` for them: an
+        // unbind in the same block cancels the bind below it regardless of
+        // order, and the key ends up dead.
+        bind "Ctrl h" {
+            MessagePlugin "file:{{ .chezmoi.homeDir }}/.config/zellij/plugins/vim-zellij-navigator.wasm" {
+                name "move_focus_or_tab"
+                payload "left"
+            }
+        }
+        bind "Ctrl j" {
+            MessagePlugin "file:{{ .chezmoi.homeDir }}/.config/zellij/plugins/vim-zellij-navigator.wasm" {
+                name "move_focus"
+                payload "down"
+            }
+        }
+        bind "Ctrl k" {
+            MessagePlugin "file:{{ .chezmoi.homeDir }}/.config/zellij/plugins/vim-zellij-navigator.wasm" {
+                name "move_focus"
+                payload "up"
+            }
+        }
+        bind "Ctrl l" {
+            MessagePlugin "file:{{ .chezmoi.homeDir }}/.config/zellij/plugins/vim-zellij-navigator.wasm" {
+                name "move_focus_or_tab"
+                payload "right"
+            }
+        }
+
+        // Resize. Requires `macos-option-as-alt = right` in the Ghostty config;
+        // left Option stays free for dead-key Unicode input (option+u, a -> ä).
+        bind "Alt h" {
+            MessagePlugin "file:{{ .chezmoi.homeDir }}/.config/zellij/plugins/vim-zellij-navigator.wasm" {
+                name "resize"
+                payload "left"
+            }
+        }
+        bind "Alt j" {
+            MessagePlugin "file:{{ .chezmoi.homeDir }}/.config/zellij/plugins/vim-zellij-navigator.wasm" {
+                name "resize"
+                payload "down"
+            }
+        }
+        bind "Alt k" {
+            MessagePlugin "file:{{ .chezmoi.homeDir }}/.config/zellij/plugins/vim-zellij-navigator.wasm" {
+                name "resize"
+                payload "up"
+            }
+        }
+        bind "Alt l" {
+            MessagePlugin "file:{{ .chezmoi.homeDir }}/.config/zellij/plugins/vim-zellij-navigator.wasm" {
+                name "resize"
+                payload "right"
+            }
+        }
+    }
+
+    pane {
+        // Move-mode lost its global Ctrl+h binding; reach it from pane mode.
+        bind "m" { SwitchToMode "move"; }
+    }
+}

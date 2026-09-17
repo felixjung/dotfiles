@@ -7,6 +7,14 @@ alias tree='ls --tree --level 2'
 alias tmuxa='tmux attach-session -t '
 alias tmuxl='tmux list-sessions'
 
+# Zellij
+abbr -a zja 'zellij attach'
+abbr -a zjl 'zellij list-sessions'
+abbr -a zjd 'zellij -l dev'
+abbr -a zj zellij
+# Hand a tab whose name was pinned (by wald, or Ctrl+t r) back to $PWD tracking.
+abbr -a ztab-unpin '~/.config/zellij/scripts/zellij-tab-unpin'
+
 # Fish
 abbr -a fish-reload-config 'source ~/.config/fish/**/*.fish'
 

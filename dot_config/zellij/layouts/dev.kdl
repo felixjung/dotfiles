@@ -1,0 +1,26 @@
+// Editor + shell, side by side. Launch with `zellij -l dev` (abbr: zjd).
+//
+// A custom layout replaces the default one entirely, so the bar has to be
+// declared explicitly. `zjstatus` is a plugin alias defined in config.kdl.
+layout {
+    pane split_direction="vertical" {
+        pane size="70%" {
+            name "editor"
+            command "nvim"
+        }
+        pane {
+            name "shell"
+        }
+    }
+    pane size=1 borderless=true {
+        plugin location="zjstatus"
+    }
+
+    // Without this, new tabs would inherit the layout above and each open nvim.
+    new_tab_template {
+        pane
+        pane size=1 borderless=true {
+            plugin location="zjstatus"
+        }
+    }
+}

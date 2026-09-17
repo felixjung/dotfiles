@@ -21,3 +21,14 @@
     refreshPeriod: "168h"
     pull:
         args: ["--ff-only"]
+".config/zellij/plugins/vim-zellij-navigator.wasm":
+    type: "file"
+    url: "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm"
+# Patched zjstatus: upstream v0.24.0 + zspotter's Zellij-theme-colour support
+# (dj95/zjstatus#12, open since 2023), rebased onto upstream main and built
+# locally. Needed for the `category.field` colour references in the zellij
+# config — an upstream build makes every segment using one render empty.
+# Switch back to dj95/zjstatus once #12 is merged upstream.
+".config/zellij/plugins/zjstatus.wasm":
+    type: "file"
+    url: "https://github.com/felixjung/zjstatus/releases/download/v0.24.0-theme1/zjstatus.wasm"
