@@ -7,3 +7,4 @@ atom/atom/package-deps-state.json
 *token.zsh
 .zsh_sessions
 sumup.fish
+sumup.fish.tmpl
