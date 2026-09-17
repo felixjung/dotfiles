@@ -62,9 +62,6 @@ source "$XDG_CONFIG_HOME/fzf/fzf-git.sh"
 # asdf
 export ASDF_DATA_DIR="$HOME/.asdf"
 export ASDF_CONFIG_FILE="$XDG_CONFIG_HOME/asdf/.asdfrc"
-# asdf 0.16+ (the Go rewrite) no longer ships a shell script to source.
-# Shell integration is now just the shims directory on PATH.
-export PATH="$ASDF_DATA_DIR/shims:$PATH"
 
 # Load 1Password CLI plugin configs
 source "$XDG_CONFIG_HOME/op/plugins.sh"

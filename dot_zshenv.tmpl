@@ -12,3 +12,8 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export PATH=$HOME/.cargo/bin:{{ $brew_prefix }}/bin:$HOME/.local/bin:$PATH
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
+# asdf 0.16+ (the Go rewrite) no longer ships a shell script to source.
+# Shell integration is now just the shims directory on PATH.
+export ASDF_DATA_DIR="$HOME/.asdf"
+export ASDF_CONFIG_FILE="$XDG_CONFIG_HOME/asdf/.asdfrc"
+export PATH="$ASDF_DATA_DIR/shims:$PATH"
