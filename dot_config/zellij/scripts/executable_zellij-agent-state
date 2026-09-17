@@ -1,0 +1,87 @@
+#!/bin/sh
+# Claude Code hook: record this agent session's status, then resync its tab.
+#
+# Usage: zellij-agent-state running|waiting|done|clear
+#        zellij-agent-state subagent +1|-1
+#
+# Wired up in ~/.claude/settings.json (NOT chezmoi-managed):
+#   UserPromptSubmit -> running    Notification -> waiting
+#   Stop             -> done       SessionEnd   -> clear
+#   PreToolUse[Task] -> subagent +1        SubagentStop -> subagent -1
+#
+# CONTRACT: print NOTHING on stdout and ALWAYS exit 0. UserPromptSubmit stdout
+# is injected into Claude's context, and a non-zero exit surfaces as a hook
+# error in the session.
+set -u
+
+action=${1:-}
+arg=${2:-}
+
+payload=$(cat 2>/dev/null) || payload=
+
+log() { :; }
+[ -n "${ZELLIJ_AGENT_DEBUG:-}" ] && log() {
+    printf '%s %s\n' "$(date '+%H:%M:%S')" "$*" \
+        >> "${TMPDIR:-/tmp}/zellij-agent-state.log"
+}
+
+emit() {
+    log "action=$action arg=$arg -> $*"
+}
+
+main() {
+    command -v jq >/dev/null 2>&1 || return 0
+
+    session=$(printf '%s' "$payload" | jq -r '.session_id // empty' 2>/dev/null)
+    cwd=$(printf '%s' "$payload" | jq -r '.cwd // empty' 2>/dev/null)
+    [ -n "$cwd" ] || cwd=${CLAUDE_PROJECT_DIR:-$PWD}
+    [ -n "$session" ] || session="pid-$PPID"
+
+    state_root=${XDG_STATE_HOME:-$HOME/.local/state}
+    agent_dir=$state_root/zellij-agents
+    file=$agent_dir/$session
+
+    if [ "$action" = clear ]; then
+        rm -f "$file"
+    else
+        mkdir -p "$agent_dir" || return 0
+
+        old_status=running
+        old_sub=0
+        if [ -f "$file" ]; then
+            IFS='	' read -r old_status _ old_sub _ < "$file" || :
+            case "$old_sub" in '' | *[!0-9]*) old_sub=0 ;; esac
+            [ -n "${old_status:-}" ] || old_status=running
+        fi
+
+        status=$old_status
+        sub=$old_sub
+        case "$action" in
+            running | waiting | done)
+                status=$action
+                # A fresh turn clears any stale sub-agent count.
+                [ "$action" = running ] && sub=0
+                ;;
+            subagent)
+                case "$arg" in
+                    +*) sub=$((sub + ${arg#+})) ;;
+                    -*) sub=$((sub - ${arg#-})) ;;
+                    *) ;;
+                esac
+                [ "$sub" -lt 0 ] && sub=0
+                ;;
+            *) return 0 ;;
+        esac
+
+        printf '%s\t%s\t%s\t%s\n' "$status" "$cwd" "$sub" "$(date +%s)" > "$file"
+        emit "status=$status sub=$sub cwd=$cwd"
+    fi
+
+    # --strict: this hook may be running in a BACKGROUND tab, so never fall
+    # back to renaming whichever tab happens to be focused.
+    self_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd) || return 0
+    "$self_dir/zellij-tab-sync" --strict "$cwd" || :
+}
+
+main >/dev/null 2>&1
+exit 0

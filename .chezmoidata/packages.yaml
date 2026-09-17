@@ -35,6 +35,9 @@ packages:
       platform: [darwin]
     - name: "highlight"
       platform: [darwin]
+    # Required by the zellij tab-naming scripts (dot_config/zellij/scripts).
+    - name: "jq"
+      platform: [darwin, linux]
     - name: "gnu-sed"
       platform: [darwin]
     - name: "up"
@@ -57,6 +60,8 @@ packages:
     - name: "starship"
       platform: [darwin, linux]
     - name: "tmux"
+      platform: [darwin, linux]
+    - name: "zellij"
       platform: [darwin, linux]
 
     - name: "neovim"

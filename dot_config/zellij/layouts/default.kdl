@@ -1,0 +1,11 @@
+// Default layout for every new session. Having this file at
+// layouts/default.kdl overrides Zellij's built-in default layout, which is how
+// the built-in tab-bar (and its "Zellij (session-name)" text) is removed.
+//
+// `zjstatus` is a plugin alias defined in config.kdl — all styling lives there.
+layout {
+    pane
+    pane size=1 borderless=true {
+        plugin location="zjstatus"
+    }
+}

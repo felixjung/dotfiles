@@ -19,6 +19,11 @@ cursor-style = underline
 cursor-style-blink = false
 shell-integration-features = no-cursor
 
+# Right Option acts as Alt, so Alt-based keybindings (zellij pane resize,
+# neovim <C-A-hjkl>) reach the terminal. Left Option keeps macOS dead-key
+# Unicode input (e.g. option+u, a -> ä).
+macos-option-as-alt = right
+
 window-decoration = auto
 macos-window-buttons = visible
 macos-titlebar-style = transparent
