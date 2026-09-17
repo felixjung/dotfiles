@@ -1,1 +1,1 @@
-set -Ux DOCKER_CONTEXT $(docker context show)
+set -gx DOCKER_CONTEXT $(docker context show)
