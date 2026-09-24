@@ -1,5 +1,9 @@
 .zsh_history
 
+# delta's current theme, rewritten by update_theme in
+# dot_config/fish/conf.d/auto_theme.fish on every macOS light/dark flip.
+.config/git/delta/current-theme.gitconfig
+
 .config/zsh/oh-my-zsh/cache/**
 .config/zsh/oh-my-zsh/.github/**
 

@@ -25,12 +25,17 @@ end
 function update_theme --on-variable macos_theme
     theme_env $macos_theme
 
+    # Write delta's theme to its own include file rather than --global: the
+    # global config is chezmoi-managed, and rewriting it on every theme flip
+    # left it permanently dirty in `chezmoi status`.
+    set -l delta_theme_file ~/.config/git/delta/current-theme.gitconfig
+
     if [ "$macos_theme" = light ]
         fish_config theme choose catppuccin-frappe
-        git config set --global delta.features catppuccin-latte
+        git config set --file $delta_theme_file delta.features catppuccin-latte
     else
         fish_config theme choose catppuccin-macchiato
-        git config set --global delta.features catppuccin-macchiato
+        git config set --file $delta_theme_file delta.features catppuccin-macchiato
     end
 
     # tmux source-file "$XDG_CONFIG_HOME/tmux/tmux.conf"

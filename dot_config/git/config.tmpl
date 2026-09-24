@@ -11,6 +11,17 @@
 [user]
 	email = {{ .email | quote }}
 	name = {{ .full_name | quote }}
+{{- if and (hasKey . "signing_key") .signing_key }}
+	signingkey = {{ .signing_key }}
+[gpg]
+	format = ssh
+{{- if eq .chezmoi.os "darwin" }}
+[gpg "ssh"]
+	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+{{- end }}
+[commit]
+	gpgsign = true
+{{- end }}
 [push]
 	default = simple
 [interactive]
@@ -36,8 +47,14 @@
 [pull]
   ff = true
 [delta]
-		features = catppuccin-latte
-    navigate = true
-		line-numbers = true
+	features = catppuccin-macchiato
+	navigate = true
+	line-numbers = true
+# Runtime theme override, written by update_theme in
+# dot_config/fish/conf.d/auto_theme.fish when macOS flips light/dark. Git
+# expands includes in place, so this wins over the default above. The file
+# is deliberately unmanaged and may not exist; git ignores missing includes.
+[include]
+	path = ~/.config/git/delta/current-theme.gitconfig
 [merge]
     conflictstyle = zdiff3
