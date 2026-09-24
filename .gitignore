@@ -8,3 +8,4 @@ atom/atom/package-deps-state.json
 .zsh_sessions
 sumup.fish
 sumup.fish.tmpl
+sumup-aliases.fish

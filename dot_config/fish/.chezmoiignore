@@ -1,3 +1,18 @@
 completions
-functions
 fish_variables
+
+# functions/ is almost entirely fisher plugin output (jhillyerd/plugin-git,
+# PatrickF1/fzf.fish, z). Default-deny and allow only the hand-written ones, so
+# new plugin functions never need a new ignore rule.
+functions/*
+!functions/gtest.fish
+!functions/wt.fish
+
+# Written by fish itself during the 4.3 theme/keybinding migration; the files
+# say "don't edit this file".
+conf.d/fish_frozen_key_bindings.fish
+conf.d/fish_frozen_theme.fish
+
+# Installed by the fisher plugins recorded in fish_plugins.
+conf.d/fzf.fish
+conf.d/git.fish
