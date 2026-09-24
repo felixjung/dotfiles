@@ -69,6 +69,12 @@ packages:
     - name: "asdf"
       platform: [darwin, linux]
 
+    # AI coding agent. Its config is managed in dot_pi/; the plugin list is the
+    # `packages` array inside dot_pi/agent/private_settings.json, which pi
+    # installs itself on startup.
+    - name: "pi-coding-agent"
+      platform: [darwin, linux]
+
     - name: "protobuf"
       platform: [darwin, linux]
 
