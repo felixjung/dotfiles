@@ -2,6 +2,7 @@
 {{ $full_name := promptString "Full name" -}}
 {{ $dev_folder := promptString "Dev Folder" -}}
 {{ $machine_type := promptString "Machine Type (work/personal)" -}}
+{{ $signing_key := promptStringOnce . "signing_key" "SSH signing key for commit signing (blank to disable)" -}}
 
 git:
     autoPush: false
@@ -11,4 +12,5 @@ data:
     full_name: {{ $full_name | quote }}
     dev_folder: {{ $dev_folder | quote }}
     machine_type: {{ $machine_type | quote }}
+    signing_key: {{ $signing_key | quote }}
 
