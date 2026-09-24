@@ -10,7 +10,15 @@
 .pi/agent/auth.json
 .pi/agent/mcp-cache.json
 
+# Machine-local pi state: model caches, trust decisions and the .bak files pi
+# writes when it rewrites settings.json. Restored by pi itself, not by chezmoi.
+.pi/agent/trust.json
+.pi/agent/models-store.json
+.pi/agent/cursor-sdk-*.json
+.pi/agent/settings.json.bak*
+
 .pi/context-mode/
+.pi/memory/
 
 LICENSE
 README.md

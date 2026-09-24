@@ -1,24 +1,106 @@
 {
-  "defaultModel": "qwen3-coder:30b",
-  "defaultProvider": "ollama",
-  "defaultThinkingLevel": "medium",
+  "defaultModel": "claude-opus-5.5",
+  "defaultProvider": "github-copilot",
+  "defaultThinkingLevel": "high",
   "enabledModels": [
-    "claude-opus-4.7",
-    "claude-sonnet-4.6",
-    "gpt-5.5",
-    "gpt-5.4-mini",
-    "qwen3-coder:30b"
+    "github-copilot/claude-opus-5.5",
+    "github-copilot/claude-sonnet-5",
+    "github-copilot/gpt-6-astra",
+    "github-copilot/gpt-6-sol",
+    "github-copilot/gpt-6-luna",
+    "cursor/claude-opus-5-5@1m",
+    "cursor/claude-sonnet-5@1m",
+    "cursor/gpt-5.6-sol@1m",
+    "cursor/gpt-5.6-luna@1m",
+    "cursor/composer-2.5",
+    "cursor/auto-smart"
   ],
-  "lastChangelogVersion": "0.75.4",
+  "modelThinkingLevels": {
+    "github-copilot/claude-sonnet-5": "xhigh"
+  },
+  "subagents": {
+    "defaultThinking": "medium",
+    "asyncByDefault": true,
+    "fleetView": true,
+    "agentOverrides": {
+      "scout": {
+        "thinking": "low"
+      },
+      "researcher": {
+        "thinking": "medium"
+      },
+      "evidence-auditor": {
+        "thinking": "xhigh"
+      },
+      "worker": {
+        "thinking": "medium"
+      },
+      "reviewer": {
+        "thinking": "high"
+      },
+      "oracle": {
+        "thinking": "xhigh"
+      }
+    },
+    "agentOverridesByProvider": {
+      "github-copilot": {
+        "scout": {
+          "model": "github-copilot/gpt-6-luna"
+        },
+        "researcher": {
+          "model": "github-copilot/gpt-6-luna"
+        },
+        "evidence-auditor": {
+          "model": "github-copilot/claude-sonnet-5"
+        },
+        "worker": {
+          "model": "github-copilot/gpt-6-sol"
+        },
+        "reviewer": {
+          "model": "github-copilot/gpt-6-sol"
+        },
+        "oracle": {
+          "model": "github-copilot/gpt-6-astra"
+        }
+      },
+      "cursor": {
+        "scout": {
+          "model": "cursor/gpt-5.6-luna@1m"
+        },
+        "researcher": {
+          "model": "cursor/gpt-5.6-luna@1m"
+        },
+        "evidence-auditor": {
+          "model": "cursor/claude-sonnet-5@1m"
+        },
+        "worker": {
+          "model": "cursor/gpt-5.6-sol@1m"
+        },
+        "reviewer": {
+          "model": "cursor/gpt-5.6-sol@1m"
+        },
+        "oracle": {
+          "model": "cursor/claude-opus-5-5@1m"
+        }
+      }
+    }
+  },
+  "lastChangelogVersion": "0.87.1",
   "packages": [
     "npm:context-mode",
     "npm:pi-mcp-adapter",
-    "npm:@ollama/pi-web-search",
-    "npm:pi-autoresearch"
+    "npm:pi-autoresearch",
+    "npm:pi-cursor-sdk",
+    "npm:pi-subagents",
+    "npm:@juicesharp/rpiv-ask-user-question",
+    "npm:pi-total-recall",
+    "npm:@juicesharp/rpiv-voice",
+    "npm:@firstpick/pi-themes-bundle",
+    "npm:pi-web-access"
   ],
   "quietStartup": true,
-  "theme": "dark",
-  "steeringMode": "one-at-a-time",
+  "theme": "catppuccin-latte/catppuccin-mocha",
+  "steeringMode": "all",
   "hideThinkingBlock": true,
   "enableInstallTelemetry": false,
   "treeFilterMode": "no-tools"
