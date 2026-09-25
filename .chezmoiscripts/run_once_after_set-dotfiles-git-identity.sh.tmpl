@@ -1,0 +1,18 @@
+{{ if eq .machine_type "work" -}}
+#!/usr/bin/env bash
+set -euo pipefail
+
+# The machine-wide git identity is the work address, so commits to this
+# personal repo would be authored with it. A per-repo override belongs in
+# .git/config -- but that is not version-controlled and so does not survive
+# a re-clone, which is exactly how this repo lands on a new machine.
+#
+# run_once_: this only has to happen when the source repo is first set up.
+# Editing the address below changes the script, so chezmoi re-runs it.
+
+source_dir={{ .chezmoi.sourceDir | quote }}
+
+if git -C "$source_dir" rev-parse --git-dir >/dev/null 2>&1; then
+    git -C "$source_dir" config --local user.email "jung.felix@gmail.com"
+fi
+{{ end -}}
