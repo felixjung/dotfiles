@@ -50,6 +50,9 @@ packages:
       platform: [darwin]
     - name: "fzf"
       platform: [darwin, linux]
+    # Smarter cd; the fish integration lives in dot_config/fish/conf.d/z.fish.
+    - name: "zoxide"
+      platform: [darwin, linux]
     - name: "mas"
       platform: [darwin]
 
