@@ -100,8 +100,13 @@ plugins {
         // Bell: Zellij raises has_bell_notification on a tab when any program
         // in it emits BEL, and is_flashing_bell while that is fresh. Both are
         // per-tab and survive the tab being in the background.
-        flashing_bell_indicator " ◆"
-        bell_indicator " ◇"
+        //
+        // The option keys carry a `tab_` prefix (tab_bell_indicator, not
+        // bell_indicator); without it zjstatus ignores them and the
+        // {bell_indicator} placeholder in tab_normal/tab_active passes through
+        // to the tab title literally instead of resolving to empty/the glyph.
+        tab_flashing_bell_indicator " ◆"
+        tab_bell_indicator " ◇"
 
         // Live agent summary, hidden entirely while nothing is running
         // (hideonemptystdout returns before the format is applied, so the
