@@ -18,6 +18,10 @@
   "modelThinkingLevels": {
     "github-copilot/claude-sonnet-5": "xhigh"
   },
+  "memory": {
+    "lessonInjection": "selective",
+    "consolidationModel": "github-copilot/gpt-6-luna"
+  },
   "subagents": {
     "defaultThinking": "medium",
     "asyncByDefault": true,
