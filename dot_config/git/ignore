@@ -48,3 +48,11 @@
 
 # developer tools
 .tool-versions
+
+# AI stuff
+.implementation-plans
+.rules
+**/.claude/settings.local.json
+
+# Worktrunk project config
+.config/wt.toml
