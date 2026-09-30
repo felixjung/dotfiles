@@ -1,5 +1,5 @@
 {
-  "defaultModel": "claude-opus-5.5",
+  "defaultModel": "gpt-6-sol",
   "defaultProvider": "github-copilot",
   "defaultThinkingLevel": "high",
   "enabledModels": [
@@ -89,7 +89,7 @@
       }
     }
   },
-  "lastChangelogVersion": "0.87.1",
+  "lastChangelogVersion": "0.99.1",
   "packages": [
     "npm:context-mode",
     "npm:pi-mcp-adapter",
