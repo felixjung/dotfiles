@@ -100,7 +100,8 @@
     "npm:pi-total-recall",
     "npm:@juicesharp/rpiv-voice",
     "npm:@firstpick/pi-themes-bundle",
-    "npm:pi-web-access"
+    "npm:pi-web-access",
+    "npm:@plannotator/pi-extension"
   ],
   "quietStartup": true,
   "theme": "catppuccin-latte/catppuccin-mocha",
