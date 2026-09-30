@@ -8,7 +8,7 @@
     "github-copilot/gpt-6-astra",
     "github-copilot/gpt-6-sol",
     "github-copilot/gpt-6-luna",
-    "cursor/claude-opus-5-5@1m",
+    "cursor/claude-opus-5-5@300k",
     "cursor/claude-sonnet-5@1m",
     "cursor/gpt-5.6-sol@1m",
     "cursor/gpt-5.6-luna@1m",
@@ -84,7 +84,7 @@
           "model": "cursor/gpt-5.6-sol@1m"
         },
         "oracle": {
-          "model": "cursor/claude-opus-5-5@1m"
+          "model": "cursor/claude-opus-5-5@300k"
         }
       }
     }
