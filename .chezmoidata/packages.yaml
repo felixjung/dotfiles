@@ -79,7 +79,7 @@ packages:
     # installs itself on startup.
     - name: "pi-coding-agent"
       platform: [darwin, linux]
-    # Terminal markdown annotator; pi's /plan (dot_pi/agent/extensions/plan-review.ts)
+    # Terminal markdown annotator; pi's /plan (dot_pi/agent/extensions/plan-review/)
     # opens plans in it for review.
     - name: "plannotator/tap/plannotator-tui"
       platform: [darwin]
