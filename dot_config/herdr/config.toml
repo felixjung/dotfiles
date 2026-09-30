@@ -29,6 +29,8 @@ settings = "prefix+shift+s"
 directory = "~/worktrees"
 
 [ui]
+# Don't write the outer terminal title; Ghostty's titlebar stays blank.
+window_title = ""
 status_indicators = "symbols"
 tab_bar_position = "bottom"
 
