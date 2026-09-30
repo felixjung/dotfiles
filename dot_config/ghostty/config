@@ -28,6 +28,10 @@ window-decoration = auto
 macos-window-buttons = visible
 macos-titlebar-style = transparent
 macos-titlebar-proxy-icon = hidden
+# Always work inside a multiplexer with its own status bar, so keep the
+# titlebar blank. A non-empty title makes Ghostty ignore OSC title escapes
+# (fish, herdr, nvim); "" would mean unset, hence the single space.
+title = " "
 background-blur = macos-glass-regular
 window-theme = auto
 window-padding-x = 20
