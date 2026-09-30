@@ -1,0 +1,36 @@
+onboarding = false
+
+[theme]
+# Follow macOS appearance like WezTerm (dot_config/wezterm/colors.lua).
+auto_switch = true
+light_name = "catppuccin-latte"
+dark_name = "catppuccin"
+
+[keys]
+# Match the WezTerm leader (dot_config/wezterm/wezterm.lua).
+prefix = "ctrl+a"
+
+# WezTerm leader bindings (dot_config/wezterm/keys.lua) alongside herdr's
+# defaults. Where they collide, the WezTerm binding wins and herdr's action
+# moves to its shifted variant.
+zoom = ["prefix+z", "prefix+f"]
+split_vertical = ["prefix+v", "prefix+|"]
+rename_tab = ["prefix+shift+t", "prefix+comma"]
+close_tab = ["prefix+shift+x", "prefix+ampersand"]
+cycle_pane_next = ["prefix+tab", "prefix+o"]
+cycle_pane_previous = ["prefix+shift+tab", "prefix+semicolon"]
+new_workspace = ["prefix+shift+n", "prefix+s"]
+open_notification_target = "prefix+shift+o"
+settings = "prefix+shift+s"
+
+[worktrees]
+# Same root as worktrunk, which uses ~/worktrees/{repo}.{branch}; herdr
+# always nests as {repo}/{branch}.
+directory = "~/worktrees"
+
+[ui]
+status_indicators = "symbols"
+tab_bar_position = "bottom"
+
+[ui.toast]
+delivery = "system"
