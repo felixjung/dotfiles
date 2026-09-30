@@ -19,9 +19,15 @@ rename_tab = ["prefix+shift+t", "prefix+comma"]
 close_tab = ["prefix+shift+x", "prefix+ampersand"]
 cycle_pane_next = ["prefix+tab", "prefix+o"]
 cycle_pane_previous = ["prefix+shift+tab", "prefix+semicolon"]
-new_workspace = ["prefix+shift+n", "prefix+s"]
+new_workspace = "prefix+s"
 open_notification_target = "prefix+shift+o"
 settings = "prefix+shift+s"
+rename_pane = "prefix+shift+comma"
+
+# Workspace navigation mirrors the tab bindings, shifted.
+previous_workspace = "prefix+shift+p"
+next_workspace = "prefix+shift+n"
+switch_workspace = "prefix+shift+1..9"
 
 [worktrees]
 # Same root as worktrunk, which uses ~/worktrees/{repo}.{branch}; herdr
