@@ -1,0 +1,8 @@
+worktree-path = "~/worktrees/{{ repo }}.{{ branch | sanitize }}"
+
+[post-switch]
+wezterm = """
+if [ -n "$WEZTERM_PANE" ]; then
+  wezterm cli set-tab-title --pane-id "$WEZTERM_PANE" "{{ repo }} | {{ branch }}"
+fi
+"""
