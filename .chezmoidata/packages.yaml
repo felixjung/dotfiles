@@ -6,6 +6,8 @@ packages:
       platform: [darwin, linux]
     - name: "nikitabobko/tap"
       platform: [darwin]
+    - name: "plannotator/tap"
+      platform: [darwin]
     - name: "atlassian/acli"
       platform: [darwin, linux]
       context: [work]
@@ -77,6 +79,10 @@ packages:
     # installs itself on startup.
     - name: "pi-coding-agent"
       platform: [darwin, linux]
+    # Terminal markdown annotator; pi's /plan (dot_pi/agent/extensions/plan-review.ts)
+    # opens plans in it for review.
+    - name: "plannotator/tap/plannotator-tui"
+      platform: [darwin]
 
     - name: "protobuf"
       platform: [darwin, linux]
