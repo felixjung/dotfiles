@@ -1,5 +1,14 @@
 worktree-path = "~/worktrees/{{ repo }}.{{ branch | sanitize }}"
 
+# .tool-versions is globally gitignored, so carry it over from the primary
+# worktree. Runs as pre-start so post-start installs see the right toolchain.
+[pre-start]
+tool-versions = """
+if [ -f "{{ primary_worktree_path }}/.tool-versions" ] && [ ! -e .tool-versions ]; then
+  cp "{{ primary_worktree_path }}/.tool-versions" .tool-versions
+fi
+"""
+
 [post-switch]
 wezterm = """
 if [ -n "$WEZTERM_PANE" ]; then
