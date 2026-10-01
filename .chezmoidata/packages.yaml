@@ -154,7 +154,7 @@ packages:
       platform: [darwin]
     - name: "raycast"
       platform: [darwin]
-    - name: "wezterm"
+    - name: "wezterm@nightly"
       platform: [darwin]
     - name: "arc"
       platform: [darwin]
