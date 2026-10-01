@@ -9,6 +9,18 @@ if [ -f "{{ primary_worktree_path }}/.tool-versions" ] && [ ! -e .tool-versions 
 fi
 """
 
+# Install JS dependencies with whichever package manager the lockfile implies.
+[post-start]
+install = """
+if [ -f pnpm-lock.yaml ]; then
+  pnpm install --frozen-lockfile
+elif [ -f yarn.lock ]; then
+  yarn install --frozen-lockfile
+elif [ -f package-lock.json ]; then
+  npm ci
+fi
+"""
+
 [post-switch]
 wezterm = """
 if [ -n "$WEZTERM_PANE" ]; then
