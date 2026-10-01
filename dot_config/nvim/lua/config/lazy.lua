@@ -19,7 +19,7 @@ require("lazy").setup({
     {
       "LazyVim/LazyVim",
       import = "lazyvim.plugins",
-      opts = { colorscheme = "catppuccin" },
+      opts = { colorscheme = "catppuccin-nvim" },
     },
     { import = "lazyvim.plugins.extras.lang.typescript" },
     { import = "lazyvim.plugins.extras.lang.json" },
@@ -38,7 +38,7 @@ require("lazy").setup({
     lazy = false,
     version = false, -- always use the latest git commit
   },
-  install = { colorscheme = { "catppuccin" } },
+  install = { colorscheme = { "catppuccin-nvim" } },
   checker = { enabled = false },
   dev = {
     path = "~/Developer/neovim-plugins",
