@@ -9,6 +9,11 @@
 #   Stop             -> done       SessionEnd   -> clear
 #   PreToolUse[Task] -> subagent +1        SubagentStop -> subagent -1
 #
+# State file: one line, tab-separated: status cwd subagents epoch session.
+# `session` is the Zellij session the agent runs in (inherited from Claude's
+# environment), empty outside Zellij. It is LAST so that an empty value is
+# harmless to `read`, which collapses runs of tab separators.
+#
 # CONTRACT: print NOTHING on stdout and ALWAYS exit 0. UserPromptSubmit stdout
 # is injected into Claude's context, and a non-zero exit surfaces as a hook
 # error in the session.
@@ -73,8 +78,9 @@ main() {
             *) return 0 ;;
         esac
 
-        printf '%s\t%s\t%s\t%s\n' "$status" "$cwd" "$sub" "$(date +%s)" > "$file"
-        emit "status=$status sub=$sub cwd=$cwd"
+        printf '%s\t%s\t%s\t%s\t%s\n' "$status" "$cwd" "$sub" "$(date +%s)" \
+            "${ZELLIJ_SESSION_NAME:-}" > "$file"
+        emit "status=$status sub=$sub cwd=$cwd session=${ZELLIJ_SESSION_NAME:-}"
     fi
 
     # --strict: this hook may be running in a BACKGROUND tab, so never fall

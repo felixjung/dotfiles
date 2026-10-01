@@ -166,7 +166,7 @@ subagents=0
 if [ -d "$agent_dir" ]; then
     for f in "$agent_dir"/*; do
         [ -f "$f" ] || continue
-        IFS='	' read -r a_status a_cwd a_sub a_epoch < "$f" || continue
+        IFS='	' read -r a_status a_cwd a_sub a_epoch _ < "$f" || continue
 
         # Collect dead entries first, BEFORE the cwd match below, so that
         # stale state for unrelated directories is cleaned up too and not

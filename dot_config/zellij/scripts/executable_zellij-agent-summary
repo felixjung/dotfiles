@@ -1,6 +1,6 @@
 #!/bin/sh
-# One line summarising every live Claude Code agent, for the zjstatus
-# `command_agents` segment. Prints NOTHING when nothing is running, which is
+# One line summarising the live Claude Code agents in THIS Zellij session, for
+# the zjstatus `command_agents` segment. Prints NOTHING when nothing is running, which is
 # what makes `command_agents_hideonemptystdout` collapse the segment.
 #
 # Rendered with `command_agents_rendermode "dynamic"`, so the #[fg=...] theme
@@ -11,7 +11,13 @@
 # it considers dead. Pruning belongs to zellij-tab-sync, which runs on every
 # cd/shell start/agent hook -- so removing this segment from the bar can never
 # silently disable cleanup.
+#
+# zjstatus runs this via the Zellij server, which carries ZELLIJ_SESSION_NAME.
+# Agents from other sessions, or outside Zellij, are not counted. Without the
+# variable we cannot tell, so fall back to counting every agent.
 set -u
+
+session=${ZELLIJ_SESSION_NAME:-}
 
 state_root=${XDG_STATE_HOME:-$HOME/.local/state}
 agent_dir=$state_root/zellij-agents
@@ -27,7 +33,8 @@ subagents=0
 
 for f in "$agent_dir"/*; do
     [ -f "$f" ] || continue
-    IFS='	' read -r status cwd sub epoch < "$f" || continue
+    IFS='	' read -r status cwd sub epoch a_session < "$f" || continue
+    [ -z "$session" ] || [ "${a_session:-}" = "$session" ] || continue
 
     # Skip, never delete -- see the header.
     case "${epoch:-}" in
