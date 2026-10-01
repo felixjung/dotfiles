@@ -99,31 +99,6 @@ function mod.with_options(config)
 				size = { Percent = 50 },
 			}),
 		},
-
-		-- Workspaces
-
-		{
-			-- Create and activate a new workspace
-			key = "s",
-			mods = "LEADER",
-			action = act.PromptInputLine({
-				description = wezterm.format({
-					{ Attribute = { Intensity = "Bold" } },
-					{ Foreground = { AnsiColor = "Fuchsia" } },
-					{ Text = "Enter name for new workspace" },
-				}),
-				action = wezterm.action_callback(function(window, pane, line)
-					if line then
-						window:perform_action(
-							act.SwitchToWorkspace({
-								name = line,
-							}),
-							pane
-						)
-					end
-				end),
-			}),
-		},
 	}
 
 	-- Programmatically define key bindings for activating

@@ -8,8 +8,7 @@ local font = require("font")
 
 -- Plugins
 local smart_splits = require("plugins/smart_splits")
-local resurrect = require("plugins/resurrect")
-local workspace_switcher = require("plugins/workspace_switcher")
+local sessions = require("plugins/sessions")
 
 local config = wezterm.config_builder()
 
@@ -21,8 +20,7 @@ ui.with_options(config)
 font.with_options(config)
 
 smart_splits.with_options(config)
-workspace_switcher.with_options(config)
-resurrect.with_options(config)
+sessions.with_options(config)
 
 -- Multiplexing
 config.unix_domains = {
