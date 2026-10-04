@@ -74,11 +74,6 @@ packages:
     - name: "asdf"
       platform: [darwin, linux]
 
-    # AI coding agent. Its config is managed in dot_pi/; the plugin list is the
-    # `packages` array inside dot_pi/agent/private_settings.json, which pi
-    # installs itself on startup.
-    - name: "pi-coding-agent"
-      platform: [darwin, linux]
     # Terminal markdown annotator; pi's /plan (dot_pi/agent/extensions/plan-review/)
     # opens plans in it for review.
     - name: "plannotator/tap/plannotator-tui"
