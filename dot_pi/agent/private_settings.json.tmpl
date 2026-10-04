@@ -1,8 +1,9 @@
 {
-  "defaultModel": "gpt-6-sol",
-  "defaultProvider": "github-copilot",
+  "defaultModel": {{ if eq .machine_type "work" }}"gpt-6-sol"{{ else }}"gpt-6.1-sol"{{ end }},
+  "defaultProvider": {{ if eq .machine_type "work" }}"github-copilot"{{ else }}"openai"{{ end }},
   "defaultThinkingLevel": "high",
   "enabledModels": [
+{{- if eq .machine_type "work" }}
     "github-copilot/claude-opus-5.5",
     "github-copilot/claude-sonnet-5",
     "github-copilot/gpt-6-astra",
@@ -14,13 +15,18 @@
     "cursor/gpt-5.6-luna@1m",
     "cursor/composer-2.5",
     "cursor/auto-smart"
+{{- else }}
+    "openai/gpt-6-luna",
+    "openai/gpt-6.1-sol",
+    "openai/gpt-6-astra"
+{{- end }}
   ],
   "modelThinkingLevels": {
     "github-copilot/claude-sonnet-5": "xhigh"
   },
   "memory": {
     "lessonInjection": "selective",
-    "consolidationModel": "github-copilot/gpt-6-luna"
+    "consolidationModel": {{ if eq .machine_type "work" }}"github-copilot/gpt-6-luna"{{ else }}"openai/gpt-6-luna"{{ end }}
   },
   "subagents": {
     "defaultThinking": "medium",
@@ -86,15 +92,36 @@
         "oracle": {
           "model": "cursor/claude-opus-5-5@300k"
         }
+      },
+      "openai": {
+        "scout": {
+          "model": "openai/gpt-6-luna"
+        },
+        "researcher": {
+          "model": "openai/gpt-6-luna"
+        },
+        "evidence-auditor": {
+          "model": "openai/gpt-6-astra"
+        },
+        "worker": {
+          "model": "openai/gpt-6.1-sol"
+        },
+        "reviewer": {
+          "model": "openai/gpt-6.1-sol"
+        },
+        "oracle": {
+          "model": "openai/gpt-6-astra"
+        }
       }
     }
   },
   "lastChangelogVersion": "0.99.1",
   "packages": [
     "npm:context-mode",
-    "npm:pi-mcp-adapter",
     "npm:pi-autoresearch",
+{{- if eq .machine_type "work" }}
     "npm:pi-cursor-sdk",
+{{- end }}
     "npm:pi-subagents",
     "npm:@juicesharp/rpiv-ask-user-question",
     "npm:pi-total-recall",
