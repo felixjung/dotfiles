@@ -1,5 +1,4 @@
 @asyncapi/cli@^2
-@earendil-works/pi-coding-agent
 @mermaid-js/mermaid-cli@^11
 @playwright/cli@^0.1
 @redocly/cli@^1
