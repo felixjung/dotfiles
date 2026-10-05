@@ -5,9 +5,8 @@ set -gx NPM_ACCESS_TOKEN "op://SumUp/npm Access Token/token"
 set -gx NPM_ACCESS_TOKEN "op://Private/GitHub PAT/token"
 {{ end -}}
 
-# Make npm read the chezmoi-managed npmrc (sets the global prefix to ~/.local,
-# independent of the asdf node version and Homebrew's node). Without this npm
-# falls back to ~/.npmrc and Homebrew node's builtin prefix=/opt/homebrew.
+# Make npm read the chezmoi-managed npmrc (registry auth tokens). Without this
+# npm falls back to ~/.npmrc, which doesn't exist.
 set -gx NPM_CONFIG_USERCONFIG "$HOME/.config/npm/npmrc"
 
 alias npm="op run -- npm"
