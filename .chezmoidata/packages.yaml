@@ -87,8 +87,8 @@ packages:
     - name: "pgcli"
       platform: [darwin]
 
-    - name: "rust"
-      platform: [darwin, linux]
+    # rustup, not the "rust" formula: rustup honours per-project
+    # rust-toolchain.toml files, and having both puts two rustc on PATH.
     - name: "rustup"
       platform: [darwin, linux]
     - name: "rumdl"
