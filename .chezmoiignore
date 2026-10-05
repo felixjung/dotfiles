@@ -21,7 +21,6 @@
 .pi/agent/cursor-sdk-*.json
 .pi/agent/settings.json.bak*
 
-.pi/context-mode/
 .pi/memory/
 
 LICENSE

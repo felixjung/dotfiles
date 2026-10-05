@@ -2,6 +2,7 @@
   "defaultModel": {{ if eq .machine_type "work" }}"gpt-6-sol"{{ else }}"gpt-6.1-sol"{{ end }},
   "defaultProvider": {{ if eq .machine_type "work" }}"github-copilot"{{ else }}"openai"{{ end }},
   "defaultThinkingLevel": "high",
+  "defaultTools": ["+codemode"],
   "enabledModels": [
 {{- if eq .machine_type "work" }}
     "github-copilot/claude-opus-5.5",
@@ -115,9 +116,8 @@
       }
     }
   },
-  "lastChangelogVersion": "0.99.1",
+  "lastChangelogVersion": "1.0.3",
   "packages": [
-    "npm:context-mode",
     "npm:pi-autoresearch",
 {{- if eq .machine_type "work" }}
     "npm:pi-cursor-sdk",
