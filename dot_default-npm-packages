@@ -1,9 +1,15 @@
-# Global npm CLIs that asdf-nodejs reinstalls on every `asdf install nodejs`
-# (ASDF_NPM_DEFAULT_PACKAGES_FILE). With prefix=~/.local in the managed npmrc
-# these land in ~/.local, so they survive node version switches.
-@stoplight/spectral-cli
-
-# AI coding agent (was the pi-coding-agent Homebrew formula). Its config is
-# managed in dot_pi/; the plugin list is the `packages` array inside
-# dot_pi/agent/private_settings.json, which pi installs itself on startup.
+@asyncapi/cli@^2
 @earendil-works/pi-coding-agent
+@mermaid-js/mermaid-cli@^11
+@playwright/cli@^0.1
+@redocly/cli@^1
+@slidev/cli@^52
+@stoplight/spectral-cli@^6
+ajv@^8
+ajv-cli@^5
+context-mode@^1
+openapi-typescript@^7
+pi-mcp-adapter@^2
+pnpm@^10
+typescript@^5
+vercel@^50
