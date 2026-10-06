@@ -159,6 +159,8 @@ packages:
       platform: [darwin]
     - name: "tailscale-app"
       platform: [darwin]
+    - name: "voiceink"
+      platform: [darwin]
 
     # Coding agents
     - name: "codex-app"
