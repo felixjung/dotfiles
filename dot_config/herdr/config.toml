@@ -41,4 +41,6 @@ status_indicators = "symbols"
 tab_bar_position = "bottom"
 
 [ui.toast]
-delivery = "system"
+# Let the outer terminal (Ghostty/WezTerm) post notifications via OSC 9;
+# "system" falls back to AppleScript without terminal-notifier.
+delivery = "terminal"
