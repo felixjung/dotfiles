@@ -116,6 +116,13 @@
       }
     }
   },
+  "interview": {
+    "launcher": "browser",
+    "generateModel": {{ if eq .machine_type "work" }}"github-copilot/gpt-6-luna"{{ else }}"openai/gpt-6-luna"{{ end }},
+    "theme": {
+      "mode": "auto"
+    }
+  },
   "lastChangelogVersion": "1.0.3",
   "packages": [
     "npm:pi-autoresearch",
@@ -128,7 +135,8 @@
     "npm:@juicesharp/rpiv-voice",
     "npm:@firstpick/pi-themes-bundle",
     "npm:pi-web-access",
-    "npm:@plannotator/pi-extension"
+    "npm:@plannotator/pi-extension",
+    "npm:pi-interview"
   ],
   "quietStartup": true,
   "theme": "catppuccin-latte/catppuccin-mocha",
