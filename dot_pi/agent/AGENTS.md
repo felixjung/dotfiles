@@ -17,7 +17,3 @@ One writer per worktree. Launch async and yield rather than blocking.
 The no-overwrite rule in `~/AGENTS.md` applies to subagent writer lanes too.
 
 See the bundled pi-subagents skill for orchestration mechanics.
-
-## Tool selection
-
-When using the Cursor SDK provider, prefer `pi__ctx_execute_file` and `pi__ctx_batch_execute` over Cursor-native Read or Shell for large outputs.
