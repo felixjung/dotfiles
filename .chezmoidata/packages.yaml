@@ -81,6 +81,11 @@ packages:
     - name: "plannotator/tap/plannotator-tui"
       platform: [darwin]
 
+    # herdr's "system" toast delivery (dot_config/herdr/config.toml) uses it
+    # instead of falling back to AppleScript notifications.
+    - name: "terminal-notifier"
+      platform: [darwin]
+
     - name: "protobuf"
       platform: [darwin, linux]
 

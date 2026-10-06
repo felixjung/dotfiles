@@ -41,6 +41,7 @@ status_indicators = "symbols"
 tab_bar_position = "bottom"
 
 [ui.toast]
-# Let the outer terminal (Ghostty/WezTerm) post notifications via OSC 9;
-# "system" falls back to AppleScript without terminal-notifier.
-delivery = "terminal"
+# Uses terminal-notifier (.chezmoidata/packages.yaml); clicking a
+# notification activates the terminal. Without it herdr falls back to
+# AppleScript notifications.
+delivery = "system"
