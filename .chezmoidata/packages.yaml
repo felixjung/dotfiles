@@ -68,6 +68,8 @@ packages:
       platform: [darwin, linux]
     - name: "zellij"
       platform: [darwin, linux]
+    - name: "herdr"
+      platform: [darwin, linux]
 
     - name: "neovim"
       platform: [darwin, linux]
