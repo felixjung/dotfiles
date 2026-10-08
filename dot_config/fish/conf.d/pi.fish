@@ -4,3 +4,7 @@
 # TUI (matches the codex alias). Provider/model selection is per-machine in
 # ~/.pi/agent/settings.json, so this alias is identical on every machine.
 alias pi="op run --no-masking -- pi"
+
+# Give the agent the `plannotator` tool (annotate/review with an approval gate);
+# the documents skill's review gate depends on it.
+set -gx PLANNOTATOR_AGENT_TOOL 1
