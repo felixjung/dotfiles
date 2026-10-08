@@ -40,6 +40,14 @@ window_title = ""
 status_indicators = "symbols"
 tab_bar_position = "bottom"
 
+[ui.sidebar.agents]
+# pi-subagents runs children headless and reports them through the parent
+# pane's metadata (e.g. "⏳ 5 subagents (worker, researcher) · …").
+rows = [
+  ["state_icon", "workspace", "tab"],
+  ["agent", "$summary"],
+]
+
 [ui.toast]
 # Uses terminal-notifier (.chezmoidata/packages.yaml); clicking a
 # notification activates the terminal. Without it herdr falls back to
