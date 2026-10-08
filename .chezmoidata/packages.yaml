@@ -6,8 +6,6 @@ packages:
       platform: [darwin, linux]
     - name: "nikitabobko/tap"
       platform: [darwin]
-    - name: "plannotator/tap"
-      platform: [darwin]
     - name: "atlassian/acli"
       platform: [darwin, linux]
       context: [work]
@@ -75,11 +73,6 @@ packages:
       platform: [darwin, linux]
     - name: "asdf"
       platform: [darwin, linux]
-
-    # Terminal markdown annotator; pi's /plan (dot_pi/agent/extensions/plan-review/)
-    # opens plans in it for review.
-    - name: "plannotator/tap/plannotator-tui"
-      platform: [darwin]
 
     # herdr's "system" toast delivery (dot_config/herdr/config.toml) uses it
     # instead of falling back to AppleScript notifications.
