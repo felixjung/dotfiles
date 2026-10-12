@@ -1,4 +1,5 @@
 local wezterm = require("wezterm")
+local agents = require("agents")
 
 local mod = {}
 
@@ -31,7 +32,28 @@ end
 
 -- Side effects
 wezterm.on("update-status", function(window, _)
-	window:set_right_status(" " .. window:active_workspace() .. " ")
+	local summary = agents.summary()
+	if summary ~= "" then
+		summary = summary .. "  "
+	end
+	window:set_right_status(" " .. summary .. window:active_workspace() .. " ")
+end)
+
+-- Same layout as the default retro tab, plus the agent badge. The badge
+-- follows the title so it survives tab_max_width truncation of long titles.
+wezterm.on("format-tab-title", function(tab, _, _, _, _, max_width)
+	local title = tab.tab_title
+	if title == "" then
+		title = tab.active_pane.title
+	end
+	local badge = agents.badge(agents.tab_status(tab.tab_id))
+	-- A custom format replaces the built-in index prefix, so add it back.
+	local prefix = tab.tab_index .. ": "
+	local room = max_width - wezterm.column_width(prefix .. badge) - 2
+	if room < 1 then
+		room = 1
+	end
+	return " " .. prefix .. wezterm.truncate_right(title, room) .. badge .. " "
 end)
 
 return mod
