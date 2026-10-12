@@ -22,27 +22,28 @@ function theme_env --argument-names theme
     end
 end
 
-# $macos_theme is universal, broadcast to every running shell by
-# theming/theming.fish. Reacting to it is what universal variables are for.
-function update_theme --on-variable macos_theme
-    theme_env $macos_theme
+status is-interactive; or return
+
+# fish asks the terminal for its background colour and keeps
+# $fish_terminal_color_theme (light, dark or unknown) current. The theme's
+# [light] section is Latte, and fish switches sections on its own.
+fish_config theme choose catppuccin-macchiato
+
+# $fish_terminal_color_theme is only set once the first prompt is shown, so
+# this handler, not startup, seeds the environment for each shell.
+function update_theme --on-variable fish_terminal_color_theme
+    theme_env $fish_terminal_color_theme
 
     # Write delta's theme to its own include file rather than --global: the
     # global config is chezmoi-managed, and rewriting it on every theme flip
     # left it permanently dirty in `chezmoi status`.
     set -l delta_theme_file ~/.config/git/delta/current-theme.gitconfig
 
-    if [ "$macos_theme" = light ]
-        fish_config theme choose catppuccin-frappe
+    if [ "$fish_terminal_color_theme" = light ]
         git config set --file $delta_theme_file delta.features catppuccin-latte
     else
-        fish_config theme choose catppuccin-macchiato
         git config set --file $delta_theme_file delta.features catppuccin-macchiato
     end
 
     # tmux source-file "$XDG_CONFIG_HOME/tmux/tmux.conf"
 end
-
-# The handler above only fires on *change*, and BAT_THEME/FZF_DEFAULT_OPTS are
-# per-shell globals now, so seed them for this shell too.
-theme_env $macos_theme
