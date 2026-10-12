@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/derailed/k9s/master/internal/config/json/schemas/k9s.json
+# Only overrides belong here; k9s rewrites a missing file with every default.
+# The skin comes from K9S_SKIN (fish/conf.d/auto_theme.fish).
+k9s: {}
