@@ -210,27 +210,29 @@ keybinds {
             }
         }
 
-        // Resize. Requires `macos-option-as-alt = right` in the Ghostty config;
+        // Resize on Ctrl+Alt+hjkl, matching Neovim/WezTerm (plain Alt+hjkl is
+        // taken by the window manager). Requires `macos-option-as-alt = right`
+        // in the Ghostty config;
         // left Option stays free for dead-key Unicode input (option+u, a -> ä).
-        bind "Alt h" {
+        bind "Ctrl Alt h" {
             MessagePlugin "file:{{ .chezmoi.homeDir }}/.config/zellij/plugins/vim-zellij-navigator.wasm" {
                 name "resize"
                 payload "left"
             }
         }
-        bind "Alt j" {
+        bind "Ctrl Alt j" {
             MessagePlugin "file:{{ .chezmoi.homeDir }}/.config/zellij/plugins/vim-zellij-navigator.wasm" {
                 name "resize"
                 payload "down"
             }
         }
-        bind "Alt k" {
+        bind "Ctrl Alt k" {
             MessagePlugin "file:{{ .chezmoi.homeDir }}/.config/zellij/plugins/vim-zellij-navigator.wasm" {
                 name "resize"
                 payload "up"
             }
         }
-        bind "Alt l" {
+        bind "Ctrl Alt l" {
             MessagePlugin "file:{{ .chezmoi.homeDir }}/.config/zellij/plugins/vim-zellij-navigator.wasm" {
                 name "resize"
                 payload "right"
@@ -241,5 +243,19 @@ keybinds {
     pane {
         // Move-mode lost its global Ctrl+h binding; reach it from pane mode.
         bind "m" { SwitchToMode "move"; }
+    }
+
+    scroll {
+        // Zellij can only scroll its own scrollback, and full-screen apps
+        // (pi's default fullscreen TUI) run on the alternate screen, which
+        // has none. These keys instead forward scroll keys to the focused
+        // pane, where pi scrolls its own viewport; the native j/k/d/u/PageUp/
+        // PageDown keep scrolling Zellij's history for ordinary panes.
+        // Bytes: ESC [ 5 ^ / 6 ^ = ctrl+PageUp/Down (pi half-page, bound in
+        // ~/.pi/agent/keybindings.json), ESC [ 5 ~ / 6 ~ = PageUp/Down.
+        bind "Ctrl u" { Write 27 91 53 94; }
+        bind "Ctrl d" { Write 27 91 54 94; }
+        bind "Ctrl b" { Write 27 91 53 126; }
+        bind "Ctrl f" { Write 27 91 54 126; }
     }
 }
