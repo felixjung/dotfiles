@@ -9,6 +9,10 @@ packages:
     - name: "atlassian/acli"
       platform: [darwin, linux]
       context: [work]
+    # Homebrew only loads casks from taps marked trusted (brew trust).
+    - name: "docker/tap"
+      platform: [darwin]
+      trust: true
 
   brews:
     - name: "age"
@@ -168,6 +172,9 @@ packages:
     - name: "codex"
       platform: [darwin]
     - name: "claude-code"
+      platform: [darwin]
+    # Docker Sandboxes: microVMs for running agents (see pisbx).
+    - name: "docker/tap/sbx"
       platform: [darwin]
 
     # Work-only casks

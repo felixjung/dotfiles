@@ -10,6 +10,12 @@ else
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
+{{ range .packages.taps -}}
+{{ if and (has "darwin" .platform) (hasKey . "trust") -}}
+/opt/homebrew/bin/brew trust --tap {{ .name | quote }}
+{{ end -}}
+{{ end -}}
+
 /opt/homebrew/bin/brew bundle --file=/dev/stdin <<EOF
 # Taps
 {{ range .packages.taps -}}
