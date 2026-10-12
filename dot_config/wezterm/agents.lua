@@ -2,7 +2,9 @@
 --
 -- Agents (Claude Code, pi) report through
 -- ~/.config/zellij/scripts/zellij-agent-state, which writes one file per
--- session under $XDG_STATE_HOME/zellij-agents. Zellij tabs read those files
+-- session under $XDG_STATE_HOME/zellij-agents, and keep their concatenation in
+-- zellij-agents.tsv, which is what this module reads (wezterm.glob cannot be
+-- called from format-tab-title: it yields, and that callback is synchronous). Zellij tabs read those files
 -- via zellij-tab-sync; this module is the WezTerm half. Format and rationale:
 -- see the header of zellij-agent-state.
 --
@@ -23,9 +25,9 @@ local RANK = { done = 1, running = 2, waiting = 3 }
 
 local cache = { at = 0, by_pane = {} }
 
-local function state_dir()
+local function index_path()
 	local root = os.getenv("XDG_STATE_HOME") or (wezterm.home_dir .. "/.local/state")
-	return root .. "/zellij-agents"
+	return root .. "/zellij-agents.tsv"
 end
 
 local function split_tabs(line)
@@ -45,13 +47,11 @@ local function load()
 	end
 
 	local by_pane = {}
-	for _, path in ipairs(wezterm.glob(state_dir() .. "/*")) do
-		local f = io.open(path, "r")
-		if f then
-			local line = f:read("*l")
-			f:close()
+	local f = io.open(index_path(), "r")
+	if f then
+		for line in f:lines() do
 			-- status cwd subagents epoch session agent wezterm_pane
-			local v = line and split_tabs(line) or {}
+			local v = split_tabs(line)
 			local pane = tonumber(v[7])
 			local epoch = tonumber(v[4])
 			if pane and epoch and RANK[v[1]] and now - epoch <= STALE_SECONDS then
@@ -63,6 +63,7 @@ local function load()
 				by_pane[pane] = entry
 			end
 		end
+		f:close()
 	end
 
 	cache = { at = now, by_pane = by_pane }

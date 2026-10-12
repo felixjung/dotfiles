@@ -24,6 +24,11 @@
 # $WEZTERM_PANE is whatever the Zellij server inherited when it started and
 # says nothing about which WezTerm pane is attached.
 #
+# INDEX. After every change the directory is concatenated into one file,
+# $XDG_STATE_HOME/zellij-agents.tsv, which WezTerm reads: its Lua can list a
+# directory only with wezterm.glob, and that cannot be called from the
+# synchronous format-tab-title callback.
+#
 # CLEANUP. Every call prunes the whole directory, so state cannot pile up
 # whether or not Zellij (and so zellij-tab-sync) is in use. An entry goes when
 # it is malformed, its directory is gone, it is older than 6 hours, or it is a
@@ -75,9 +80,19 @@ prune() {
     done
 }
 
+# Rebuild the single-file index of $1 (see INDEX). Atomic via rename, so a
+# reader never sees a half-written file.
+reindex() {
+    index=${1%/*}/zellij-agents.tsv
+    tmp=$index.$$
+    cat "$1"/* > "$tmp" 2>/dev/null
+    mv -f "$tmp" "$index" 2>/dev/null || rm -f "$tmp"
+}
+
 main() {
     if [ "$action" = prune ]; then
         prune "${XDG_STATE_HOME:-$HOME/.local/state}/zellij-agents"
+        reindex "${XDG_STATE_HOME:-$HOME/.local/state}/zellij-agents"
         return 0
     fi
 
@@ -95,6 +110,7 @@ main() {
     if [ "$action" = clear ]; then
         rm -f "$file"
         prune "$agent_dir"
+        reindex "$agent_dir"
     else
         mkdir -p "$agent_dir" || return 0
 
@@ -133,6 +149,7 @@ main() {
         printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\n' "$status" "$cwd" "$sub" \
             "$(date +%s)" "${ZELLIJ_SESSION_NAME:--}" "$agent" "$wez" > "$file"
         prune "$agent_dir"
+        reindex "$agent_dir"
         emit "status=$status sub=$sub cwd=$cwd session=${ZELLIJ_SESSION_NAME:--} agent=$agent wez=$wez"
     fi
 
