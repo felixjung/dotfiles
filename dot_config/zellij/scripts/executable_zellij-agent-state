@@ -2,7 +2,7 @@
 # Agent hook: record this agent session's status, then resync its Zellij tab.
 # WezTerm's tab bar reads the same state files (wezterm/agents.lua).
 #
-# Usage: zellij-agent-state [--agent NAME] running|waiting|done|clear
+# Usage: zellij-agent-state [--agent NAME] running|waiting|done|error|clear
 #        zellij-agent-state [--agent NAME] subagent +1|-1
 #        zellij-agent-state prune        (no stdin; the fish shell runs this)
 #
@@ -32,7 +32,7 @@
 # CLEANUP. Every call prunes the whole directory, so state cannot pile up
 # whether or not Zellij (and so zellij-tab-sync) is in use. An entry goes when
 # it is malformed, its directory is gone, it is older than 6 hours, or it is a
-# finished ("done") one older than an hour. Agents that exit normally remove
+# finished ("done" or "error") one older than an hour. Agents that exit normally remove
 # their own file (SessionEnd / session_shutdown); this catches the ones that
 # are killed.
 #
@@ -73,7 +73,7 @@ prune() {
         esac
         age=$((now - p_epoch))
         if [ "$age" -gt $((6 * 60 * 60)) ] ||
-            { [ "${p_status:-}" = done ] && [ "$age" -gt $((60 * 60)) ]; } ||
+            { case "${p_status:-}" in done | error) [ "$age" -gt $((60 * 60)) ] ;; *) false ;; esac; } ||
             [ ! -d "${p_cwd:-/nonexistent}" ]; then
             rm -f "$f"
         fi
@@ -128,7 +128,7 @@ main() {
         status=$old_status
         sub=$old_sub
         case "$action" in
-            running | waiting | done)
+            running | waiting | done | error)
                 status=$action
                 # A fresh turn clears any stale sub-agent count.
                 [ "$action" = running ] && sub=0

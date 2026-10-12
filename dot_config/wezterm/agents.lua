@@ -19,9 +19,9 @@ local mod = {}
 local STALE_SECONDS = 6 * 60 * 60
 local CACHE_SECONDS = 1
 
-local GLYPH = { waiting = "●", running = "◐", done = "✓" }
+local GLYPH = { waiting = "●", error = "✗", running = "◐", done = "✓" }
 -- Higher wins when one tab holds several agents.
-local RANK = { done = 1, running = 2, waiting = 3 }
+local RANK = { done = 1, running = 2, error = 3, waiting = 4 }
 
 local cache = { at = 0, by_pane = {} }
 
@@ -102,12 +102,12 @@ end
 -- status. Also what makes the tab bar repaint when a state file changes:
 -- WezTerm only redraws when the status text does.
 function mod.summary()
-	local counts = { waiting = 0, running = 0, done = 0 }
+	local counts = { waiting = 0, error = 0, running = 0, done = 0 }
 	for _, entry in pairs(load()) do
 		counts[entry.status] = counts[entry.status] + 1
 	end
 	local parts = {}
-	for _, s in ipairs({ "waiting", "running", "done" }) do
+	for _, s in ipairs({ "waiting", "error", "running", "done" }) do
 		if counts[s] > 0 then
 			parts[#parts + 1] = GLYPH[s] .. counts[s]
 		end

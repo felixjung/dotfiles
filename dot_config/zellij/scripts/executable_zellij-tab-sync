@@ -197,7 +197,8 @@ if [ -d "$agent_dir" ]; then
         esac
         case "${a_status:-}" in
             waiting) status=waiting ;;
-            running) [ "$status" = waiting ] || status=running ;;
+            error) [ "$status" = waiting ] || status=error ;;
+            running) case "$status" in waiting | error) ;; *) status=running ;; esac ;;
             done) [ -n "$status" ] || status=done ;;
         esac
         case "${a_sub:-}" in
@@ -210,6 +211,7 @@ fi
 badge=
 case "$status" in
     waiting) badge=' ●' ;;
+    error) badge=' ✗' ;;
     running) badge=' ◐' ;;
     done) badge=' ✓' ;;
 esac
