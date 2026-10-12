@@ -14,11 +14,11 @@ alias pi="op run --no-masking -- pi"
 # logins. Sign in once per sandbox with `/mcp login <server>`, open the URL
 # here and paste the redirected URL back into pi.
 #
-# The sandbox mounts ~/worktrees, so worktrees pi creates show up here, and the
-# repo's primary checkout, so git can resolve the worktree's .git; paths match
-# the host's. ~/worktrees comes first because sbx writes its agent
-# instructions next to the first mount: into ~ inside the VM, where pi finds
-# them and the host never sees them.
+# The sandbox mounts ~/worktrees, so worktrees pi creates show up here, the
+# repo's primary checkout, so git can resolve the worktree's .git, and the
+# worktree's pi sessions; paths match the host's. ~/worktrees comes first
+# because sbx writes its agent instructions next to the first mount: into ~
+# inside the VM, where pi finds them and the host never sees them.
 function pisbx -d "run pi in a Docker sandbox for a worktree"
     set -l dir $PWD
     set -q argv[1]; and set dir $argv[1]
@@ -34,8 +34,15 @@ function pisbx -d "run pi in a Docker sandbox for a worktree"
     # GH_TOKEN; empty, it falls back to our GITHUB_TOKEN secret.
     set -l env_args --env GH_TOKEN=
 
+    # The worktree's pi sessions, shared with pi on the host so either can
+    # resume the other's (just not the same session at once). Host pi groups
+    # sessions by working directory under this name; pi in the VM runs at the
+    # same path but uses the folder directly, through
+    # PI_CODING_AGENT_SESSION_DIR.
+    set -l sessions ~/.pi/agent/sessions/--(string replace -r '^/' '' -- $worktree | string replace -ra '[/:]' -)--
+
     if not contains -- $sandbox (sbx ls --quiet)
-        mkdir -p ~/worktrees
+        mkdir -p ~/worktrees $sessions
         set -l mounts ~/worktrees
         for path in $primary $worktree
             string match -q "$HOME/worktrees/*" -- $path
@@ -44,8 +51,14 @@ function pisbx -d "run pi in a Docker sandbox for a worktree"
         end
         sbx create --name $sandbox ~/.config/sbx/kits/pi-dev \
             --kit docker.io/sbx/git-ssh-sign-kit:latest \
-            $mounts; or return
+            $mounts $sessions; or return
     end
+
+    # Sandboxes created before sessions were shared lack the mount; there, pi
+    # keeps its sessions in the VM.
+    set -l workspaces (sbx ls --json | jq -r --arg name $sandbox '.sandboxes[] | select(.name == $name) | .workspaces[]')
+    contains -- $sessions $workspaces
+    and set -a env_args --env PI_CODING_AGENT_SESSION_DIR=$sessions
 
     # Your instructions. On the host, pi reads ~/AGENTS.md as a parent of the
     # worktree; in the VM that path holds sbx's instructions instead. So put
