@@ -32,3 +32,11 @@
 ".config/zellij/plugins/zjstatus.wasm":
     type: "file"
     url: "https://github.com/felixjung/zjstatus/releases/download/v0.24.0-theme1/zjstatus.wasm"
+# Catppuccin k9s skins; K9S_SKIN in fish/conf.d/auto_theme.fish picks one per
+# macOS appearance. Transparent variants let WezTerm's background show through.
+{{- range list "latte" "macchiato" }}
+".config/k9s/skins/catppuccin-{{ . }}-transparent.yaml":
+    type: "file"
+    url: "https://raw.githubusercontent.com/catppuccin/k9s/main/dist/catppuccin-{{ . }}-transparent.yaml"
+    refreshPeriod: "168h"
+{{- end }}

@@ -3,6 +3,7 @@
 function theme_env --argument-names theme
     if [ "$theme" = light ]
         set -gx BAT_THEME "Catppuccin Latte"
+        set -gx K9S_SKIN catppuccin-latte-transparent
         set -gx FZF_DEFAULT_OPTS "\
           --color=bg+:#CCD0DA,bg:#EFF1F5,spinner:#DC8A78,hl:#D20F39 \
           --color=fg:#4C4F69,header:#D20F39,info:#8839EF,pointer:#DC8A78 \
@@ -11,6 +12,7 @@ function theme_env --argument-names theme
           --color=border:#9CA0B0,label:#4C4F69"
     else
         set -gx BAT_THEME "Catppuccin Macchiato"
+        set -gx K9S_SKIN catppuccin-macchiato-transparent
         set -gx FZF_DEFAULT_OPTS "\
           --color=bg+:#363A4F,bg:#24273A,spinner:#F4DBD6,hl:#ED8796 \
           --color=fg:#CAD3F5,header:#ED8796,info:#C6A0F6,pointer:#F4DBD6 \
