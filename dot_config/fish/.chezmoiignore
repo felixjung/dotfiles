@@ -5,7 +5,7 @@ fish_variables
 # PatrickF1/fzf.fish, z). Default-deny and allow only the hand-written ones, so
 # new plugin functions never need a new ignore rule.
 functions/*
-!functions/agent_identity.fish
+!functions/agent_ssh_agent.fish
 !functions/gtest.fish
 !functions/wt.fish
 

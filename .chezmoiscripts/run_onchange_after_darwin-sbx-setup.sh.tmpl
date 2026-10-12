@@ -1,0 +1,83 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/usr/bin/env bash
+# Configure Docker Sandboxes (sbx) for pisbx: network policy, SSH agent
+# forwarding and the sandboxes' secrets. Every secret is read on demand from
+# the 1Password Agents vault via agent-secret; sbx only stores the command and
+# hands sandboxes a placeholder.
+set -euo pipefail
+export PATH="/opt/homebrew/bin:$PATH"
+export SBX_NO_TELEMETRY=1
+
+if ! command -v sbx >/dev/null 2>&1; then
+  echo "sbx is not installed; skipping sandbox setup."
+  exit 0
+fi
+
+# A fresh install has no network policy at all.
+if ! sbx policy ls >/dev/null 2>&1; then
+  sbx policy init balanced
+fi
+{{- if eq .machine_type "work" }}
+# pi-cursor-sdk talks to api.cursor.com, which "balanced" doesn't cover. A
+# repeated allow is a no-op.
+sbx policy allow network api.cursor.com >/dev/null
+{{- end }}
+
+# Forward the agents' ssh-agent (see agent_ssh_agent), not 1Password's.
+socket="$HOME/.local/state/agent-identity/ssh-agent.sock"
+if [ "$(sbx settings get ssh.agentSocketPath)" != "$socket" ]; then
+  sbx settings set ssh.agentSocketPath "$socket"
+  echo "Restarting the sbx daemon to apply ssh.agentSocketPath; running sandboxes stop."
+  sbx daemon restart
+fi
+
+agent_secret="$HOME/.local/bin/agent-secret"
+
+# custom_secret ENV OP_REF HOST... sets ENV in sandboxes to a placeholder that
+# the sbx proxy replaces with the secret on requests to HOST. Custom secrets,
+# unlike sbx's built-in github service, leave other Authorization headers
+# alone, so GITHUB_TOKEN and pi's Copilot login can share api.github.com.
+# The resolved value is cached for an hour: with set-custom's default,
+# "on-demand", the proxy runs agent-secret (a 1Password API call) for every
+# single request to HOST, and handles those requests one at a time.
+#
+# Unchanged definitions are kept. Changed ones are replaced, because
+# set-custom refuses to redefine ENV, but keep their placeholder, so running
+# sandboxes don't need to be recreated.
+custom_secret() {
+  local env=$1 ref=$2
+  shift 2
+  local cmd="$agent_secret \"$ref\"" refresh=1h
+  local targets current placeholder=()
+  targets=$(printf '%s\n' "$@" | jq -R . | jq -sc .)
+  current=$(sbx secret ls --json | jq -c --arg env "$env" \
+    '.custom_secrets[]? | select(.scope == "global" and .env == $env)')
+  if [ -n "$current" ]; then
+    if [ "$(jq -r .source <<<"$current")" = "$cmd" ] &&
+      [ "$(jq -c .targets <<<"$current")" = "$targets" ] &&
+      [ "$(jq -r .refresh <<<"$current")" = "$refresh" ]; then
+      return
+    fi
+    placeholder=(--placeholder "$(jq -r .placeholder <<<"$current")")
+    sbx secret rm --placeholder "${placeholder[1]}" --force
+  fi
+  local args=()
+  for host in "$@"; do
+    args+=(--host "$host")
+  done
+  sbx secret set-custom "${args[@]}" ${placeholder[@]+"${placeholder[@]}"} --env "$env" \
+    --command "$cmd" --refresh "$refresh"
+}
+
+# For gh and mise. gh prefers GH_TOKEN, which sbx's base image sets to a dummy
+# for its built-in github service; pisbx empties it so gh uses this one.
+custom_secret GITHUB_TOKEN "op://Agents/GitHub Agent PAT/token" api.github.com uploads.github.com
+{{- if eq .machine_type "work" }}
+# pi refreshes its Copilot login through api.github.com; the pi-dev kit writes
+# this placeholder into the sandbox's pi login file.
+custom_secret PI_COPILOT_LOGIN "op://Agents/GitHub Copilot Token/token" api.github.com
+custom_secret CURSOR_API_KEY "op://Agents/Cursor Sandbox API Key/credential" '**.cursor.sh' cursor.com '**.cursor.com'
+custom_secret NPM_ACCESS_TOKEN "op://Agents/npmjs.com Access Token/credential" registry.npmjs.org
+custom_secret SUMUP_GITHUB_NPM_REGISTRY "op://Agents/GitHub npm registry PAT/token" npm.pkg.github.com
+{{- end }}
+{{ end -}}

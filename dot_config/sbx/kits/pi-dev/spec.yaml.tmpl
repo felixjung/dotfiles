@@ -1,0 +1,188 @@
+# The pi sandbox kit for pisbx: the toolchains, git setup and pi config the
+# agent needs in a sandbox. Credentials are placeholders from sbx's proxy (see
+# the sbx setup script).
+#
+# It replaces the stock pi kit (docker.io/sbx/pi-kit), whose only credential is
+# Anthropic's, which sbx then asks for on every create. Image, entrypoint and
+# the npm proxy step are the stock kit's.
+schemaVersion: "2"
+kind: sandbox
+name: pi
+displayName: Pi
+description: pi with toolchains via mise, git over ssh.github.com:443 and pi config for pisbx sandboxes.
+
+sandbox:
+  image: docker.io/sbx/pi-image:latest
+  entrypoint:
+    - pi
+
+agentInstructions:
+  filename: AGENTS.md
+  content: |
+    ## Sandbox environment
+
+    - Credentials such as GITHUB_TOKEN, the npm tokens and model keys are
+      placeholders that the sandbox proxy replaces on outbound requests. They
+      work as they are: never log in, print them or ask for real values.
+    - git and ssh reach github.com over port 443 (see ~/.ssh/config), with a
+      forwarded key that also signs commits. Keep remotes on SSH.
+    - Toolchains come from mise, which reads the repository's .tool-versions.
+      Run `mise install` after changing it.
+
+
+permissions:
+  network:
+    allow:
+      # Not covered by the balanced policy. mise checks for its own updates.
+      - mise.en.dev
+{{- if eq .machine_type "work" }}
+      # pi-cursor-sdk.
+      - api.cursor.com
+{{- end }}
+
+environment:
+  variables:
+    # The sandbox only holds code the user chose to mount, so trust its mise
+    # config files instead of prompting.
+    MISE_TRUSTED_CONFIG_PATHS: "/"
+    MISE_YES: "1"
+    # Plannotator's review server listens on all interfaces and shows its URL
+    # instead of opening a browser; pisbx forwards its ports (PLANNOTATOR_PORT).
+    PLANNOTATOR_REMOTE: "1"
+    # As on the host (pi.fish): the agent's `plannotator` tool.
+    PLANNOTATOR_AGENT_TOOL: "1"
+{{- if eq .machine_type "work" }}
+    GOPRIVATE: "github.com/sumup/*"
+{{- end }}
+
+setup:
+  install:
+    # From the stock pi kit: npm in `sbx exec` shells doesn't inherit the proxy
+    # variables, so pi's package installs need it in ~/.npmrc.
+    - command: if [ -n "${HTTP_PROXY:-}" ]; then npm config set proxy="$HTTP_PROXY" https-proxy="${HTTPS_PROXY:-$HTTP_PROXY}"; fi
+      user: "1000"
+      description: Point npm at the sandbox proxy
+    # Same pinned, digest-verified release as docker/sbx-kits-contrib's mise
+    # kit. To bump: change MISE_VERSION and the SHA256s from the release's
+    # SHASUMS256.txt.
+    - command: |
+        set -euo pipefail
+        MISE_VERSION=2026.5.2
+        case "$(dpkg --print-architecture)" in
+          amd64)
+            TARBALL="mise-v${MISE_VERSION}-linux-x64.tar.gz"
+            SHA256="cdf616b3d8554bece574cb1a5c0f19cc0f551dffbecf66037df1cc06569a42ef"
+            ;;
+          arm64)
+            TARBALL="mise-v${MISE_VERSION}-linux-arm64.tar.gz"
+            SHA256="a746ad85fe8a7b62a6c72939da5fb4231074fd16c482f6334a598bd92926f41e"
+            ;;
+          *)
+            echo "unsupported architecture: $(dpkg --print-architecture)" >&2
+            exit 1
+            ;;
+        esac
+        curl --proto '=https' --tlsv1.2 -fsSL -o /tmp/mise.tgz \
+          "https://github.com/jdx/mise/releases/download/v${MISE_VERSION}/${TARBALL}"
+        echo "${SHA256}  /tmp/mise.tgz" | sha256sum -c -
+        tar -C /tmp -xzf /tmp/mise.tgz mise/bin/mise
+        install -m 0755 /tmp/mise/bin/mise /usr/local/bin/mise
+        rm -rf /tmp/mise /tmp/mise.tgz
+      user: "0"
+      description: Install mise, version and digest pinned
+    - command: |
+        set -eu
+        apt-get update -qq
+        apt-get install -y -qq --no-install-recommends g++ make
+      user: "0"
+      description: Install a C++ toolchain for native npm modules (node-pty, which plannotator's pi extension uses, has no linux-arm64 prebuild)
+    - command: mise install node@24
+      user: "1000"
+      description: Install Node 24 (pi-cursor-sdk needs it; the image ships Node 22 with npm 9)
+    # Wrappers rather than symlinks: mise's npm is a script that finds npm
+    # relative to its own path, which a symlink elsewhere breaks.
+    - command: |
+        set -eu
+        bin=$(realpath /home/agent/.local/share/mise/installs/node/24)/bin
+        for tool in node npm npx; do
+          printf '#!/bin/sh\nexec %s/%s "$@"\n' "$bin" "$tool" > "/usr/local/bin/$tool"
+          chmod 755 "/usr/local/bin/$tool"
+        done
+      user: "0"
+      description: Make Node 24 the node and npm that pi and its package installs use (/usr/local/bin precedes the image's /usr/bin)
+    - command: |
+        grep -qF '.local/share/mise/shims' /etc/sandbox-persistent.sh 2>/dev/null ||
+          echo 'export PATH="$HOME/.local/share/mise/shims:$PATH"' >> /etc/sandbox-persistent.sh
+      user: "0"
+      description: Put mise's shims on the PATH of every shell, including pi's non-interactive bash tool
+    - command: |
+        set -eu
+        git config --global user.name {{ .full_name | quote }}
+        git config --global user.email {{ .email | quote }}
+        # Private repos go over SSH with the forwarded agent key.
+        git config --global url.git@github.com:.insteadOf https://github.com/
+        mkdir -p ~/.ssh
+        chmod 700 ~/.ssh
+        # Port 22 is blocked by the balanced policy; GitHub serves SSH on 443
+        # too. The alias keeps host keys under github.com.
+        grep -qs '^Host github.com$' ~/.ssh/config || cat >> ~/.ssh/config <<'EOF'
+        Host github.com
+          HostName ssh.github.com
+          Port 443
+          HostKeyAlias github.com
+        EOF
+        # GitHub's published host keys, checked against the fingerprints on
+        # docs.github.com, rather than fetched from api.github.com/meta, which
+        # is rate-limited without a token.
+        grep -qs '^github.com ssh-ed25519 ' ~/.ssh/known_hosts || cat >> ~/.ssh/known_hosts <<'EOF'
+        github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl
+        github.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=
+        EOF
+      user: "1000"
+      description: Configure the git identity and SSH to GitHub over port 443
+{{- if eq .machine_type "work" }}
+    - command: |
+        set -eu
+        # npm expands ${VAR} when it reads .npmrc, so the files only ever hold
+        # the placeholders sbx sets in these variables.
+        touch ~/.npmrc
+        grep -qF '//registry.npmjs.org/:_authToken' ~/.npmrc ||
+          echo '//registry.npmjs.org/:_authToken=${NPM_ACCESS_TOKEN}' >> ~/.npmrc
+        grep -qF '@sumup:registry' ~/.npmrc ||
+          echo '@sumup:registry=https://npm.pkg.github.com/' >> ~/.npmrc
+        grep -qF '//npm.pkg.github.com/:_authToken' ~/.npmrc ||
+          echo '//npm.pkg.github.com/:_authToken=${SUMUP_GITHUB_NPM_REGISTRY}' >> ~/.npmrc
+      user: "1000"
+      description: Configure npm registry auth with sbx placeholders
+{{- end }}
+  startup:
+{{- if eq .machine_type "work" }}
+    # pi only uses the Copilot login token through its refresh call to
+    # api.github.com, so it needs a login file. Its refresh value is the
+    # PI_COPILOT_LOGIN placeholder; the proxy swaps in the real token. Rewritten
+    # whenever the placeholder changes, keeping anything else pi stored.
+    - command:
+        - sh
+        - -c
+        - |
+          set -eu
+          [ -n "${PI_COPILOT_LOGIN:-}" ] || exit 0
+          f="$HOME/.pi/agent/auth.json"
+          mkdir -p "$(dirname "$f")"
+          [ -s "$f" ] || echo '{}' > "$f"
+          [ "$(jq -r '."github-copilot".refresh // empty' "$f")" = "$PI_COPILOT_LOGIN" ] && exit 0
+          jq --arg r "$PI_COPILOT_LOGIN" \
+            '."github-copilot" = {type: "oauth", refresh: $r, access: "", expires: 0}' \
+            "$f" > "$f.tmp"
+          chmod 600 "$f.tmp"
+          mv "$f.tmp" "$f"
+      user: "1000"
+      description: Write pi's Copilot login file with the sbx placeholder
+{{- end }}
+    - command:
+        - sh
+        - -c
+        - mise install
+      user: "1000"
+      background: true
+      description: Install the global tools (pisbx installs each repo's .tool-versions)

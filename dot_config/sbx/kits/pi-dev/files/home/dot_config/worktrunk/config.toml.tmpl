@@ -1,0 +1,3 @@
+{{- /* Your worktrunk config with an absolute worktree path: in the sandbox ~
+       is /home/agent, but worktrees must land in the mounted ~/worktrees. */ -}}
+{{ include "dot_config/worktrunk/config.toml" | replace "\"~/worktrees/" (printf "\"%s/worktrees/" .chezmoi.homeDir) }}

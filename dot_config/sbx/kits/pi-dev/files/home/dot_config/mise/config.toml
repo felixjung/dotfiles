@@ -1,0 +1,13 @@
+# Global tools in pisbx sandboxes. Language toolchains come from each
+# repository's .tool-versions.
+#
+# Exact versions, not "latest": mise would otherwise ask GitHub's API for the
+# newest release on every shim call, and quickly hit its rate limits.
+[tools]
+# The runtime pi itself uses (wrapped into /usr/local/bin by the kit).
+node = "24"
+"github:max-sixty/worktrunk" = "0.80.0"
+golangci-lint = "2.14.0"
+ast-grep = "0.50.0"
+typos = "1.51.1"
+"github:rvben/rumdl" = "0.2.79"
