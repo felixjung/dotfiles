@@ -19,7 +19,7 @@ local mod = {}
 local STALE_SECONDS = 6 * 60 * 60
 local CACHE_SECONDS = 1
 
-local GLYPH = { waiting = "●", error = "✗", running = "◐", done = "✓" }
+local GLYPH = { waiting = "○", error = "✗", running = "◐", done = "✓" }
 -- Higher wins when one tab holds several agents.
 local RANK = { done = 1, running = 2, error = 3, waiting = 4 }
 

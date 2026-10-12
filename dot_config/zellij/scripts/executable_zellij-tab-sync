@@ -210,7 +210,7 @@ fi
 
 badge=
 case "$status" in
-    waiting) badge=' ●' ;;
+    waiting) badge=' ○' ;;
     error) badge=' ✗' ;;
     running) badge=' ◐' ;;
     done) badge=' ✓' ;;

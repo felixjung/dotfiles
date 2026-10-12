@@ -62,7 +62,7 @@ out=''
 add() { out="$out$1"; }
 
 [ "$waiting" -gt 0 ] &&
-    add "#[fg=ribbon_selected.emphasis_1,bold]●$waiting "
+    add "#[fg=ribbon_selected.emphasis_1,bold]○$waiting "
 [ "$errors" -gt 0 ] &&
     add "#[fg=ribbon_selected.emphasis_1,bold]✗$errors "
 [ "$running" -gt 0 ] &&
