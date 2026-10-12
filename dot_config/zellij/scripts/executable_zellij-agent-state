@@ -1,28 +1,52 @@
 #!/bin/sh
-# Claude Code hook: record this agent session's status, then resync its tab.
+# Agent hook: record this agent session's status, then resync its Zellij tab.
+# WezTerm's tab bar reads the same state files (wezterm/agents.lua).
 #
-# Usage: zellij-agent-state running|waiting|done|clear
-#        zellij-agent-state subagent +1|-1
+# Usage: zellij-agent-state [--agent NAME] running|waiting|done|clear
+#        zellij-agent-state [--agent NAME] subagent +1|-1
+#        zellij-agent-state prune        (no stdin; the fish shell runs this)
 #
-# Wired up in ~/.claude/settings.json (NOT chezmoi-managed):
+# Reads the hook's JSON payload on stdin (session_id, cwd), which is what
+# Claude Code sends. pi has no hooks; its extension
+# (dot_pi/private_agent/extensions/agent-tab-state.ts) builds that payload.
+#
+# Claude Code is wired up in ~/.claude/settings.json (NOT chezmoi-managed):
 #   UserPromptSubmit -> running    Notification -> waiting
 #   Stop             -> done       SessionEnd   -> clear
 #   PreToolUse[Task] -> subagent +1        SubagentStop -> subagent -1
 #
-# State file: one line, tab-separated: status cwd subagents epoch session.
-# `session` is the Zellij session the agent runs in (inherited from Claude's
-# environment), empty outside Zellij. It is LAST so that an empty value is
-# harmless to `read`, which collapses runs of tab separators.
+# State file: one line, tab-separated:
+#   status cwd subagents epoch session agent wezterm_pane
+# `session` is the Zellij session the agent runs in, `wezterm_pane` the WezTerm
+# pane id; both are "-" when absent. A placeholder, not an empty string,
+# because `read` collapses runs of tab separators and would shift the later
+# fields. wezterm_pane is only recorded outside Zellij: inside it,
+# $WEZTERM_PANE is whatever the Zellij server inherited when it started and
+# says nothing about which WezTerm pane is attached.
+#
+# CLEANUP. Every call prunes the whole directory, so state cannot pile up
+# whether or not Zellij (and so zellij-tab-sync) is in use. An entry goes when
+# it is malformed, its directory is gone, it is older than 6 hours, or it is a
+# finished ("done") one older than an hour. Agents that exit normally remove
+# their own file (SessionEnd / session_shutdown); this catches the ones that
+# are killed.
 #
 # CONTRACT: print NOTHING on stdout and ALWAYS exit 0. UserPromptSubmit stdout
 # is injected into Claude's context, and a non-zero exit surfaces as a hook
 # error in the session.
 set -u
 
+agent=
+if [ "${1:-}" = --agent ]; then
+    agent=${2:-}
+    shift 2 2>/dev/null || shift $#
+fi
+
 action=${1:-}
 arg=${2:-}
 
-payload=$(cat 2>/dev/null) || payload=
+payload=
+[ "$action" = prune ] || payload=$(cat 2>/dev/null) || payload=
 
 log() { :; }
 [ -n "${ZELLIJ_AGENT_DEBUG:-}" ] && log() {
@@ -34,7 +58,29 @@ emit() {
     log "action=$action arg=$arg -> $*"
 }
 
+prune() {
+    now=$(date +%s)
+    for f in "$1"/*; do
+        [ -f "$f" ] || continue
+        IFS='	' read -r p_status p_cwd _ p_epoch _ < "$f" || :
+        case "${p_epoch:-}" in
+            '' | *[!0-9]*) rm -f "$f"; continue ;;
+        esac
+        age=$((now - p_epoch))
+        if [ "$age" -gt $((6 * 60 * 60)) ] ||
+            { [ "${p_status:-}" = done ] && [ "$age" -gt $((60 * 60)) ]; } ||
+            [ ! -d "${p_cwd:-/nonexistent}" ]; then
+            rm -f "$f"
+        fi
+    done
+}
+
 main() {
+    if [ "$action" = prune ]; then
+        prune "${XDG_STATE_HOME:-$HOME/.local/state}/zellij-agents"
+        return 0
+    fi
+
     command -v jq >/dev/null 2>&1 || return 0
 
     session=$(printf '%s' "$payload" | jq -r '.session_id // empty' 2>/dev/null)
@@ -48,17 +94,21 @@ main() {
 
     if [ "$action" = clear ]; then
         rm -f "$file"
+        prune "$agent_dir"
     else
         mkdir -p "$agent_dir" || return 0
 
         old_status=running
         old_sub=0
+        old_agent=
         if [ -f "$file" ]; then
-            IFS='	' read -r old_status _ old_sub _ < "$file" || :
+            IFS='	' read -r old_status _ old_sub _ _ old_agent _ < "$file" || :
             case "$old_sub" in '' | *[!0-9]*) old_sub=0 ;; esac
             [ -n "${old_status:-}" ] || old_status=running
         fi
 
+        # Follow-up calls (subagent +1) carry no --agent; keep the recorded one.
+        [ -n "$agent" ] || agent=${old_agent:-claude}
         status=$old_status
         sub=$old_sub
         case "$action" in
@@ -78,9 +128,12 @@ main() {
             *) return 0 ;;
         esac
 
-        printf '%s\t%s\t%s\t%s\t%s\n' "$status" "$cwd" "$sub" "$(date +%s)" \
-            "${ZELLIJ_SESSION_NAME:-}" > "$file"
-        emit "status=$status sub=$sub cwd=$cwd session=${ZELLIJ_SESSION_NAME:-}"
+        wez=-
+        [ -z "${ZELLIJ:-}" ] && wez=${WEZTERM_PANE:--}
+        printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\n' "$status" "$cwd" "$sub" \
+            "$(date +%s)" "${ZELLIJ_SESSION_NAME:--}" "$agent" "$wez" > "$file"
+        prune "$agent_dir"
+        emit "status=$status sub=$sub cwd=$cwd session=${ZELLIJ_SESSION_NAME:--} agent=$agent wez=$wez"
     fi
 
     # --strict: this hook may be running in a BACKGROUND tab, so never fall

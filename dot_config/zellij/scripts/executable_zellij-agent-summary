@@ -33,7 +33,7 @@ subagents=0
 
 for f in "$agent_dir"/*; do
     [ -f "$f" ] || continue
-    IFS='	' read -r status cwd sub epoch a_session < "$f" || continue
+    IFS='	' read -r status cwd sub epoch a_session _ < "$f" || continue
     [ -z "$session" ] || [ "${a_session:-}" = "$session" ] || continue
 
     # Skip, never delete -- see the header.
