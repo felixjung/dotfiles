@@ -10,6 +10,10 @@ alias pi="op run --no-masking -- pi"
 # anything on this machine. Running it again for the worktree reuses the
 # sandbox; arguments after the path go to pi (e.g. `pisbx . --continue`).
 #
+# The exception is MCP sign-ins: the sandbox gets pi's MCP servers but not their
+# logins. Sign in once per sandbox with `/mcp login <server>`, open the URL
+# here and paste the redirected URL back into pi.
+#
 # The sandbox mounts ~/worktrees, so worktrees pi creates show up here, and the
 # repo's primary checkout, so git can resolve the worktree's .git; paths match
 # the host's. ~/worktrees comes first because sbx writes its agent

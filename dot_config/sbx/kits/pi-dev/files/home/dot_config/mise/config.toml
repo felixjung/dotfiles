@@ -1,5 +1,6 @@
 # Global tools in pisbx sandboxes. Language toolchains come from each
-# repository's .tool-versions.
+# repository's .tool-versions; with Go, mise also installs gopls (for pi's `go`
+# MCP server) from ~/.default-go-packages.
 #
 # Exact versions, not "latest": mise would otherwise ask GitHub's API for the
 # newest release on every shim call, and quickly hit its rate limits.

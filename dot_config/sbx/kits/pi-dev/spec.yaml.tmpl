@@ -38,6 +38,12 @@ permissions:
 {{- if eq .machine_type "work" }}
       # pi-cursor-sdk.
       - api.cursor.com
+      # The remote MCP servers in pi's mcp.json, and Honeycomb's OAuth token
+      # endpoint (Notion's and Miro's are on their MCP hosts).
+      - mcp.notion.com
+      - mcp.miro.com
+      - mcp.eu1.honeycomb.io
+      - ui.eu1.honeycomb.io
 {{- end }}
 
 environment:
