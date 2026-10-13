@@ -10,7 +10,8 @@
 # Claude Code sends. pi has no hooks; its extension
 # (dot_pi/private_agent/extensions/agent-tab-state.ts) builds that payload.
 #
-# Claude Code is wired up in ~/.claude/settings.json (NOT chezmoi-managed):
+# Claude Code is wired up in ~/.claude/settings.json
+# (private_dot_claude/settings.json.tmpl):
 #   UserPromptSubmit -> running    Notification -> waiting
 #   Stop             -> done       SessionEnd   -> clear
 #   PreToolUse[Task] -> subagent +1        SubagentStop -> subagent -1

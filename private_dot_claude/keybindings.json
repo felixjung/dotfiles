@@ -1,0 +1,11 @@
+{
+  "bindings": [
+    {
+      "context": "Scroll",
+      "bindings": {
+        "ctrl+pageup": "scroll:halfPageUp",
+        "ctrl+pagedown": "scroll:halfPageDown"
+      }
+    }
+  ]
+}
