@@ -1,0 +1,49 @@
+#!/bin/sh
+# Keybinding cheatsheet for this Zellij setup, shown in a floating pane
+# (bound to `?` in every mode except normal/locked). Quit with q.
+cat <<'TXT' | ${PAGER:-less} -R
+ZELLIJ CHEATSHEET                                          q to close
+
+MODES (from normal mode)
+  Ctrl p  pane      Ctrl t  tab       Ctrl n  resize
+  Ctrl s  scroll    Ctrl Alt o  session Ctrl g  lock (all keys pass through)
+  Ctrl q  quit      Enter/Esc  back to normal
+  ?       this cheatsheet (from any mode except normal/locked)
+
+ALWAYS AVAILABLE (not locked)
+  Ctrl h/j/k/l        focus pane (Neovim-aware); h/l also switch tabs at edge
+  Ctrl Alt h/j/k/l    resize (Neovim-aware)
+  Alt f               toggle floating panes
+  Alt n               new pane
+  Alt i / Alt o       move tab left / right
+  Alt [ / Alt ]       previous / next swap layout
+  Alt p               add pane to / remove from group
+
+PANE (Ctrl p)
+  h j k l   focus          p  switch focus     ;  last pane
+  n  new    d  new down    r  new right        s  new stacked
+  x  close  f  FULLSCREEN (zoom)               F  fullscreen, no UI
+  z  frames w  floating    e  embed/float      i  pin floating
+  c  rename m  move mode
+
+MOVE (Ctrl p, m)
+  h j k l   move pane      n/Tab  next         p  previous
+
+TAB (Ctrl t)
+  h/k  prev   l/j  next    n  new     x  close   r  rename
+  1-9  go to  Tab  last    s  sync    b  break pane out
+  [ ]  break pane left / right
+
+RESIZE (Ctrl n)
+  h j k l  grow that side  H J K L  shrink     + / -  grow / shrink all
+
+SCROLL (Ctrl s)
+  j k  line     d u  half page    Ctrl f/b  page    Ctrl c  bottom
+  s  search     e  edit scrollback in $EDITOR
+  [ ]  prev / next prompt         m  select command   c  copy last output
+  search: n / p next / prev   c case   w wrap   o whole word
+
+SESSION (Ctrl Alt o)
+  d  detach     w  session manager   c  config   p  plugin manager
+  a  about      l  layout manager    s  share
+TXT

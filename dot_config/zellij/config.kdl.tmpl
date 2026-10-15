@@ -1,6 +1,6 @@
 // Zellij configuration.
 //
-// NOTE: do not save from Zellij's built-in configuration plugin (Ctrl+o, c).
+// NOTE: do not save from Zellij's built-in configuration plugin (Ctrl+Alt+o, c).
 // It rewrites this file in place and drops a config.kdl.bak, clobbering the
 // chezmoi-managed version. Edit the source in chezmoi instead.
 
@@ -174,13 +174,19 @@ plugins {
 // server logs "PluginId '0' not found - caching request". Revisit if #32 lands.
 
 // Keybinds: the stock modal scheme is kept intact (Ctrl+p pane, Ctrl+t tab,
-// Ctrl+n resize, Ctrl+o session, Ctrl+s scroll, Ctrl+g lock, Ctrl+q quit).
-// The only changes are freeing Ctrl+hjkl / Alt+hjkl for seamless Neovim
+// Ctrl+n resize, Ctrl+s scroll, Ctrl+g lock, Ctrl+q quit). Session mode
+// moves from Ctrl+o (Neovim's jump-back) to Ctrl+Alt+o.
+// The other changes free Ctrl+hjkl / Alt+hjkl for seamless Neovim
 // navigation via hiasr/vim-zellij-navigator, which cooperates with
 // mrjones2014/smart-splits.nvim (already configured in the Neovim config —
 // nothing is needed on the Neovim side).
 keybinds {
+    // Top-level unbind, not inside a mode block (see the note below on why).
+    unbind "Ctrl o"
+
     shared_except "locked" {
+        bind "Ctrl Alt o" { SwitchToMode "session"; }
+
         // These override Zellij's defaults for the same keys (Ctrl+h -> move
         // mode, Alt+hjkl -> focus movement). Do NOT add `unbind` for them: an
         // unbind in the same block cancels the bind below it regardless of
@@ -237,6 +243,18 @@ keybinds {
                 name "resize"
                 payload "right"
             }
+        }
+    }
+
+    shared_except "normal" "locked" {
+        // Cheatsheet of the bindings above, e.g. Ctrl+p then ?.
+        bind "?" {
+            Run "{{ .chezmoi.homeDir }}/.config/zellij/scripts/zellij-cheatsheet" {
+                floating true
+                close_on_exit true
+                name "cheatsheet"
+            }
+            SwitchToMode "Normal"
         }
     }
 
