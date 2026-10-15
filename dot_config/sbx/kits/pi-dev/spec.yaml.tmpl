@@ -73,15 +73,15 @@ setup:
     # SHASUMS256.txt.
     - command: |
         set -euo pipefail
-        MISE_VERSION=2026.5.2
+        MISE_VERSION=2026.10.9
         case "$(dpkg --print-architecture)" in
           amd64)
             TARBALL="mise-v${MISE_VERSION}-linux-x64.tar.gz"
-            SHA256="cdf616b3d8554bece574cb1a5c0f19cc0f551dffbecf66037df1cc06569a42ef"
+            SHA256="7af2e3d798e9ddec142f5a968a18c3f33aa68d19aa8a4111302d4c7d04feb6fa"
             ;;
           arm64)
             TARBALL="mise-v${MISE_VERSION}-linux-arm64.tar.gz"
-            SHA256="a746ad85fe8a7b62a6c72939da5fb4231074fd16c482f6334a598bd92926f41e"
+            SHA256="9a58b5b72e58ed66f38d6d2550c2f6279d8c39884574c389a39a9c441a5580b9"
             ;;
           *)
             echo "unsupported architecture: $(dpkg --print-architecture)" >&2
@@ -116,6 +116,14 @@ setup:
         done
       user: "0"
       description: Make Node 24 the node and npm that pi and its package installs use (/usr/local/bin precedes the image's /usr/bin)
+    # Fallback for repositories that don't pin Go in .tool-versions (so mise never
+    # installs gopls). Where Go is pinned, mise's gopls shim comes first on the PATH.
+    - command: |
+        set -eu
+        mkdir -p "$HOME/.local/bin"
+        GOBIN="$HOME/.local/bin" go install golang.org/x/tools/gopls@latest
+      user: "1000"
+      description: Install gopls with the image's Go, for pi's go MCP server in repositories without a pinned Go
     - command: |
         grep -qF '.local/share/mise/shims' /etc/sandbox-persistent.sh 2>/dev/null ||
           echo 'export PATH="$HOME/.local/share/mise/shims:$PATH"' >> /etc/sandbox-persistent.sh

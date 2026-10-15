@@ -85,13 +85,19 @@ function pisbx -d "run pi in a Docker sandbox for a worktree"
     end
     set -a env_args --env PLANNOTATOR_PORT=$ports[1]-$ports[-1]
 
-    # The repo's .tool-versions; quick once installed.
-    sbx exec --workdir $worktree $env_args $sandbox mise install --quiet
-    or echo "pisbx: mise install failed; continuing" >&2
+    # The repo's .tool-versions; quick once installed. Bounded, because mise can
+    # hang (e.g. on an `npm -v` check) and pi shouldn't wait for it forever.
+    sbx exec --workdir $worktree $env_args $sandbox timeout 120 mise install --quiet
+    or echo "pisbx: mise install failed or timed out; continuing" >&2
 
     # sbx hides the agent process, so herdr needs a hint to detect pi.
     set -lx HERDR_AGENT pi
-    sbx exec --interactive --tty --workdir $worktree $env_args $sandbox pi $argv[2..]
+    #
+    # pi starts through the sandbox's persistent profile, which puts mise's shims
+    # on the PATH; `sbx exec` alone doesn't, and pi's MCP servers (gopls) and
+    # the repo's pinned toolchains would then not be found.
+    sbx exec --interactive --tty --workdir $worktree $env_args $sandbox \
+        sh -c '[ -r /etc/sandbox-persistent.sh ] && . /etc/sandbox-persistent.sh; exec pi "$@"' pi $argv[2..]
 end
 
 # __pisbx_port_block SANDBOX prints the 4 host ports reserved for SANDBOX's
