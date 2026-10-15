@@ -41,8 +41,12 @@ function pisbx -d "run pi in a Docker sandbox for a worktree"
     # PI_CODING_AGENT_SESSION_DIR.
     set -l sessions ~/.pi/agent/sessions/--(string replace -r '^/' '' -- $worktree | string replace -ra '[/:]' -)--
 
+    # The host's skills (installed by `npx skills`), read-only. The sandbox's
+    # pi settings list this path, which keeps its host name in the VM.
+    set -l skills ~/.agents/skills
+
     if not contains -- $sandbox (sbx ls --quiet)
-        mkdir -p ~/worktrees $sessions
+        mkdir -p ~/worktrees $sessions $skills
         set -l mounts ~/worktrees
         for path in $primary $worktree
             string match -q "$HOME/worktrees/*" -- $path
@@ -51,7 +55,7 @@ function pisbx -d "run pi in a Docker sandbox for a worktree"
         end
         sbx create --name $sandbox ~/.config/sbx/kits/pi-dev \
             --kit docker.io/sbx/git-ssh-sign-kit:latest \
-            $mounts $sessions; or return
+            $mounts $sessions $skills:ro; or return
     end
 
     # Sandboxes created before sessions were shared lack the mount; there, pi

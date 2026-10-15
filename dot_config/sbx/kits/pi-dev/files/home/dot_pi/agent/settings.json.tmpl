@@ -1,1 +1,3 @@
-{{ includeTemplate "dot_pi/private_agent/private_settings.json.tmpl" . }}
+{{- /* The host's skills, mounted read-only at the same path by pisbx. */ -}}
+{{- $settings := includeTemplate "dot_pi/private_agent/private_settings.json.tmpl" . | fromJson -}}
+{{ set $settings "skills" (list (joinPath .chezmoi.homeDir ".agents" "skills")) | toPrettyJson }}
