@@ -10,10 +10,11 @@
     "github-copilot/gpt-6-astra",
     "github-copilot/gpt-6-sol",
     "github-copilot/gpt-6-luna",
+    "cursor/claude-fable-5@1m",
     "cursor/claude-opus-5-5@300k",
-    "cursor/claude-sonnet-5@1m",
+    "cursor/claude-sonnet-5-5@300k",
+    "cursor/claude-haiku-5-5@300k",
     "cursor/gpt-5.6-sol@1m",
-    "cursor/gpt-5.6-luna@1m",
     "cursor/composer-2.5",
     "cursor/auto-smart"
 {{- else }}
@@ -76,19 +77,19 @@
       },
       "cursor": {
         "scout": {
-          "model": "cursor/gpt-5.6-luna@1m"
+          "model": "cursor/claude-haiku-5-5@300k"
         },
         "researcher": {
-          "model": "cursor/gpt-5.6-luna@1m"
+          "model": "cursor/claude-sonnet-5-5@300k"
         },
         "evidence-auditor": {
-          "model": "cursor/claude-sonnet-5@1m"
+          "model": "cursor/claude-sonnet-5-5@300k"
         },
         "worker": {
-          "model": "cursor/gpt-5.6-sol@1m"
+          "model": "cursor/claude-sonnet-5-5@300k"
         },
         "reviewer": {
-          "model": "cursor/gpt-5.6-sol@1m"
+          "model": "cursor/claude-opus-5-5@300k"
         },
         "oracle": {
           "model": "cursor/claude-opus-5-5@300k"

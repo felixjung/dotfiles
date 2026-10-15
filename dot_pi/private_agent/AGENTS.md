@@ -18,6 +18,11 @@ One writer per worktree. Launch async and yield rather than blocking.
 
 The no-overwrite rule in `~/AGENTS.md` applies to subagent writer lanes too.
 
+On Cursor models (`cursor/*`), always delegate through the `subagent` tool
+(exposed to Cursor as `pi__subagent`). Never use Cursor's built-in Task or
+subagent tool: it inherits the parent model and thinking level and ignores the
+configured agent overrides.
+
 See the bundled pi-subagents skill for orchestration mechanics.
 
 ## Asking the user
