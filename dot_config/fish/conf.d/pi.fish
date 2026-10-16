@@ -60,7 +60,7 @@ function pisbx -d "run pi in a Docker sandbox for a worktree"
 
     # Sandboxes created before sessions were shared lack the mount; there, pi
     # keeps its sessions in the VM.
-    set -l workspaces (sbx ls --json | jq -r --arg name $sandbox '.sandboxes[] | select(.name == $name) | .workspaces[]')
+    set -l workspaces (sbx ls --json | jq -r --arg name $sandbox '.[] | select(.name == $name) | .workspaces[]')
     contains -- $sessions $workspaces
     and set -a env_args --env PI_CODING_AGENT_SESSION_DIR=$sessions
 
