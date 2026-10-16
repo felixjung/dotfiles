@@ -1,14 +1,14 @@
 {
-  "defaultModel": {{ if eq .machine_type "work" }}"gpt-6-sol"{{ else }}"gpt-6.1-sol"{{ end }},
+  "defaultModel": "gpt-6.1-sol",
   "defaultProvider": {{ if eq .machine_type "work" }}"github-copilot"{{ else }}"openai"{{ end }},
   "defaultThinkingLevel": "high",
   "defaultTools": ["+codemode"],
   "enabledModels": [
 {{- if eq .machine_type "work" }}
     "github-copilot/claude-opus-5.5",
-    "github-copilot/claude-sonnet-5",
+    "github-copilot/claude-sonnet-5.5",
     "github-copilot/gpt-6-astra",
-    "github-copilot/gpt-6-sol",
+    "github-copilot/gpt-6.1-sol",
     "github-copilot/gpt-6-luna",
     "cursor/claude-fable-5@1m",
     "cursor/claude-opus-5-5@300k",
@@ -24,7 +24,7 @@
 {{- end }}
   ],
   "modelThinkingLevels": {
-    "github-copilot/claude-sonnet-5": "xhigh"
+    "github-copilot/claude-sonnet-5.5": "xhigh"
   },
   "memory": {
     "lessonInjection": "selective",
@@ -63,13 +63,13 @@
           "model": "github-copilot/gpt-6-luna"
         },
         "evidence-auditor": {
-          "model": "github-copilot/claude-sonnet-5"
+          "model": "github-copilot/claude-sonnet-5.5"
         },
         "worker": {
-          "model": "github-copilot/gpt-6-sol"
+          "model": "github-copilot/gpt-6.1-sol"
         },
         "reviewer": {
-          "model": "github-copilot/gpt-6-sol"
+          "model": "github-copilot/gpt-6.1-sol"
         },
         "oracle": {
           "model": "github-copilot/gpt-6-astra"
