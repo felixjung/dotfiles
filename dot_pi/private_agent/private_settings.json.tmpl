@@ -20,7 +20,10 @@
 {{- else }}
     "openai/gpt-6-luna",
     "openai/gpt-6.1-sol",
-    "openai/gpt-6-astra"
+    "openai/gpt-6-astra",
+    "openai-codex/gpt-6-luna",
+    "openai-codex/gpt-6.1-sol",
+    "openai-codex/gpt-6-astra"
 {{- end }}
   ],
   "modelThinkingLevels": {
@@ -113,6 +116,26 @@
         },
         "oracle": {
           "model": "openai/gpt-6-astra"
+        }
+      },
+      "openai-codex": {
+        "scout": {
+          "model": "openai-codex/gpt-6-luna"
+        },
+        "researcher": {
+          "model": "openai-codex/gpt-6-luna"
+        },
+        "evidence-auditor": {
+          "model": "openai-codex/gpt-6-astra"
+        },
+        "worker": {
+          "model": "openai-codex/gpt-6.1-sol"
+        },
+        "reviewer": {
+          "model": "openai-codex/gpt-6.1-sol"
+        },
+        "oracle": {
+          "model": "openai-codex/gpt-6-astra"
         }
       }
     }
