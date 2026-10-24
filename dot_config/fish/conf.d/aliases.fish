@@ -21,5 +21,7 @@ abbr -a fish-reload-config 'source ~/.config/fish/**/*.fish'
 # chezmoi
 # Externals (oh-my-zsh, tpm, spaceship-prompt, zsh-syntax-highlighting) are
 # upstream dependencies — refresh them via `cmu`, never review them by hand.
+# `status`, `diff` and `verify` skip them through chezmoi.yaml; `apply` has no
+# such setting, hence the flag.
 abbr -a cma 'chezmoi apply --interactive --exclude=externals'
 abbr -a cmu 'chezmoi update'

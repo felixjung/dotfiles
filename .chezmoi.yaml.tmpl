@@ -14,3 +14,11 @@ data:
     machine_type: {{ $machine_type | quote }}
     signing_key: {{ $signing_key | quote }}
 
+# Externals are upstream dependencies: keep them out of the per-file output of
+# these commands. `apply` has no such setting; use `cma` (--exclude=externals).
+status:
+    exclude: ["externals"]
+diff:
+    exclude: ["externals"]
+verify:
+    exclude: ["externals"]
