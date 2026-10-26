@@ -258,6 +258,21 @@ keybinds {
         }
     }
 
+    tab {
+        // Tab switcher, most recently used first: Enter alone goes back to
+        // the previous tab. The order is recorded by `zellij-tab-mru --watch`,
+        // which the fish config starts once per session. A mode key rather
+        // than a global Alt one, which CLIs such as Claude Code use.
+        bind "f" {
+            Run "{{ .chezmoi.homeDir }}/.config/zellij/scripts/zellij-tab-mru" {
+                floating true
+                close_on_exit true
+                name "tabs"
+            }
+            SwitchToMode "Normal"
+        }
+    }
+
     pane {
         // Move-mode lost its global Ctrl+h binding; reach it from pane mode.
         bind "m" { SwitchToMode "move"; }

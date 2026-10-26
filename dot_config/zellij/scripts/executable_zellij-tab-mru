@@ -1,0 +1,149 @@
+#!/bin/sh
+# Most-recently-used tab switcher: an fzf list of this session's other tabs,
+# most recent first, so Enter alone goes back to the previous tab. Bound to
+# Ctrl t f, which runs it in a floating pane.
+#
+# Zellij keeps no focus history it will hand out (it remembers only the one
+# tab behind Ctrl+t Tab) and the CLI has no tab-focus event to listen for.
+# So `--watch` polls the active tab once a second and records each change,
+# newest first, in $XDG_STATE_HOME/zellij-tab-mru/<session>. That catches
+# every way of switching tabs, not just this picker; a tab passed through in
+# under a second is not recorded, which keeps Ctrl+h/l sweeps out of it.
+#
+# One watcher per session, held by a symlink lock whose target is its pid.
+# The fish config starts it with every shell (a no-op when one is running),
+# and the picker starts it too in case it died. It stops when its session is
+# gone. Pruning the files of dead sessions belongs to `zellij-tab-sync --gc`,
+# like the rest of the per-session state.
+#
+# Usage: zellij-tab-mru            pick a tab
+#        zellij-tab-mru --watch    run the recorder (normally backgrounded)
+set -u
+
+[ -n "${ZELLIJ:-}" ] || exit 0
+command -v zellij >/dev/null 2>&1 || exit 0
+command -v jq >/dev/null 2>&1 || exit 0
+
+session=${ZELLIJ_SESSION_NAME:-}
+[ -n "$session" ] || exit 0
+
+state_root=${XDG_STATE_HOME:-$HOME/.local/state}
+mru_dir=$state_root/zellij-tab-mru
+mru_file=$mru_dir/$session
+lock=$mru_dir/$session.lock
+
+# Move a tab id to the front of the list. Ids are never reused within a
+# session, so ids of closed tabs are only capped, not pruned -- the picker
+# ignores them.
+record() {
+    tmp=$mru_file.$$
+    {
+        printf '%s\n' "$1"
+        [ -f "$mru_file" ] && grep -vx -- "$1" "$mru_file"
+    } | head -n 100 > "$tmp" && mv -f "$tmp" "$mru_file"
+}
+
+# NEVER trust `zellij action` alone to say whether our session still exists:
+# for an unknown ZELLIJ_SESSION_NAME it silently answers for some other
+# running session instead of failing. An EXITED (resurrectable) session is
+# gone too -- its tab ids will not survive the resurrection.
+session_alive() {
+    zellij list-sessions -n 2>/dev/null |
+        awk -v s="$session" '$1 == s && !/EXITED/ { found = 1 } END { exit !found }'
+}
+
+watcher_running() {
+    pid=$(readlink "$lock" 2>/dev/null) || return 1
+    case "$pid" in '' | *[!0-9]*) return 1 ;; esac
+    # kill -0 alone would also accept an unrelated process that inherited a
+    # dead watcher's pid.
+    ps -p "$pid" -o command= 2>/dev/null | grep -q 'zellij-tab-mru --watch'
+}
+
+watch() {
+    # Started from a shell or a floating pane that may close at any moment.
+    trap '' HUP
+    mkdir -p "$mru_dir" || exit 0
+    if ! ln -s "$$" "$lock" 2>/dev/null; then
+        watcher_running && exit 0
+        rm -f "$lock"
+        ln -s "$$" "$lock" 2>/dev/null || exit 0
+    fi
+    trap 'rm -f "$lock"' EXIT
+    trap 'exit 0' INT TERM
+
+    last=
+    misses=0
+    while :; do
+        # Checked on every poll, right before the active tab is read, so a
+        # dead session does not record another session's tab ids. It ends
+        # after a few misses in a row rather than one, so one failed
+        # `list-sessions` does not stop the watcher.
+        if ! session_alive; then
+            misses=$((misses + 1))
+            [ "$misses" -ge 3 ] && exit 0
+            sleep 1
+            continue
+        fi
+        misses=0
+
+        # Not `current-tab-info`: that answers for the calling client, which
+        # a background process does not have ("No active tab found").
+        id=$(zellij action list-tabs -j 2>/dev/null |
+            jq -r 'first(.[] | select(.active)) | .tab_id' 2>/dev/null)
+        case "$id" in
+            '' | *[!0-9]*) ;;
+            "$last") ;;
+            *) record "$id"; last=$id ;;
+        esac
+        sleep 1
+    done
+}
+
+pick() {
+    command -v fzf >/dev/null 2>&1 || exit 0
+
+    watcher_running ||
+        "$0" --watch </dev/null >/dev/null 2>&1 &
+
+    tabs=$(zellij action list-tabs -j 2>/dev/null) || exit 0
+    mru=$(cat "$mru_file" 2>/dev/null)
+
+    # Other tabs only: recorded ones newest first, then never-recorded ones
+    # (the watcher was not running yet) by position. Columns: id, number as
+    # used by Ctrl+t 1-9, name.
+    lines=$(printf '%s' "$tabs" | jq -r --arg mru "$mru" '
+        [$mru | split("\n")[] | tonumber?] as $order
+        | map(select(.active | not)
+              | . as $t
+              | {id: .tab_id, pos: .position, name, i: ($order | index($t.tab_id))})
+        | sort_by([(.i == null), (.i // 0), .pos])
+        | .[]
+        | "\(.id)\t\(.pos + 1)\t\(.name)"') || exit 0
+    [ -n "$lines" ] || exit 0
+
+    current=$(printf '%s' "$tabs" | jq -r \
+        'first(.[] | select(.active)) | "\(.tab_id)\t\(.name)"')
+
+    choice=$(printf '%s\n' "$lines" | fzf \
+        --delimiter='\t' --with-nth=2.. --tabstop=4 \
+        --tiebreak=index --layout=reverse --no-multi --cycle \
+        --prompt='tab> ' --header="from: ${current#*	}" \
+        --bind='tab:down,btab:up') || exit 0
+    id=${choice%%	*}
+    case "$id" in '' | *[!0-9]*) exit 0 ;; esac
+
+    zellij action go-to-tab-by-id "$id" >/dev/null 2>&1 || exit 0
+
+    # Record the jump now rather than waiting for the watcher's next poll,
+    # including the tab we left in case it was entered less than a second ago.
+    mkdir -p "$mru_dir" || exit 0
+    from=${current%%	*}
+    case "$from" in '' | *[!0-9]*) ;; *) record "$from" ;; esac
+    record "$id"
+}
+
+case "${1:-}" in
+    --watch) watch ;;
+    *) pick ;;
+esac

@@ -42,4 +42,11 @@ if status is-interactive
     # does NOT run from the PWD hook above.
     command -q zellij
     and ~/.config/zellij/scripts/zellij-tab-sync --gc 2>/dev/null
+
+    # Recorder of the tab order for the MRU switcher (Ctrl t f). It exits at
+    # once when this session already has one running.
+    if command -q zellij
+        ~/.config/zellij/scripts/zellij-tab-mru --watch </dev/null >/dev/null 2>&1 &
+        disown
+    end
 end

@@ -32,7 +32,7 @@ MOVE (Ctrl p, m)
 TAB (Ctrl t)
   h/k  prev   l/j  next    n  new     x  close   r  rename
   1-9  go to  Tab  last    s  sync    b  break pane out
-  [ ]  break pane left / right
+  [ ]  break pane left / right       f  switch tab, most recent first (fzf)
 
 RESIZE (Ctrl n)
   h j k l  grow that side  H J K L  shrink     + / -  grow / shrink all

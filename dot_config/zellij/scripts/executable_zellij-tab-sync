@@ -15,7 +15,8 @@
 # wald's post-switch hook and Ctrl+t r both land in the third row, so neither
 # needs to know this mechanism exists. `zellij-tab-unpin` releases a tab.
 #
-# This is also the ONLY place that deletes state, for either store. That
+# This is also the ONLY place that deletes state, for either store -- and,
+# with --gc, for zellij-tab-mru's per-session order files. That
 # deliberately does not live in zellij-agent-summary: the summary runs only
 # while the bar's agents segment is configured, and if that segment is ever
 # dropped an agent killed without its SessionEnd hook would leave a stale
@@ -129,6 +130,15 @@ if [ "$gc" = true ]; then
             # Our own session stays regardless of what the listing claims.
             [ "$s" = "$session" ] && continue
             printf '%s\n' "$sessions" | grep -qx -- "$s" || rm -rf "$d"
+        done
+        # zellij-tab-mru: one order file per session, plus the watcher's lock
+        # symlink, which the watcher removes itself unless it was killed.
+        for f in "$state_root"/zellij-tab-mru/*; do
+            [ -e "$f" ] || [ -L "$f" ] || continue
+            s=$(basename "$f")
+            s=${s%.lock}
+            [ "$s" = "$session" ] && continue
+            printf '%s\n' "$sessions" | grep -qx -- "$s" || rm -f "$f"
         done
     fi
 fi
