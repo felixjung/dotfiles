@@ -67,6 +67,23 @@ plugins {
         format_space  ""
         tab_separator " "
 
+        // When the bar is wider than the screen (long tab names, the active
+        // tab's pane title), the fork cuts the parts in this order of priority
+        // instead of letting Zellij wrap the line -- a wrapped 1-row bar shows
+        // only its overflow, stuck to the left. "rlc": the mode pill and agent
+        // summary always stay whole and the tab list is cut with an ellipsis.
+        // Needs v0.24.0-theme2 or later; older builds ignore this here.
+        format_precedence "rlc"
+
+        // That cut drops tabs from the END of the list, which could drop the
+        // active tab itself. So the list is also a window of 4 tabs that
+        // follows the active tab -- it starts one tab before it, or shows the
+        // last 4 once the active tab is near the end. Not MRU. The markers
+        // count the tabs hidden on either side (they render nothing if unset).
+        tab_display_count         "4"
+        tab_truncate_start_format "#[fg=text_unselected.base]‹ +{count} "
+        tab_truncate_end_format   "#[fg=text_unselected.base] +{count} ›"
+
         // Tab NAMES come from ~/.config/zellij/scripts/zellij-tab-sync,
         // driven by the fish PWD hook and by Claude Code's hooks. A tab tracks
         // its directory until something deliberately renames it (wald's
