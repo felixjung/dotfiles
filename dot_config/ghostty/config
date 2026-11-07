@@ -32,7 +32,7 @@ macos-titlebar-proxy-icon = hidden
 # titlebar blank. A non-empty title makes Ghostty ignore OSC title escapes
 # (fish, herdr, nvim); "" would mean unset, hence the single space.
 title = " "
-background-blur = macos-glass-regular
+background-blur = false
 window-theme = auto
 window-padding-x = 20
 window-padding-y = 20,10
