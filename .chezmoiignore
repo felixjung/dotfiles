@@ -1,5 +1,8 @@
 .zsh_history
 
+# Source-only design and implementation records.
+docs/superpowers
+
 # macOS's fallback location links to the shared XDG lazygit config.
 {{ if ne .chezmoi.os "darwin" }}
 Library/Application Support/lazygit
