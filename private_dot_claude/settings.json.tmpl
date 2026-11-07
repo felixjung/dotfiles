@@ -38,14 +38,6 @@
         ]
       },
       {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "\"{{ .chezmoi.homeDir }}/.claude/hooks/context-mode-cache-heal.mjs\""
-          }
-        ]
-      },
-      {
         "matcher": "^(startup|resume|clear|compact|fork)$",
         "hooks": [
           {
@@ -126,7 +118,6 @@
   "enabledPlugins": {
     "github@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true,
-    "context-mode@context-mode": true,
     "plannotator@plannotator": true
   },
   "extraKnownMarketplaces": {

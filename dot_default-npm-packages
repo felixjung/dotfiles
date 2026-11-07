@@ -6,7 +6,6 @@
 @stoplight/spectral-cli@^6
 ajv@^8
 ajv-cli@^5
-context-mode@^1
 openapi-typescript@^7
 pi-mcp-adapter@^2
 pnpm@^10
