@@ -6,6 +6,10 @@
     "+codemode"
   ],
   "enabledModels": [
+    "ollama/gemma4:12b-mlx",
+    "ollama/qwen3.6:35b-mlx",
+    "ollama/qwen3.8:27b-mlx",
+    "ollama/qwen3-coder:30b",
 {{- if eq .machine_type "work" }}
     "github-copilot/claude-opus-5.5",
     "github-copilot/claude-sonnet-5.5",
@@ -60,6 +64,32 @@
       }
     },
     "agentOverridesByProvider": {
+      "ollama": {
+        "scout": {
+          "model": "inherit",
+          "thinking": "off"
+        },
+        "researcher": {
+          "model": "inherit",
+          "thinking": "off"
+        },
+        "evidence-auditor": {
+          "model": "inherit",
+          "thinking": "high"
+        },
+        "worker": {
+          "model": "inherit",
+          "thinking": "medium"
+        },
+        "reviewer": {
+          "model": "inherit",
+          "thinking": "high"
+        },
+        "oracle": {
+          "model": "inherit",
+          "thinking": "high"
+        }
+      },
       "github-copilot": {
         "scout": {
           "model": "github-copilot/gpt-6-luna"
