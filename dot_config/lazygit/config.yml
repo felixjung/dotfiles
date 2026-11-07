@@ -1,0 +1,57 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/v0.66.2/schema/config.json
+# Requires lazygit >= 0.66. Native terminal background detection also works when
+# Rex launches the binary directly, without an interactive Fish shell.
+gui:
+  colorScheme: auto
+  nerdFontsVersion: "3"
+  # Catppuccin blue accent, matching the Latte/Macchiato pair used by the terminal.
+  # https://github.com/catppuccin/lazygit
+  darkTheme:
+    activeBorderColor: ["#8aadf4", bold]
+    inactiveBorderColor: ["#a5adcb"]
+    searchingActiveBorderColor: ["#eed49f"]
+    optionsTextColor: ["#8aadf4"]
+    selectedLineBgColor: ["#363a4f"]
+    inactiveViewSelectedLineBgColor: ["#6e738d"]
+    cherryPickedCommitFgColor: ["#8aadf4"]
+    cherryPickedCommitBgColor: ["#494d64"]
+    markedBaseCommitFgColor: ["#8aadf4"]
+    markedBaseCommitBgColor: ["#eed49f"]
+    unstagedChangesColor: ["#ed8796"]
+    defaultFgColor: ["#cad3f5"]
+    authorColors:
+      "*": "#b7bdf8"
+  lightTheme:
+    activeBorderColor: ["#1e66f5", bold]
+    inactiveBorderColor: ["#6c6f85"]
+    searchingActiveBorderColor: ["#df8e1d"]
+    optionsTextColor: ["#1e66f5"]
+    selectedLineBgColor: ["#ccd0da"]
+    inactiveViewSelectedLineBgColor: ["#9ca0b0"]
+    cherryPickedCommitFgColor: ["#1e66f5"]
+    cherryPickedCommitBgColor: ["#bcc0cc"]
+    markedBaseCommitFgColor: ["#1e66f5"]
+    markedBaseCommitBgColor: ["#df8e1d"]
+    unstagedChangesColor: ["#d20f39"]
+    defaultFgColor: ["#4c4f69"]
+    authorColors:
+      "*": "#7287fd"
+
+git:
+  diffRenderers:
+    # Pick delta's feature explicitly: a Rex pane need not inherit Fish's latest
+    # current-theme.gitconfig override. These templates are evaluated by lazygit.
+    - name: delta
+      command: 'delta --paging=never --{{colorScheme}} --features=catppuccin-{{if eq .colorScheme "light"}}latte{{else}}macchiato{{end}}'
+    # Difftastic has no custom theme palette. Its ANSI colors use the terminal's
+    # palette, while --background chooses the appropriate light/dark variants.
+    - name: difftastic
+      type: extDiff
+      command: 'difft --color=always --background={{colorScheme}} --width={{width}} --context={{diffContext}}'
+    # Press | / \ to cycle forward/backward through the renderers.
+    - name: plain
+      type: rawGit
+
+# Installed and updated through the package manager.
+update:
+  method: never

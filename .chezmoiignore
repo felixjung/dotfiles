@@ -1,5 +1,10 @@
 .zsh_history
 
+# macOS's fallback location links to the shared XDG lazygit config.
+{{ if ne .chezmoi.os "darwin" }}
+Library/Application Support/lazygit
+{{ end }}
+
 # delta's current theme, rewritten by update_theme in
 # dot_config/fish/conf.d/auto_theme.fish when the terminal goes light/dark.
 .config/git/delta/current-theme.gitconfig

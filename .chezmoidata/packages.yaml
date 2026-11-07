@@ -106,6 +106,8 @@ packages:
       platform: [darwin, linux]
     - name: "tig"
       platform: [darwin, linux]
+    - name: "lazygit"
+      platform: [darwin, linux]
 
     - name: "httpie"
       platform: [darwin, linux]
