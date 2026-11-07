@@ -1,0 +1,11 @@
+{
+  "runtime.version": "Lua 5.1",
+  "workspace.checkThirdParty": false,
+  "workspace.library": [
+    "types"
+  ],
+  "workspace.ignoreDir": [
+    "viewer"
+  ],
+  "diagnostics.libraryFiles": "Disable"
+}

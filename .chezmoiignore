@@ -23,5 +23,21 @@
 
 .pi/memory/
 
+# Rex development-only inputs; runtime Lua (including viewer/init.lua) stays managed.
+.config/rex/.stylua.toml
+.config/rex/.luarc.json
+.config/rex/selene.toml
+.config/rex/rex.yml
+.config/rex/Makefile
+.config/rex/README.md
+.config/rex/types
+.config/rex/types/**
+.config/rex/tests
+.config/rex/tests/**
+.config/rex/viewer/.stylua.toml
+.config/rex/viewer/.luarc.json
+.config/rex/viewer/selene.toml
+.config/rex/viewer/vim.yml
+
 LICENSE
 README.md

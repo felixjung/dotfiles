@@ -1,0 +1,88 @@
+base: lua51
+name: vim
+globals:
+  vim.split:
+    args:
+      - type: any
+      - type: any
+      - type: table
+        required: false
+  vim.system:
+    args:
+      - type: any
+      - type: any
+      - type: any
+  vim.schedule:
+    args:
+      - type: any
+  vim.notify:
+    args:
+      - type: any
+      - type: any
+  vim.cmd:
+    args:
+      - type: any
+  vim.wait:
+    args:
+      - type: any
+  vim.keymap.set:
+    args:
+      - type: any
+      - type: any
+      - type: any
+      - type: any
+  vim.api.nvim_buf_set_lines:
+    args:
+      - type: any
+      - type: any
+      - type: any
+      - type: any
+      - type: any
+  vim.api.nvim_buf_set_name:
+    args:
+      - type: any
+      - type: any
+  vim.api.nvim_win_set_cursor:
+    args:
+      - type: any
+      - type: any
+  vim.api.nvim_buf_get_lines:
+    args:
+      - type: any
+      - type: any
+      - type: any
+      - type: any
+  vim.api.nvim_feedkeys:
+    args:
+      - type: any
+      - type: any
+      - type: any
+  vim.api.nvim_replace_termcodes:
+    args:
+      - type: any
+      - type: any
+      - type: any
+      - type: any
+  vim.api.nvim_win_get_cursor:
+    args:
+      - type: any
+  vim.fn.getreg:
+    args:
+      - type: any
+  vim.fn.filereadable:
+    args:
+      - type: any
+  vim.fn.mode:
+    args: []
+  vim.o:
+    property: full-write
+    any: true
+  vim.bo:
+    property: full-write
+    any: true
+  vim.env:
+    property: full-write
+    any: true
+  vim.log.levels:
+    property: full-write
+    any: true

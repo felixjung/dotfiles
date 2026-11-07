@@ -1,0 +1,36 @@
+# Exact runtime API subset (reference-lua.md); writable in test mocks.
+base: lua51
+name: rex
+globals:
+  rex.bind:
+    args:
+      - type: string
+      - type: string
+      - type: table
+        required: false
+  rex.mode:
+    args:
+      - type: string
+      - type: table
+        required: false
+  rex.client.queue:
+    args:
+      - type: string
+      - type: table
+        required: false
+  rex.action:
+    args:
+      - type: table
+  rex.call:
+    args:
+      - type: string
+      - type: table
+        required: false
+  rex.exec:
+    args:
+      - type: table
+      - type: table
+        required: false
+  rex.layout.block:
+    args:
+      - type: table

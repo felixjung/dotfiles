@@ -1,0 +1,10 @@
+{
+  "runtime.version": "LuaJIT",
+  "workspace.checkThirdParty": false,
+  "workspace.library": [
+    "/opt/homebrew/opt/neovim/share/nvim/runtime/lua",
+    "${3rd}/luv/library"
+  ],
+  "workspace.ignoreDir": [],
+  "diagnostics.libraryFiles": "Disable"
+}
