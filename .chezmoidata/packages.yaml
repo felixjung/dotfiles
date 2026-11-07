@@ -75,6 +75,12 @@ packages:
 
     - name: "neovim"
       platform: [darwin, linux]
+    - name: "stylua"
+      platform: [darwin, linux]
+    - name: "selene"
+      platform: [darwin, linux]
+    - name: "lua-language-server"
+      platform: [darwin, linux]
     - name: "asdf"
       platform: [darwin, linux]
 
