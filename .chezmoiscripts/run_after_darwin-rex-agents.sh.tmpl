@@ -1,0 +1,20 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+set -euo pipefail
+export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+
+rex_bin=$(command -v rex || true)
+bundled_rex="$HOME/Library/Application Support/com.superlogical.rex/RexServer/Versions/Current/Rex Server.app/Contents/MacOS/rex"
+if [ -z "$rex_bin" ] && [ -x "$bundled_rex" ]; then
+  rex_bin="$bundled_rex"
+fi
+if [ -z "$rex_bin" ]; then
+  echo "Rex CLI is not installed; skipping agent integration setup."
+  exit 0
+fi
+
+# Skills and hooks are separate from the GUI plist. Run after every apply so
+# new agents are detected and managed agent settings retain Rex's integration.
+# Rex merges its hooks and leaves foreign skills and other settings alone.
+"$rex_bin" skill setup --session-naming
+{{ end -}}

@@ -1,0 +1,37 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+set -euo pipefail
+
+# Re-import when the snapshot changes, while allowing later edits in Rex.
+# Snapshot SHA256: {{ sha256sum (include "dot_config/rex/private_gui-settings.plist") }}
+snapshot={{ printf "%s/.config/rex/gui-settings.plist" .chezmoi.destDir | quote }}
+/usr/bin/plutil -lint "$snapshot" >/dev/null
+
+# Rex reads macOS User Defaults, not the snapshot in ~/.config/rex. Set only
+# the saved keys through the preferences API so unrelated local state survives.
+/usr/bin/osascript -l JavaScript - "$snapshot" <<'JXA'
+ObjC.import("Foundation");
+
+function run(argv) {
+    var snapshot = $.NSDictionary.dictionaryWithContentsOfFile(argv[0]);
+    var preferences = $.NSUserDefaults.alloc.initWithSuiteName("com.superlogical.rex");
+    var keys = snapshot.allKeys;
+    var changed = 0;
+    for (var i = 0; i < keys.count; i++) {
+        var key = keys.objectAtIndex(i);
+        var value = snapshot.objectForKey(key);
+        if (!value.isEqual(preferences.objectForKey(key))) {
+            preferences.setObjectForKey(value, key);
+            changed++;
+        }
+    }
+    if (!preferences.synchronize) {
+        throw new Error("Could not save Rex preferences");
+    }
+    if (changed > 0) {
+        return "Applied " + changed + " Rex preferences. Quit and reopen Rex to load them.";
+    }
+    return "Rex preferences already match the snapshot.";
+}
+JXA
+{{ end -}}
