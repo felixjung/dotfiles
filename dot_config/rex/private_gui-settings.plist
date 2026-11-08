@@ -1075,24 +1075,50 @@
 	</data>
 	<key>Workspace.darkThemeID</key>
 	<string>custom-8D930CB2-F05D-41AC-9F3D-5ED8BA4C78C9</string>
+	<key>Workspace.hiddenChromeButtons</key>
+	<array>
+		<string>activity</string>
+		<string>commandPalette</string>
+		<string>newTab</string>
+	</array>
+	<key>Workspace.hiddenPaneButtons</key>
+	<array>
+		<string>close</string>
+		<string>float</string>
+		<string>splitDown</string>
+		<string>splitRight</string>
+		<string>zoom</string>
+	</array>
 	<key>Workspace.inactivePaneFadeMode</key>
 	<string>both</string>
+	<key>Workspace.interfaceStyle</key>
+	<string>useTheme</string>
 	<key>Workspace.lightThemeID</key>
 	<string>custom-B4E5CF55-61A8-4B3C-8EF9-A857E19F5BC2</string>
 	<key>Workspace.paneDensity</key>
 	<string>comfortable</string>
 	<key>Workspace.shellIconTheme</key>
 	<string>themedAlt</string>
+	<key>Workspace.showsActivePaneBorder</key>
+	<false/>
+	<key>Workspace.showsPaneHeaders</key>
+	<false/>
 	<key>Workspace.sidebarCollapsed</key>
 	<false/>
 	<key>Workspace.sidebarPosition</key>
 	<string>left</string>
+	<key>Workspace.sidebarWidth</key>
+	<real>271.0</real>
+	<key>Workspace.tabIconCount</key>
+	<integer>3</integer>
 	<key>Workspace.tabIconTintMode</key>
 	<string>off</string>
 	<key>Workspace.tabStyle</key>
 	<string>horizontal</string>
 	<key>Workspace.tabsFillAvailableSpace</key>
 	<false/>
+	<key>Workspace.terminalCellHeightPercent</key>
+	<real>0.0</real>
 	<key>Workspace.terminalCopyOnSelect</key>
 	<true/>
 	<key>Workspace.terminalCursorBlinkIntervalMilliseconds</key>
@@ -1111,12 +1137,18 @@
 	<true/>
 	<key>Workspace.terminalFontStyle</key>
 	<string>Book</string>
+	<key>Workspace.terminalPaddingX</key>
+	<real>10.0</real>
+	<key>Workspace.terminalPaddingY</key>
+	<real>10.0</real>
 	<key>Workspace.terminalSmoothScrolling</key>
 	<true/>
 	<key>Workspace.terminalUseThemePalette</key>
 	<false/>
 	<key>Workspace.terminalUsesDisplayP3</key>
 	<true/>
+	<key>Workspace.usesPaneGlass</key>
+	<false/>
 	<key>Workspace.usesStandardInactiveWindowPaneStyles</key>
 	<true/>
 	<key>rex.agents.names-sessions</key>
@@ -1124,7 +1156,7 @@
 	<key>rex.client.label</key>
 	<string>Lando</string>
 	<key>rex.client.remoteControl</key>
-	<false/>
+	<true/>
 	<key>rex.server.automatic-restart-enabled</key>
 	<true/>
 	<key>rex.server.block-plugin-reload-enabled</key>
