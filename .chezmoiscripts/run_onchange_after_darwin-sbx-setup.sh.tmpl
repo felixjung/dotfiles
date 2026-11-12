@@ -23,11 +23,26 @@ fi
 sbx policy allow network api.cursor.com >/dev/null
 {{- end }}
 
+# Persist the telemetry opt-out for launches outside Fish, and skip sbx's
+# bundled model server: pisbx uses pi's configured providers directly.
+restart_needed=false
+if [ "$(sbx settings get telemetry.disabled)" != true ]; then
+  sbx settings set telemetry.disabled true
+  restart_needed=true
+fi
+if [ "$(sbx settings get model.server.enabled)" != false ]; then
+  sbx settings set model.server.enabled false
+  restart_needed=true
+fi
+
 # Forward the agents' ssh-agent (see agent_ssh_agent), not 1Password's.
 socket="$HOME/.local/state/agent-identity/ssh-agent.sock"
 if [ "$(sbx settings get ssh.agentSocketPath)" != "$socket" ]; then
   sbx settings set ssh.agentSocketPath "$socket"
-  echo "Restarting the sbx daemon to apply ssh.agentSocketPath; running sandboxes stop."
+  restart_needed=true
+fi
+if [ "$restart_needed" = true ]; then
+  echo "Restarting the sbx daemon to apply settings; running sandboxes stop."
   sbx daemon restart
 fi
 

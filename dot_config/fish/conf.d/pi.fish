@@ -96,8 +96,10 @@ function pisbx -d "run pi in a Docker sandbox for a worktree"
     # pi starts through the sandbox's persistent profile, which puts mise's shims
     # on the PATH; `sbx exec` alone doesn't, and pi's MCP servers (gopls) and
     # the repo's pinned toolchains would then not be found.
+    # Run pi itself with the kit's Node: a repo's older Node pin must not select
+    # pi's runtime. Keep the shims on PATH for pi's project commands.
     sbx exec --interactive --tty --workdir $worktree $env_args $sandbox \
-        sh -c '[ -r /etc/sandbox-persistent.sh ] && . /etc/sandbox-persistent.sh; exec pi "$@"' pi $argv[2..]
+        sh -c '[ -r /etc/sandbox-persistent.sh ] && . /etc/sandbox-persistent.sh; exec /usr/local/bin/node "$(command -v pi)" "$@"' pi $argv[2..]
 end
 
 # __pisbx_port_block SANDBOX prints the 4 host ports reserved for SANDBOX's
@@ -144,3 +146,6 @@ end
 # Give the agent the `plannotator` tool (annotate/review with an approval gate);
 # the documents skill's review gate depends on it.
 set -gx PLANNOTATOR_AGENT_TOOL 1
+
+# Inbox is Pi's only question channel; expose it before the first model turn.
+set -gx PLANNOTATOR_INBOX_TOOL 1
