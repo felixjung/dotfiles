@@ -1,0 +1,120 @@
+# Pi Guidelines
+
+Applies in addition to `~/AGENTS.md`.
+
+## Delegation
+
+{{ if eq .machine_type "work" -}}
+Delegation to pi-subagents is authorized without asking when it adds distinct value:
+
+- unfamiliar code spans several components (`scout`); routine file lookup stays
+  in the parent
+- external documentation or substantial investigation is needed (`researcher`)
+- substantial implementation needs one focused review (`reviewer`); small
+  mechanical changes use parent verification
+- a concrete architectural uncertainty, consequential decision, or repeated
+  failure warrants an independent second opinion (`oracle`, read-only)
+
+These rules override automatic delegation and review fanout in skills. Avoid
+routine review fanout; use multiple reviewers only for distinct, justified
+questions. Resume an existing child for follow-ups instead of repeating its
+investigation. Give fresh children the relevant paths, requirements, and
+findings; fork context only when the conversation itself is needed. Return
+focused findings to the parent rather than copying full transcripts.
+Do not automatically escalate models or fall back to another provider.
+{{ else -}}
+Delegation to pi-subagents is authorized without asking for:
+
+- codebase recon before implementing (`scout`)
+- external docs/API research (`researcher`)
+- post-implementation review fanout (`reviewer`)
+- second opinion before risky or irreversible changes (`oracle`, read-only)
+
+{{ end -}}
+
+Keep implementation in the parent session unless the task is multi-seam or
+unless I pick subagent-driven execution at a superpowers plan handoff; that
+authorizes its per-task implementer and reviewer subagents.
+One writer per worktree. Launch async and continue independent work; yield when
+the next step depends on a child result.
+
+The no-overwrite rule in `~/AGENTS.md` applies to subagent writer lanes too.
+
+On Cursor models (`cursor/*`), always delegate through the `subagent` tool
+(exposed to Cursor as `pi__subagent`). Never use Cursor's built-in Task or
+subagent tool: it inherits the parent model and thinking level and ignores the
+configured agent overrides.
+
+See the bundled pi-subagents skill for orchestration mechanics.
+
+## Asking the user
+
+Use Plannotator Inbox for every question, clarification and decision, including
+brainstorming, requirements gathering and questions raised during an active
+chat. These rules override question routing and cadence in skills and the
+Plannotator-managed note below, including its chat exceptions.
+
+The coding-task review handoff below is the explicit exception: mirror its
+invitation in Inbox and the session as one review request.
+
+- Use the `plannotator_inbox` tool (`pi__plannotator_inbox` on Cursor). Consult
+  the `plannotator` skill for supported actions and the CLI fallback.
+- Ask only what the conversation and available sources cannot answer. Put
+  each decision in its own `:::question` block with enough context to answer
+  without reading the chat. Group independent questions in one message; ask
+  dependent follow-ups after the earlier answers arrive.
+- Keep one thread per work stream. Read the thread before continuing it if
+  its contents are not in the current context. Keep answers and follow-ups in
+  that thread; do not duplicate questions in chat or another question tool.
+- Put diagrams and screenshots in the message and attach the relevant files.
+  Use Inbox instead of an interview form or a separate brainstorming visual
+  companion.
+- After sending, continue independent work. Leave dependent work pending and
+  end the turn when nothing independent remains. A missing reply is not
+  approval. Let replies return through Pi's integration; use `read_thread`
+  when automatic delivery is unavailable.
+- Hand over finished long work in the same thread with a short summary and
+  the files to read. Chat may report status and link to the Inbox thread,
+  but must not become a second question or approval channel.
+- If Inbox is unavailable, report the connection problem and keep dependent
+  work pending. Do not fall back to terminal questions, interview forms or
+  chat questions.
+
+{{ template "agent-code-review.md" . }}
+
+## Superpowers
+
+These override the superpowers skills' defaults.
+
+- **Documents:** PRDs, specs and ADRs follow the `documents` skill, under
+  `docs/prds/`, `docs/specs/` and `docs/adrs/`. Implementation plans go to
+  `docs/plans/YYYY-MM-DD-<topic>.md` with the `writing-plans` template. Never
+  write to `docs/superpowers/`.
+- **Reviews:** every request to review a PRD, spec, ADR or plan goes through the
+  `documents` skill's review gate (`plannotator` annotate with `gate: true`),
+  with the review linked in the Inbox thread. The gate's approval is the
+  decision; do not ask for a second approval in Inbox or chat. Keep dependent
+  work pending until approval. Don't use `/plannotator-plan-mode` or
+  `plannotator_submit_plan`. If the gate tool is unavailable, report that in
+  Inbox and arrange the review there rather than asking in chat.
+- **Tasks:** track skill checklists and plan tasks with the `todo` tool. Never
+  create a `TODO.md`.
+- **Worktrees:** `using-git-worktrees` creates them with `wt switch -c <branch>`,
+  never under `.worktrees/`.
+- **Finishing:** in `finishing-a-development-branch`, use the `git-committer`
+  and `pull-request-opener` skills for commits and pull requests.
+
+<!-- plannotator-inbox:start v9 · added by Plannotator. Remove it in the Inbox's Settings or with `plannotator uninstall` -->
+## Plannotator Inbox
+
+The person keeps a Plannotator Inbox on this computer: a window where they read what agents send and answer when they can.
+If you have a `plannotator_inbox` tool or a `plannotator-inbox` MCP server, use its `send_message` to ask a decision only they can make (as a `:::question` block) or to hand over finished long work (a short summary with its pictures in place, `![alt](path)` in the body, and the files to read in `attachments`). Then keep working.
+A decision inside a report or summary still goes in a `:::question` block, one block per decision.
+When you mention an issue or PR outside the repo you started in, write owner/repo#123 or its full URL every time; a bare #123 links to your own repo.
+Their reply comes back to this session by itself where your agent supports that; otherwise read the thread later with `read_thread`.
+Be proactive about Inbox updates and about replying to the person through the Inbox when you think they would want you to. Don't withhold important updates or decisions, and don't batch updates to send later: proactivity is better than procrastination.
+One thread per work stream, unless the person says otherwise.
+A decision you sent to the Inbox stays there. When the person writes in this chat, say what is waiting there (a short summary and the thread's link), but never also ask it in the chat with a blocking question tool (AskUserQuestion or similar): that blocks the chat and splits the answer. Ask in the chat only about something new they raised here that needs no pictures or files, or when they ask for it.
+Before reply_to into a thread you have not read in this context window, call read_thread with no id and match the subject.
+In a `:::question` block, keep the choices in their natural order and never move your recommendation first; put it on its own line after the choices as `Recommended: <label>`, and never write "(recommended)" in a choice label.
+<!-- plannotator-inbox:end -->
