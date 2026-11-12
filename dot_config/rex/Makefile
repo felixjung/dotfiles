@@ -4,7 +4,7 @@ SELENE := $(if $(wildcard /opt/homebrew/bin/selene),/opt/homebrew/bin/selene,sel
 LUAJIT := $(if $(wildcard /opt/homebrew/bin/luajit),/opt/homebrew/bin/luajit,luajit)
 REX := $(HOME)/Library/Application Support/com.superlogical.rex/RexServer/Versions/Current/Rex Server.app/Contents/MacOS/rex
 PROFILES := . viewer
-LUA_FILES := init.lua keys.lua scrollback.lua lazygit.lua scratch.lua tests/test_scratch.lua viewer/init.lua types/rex.lua
+LUA_FILES := init.lua keys.lua scroll.lua scrollback.lua lazygit.lua scratch.lua tests/test_scratch.lua tests/test_scroll.lua viewer/init.lua types/rex.lua
 
 .PHONY: format format-check lint test runtime-check check
 format:
@@ -17,4 +17,5 @@ runtime-check:
 	"$(REX)" config check "$(CURDIR)/init.lua" --json
 test:
 	$(LUAJIT) tests/test_scratch.lua
+	$(LUAJIT) tests/test_scroll.lua
 check: format-check lint test runtime-check

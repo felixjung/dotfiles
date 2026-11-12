@@ -63,15 +63,26 @@ Mason installations are retained. The viewer's native LuaLS configuration uses
 
 ## Persistent scroll mode
 
-`ctrl+a>[` enters the exclusive `scroll` mode until `q` or `esc` leaves it.
+`ctrl+a>[` enters the exclusive `scroll` mode until `esc` leaves it.
+
+Automatic routing uses Rex history for primary-screen output, including logs.
+Agent detection also uses root program-status records owned by the current
+foreground process, so wrappers such as op can be recognized without stale
+records affecting later commands.
+Recognized alternate-screen Pi uses its half/full-page controls; Codex uses full
+pages. Unknown apps and failed detection use Rex history without sending keys.
 
 | Mode key | Action |
 | --- | --- |
-| `ctrl+u` / `ctrl+d` | Forward Ctrl+PageUp / Ctrl+PageDown (Pi half-page scrolling) |
-| `ctrl+b` / `ctrl+f` | Forward PageUp / PageDown (Pi full-page scrolling) |
-| `pageup` / `pagedown` | Rex-native terminal scrollback page up / down |
-| `e` | `scrollcopy`: open the existing isolated snapshot viewer for copying |
-| `q` / `esc` | Exit the mode |
+| Ctrl+U / D | Up/down; half pages in Pi, full pages elsewhere |
+| Ctrl+B / F | Full page up/down |
+| a / t / p / c | Automatic / terminal / Pi / Codex profile |
+| e | Open snapshot viewer for copying |
+| esc | Exit |
+
+Overrides replace the profile until exit; re-entry starts automatic. Use an
+override for wrappers or sandboxes that hide agent identity. Unknown alternate
+screens have no Rex history. Snapshots do not include hidden agent history.
 
 Other global bindings, including `ctrl+a>ctrl+a` passthrough, are unchanged.
 Setting `enabled = false` in `init.lua` registers no bindings or modes; the

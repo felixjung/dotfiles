@@ -31,10 +31,16 @@
 ---@field blocks RexBlockDescription[]
 
 ---@class RexForegroundProcess
+---@field name? string
+---@field path? string
+---@field script? string
+---@field invoked_path? string
 ---@field pid integer
 ---@field cwd? string
 
 ---@class RexCallResult
+---@field records? {id?: string, app?: string, effective_app?: string, owner?: {pid: integer, name: string}}[]
+---@field screen? string
 ---@field host_id? string
 ---@field active_window_id? string
 ---@field windows? RexWindowView[]
