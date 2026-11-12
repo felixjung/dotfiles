@@ -1,6 +1,6 @@
 ---@meta
--- Used API subset: reference-lua.md and live revision-11 schemas captured in
--- /tmp/rex-lua-quality/evidence/api-*.json. No runtime loads this definition.
+-- Used API subset, checked against the installed Rex schemas.
+-- No runtime loads this definition.
 
 ---@class RexContext
 ---@field session_id? string
@@ -11,6 +11,8 @@
 
 ---@class RexBlockDescription
 ---@field block_id string
+---@field label? string
+---@field flavor? string
 ---@field creator_name? string
 ---@field host_id? string
 ---@field placement string
@@ -19,6 +21,14 @@
 ---@class RexWindowView
 ---@field window_id? string
 ---@field focused_block_id? string
+---@field layers? RexLayerView[]
+
+---@class RexLayerView
+---@field layer_id string
+---@field kind string
+---@field state? string
+---@field bounds number[]
+---@field blocks RexBlockDescription[]
 
 ---@class RexForegroundProcess
 ---@field pid integer
@@ -28,6 +38,7 @@
 ---@field host_id? string
 ---@field active_window_id? string
 ---@field windows? RexWindowView[]
+---@field blocks? RexBlockDescription[]
 ---@field foreground? RexForegroundProcess
 ---@field content? string
 ---@field id? integer

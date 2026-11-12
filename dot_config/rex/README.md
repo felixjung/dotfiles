@@ -48,7 +48,8 @@ Native targets:
 - `lint`: Selene, separately for Rex runtime and the Neovim viewer.
 - `runtime-check`: load the source config with the exact installed Rex executable;
   this checks loading, not subsequent action execution, and does not reload Rex.
-- `check`: formatting verification, lint and runtime loading.
+- `test`: shared scratch action tests under LuaJIT, using mocked Rex calls.
+- `check`: formatting verification, lint, scratch tests and runtime loading.
 
 LuaLS remains active in the editor, with nearest buffer-local `.luarc.json`
 profiles. Rex uses Lua 5.1 and source-only `types/rex.lua` for its API subset;
@@ -72,9 +73,9 @@ Mason installations are retained. The viewer's native LuaLS configuration uses
 | `e` | `scrollcopy`: open the existing isolated snapshot viewer for copying |
 | `q` / `esc` | Exit the mode |
 
-The other 32 global bindings, including `ctrl+a>ctrl+a` passthrough, are unchanged.
+Other global bindings, including `ctrl+a>ctrl+a` passthrough, are unchanged.
 Setting `enabled = false` in `init.lua` registers no bindings or modes; the
-independent Open Lazygit palette action remains available.
+independent Open Lazygit and Toggle Shared Scratch Terminal palette actions remain available.
 The standalone `scrollback_viewer` action remains available without mode exits.
 
 `scrollcopy` queues `client.mode.exit_all` before calling the existing viewer
@@ -115,8 +116,41 @@ check and focus, and repository contents/path identity can change after validati
 The shell guard prevents a disappeared directory from executing Lazygit, but does
 not lock directory identity or restore user focus across races.
 
-Runtime files are `init.lua`, `keys.lua`, `scrollback.lua`, `lazygit.lua`, and
+Runtime files are `init.lua`, `keys.lua`, `scrollback.lua`, `lazygit.lua`, `scratch.lua`, and
 `viewer/init.lua`.
 These Make targets do not write GUI preferences, change clipboard contents,
 reload Rex or restart applications. The separate chezmoi apply script imports
 the GUI snapshot as described above.
+
+## Shared floating scratch terminal
+
+`ctrl+a>f` invokes **Toggle Shared Scratch Terminal** (`toggle_scratch`). The
+palette action is always registered; its shortcut follows the custom key layer's
+`enabled` setting. The first invocation creates a centered 70% floating default
+shell in the focused local terminal's foreground working directory. Missing
+terminal context or cwd fails without creating a shell in a fallback directory.
+
+Each session has its own shell. When the scratch pane is focused, the shortcut
+minimizes it without stopping its program. Otherwise it restores, raises and
+focuses it. Invoking in another tab brings the same running terminal into that
+tab, retaining its cwd, program, scrollback and latest floating bounds. Tab
+switches alone do not move it. The existing Lazygit action is separate.
+
+Rex floats are natively tab-scoped. A transfer uses `session.move_block` followed
+by `session.float_block`: this can briefly redraw a split, resize its programs,
+and end pane zoom. Both tabs must have tiled panes. If floating fails after the
+move, the shell remains running in the destination split; use **Float Pane** to
+recover it. Failures never close the shell or unrelated panes. The calls are not
+atomic; concurrent layout changes can still race with the preflight checks.
+
+The reserved label `__rex_shared_scratch` identifies the shell across config
+reloads. Do not reuse it on other panes. Duplicate labels, detached terminals,
+or a manually docked/split scratch pane cause the action to stop without altering
+them. Restore a single-pane float to resume, or rename it to opt out and allow
+the next invocation to create another scratch. Closing the pane or its containing
+tab ends that shell. The next invocation starts fresh; server restart does not
+guarantee preservation of running programs.
+
+Run `make -C dot_config/rex test` for action tests. Source-only tests and type
+definitions are already excluded from chezmoi deployment. Apply only the changed
+runtime Lua files and reload Rex; no GUI preference import or restart is needed.
