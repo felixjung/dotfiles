@@ -1,16 +1,16 @@
 {
-  "defaultModel": "gpt-6.1-sol",
-  "defaultProvider": {{ if eq .machine_type "work" }}"github-copilot"{{ else }}"openai"{{ end }},
-  "defaultThinkingLevel": "high",
+  "defaultModel": {{ if eq .machine_type "work" }}"claude-sonnet-5-5@300k"{{ else }}"gpt-6.1-sol"{{ end }},
+  "defaultProvider": {{ if eq .machine_type "work" }}"cursor"{{ else }}"openai"{{ end }},
+  "defaultThinkingLevel": {{ if eq .machine_type "work" }}"medium"{{ else }}"high"{{ end }},
   "defaultTools": [
     "+codemode"
   ],
   "enabledModels": [
+{{- if eq .machine_type "work" }}
     "ollama/gemma4:12b-mlx",
     "ollama/qwen3.6:35b-mlx",
     "ollama/qwen3.8:27b-mlx",
     "ollama/qwen3-coder:30b",
-{{- if eq .machine_type "work" }}
     "github-copilot/claude-opus-5.5",
     "github-copilot/claude-sonnet-5.5",
     "github-copilot/gpt-6-astra",
@@ -33,7 +33,7 @@
 {{- end }}
   ],
   "modelThinkingLevels": {
-    "github-copilot/claude-sonnet-5.5": "xhigh"
+    "github-copilot/claude-sonnet-5.5": {{ if eq .machine_type "work" }}"medium"{{ else }}"xhigh"{{ end }}
   },
   "memory": {
     "lessonInjection": "selective",
@@ -64,6 +64,7 @@
       }
     },
     "agentOverridesByProvider": {
+{{- if eq .machine_type "work" }}
       "ollama": {
         "scout": {
           "model": "inherit",
@@ -90,6 +91,7 @@
           "thinking": "high"
         }
       },
+{{- end }}
       "github-copilot": {
         "scout": {
           "model": "github-copilot/gpt-6-luna"
@@ -98,7 +100,8 @@
           "model": "github-copilot/gpt-6-luna"
         },
         "evidence-auditor": {
-          "model": "github-copilot/claude-sonnet-5.5"
+          "model": "github-copilot/claude-sonnet-5.5"{{ if eq .machine_type "work" }},
+          "thinking": "medium"{{ end }}
         },
         "worker": {
           "model": "github-copilot/gpt-6.1-sol"
@@ -107,7 +110,8 @@
           "model": "github-copilot/gpt-6.1-sol"
         },
         "oracle": {
-          "model": "github-copilot/gpt-6-astra"
+          "model": "github-copilot/gpt-6-astra"{{ if eq .machine_type "work" }},
+          "thinking": "high"{{ end }}
         }
       },
       "cursor": {
@@ -115,19 +119,21 @@
           "model": "cursor/claude-haiku-5-5@300k"
         },
         "researcher": {
-          "model": "cursor/claude-sonnet-5-5@300k"
+          "model": {{ if eq .machine_type "work" }}"cursor/claude-haiku-5-5@300k"{{ else }}"cursor/claude-sonnet-5-5@300k"{{ end }}
         },
         "evidence-auditor": {
-          "model": "cursor/claude-sonnet-5-5@300k"
+          "model": "cursor/claude-sonnet-5-5@300k"{{ if eq .machine_type "work" }},
+          "thinking": "medium"{{ end }}
         },
         "worker": {
           "model": "cursor/claude-sonnet-5-5@300k"
         },
         "reviewer": {
-          "model": "cursor/claude-opus-5-5@300k"
+          "model": {{ if eq .machine_type "work" }}"cursor/claude-sonnet-5-5@300k"{{ else }}"cursor/claude-opus-5-5@300k"{{ end }}
         },
         "oracle": {
-          "model": "cursor/claude-opus-5-5@300k"
+          "model": "cursor/claude-opus-5-5@300k"{{ if eq .machine_type "work" }},
+          "thinking": "high"{{ end }}
         }
       },
       "openai": {

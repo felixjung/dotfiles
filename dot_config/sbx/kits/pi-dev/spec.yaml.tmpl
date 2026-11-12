@@ -59,6 +59,9 @@ environment:
     PLANNOTATOR_AGENT_TOOL: "1"
 {{- if eq .machine_type "work" }}
     GOPRIVATE: "github.com/sumup/*"
+    # Route Cursor operations and delegation through Pi.
+    PI_CURSOR_NATIVE_TOOLS: "0"
+    PI_CURSOR_EXPOSE_BUILTIN_TOOLS: "1"
 {{- end }}
 
 setup:

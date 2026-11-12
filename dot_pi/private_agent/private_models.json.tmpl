@@ -1,5 +1,6 @@
 {
   "providers": {
+{{- if eq .machine_type "work" }}
     "ollama": {
       "api": "openai-completions",
       "apiKey": "ollama",
@@ -39,5 +40,6 @@
         }
       ]
     }
+{{- end }}
   }
 }

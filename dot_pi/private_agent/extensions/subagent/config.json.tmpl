@@ -1,0 +1,8 @@
+{
+  "toolActivation": "eager"
+{{- if eq .machine_type "work" }},
+  "defaultSubagentContext": "fresh",
+  "globalConcurrencyLimit": 2,
+  "maxSubagentDepth": 1
+{{- end }}
+}

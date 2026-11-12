@@ -1,0 +1,2 @@
+{{- $config := includeTemplate "dot_pi/private_agent/extensions/subagent/config.json.tmpl" . | fromJson -}}
+{{ set $config "worktreeProvider" "worktrunk" | toPrettyJson }}

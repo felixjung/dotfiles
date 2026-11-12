@@ -1,0 +1,5 @@
+{{ if eq .machine_type "work" -}}
+# Keep Cursor delegation and tools on Pi's configured bridge.
+set -gx PI_CURSOR_NATIVE_TOOLS 0
+set -gx PI_CURSOR_EXPOSE_BUILTIN_TOOLS 1
+{{ end -}}
