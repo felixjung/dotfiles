@@ -1,0 +1,16 @@
+#!/bin/sh
+set -eu
+export PATH="{{ .chezmoi.homeDir }}/.local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
+command -v codex >/dev/null 2>&1 || exit 0
+test -x "{{ .chezmoi.homeDir }}/.local/bin/plannotator" || exit 0
+python3 -c 'import json, subprocess
+binary = "{{ .chezmoi.homeDir }}/.local/bin/plannotator"
+servers = json.loads(subprocess.check_output(["codex", "mcp", "list", "--json"]))
+existing = next((s for s in servers if s["name"] == "plannotator-inbox"), None)
+if existing is None:
+    subprocess.run(["codex", "mcp", "add", "plannotator-inbox", "--", binary, "inbox", "mcp"], check=True)
+else:
+    transport = existing.get("transport", {})
+    if transport.get("command") != binary or transport.get("args") != ["inbox", "mcp"] or not existing.get("enabled", True):
+        raise SystemExit("Conflicting plannotator-inbox configuration; preserve manual settings and resolve explicitly.")
+'

@@ -1,0 +1,40 @@
+# Guidelines
+
+- Never overwrite manual edits I have made unless I explicitly ask you to. If
+  such edits conflict with changes you are trying to make, consult me regarding
+  how to proceed.
+
+## Asking the user
+
+Use Plannotator Inbox for every question, clarification and decision, including
+brainstorming, requirements gathering and questions raised during an active
+chat. These rules override question routing and cadence in skills and the
+Plannotator-managed note below, including its chat exceptions.
+
+The coding-task review handoff below is the explicit exception: mirror its
+invitation in Inbox and the session as one review request.
+
+- Use the `plannotator-inbox` MCP tools. Consult
+  the `plannotator` skill for supported actions and the CLI fallback.
+- Ask only what the conversation and available sources cannot answer. Put
+  each decision in its own `:::question` block with enough context to answer
+  without reading the chat. Group independent questions in one message; ask
+  dependent follow-ups after the earlier answers arrive.
+- Keep one thread per work stream. Read the thread before continuing it if
+  its contents are not in the current context. Keep answers and follow-ups in
+  that thread; do not duplicate questions in chat or another question tool.
+- Put diagrams and screenshots in the message and attach the relevant files.
+  Use Inbox instead of an interview form or a separate brainstorming visual
+  companion.
+- After sending, continue independent work. Leave dependent work pending and
+  end the turn when nothing independent remains. A missing reply is not
+  approval. Let replies return through Codex's integration; use `read_thread`
+  when automatic delivery is unavailable.
+- Hand over finished long work in the same thread with a short summary and
+  the files to read. Chat may report status and link to the Inbox thread,
+  but must not become a second question or approval channel.
+- If Inbox is unavailable, report the connection problem and keep dependent
+  work pending. Do not fall back to terminal questions, interview forms or
+  chat questions.
+
+{{ template "agent-code-review.md" . }}
