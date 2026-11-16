@@ -22,6 +22,18 @@ fi
 """
 
 [post-switch]
+rex = """
+if [ -n "$REX_SESSION" ] && [ -n "$REX_BLOCK" ]; then
+  if rex_pane=$(rex block inspect "$REX_BLOCK" -s "$REX_SESSION" --json) &&
+     rex_tab=$(printf '%s' "$rex_pane" | jq -er '.block.window_id | strings | select(length > 0)'); then
+    rex window rename "$rex_tab" -s "$REX_SESSION" {{ repo ~ ' | ' ~ branch }} ||
+      printf '%s\\n' 'Worktrunk: could not rename Rex task tab.' >&2
+  else
+    printf '%s\\n' 'Worktrunk: could not find the Rex task tab.' >&2
+  fi
+fi
+"""
+
 wezterm = """
 if [ -n "$WEZTERM_PANE" ]; then
   wezterm cli set-tab-title --pane-id "$WEZTERM_PANE" "{{ repo }} | {{ branch }}"
