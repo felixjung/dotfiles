@@ -1,4 +1,5 @@
 return function(root)
+  assert(loadfile(root .. "/navigation.lua"))().register()
   assert(loadfile(root .. "/scrollback.lua"))().register(root)
   local function bind(key, action, args)
     rex.bind("ctrl+a>" .. key, action, args)

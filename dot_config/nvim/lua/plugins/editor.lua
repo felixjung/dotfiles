@@ -2,6 +2,12 @@ return {
 	{
 		"mrjones2014/smart-splits.nvim",
 		lazy = false,
+		opts = function(_, opts)
+			if require("config.rex_backend").detect() then
+				opts.mux = opts.mux or {}
+				opts.mux.backend = "config.rex_backend"
+			end
+		end,
 		keys = {
 			{
 				"<C-A-h>",

@@ -108,7 +108,7 @@ function M.run(ctx)
   -- The invocation block can belong to a stale tab. Only the current view wins.
   local pinned = source(session_id, host_id)
   local git = check(
-    rex.exec({ "/usr/bin/git", "-C", pinned.cwd, "rev-parse", "--show-toplevel" }, { timeout = 5 }),
+    rex.exec({ "git", "-C", pinned.cwd, "rev-parse", "--show-toplevel" }, { timeout = 5 }),
     "foreground directory is not an accessible Git repository"
   )
   check(git.ok, "foreground directory is not an accessible Git repository")
@@ -126,9 +126,7 @@ function M.run(ctx)
         flavor = "com.superlogical.terminal.shell",
         options = {
           cwd = repo,
-          shell = "none",
-          path_prepend = { "/opt/homebrew/bin", os.getenv("HOME") .. "/.local/bin" },
-          command = { "/bin/sh", "-c", launch, "rex-lazygit", repo, "/opt/homebrew/bin/lazygit" },
+          command = { "/bin/sh", "-c", launch, "rex-lazygit", repo, "lazygit" },
           exit = { on_completion = true, quick_exit_threshold_ms = 0 },
         },
       }),

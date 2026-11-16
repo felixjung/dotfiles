@@ -5,7 +5,7 @@ globals:
   rex.bind:
     args:
       - type: string
-      - type: string
+      - type: any
       - type: table
         required: false
   rex.mode:

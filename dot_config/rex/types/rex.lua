@@ -21,6 +21,7 @@
 ---@class RexWindowView
 ---@field window_id? string
 ---@field focused_block_id? string
+---@field zoomed_block_id? string
 ---@field layers? RexLayerView[]
 
 ---@class RexLayerView
@@ -71,7 +72,7 @@
 ---@class RexTerminalOptions
 ---@field command string[]
 ---@field cwd? string
----@field shell string
+---@field shell? string
 ---@field exit {on_completion: boolean, quick_exit_threshold_ms: integer}
 
 ---@class RexBlockLayout
@@ -83,10 +84,11 @@
 ---@field title string
 ---@field category? string
 ---@field description? string
----@field run fun(ctx: RexContext, args: table): RexCallResult?
+---@field args? table<string, string>
+---@field run fun(ctx: RexContext, args: table): table?
 
 ---@class RexAPI
----@field bind fun(key: string, action: string, args?: table)
+---@field bind fun(key: string, action: string|fun(ctx: RexContext): boolean, args?: table)
 ---@field mode fun(name: string, options?: {exclusive?: boolean})
 ---@field client {queue: fun(name: string, args?: table)}
 ---@field action fun(action: RexAction)

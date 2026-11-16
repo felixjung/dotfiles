@@ -41,6 +41,8 @@ files. Tool configs, API definitions, this README and the Makefile are excluded
 from target sync. Previously deployed, ignored target tests are left untouched.
 
 Run `make -C dot_config/rex check` from the repository, or `make check` here.
+`REX`, `NVIM`, `STYLUA`, `SELENE`, and `LUAJIT` can override tools; `REX` defaults
+to `rex` on PATH. Headless Neovim tests use the installed smart-splits copy.
 Native targets:
 
 - `format` / `format-check`: StyLua, Lua 5.1 syntax, two-space indentation,
@@ -48,7 +50,8 @@ Native targets:
 - `lint`: Selene, separately for Rex runtime and the Neovim viewer.
 - `runtime-check`: load the source config with the exact installed Rex executable;
   this checks loading, not subsequent action execution, and does not reload Rex.
-- `test`: shared scratch action tests under LuaJIT, using mocked Rex calls.
+- `test`: scratch, scroll and navigation routing, real
+  smart-splits integration and isolated viewer OSC 52 output.
 - `check`: formatting verification, lint, scratch tests and runtime loading.
 
 LuaLS remains active in the editor, with nearest buffer-local `.luarc.json`
@@ -111,14 +114,14 @@ process cwd is required and validated with read-only Git `rev-parse`; there is n
 OSC7, child-process, home-directory or source-directory fallback.
 
 The terminal starts in the Git repository root. A static argv-based shell guard
-must successfully `cd` there before executing installed `/opt/homebrew/bin/lazygit`,
+must successfully `cd` there before executing `lazygit` from PATH,
 so Rex's terminal cwd fallback cannot launch Lazygit in home. Lazygit's `q` exits
 normally and closes its terminal/layer; no popup reuse manager is involved.
 
-The pane uses `shell = "none"` and Rex's `path_prepend` option to add
-`/opt/homebrew/bin` and `~/.local/bin` ahead of the inherited `PATH`. This lets
-Lazygit find delta, difftastic, and Homebrew-installed editors without loading
-shell startup files.
+The pane uses Rex's default shell startup so the existing shell configuration
+supplies PATH for Lazygit, delta, difftastic and editors. PATH composition belongs
+to the machine environment rather than the launcher. The Git preflight runs
+through `rex.exec` using the server's inherited PATH.
 
 Tab, focus and foreground identity are rechecked before/after creation. Creation
 does not focus; only the returned block is focused. Failures close only the new
@@ -127,8 +130,7 @@ check and focus, and repository contents/path identity can change after validati
 The shell guard prevents a disappeared directory from executing Lazygit, but does
 not lock directory identity or restore user focus across races.
 
-Runtime files are `init.lua`, `keys.lua`, `scrollback.lua`, `lazygit.lua`, `scratch.lua`, and
-`viewer/init.lua`.
+Runtime modules also include `navigation.lua`.
 These Make targets do not write GUI preferences, change clipboard contents,
 reload Rex or restart applications. The separate chezmoi apply script imports
 the GUI snapshot as described above.
@@ -165,3 +167,43 @@ guarantee preservation of running programs.
 Run `make -C dot_config/rex test` for action tests. Source-only tests and type
 definitions are already excluded from chezmoi deployment. Apply only the changed
 runtime Lua files and reload Rex; no GUI preference import or restart is needed.
+
+## Neovim and Rex navigation
+
+Ctrl+H/J/K/L moves between Neovim splits first, then hands off to the adjacent
+Rex pane at the editor boundary. Other terminal panes navigate Rex directly,
+so these keys replace their usual application behavior (including Ctrl+L).
+The existing Ctrl+A prefix bindings remain available. Neovim mappings remain
+normal-mode only; resizing is unchanged. Outer edges stop and zoom is retained.
+
+`navigation.lua` registers the `smart_splits_focus` action and four conditional
+bindings when the custom key layer is enabled. The Neovim backend is selected
+only with both `REX_SESSION` and `REX_BLOCK`. It uses `REX_BIN_PATH` if set, or
+`rex` on the pane's PATH, and retains the inherited server endpoint. Rex injects
+its CLI directory into new terminal panes. Failed editor handoffs do not wrap.
+The source block must still be focused in the active tab; the check and focus
+RPC are not atomic across clients.
+
+Rex detects foreground `nvim`/`vim` by process name. Connecting your client to a
+remote Rex server over SSH works because that server sees its own processes.
+Running another SSH connection or a PTY proxy inside a pane can hide the editor;
+that case is not detected. Missing process metadata passes keys through.
+
+## Portable server configuration
+
+Apply the shared Rex and Neovim configuration through chezmoi on each server,
+then reload Rex there. Neovim, Git, Lazygit and Rex must already be installed;
+this change adds no Linux bootstrap or service management.
+
+Launchers invoke `git`, `lazygit` and `nvim` by name. The floating terminal's
+normal Rex shell startup supplies PATH for Lazygit and Neovim; the Git preflight
+uses the server's inherited PATH. They do not discover installation prefixes or
+modify PATH. Configure the machine's shell/service environment to prioritize
+the intended installations.
+Missing tools fail when an action runs, without preventing configuration loading.
+
+The isolated viewer sends copy-only OSC 52 through its terminal instead of
+writing the server machine's clipboard. The attached client must support OSC 52
+writes and the viewer must be focused. No clipboard query is sent; paste still
+uses the client's normal paste action. This is not a clipboard synchronization
+service, and multi-client delivery follows Rex's clipboard routing.

@@ -36,15 +36,12 @@ local function initialize()
   vim.api.nvim_win_set_cursor(0, { #lines, 0 })
   local function copy()
     local selection = vim.fn.getreg('"')
-    local ok = pcall(vim.system, { "/usr/bin/pbcopy" }, { stdin = selection }, function(result)
-      if result.code ~= 0 then
-        vim.schedule(function()
-          vim.notify("Clipboard copy failed (pbcopy)", vim.log.levels.ERROR)
-        end)
-      end
-    end)
+    local ok = pcall(
+      require("vim.ui.clipboard.osc52").copy("+"),
+      vim.split(selection, "\n", { plain = true })
+    )
     if not ok then
-      vim.notify("Clipboard copy failed (pbcopy could not start)", vim.log.levels.ERROR)
+      vim.notify("Clipboard copy failed (OSC 52)", vim.log.levels.ERROR)
     end
   end
   vim.keymap.set("n", "yy", function()

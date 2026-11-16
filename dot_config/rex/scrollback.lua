@@ -91,7 +91,7 @@ function M.command(dir, root)
     "rex-scrollback",
     dir,
     root .. "/viewer/init.lua",
-    "/opt/homebrew/bin/nvim",
+    "nvim",
   }
 end
 ---@param ctx RexContext
@@ -151,7 +151,6 @@ function M.run(ctx, root)
         flavor = "com.superlogical.terminal.shell",
         options = {
           command = M.command(dir, root),
-          shell = "none",
           exit = { on_completion = true, quick_exit_threshold_ms = 0 },
         },
       }),

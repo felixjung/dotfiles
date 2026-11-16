@@ -1,2 +1,2 @@
 std = "rex"
-exclude = ["viewer/**", "types/**"]
+exclude = ["viewer/**", "types/**", "tests/test_backend.lua", "tests/test_viewer.lua"]
