@@ -81,7 +81,7 @@ packages:
       platform: [darwin, linux]
     - name: "lua-language-server"
       platform: [darwin, linux]
-    - name: "asdf"
+    - name: "mise"
       platform: [darwin, linux]
 
     # herdr's "system" toast delivery (dot_config/herdr/config.toml) uses it

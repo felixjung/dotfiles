@@ -1,0 +1,3 @@
+.config/asdf/.asdfrc
+.config/fish/conf.d/001-asdf.fish
+.default-npm-packages

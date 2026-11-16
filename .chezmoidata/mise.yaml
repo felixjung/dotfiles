@@ -1,0 +1,22 @@
+mise:
+  # Exact host defaults; project .tool-versions files override these.
+  tools:
+    node: "26.13.1"
+    go: "1.27.4"
+    ruby: "4.0.9"
+    python: "3.15.2"
+    golangci-lint: "2.15.0"
+    "go:golang.org/x/tools/gopls": "0.24.0"
+  npm:
+    "@asyncapi/cli": "2.17.0"
+    "@mermaid-js/mermaid-cli": "11.17.1"
+    "@playwright/cli": "0.1.24"
+    "@redocly/cli": "1.34.24"
+    "@slidev/cli": "52.20.1"
+    "@stoplight/spectral-cli": "6.17.1"
+    ajv-cli: "5.0.0"
+    openapi-typescript: "7.13.0"
+    pi-mcp-adapter: "2.38.0"
+    pnpm: "10.34.9"
+    typescript: "5.9.3"
+    vercel: "50.44.0"

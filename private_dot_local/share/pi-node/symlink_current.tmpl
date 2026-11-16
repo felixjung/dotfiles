@@ -1,2 +1,2 @@
-{{- /* Resolve ASDF's home default at apply time, not a project's Node version. */ -}}
-{{- output "sh" "-c" "unset ASDF_NODEJS_VERSION; cd \"$1\" && asdf where nodejs" "pi-node-home" .chezmoi.homeDir | trim -}}
+{{- /* Keep Pi on the host default even in projects that pin older Node. */ -}}
+{{- joinPath (env "XDG_DATA_HOME" | default (joinPath .chezmoi.homeDir ".local/share")) "mise/installs/node" .mise.tools.node -}}

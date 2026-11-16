@@ -1,0 +1,17 @@
+# Share Go's module cache and installed commands across compiler versions.
+[env]
+GOPATH = {{ joinPath .chezmoi.homeDir ".local/share/go" | quote }}
+GOBIN = {{ joinPath .chezmoi.homeDir ".local/share/go/bin" | quote }}
+
+# Personal defaults. Repositories can keep their existing .tool-versions.
+[tools]
+{{ range $tool, $version := .mise.tools -}}
+{{ $tool | quote }} = {{ $version | quote }}
+{{ end }}
+# Install CLIs independently of individual Node versions. Keep npm's existing
+# lifecycle-script behavior (for example, Mermaid's Puppeteer installation).
+{{ range $package, $version := .mise.npm -}}
+{{ printf "npm:%s" $package | quote }} = { version = {{ $version | quote }}, allow_builds = true }
+{{ end }}
+[settings.npm]
+package_manager = "npm"
