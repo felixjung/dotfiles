@@ -29,7 +29,13 @@
 ---@field kind string
 ---@field state? string
 ---@field bounds number[]
+---@field layout? RexLayoutNode
 ---@field blocks RexBlockDescription[]
+
+---@class RexLayoutNode
+---@field block_id? string
+---@field rect number[]
+---@field split? {direction: string, ratio: number, before: RexLayoutNode, after: RexLayoutNode}
 
 ---@class RexForegroundProcess
 ---@field name? string
@@ -55,6 +61,8 @@
 ---@field block? RexBlockDescription
 ---@field layer_id? string
 ---@field block_ids? string[]
+---@field columns? integer
+---@field rows? integer
 
 ---@class RexExecOptions
 ---@field timeout? number

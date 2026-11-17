@@ -174,9 +174,21 @@ Ctrl+H/J/K/L moves between Neovim splits first, then hands off to the adjacent
 Rex pane at the editor boundary. Other terminal panes navigate Rex directly,
 so these keys replace their usual application behavior (including Ctrl+L).
 The existing Ctrl+A prefix bindings remain available. Neovim mappings remain
-normal-mode only; resizing is unchanged. Outer edges stop and zoom is retained.
+normal-mode only. Outer edges stop and zoom is retained.
 
-`navigation.lua` registers the `smart_splits_focus` action and four conditional
+Ctrl+Option+H/J/K/L resizes Neovim splits on the requested axis. When the editor
+window fills that axis, smart-splits hands resizing to Rex. Other terminal panes
+resize Rex directly. Each press moves the divider by three terminal cells;
+Neovim count prefixes multiply that amount. Hold the keys to repeat.
+
+`smart_splits_resize` finds the source pane's deepest enclosing split on that
+axis and moves its divider left/down/up/right. It converts cells into a layout
+ratio using the source terminal's current grid and rectangle. Focus stays put,
+and each side retains at least one cell of space. Single-pane layers, missing
+dividers, stale source panes and zoomed tabs do not resize. Floating layers can
+resize internal splits; these keys do not move or resize the floating layer itself.
+
+`navigation.lua` registers the `smart_splits_focus` and `smart_splits_resize` actions and eight conditional
 bindings when the custom key layer is enabled. The Neovim backend is selected
 only with both `REX_SESSION` and `REX_BLOCK`. It uses `REX_BIN_PATH` if set, or
 `rex` on the pane's PATH, and retains the inherited server endpoint. Rex injects
