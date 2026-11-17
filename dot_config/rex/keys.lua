@@ -8,6 +8,7 @@ return function(root)
   bind("-", "pane.split", { direction = "down" })
   bind("x", "pane.close")
   bind("z", "pane.zoom")
+  bind("b", "pane.balance")
   for key, direction in pairs({ h = "left", j = "down", k = "up", l = "right" }) do
     bind(key, "pane.focus", { direction = direction })
   end
